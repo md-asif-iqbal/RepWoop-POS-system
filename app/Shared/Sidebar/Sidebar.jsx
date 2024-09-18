@@ -9,7 +9,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { IoBagHandle } from "react-icons/io5";
 import { TbTruckReturn } from "react-icons/tb";
 import { TbShoppingCartDollar } from "react-icons/tb";
-import { FaBoxesPacking } from "react-icons/fa6";
+import { FaBoxesPacking, FaPeopleGroup } from "react-icons/fa6";
 import { RiFileDamageFill } from "react-icons/ri";
 import { GiWeight } from "react-icons/gi";
 import { RiProductHuntFill } from "react-icons/ri";
@@ -28,6 +28,16 @@ import { TbReport } from "react-icons/tb";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 import { TbReportMoney } from "react-icons/tb";
 import { BiSolidReport } from "react-icons/bi";
+import { PiBoxArrowDownBold } from "react-icons/pi";
+import { FaBoxTissue } from "react-icons/fa6";
+import { GiProgression } from "react-icons/gi";
+import { MdOutlineSettings } from "react-icons/md";
+import { BiErrorAlt } from "react-icons/bi";
+import { FaUserCog } from "react-icons/fa";
+import { SiNginxproxymanager } from "react-icons/si";
+import { MdBackup } from "react-icons/md";
+
+
 
 export default function Sidebar({isSidebarOpen}) {
 
@@ -286,37 +296,38 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
+                        
                         <li className='flex items-center gap-3'>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
-                                Sales Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
-                            </Link>
-                        </li>
-                        <li className='flex items-center gap-3'>
+                        <PiBoxArrowDownBold size={24}/>
                             <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                 Low Stock Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
+                        <FaPeopleGroup size={24} />
                             <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                 Top Customer
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
+                        <GiProgression size={24} />
+                        
                             <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                 Top Product (All Time)
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
+                        <FaBoxTissue size={23} />
                             <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                 Category Wise Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
+                        <TbReportMoney size={23}/>
                             <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                 Purchase Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
@@ -343,24 +354,28 @@ export default function Sidebar({isSidebarOpen}) {
                             </span>
                             <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                             <li className='flex items-center gap-3'>
+                            <MdOutlineSettings size={24}/>
                                 <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                     Settings
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
+                            <BiErrorAlt size={24}/>
                                 <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                     Roles & Permissions
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
+                            <FaUserCog size={24}/>
                                 <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                     Users
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
+                            <SiNginxproxymanager size={24}/>
                                 <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
                                     Assets Management
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
@@ -370,7 +385,8 @@ export default function Sidebar({isSidebarOpen}) {
                         </div>
 
                         {/* Backup */}
-                        <div>
+                        <div className='flex items-center gap-3  text-gray-600 dark:text-white text-sm'>
+                        <MdBackup size={24}/>
                             <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">Backup</span>
                         </div>
                     

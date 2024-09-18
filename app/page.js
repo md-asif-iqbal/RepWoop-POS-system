@@ -1,4 +1,5 @@
 "use client"
+
 import Dashboard from "./home/page";
 import Footer from "./Shared/Footer/Footer";
 

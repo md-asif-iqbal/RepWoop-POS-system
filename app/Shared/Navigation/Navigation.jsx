@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 export default function Navigation({toggleSidebar}) {
   const [theme, setTheme] = useState(null); // State to track theme ('light' or 'dark')
-
+  // console.log(theme);
    // Get the saved theme from localStorage on initial load and apply it
    useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -35,7 +35,7 @@ export default function Navigation({toggleSidebar}) {
   };
 
   return (
-    <div className='w-[85.5%] fixed top-0 z-50'>
+    <div className='w-[84%] fixed top-0 z-50'>
         <div className="navbar bg-white dark:bg-[#141432]">
             <div className="navbar-start">
                 <div className="dropdown">
