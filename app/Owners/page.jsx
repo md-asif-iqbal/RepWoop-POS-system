@@ -41,6 +41,7 @@ export default function page() {
           balance: 1100,
         },
       ];
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isDropdownOpen, setDropdownOpen] = useState(null);
       const toggleDropdown = (id) => {
         setDropdownOpen(isDropdownOpen === id ? null : id);

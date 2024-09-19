@@ -2,6 +2,7 @@
 
 
 import React, { useState } from 'react'
+import { GrUserSettings } from 'react-icons/gr';
 
 export default function page() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -244,12 +245,12 @@ export default function page() {
                   <div className="relative">
                     <button
                       onClick={() => handleActionClick(sale.invoiceNo)}
-                      className="bg-gray-500 text-white p-1 rounded"
+                      className="p-1 rounded-lg transform cursor-pointer text-sky-400 hover:text-red-500 hover:scale-110 border-2"
                     >
-                      Actions
+                      <GrUserSettings />
                     </button>
                     {selectedInvoice === sale.invoiceNo && (
-                      <div className="absolute bg-white shadow-lg rounded p-2 mt-2">
+                      <div className="absolute bg-white shadow-lg rounded p-2 mt-2 z-50 right-10">
                         <ul className="text-gray-700">
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Print</li>
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Challan Print</li>
