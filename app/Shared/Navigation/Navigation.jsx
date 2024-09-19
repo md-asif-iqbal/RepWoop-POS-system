@@ -35,8 +35,8 @@ export default function Navigation({toggleSidebar}) {
   };
 
   return (
-    <div className='w-[84%] fixed top-0 z-50'>
-        <div className="navbar bg-white dark:bg-[#141432]">
+    <div className='w-[85%] fixed top-0 z-50'>
+        <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={toggleSidebar}>

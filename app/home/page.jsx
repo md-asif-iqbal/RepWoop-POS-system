@@ -213,7 +213,7 @@ export default function Dashboard() {
           <p className="">Tk 30,000</p>
         </div>
       </div>
-
+   
       {/* Current Month Summary */}
       <h2 className="text-xl  mb-4">Current Month Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -324,11 +324,11 @@ export default function Dashboard() {
                 <td className="py-3 px-6 text-left">{product.expiredDate}</td>
                 <td className="py-3 px-6 text-center">
                   <div className="flex item-center justify-center gap-5">
-                    <button className="p-1 rounded-lg border-2 transform hover:text-blue-500 hover:scale-110 ">
-                    <TbEdit size={24}/>
+                    <button className="p-1 rounded-lg border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110 ">
+                    <TbEdit size={16}/>
                     </button>
-                    <button className="p-1 rounded-lg transform hover:text-red-500 hover:scale-110 border-2 ">
-                    <RiDeleteBin5Line size={24}/>
+                    <button className="p-1 rounded-lg transform text-red-600 hover:text-red-500 hover:scale-110 border-2 ">
+                    <RiDeleteBin5Line size={16}/>
                     </button>
                   </div>
                 </td>

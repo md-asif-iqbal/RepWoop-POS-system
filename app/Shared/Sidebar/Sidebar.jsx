@@ -36,7 +36,8 @@ import { BiErrorAlt } from "react-icons/bi";
 import { FaUserCog } from "react-icons/fa";
 import { SiNginxproxymanager } from "react-icons/si";
 import { MdBackup } from "react-icons/md";
-
+import Image from 'next/image';
+import logo from '../../../assets/logo.png'
 
 
 export default function Sidebar({isSidebarOpen}) {
@@ -53,6 +54,7 @@ export default function Sidebar({isSidebarOpen}) {
 
             <div className={`space-y-4  transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
                 {/* font*/}
+                <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/>
                 <div className="text-start">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
@@ -101,15 +103,15 @@ export default function Sidebar({isSidebarOpen}) {
                         </li>
                         <li className='flex items-center gap-3'>
                         <IoBagHandle size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Sales" className="group text-gray-600 dark:text-white hover:text-orange-500">
                             Sales
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbTruckReturn size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
-                            Return
+                        <Link href="/Returns" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            Returns
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
