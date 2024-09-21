@@ -91,13 +91,23 @@ export default function Navigation({toggleSidebar}) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500 ">
+                  <Link href="/Stock" className=
+                        {`${
+                          pathname === '/Stock' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Stock
                   <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                  <Link href="/Today-Report" className=
+                        {`${
+                          pathname === '/Today-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                   Today Report
                   <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                   </Link>

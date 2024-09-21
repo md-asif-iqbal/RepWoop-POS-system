@@ -62,28 +62,48 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                         <IoHome size={24}/>
-                        <Link href="/" className="group  text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/"  className=
+                        {`${
+                          pathname === '/' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                           Dashboard
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <MdPerson3 size={24}/>
-                        <Link href="/Owners" className="group  text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Owners"  className=
+                        {`${
+                          pathname === '/Owners' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                          Owners
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <GiBank size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Bank_Accounts" className=
+                        {`${
+                          pathname === '/Bank_Accounts' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Bank Accounts
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <GiCash size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Cash_Book" className=
+                        {`${
+                          pathname === '/Cash_Book' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Cash Book
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
@@ -99,7 +119,12 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                         <FaCartArrowDown size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/POS" className=
+                        {`${
+                          pathname === '/POS' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             POS
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
@@ -119,28 +144,48 @@ export default function Sidebar({isSidebarOpen}) {
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbTruckReturn size={24}/>
-                        <Link href="/Returns" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Returns" className=
+                        {`${
+                          pathname === '/Returns' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Returns
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbShoppingCartDollar size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Purchase" className=
+                        {`${
+                          pathname === '/Purchase' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Purchase
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <FaBoxesPacking size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Stock" className=
+                        {`${
+                          pathname === '/Stock' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                         Stock
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <RiFileDamageFill size={24}/>
-                        <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Damages" className=
+                        {`${
+                          pathname === '/Damages' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                         Damages
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>
@@ -156,28 +201,48 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                         <GiWeight size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Units" className=
+                        {`${
+                          pathname === '/Units' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Units
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                             <RiProductHuntFill size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Products" className=
+                        {`${
+                          pathname === '/Products' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Products
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <AiFillProduct size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Categories" className=
+                        {`${
+                          pathname === '/Categories' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Categories
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                             <TbBrandSupernova size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Brands" className=
+                        {`${
+                          pathname === '/Brands' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Brands
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -194,14 +259,24 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                             <GiExpense size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Expenses" className=
+                        {`${
+                          pathname === '/Expenses' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Expenses
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <GiWallet size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Payments" className=
+                        {`${
+                          pathname === '/Payments' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Payments
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -216,7 +291,12 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                             <FaSms size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Promotional-SMS" className=
+                        {`${
+                          pathname === '/Promotional-SMS' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Promotional SMS
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -231,21 +311,36 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3'>
                             <IoIosPeople size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Customers" className=
+                        {`${
+                          pathname === '/Customers' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Customers
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <FaPeopleCarry size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Suppliers" className=
+                        {`${
+                          pathname === '/Suppliers' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Suppliers
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <MdManageAccounts size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Employee-and-Salary" className=
+                        {`${
+                          pathname === '/Employee-and-Salary' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Employee and Salary
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -260,49 +355,84 @@ export default function Sidebar({isSidebarOpen}) {
                 
                         <li className='flex items-center gap-3'>
                         <GiTakeMyMoney size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Profit-Loss-Report" className=
+                        {`${
+                          pathname === '/Profit-Loss-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Profit Loss Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <Ri24HoursLine size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Today-Report" className=
+                        {`${
+                          pathname === '/Today-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Today Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <IoCalendarNumberSharp size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Current-Month-Report" className=
+                        {`${
+                          pathname === '/Current-Month-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Current Month Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbReport size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Summary-Report" className=
+                        {`${
+                          pathname === '/Summary-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Summary Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <RiCalendarScheduleFill size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Daily-Report" className=
+                        {`${
+                          pathname === '/Daily-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Daily Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbReportMoney size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Customer-Due-Report" className=
+                        {`${
+                          pathname === '/Customer-Due-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Customer Due Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <BiSolidReport size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Supplier-Due-Report" className=
+                        {`${
+                          pathname === '/Supplier-Due-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Supplier Due Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -310,14 +440,24 @@ export default function Sidebar({isSidebarOpen}) {
                         
                         <li className='flex items-center gap-3'>
                         <PiBoxArrowDownBold size={24}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Low-Stock-Report" className=
+                        {`${
+                          pathname === '/Low-Stock-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Low Stock Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <FaPeopleGroup size={24} />
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Top-Customer" className=
+                        {`${
+                          pathname === '/Top-Customer' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Top Customer
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -325,33 +465,58 @@ export default function Sidebar({isSidebarOpen}) {
                         <li className='flex items-center gap-3'>
                         <GiProgression size={24} />
                         
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Top-Product" className=
+                        {`${
+                          pathname === '/Top-Product' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Top Product (All Time)
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <FaBoxTissue size={23} />
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Category-Wise-Report" className=
+                        {`${
+                          pathname === '/Category-Wise-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Category Wise Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
                         <TbReportMoney size={23}/>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Purchase-Report" className=
+                        {`${
+                          pathname === '/Purchase-Report' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Purchase Report
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Customer-Ledger" className=
+                        {`${
+                          pathname === '/Customer-Ledger' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Customer Ledger
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3'>
-                            <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                            <Link href="/Supplier-Ledger" className=
+                        {`${
+                          pathname === '/Supplier-Ledger' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                 Supplier Ledger
                                 <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                             </Link>
@@ -366,28 +531,48 @@ export default function Sidebar({isSidebarOpen}) {
                             <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                             <li className='flex items-center gap-3'>
                             <MdOutlineSettings size={24}/>
-                                <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                                <Link href="/Settings" className=
+                        {`${
+                          pathname === '/Settings' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                     Settings
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
                             <BiErrorAlt size={24}/>
-                                <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                                <Link href="/Roles-And-Permissions" className=
+                        {`${
+                          pathname === '/Roles-And-Permissions' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                     Roles & Permissions
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
                             <FaUserCog size={24}/>
-                                <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                                <Link href="/Users" className=
+                        {`${
+                          pathname === '/Users' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                     Users
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3'>
                             <SiNginxproxymanager size={24}/>
-                                <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                                <Link href="/Assets-Management" className=
+                        {`${
+                          pathname === '/Assets-Management' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                                     Assets Management
                                     <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                                 </Link>
