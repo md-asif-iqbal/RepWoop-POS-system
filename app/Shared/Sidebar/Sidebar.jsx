@@ -38,9 +38,12 @@ import { SiNginxproxymanager } from "react-icons/si";
 import { MdBackup } from "react-icons/md";
 import Image from 'next/image';
 import logo from '../../../assets/logo.png'
+import { usePathname } from 'next/navigation';
 
 
 export default function Sidebar({isSidebarOpen}) {
+
+    const pathname = usePathname();
 
   return (
     <div>
@@ -103,7 +106,13 @@ export default function Sidebar({isSidebarOpen}) {
                         </li>
                         <li className='flex items-center gap-3'>
                         <IoBagHandle size={24}/>
-                        <Link href="/Sales" className="group text-gray-600 dark:text-white hover:text-orange-500">
+                        <Link href="/Sales" 
+                        className=
+                        {`${
+                          pathname === '/Sales' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             Sales
                             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                         </Link>

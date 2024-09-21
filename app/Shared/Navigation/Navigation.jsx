@@ -1,10 +1,17 @@
 'use client'
-
-import useSidebarHook from '@/app/Hooks/SidebarHook/useSidebarHook';
 import Image from 'next/image'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+
+
+
 import React, { useEffect, useState } from 'react';
 export default function Navigation({toggleSidebar}) {
+
+  const pathname = usePathname();
+
+
   const [theme, setTheme] = useState(null); // State to track theme ('light' or 'dark')
   // console.log(theme);
    // Get the saved theme from localStorage on initial load and apply it
@@ -65,10 +72,21 @@ export default function Navigation({toggleSidebar}) {
                             POS
                   <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                   </Link>
+                  
                 </li>
                 <li>
-                  <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500 ">
-                            Sales
+                  <Link href="/Sales"  className=
+                  {`${
+                    pathname === '/Sales' 
+                      ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                      : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                  }`}
+               
+                  >
+                   
+              Sales
+   
+                            
                   <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                   </Link>
                 </li>
