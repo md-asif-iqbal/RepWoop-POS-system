@@ -33,17 +33,23 @@ export default function Dashboard() {
     datasets: [
       {
         label: "Sales",
-        data: [100, 200, 150, 220, 180, 250, 270, 240, 300],
-        backgroundColor: "rgba(0, 255, 0, 0.7)", // Green for sales
-        borderColor: "rgba(0, 255, 0, 1)",
+        data: [100, 200, 150, 220, 180, 250, 270, 240, 300,400],
+        backgroundColor: "#28C76F", // Green for sales
+        hoverbackgroundColor: "#65FA9E", // hover Green for sales
+        borderColor: "#65FA9E",
         borderWidth: 1,
+        borderRadius: 20,
+        barThickness: 20,
       },
       {
         label: "Purchase",
-        data: [-150, -180, -120, -170, -130, -210, -190, -160, -200],
-        backgroundColor: "rgba(255, 0, 0, 0.7)", // Red for purchases
-        borderColor: "rgba(255, 0, 0, 1)",
+        data: [-150, -180, -120, -170, -130, -210, -190, -160, -200,-300],
+        backgroundColor: "#FF4D4D", // Red for purchases
+        hoverbackgroundColor: "#E4E2E2",
+        borderColor: "#FF8585",
         borderWidth: 1,
+        borderRadius: 20,
+        barThickness: 20,
       },
     ],
   };
@@ -52,6 +58,7 @@ export default function Dashboard() {
   const options = {
     scales: {
       x: {
+      
         stacked: true, // Stack the x-axis
         grid: {
            // Light grid lines for x-axis
