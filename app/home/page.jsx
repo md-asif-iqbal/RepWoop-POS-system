@@ -249,7 +249,7 @@ export default function Dashboard() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Chart Area */}
-            <div className="mt-8 p-4 rounded-lg shadow-lg">
+            <div className="mt-8 p-4 rounded-lg shadow-lg dark:bg-[#202047]">
               <h3 className=" font-bold mb-4">Purchase & Sales</h3>
               <div className="flex justify-between mb-4">
                 <div className="text-green-500">Sales</div>
@@ -265,7 +265,7 @@ export default function Dashboard() {
               <Bar data={data} options={options} />
             </div>
             {/* Recent Products Table */}
-            <div className="mt-8 p-4  rounded  shadow-lg">
+            <div className="mt-8 p-4  rounded  shadow-lg dark:bg-[#202047]">
               <h3 className=" font-bold mb-4">Recent Products</h3>
               <table className="table-auto w-full">
                 <thead>
@@ -298,7 +298,7 @@ export default function Dashboard() {
         </div>
         <div className="">
       <h2 className="text-xl  mb-4 ">Expired Products</h2>
-      <div className="overflow-x-auto rounded-lg shadow-xl">
+      <div className="overflow-x-auto rounded-lg shadow-xl dark:bg-[#202047]">
         <table className="min-w-full table-auto border ">
           <thead>
             <tr className=" uppercase text-sm leading-normal">
