@@ -68,7 +68,12 @@ export default function Navigation({toggleSidebar}) {
             <div className="navbar-center hidden lg:flex">
               <ul className="menu-horizontal gap-8 px-1">
                 <li>
-                  <Link href="/" className="group text-gray-600 dark:text-white hover:text-orange-500 ">
+                  <Link href="/POS" className=
+                        {`${
+                          pathname === '/POS' 
+                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                        }`}>
                             POS
                   <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
                   </Link>
