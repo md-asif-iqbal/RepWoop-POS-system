@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { GrUserSettings } from 'react-icons/gr';
 import { TbEdit, TbInvoice } from 'react-icons/tb';
 import { IoTvOutline } from "react-icons/io5";
+import { MdOutlineDeleteSweep, MdOutlinePayments } from 'react-icons/md';
+import { FaPrint } from "react-icons/fa";
 
 export default function Purchase() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -231,21 +233,21 @@ export default function Purchase() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
       {/* Title Section */}
   
-      <div className=" mb-4  shadow-sm rounded-lg font-bold">
+      <div className=" mb-4  shadow-md rounded-lg font-bold">
       <h1 className="text-3xl text-gray-500 mx-5 ">Purchase</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
-            <Link href="/Purchase" className="group text-gray-600 dark:text-white text-xl hover:text-rose-500">
+            <Link href="/Purchase" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
             Purchase
             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
             </Link>
-            <Link href="/Purchase/Create" className="group text-gray-600 dark:text-white text-xl hover:text-rose-500">
+            <Link href="/Purchase/Create" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
             + Add Purchase
             <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
             </Link>
         </div>
       </div>
               {/* here is another section */}
-              <div className="">
+              <div className="p-4">
       {/* Filter Section */}
                     <div className="mb-4 grid grid-cols-1 md:grid-cols-5 gap-4">
                         <input
@@ -301,31 +303,31 @@ export default function Purchase() {
                     </div>
 
                     {/* Table Section */}
-                    <div className="overflow-x-auto dark:bg-[#212144] dark:text-white">
-                        <table className="min-w-full table-auto">
+                    <div className="overflow-x-auto dark:bg-[#212144] dark:text-white border rounded ">
+                        <table className="min-w-full table-auto border-collapse border border-gray-300">
                         <thead>
-                            <tr className="bg-teal-500">
-                            <th className="p-2 text-left">Bill No</th>
-                            <th className="p-2 text-left">Supplier</th>
-                            <th className="p-2 text-left">Purchase Date</th>
-                            <th className="p-2 text-left">Items</th>
-                            <th className="p-2 text-left">Payable</th>
-                            <th className="p-2 text-left">Paid</th>
-                            <th className="p-2 text-left">Due</th>
-                            <th className="p-2 text-left">Actions</th>
+                            <tr className="bg-teal-500 text-stone-50">
+                            <th className="p-2 text-left border border-gray-300">Bill No</th>
+                            <th className="p-2 text-left border border-gray-300">Supplier</th>
+                            <th className="p-2 text-left border border-gray-300">Purchase Date</th>
+                            <th className="p-2 text-left border border-gray-300">Items</th>
+                            <th className="p-2 text-left border border-gray-300">Payable</th>
+                            <th className="p-2 text-left border border-gray-300">Paid</th>
+                            <th className="p-2 text-left border border-gray-300">Due</th>
+                            <th className="p-2 text-left border border-gray-300">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {purchases.map((purchase, index) => (
                             <tr key={purchase.billNo} className="border-b">
-                                <td className="p-2">{purchase.billNo}</td>
-                                <td className="p-2">{purchase.supplier}</td>
-                                <td className="p-2">{purchase.purchaseDate}</td>
-                                <td className="p-2">{purchase.items}</td>
-                                <td className="p-2">{purchase.payable}</td>
-                                <td className="p-2">{purchase.paid}</td>
-                                <td className="p-2">{purchase.due}</td>
-                                <td className="p-2 relative">
+                                <td className="p-2 border border-gray-300">{purchase.billNo}</td>
+                                <td className="p-2 border border-gray-300">{purchase.supplier}</td>
+                                <td className="p-2 border border-gray-300">{purchase.purchaseDate}</td>
+                                <td className="p-2 border border-gray-300">{purchase.items}</td>
+                                <td className="p-2 border border-gray-300">{purchase.payable}</td>
+                                <td className="p-2 border border-gray-300">{purchase.paid}</td>
+                                <td className="p-2 border border-gray-300">{purchase.due}</td>
+                                <td className="p-2 relative border border-gray-300">
                                 <button
                                     className="bg-teal-500 text-white p-2 rounded flex items-center"
                                     onClick={() => toggleDropdown(index)}
@@ -353,7 +355,7 @@ export default function Purchase() {
                                             onClick={() => alert('Invoice Action')}
                                         >
                                             <span className="mr-2">
-                                            <TbInvoice size={16}/>
+                                            <FaPrint size={16} className='text-teal-500'/>
                                             </span>
                                             Invoice
                                         </button>
@@ -364,7 +366,7 @@ export default function Purchase() {
                                             onClick={() => alert('Show Action')}
                                         >
                                             <span className="mr-2 ">
-                                            <IoTvOutline size={16}/>
+                                            <IoTvOutline size={16} className='text-blue-500'/>
                                             </span>
                                             Show
                                         </button>
@@ -376,7 +378,7 @@ export default function Purchase() {
                                         >
                                             <span className="mr-2 ">
                                            
-                                            <TbEdit size={16}/>
+                                            <TbEdit size={16} className='text-blue-500'/>
                                             
                                             </span>
                                             Edit
@@ -384,44 +386,22 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Add Payment Action')}
                                         >
                                             <span className="mr-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                fillRule="evenodd"
-                                                d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V9H7v2H9zm2 0h2V9h-2v2z"
-                                                clipRule="evenodd"
-                                                />
-                                            </svg>
+                                            <MdOutlinePayments size={16} className='text-teal-500'/>
                                             </span>
                                             Add Payment
                                         </button>
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 text-sm text-left text-red-600 hover:bg-red-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-red-600 hover:bg-red-100 flex items-center"
                                             onClick={() => alert('Delete Action')}
                                         >
                                             <span className="mr-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                fillRule="evenodd"
-                                                d="M8 4a1 1 0 011-1h2a1 1 0 011 1v1h5a1 1 0 110 2H4a1 1 0 110-2h5V4zm3 4v5a1 1 0 01-2 0V8a1 1 0 012 0z"
-                                                clipRule="evenodd"
-                                                />
-                                            </svg>
+                                            <MdOutlineDeleteSweep size={16}/>
                                             </span>
                                             Delete
                                         </button>

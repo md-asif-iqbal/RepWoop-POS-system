@@ -191,9 +191,7 @@ const SalesReturnList = () => {
     <table className="min-w-full bg-white dark:bg-[#29294e] border rounded-md shadow-md">
       <thead className="">
         <tr>
-          <th className="p-4 text-left gap-5">
-          <input type="checkbox" value={filteredSalesReturns} />
-            Select</th>
+        <th className="p-4 text-left">Product</th>
     
           <th className="p-4 text-left">Product Image</th>
           <th className="p-4 text-left">Product Name</th>
