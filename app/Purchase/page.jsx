@@ -314,7 +314,7 @@ export default function Purchase() {
                             <th className="p-2 text-left border border-gray-300">Payable</th>
                             <th className="p-2 text-left border border-gray-300">Paid</th>
                             <th className="p-2 text-left border border-gray-300">Due</th>
-                            <th className="p-2 text-left border border-gray-300">Actions</th>
+                            <th className="p-2 text-left ">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -327,7 +327,7 @@ export default function Purchase() {
                                 <td className="p-2 border border-gray-300">{purchase.payable}</td>
                                 <td className="p-2 border border-gray-300">{purchase.paid}</td>
                                 <td className="p-2 border border-gray-300">{purchase.due}</td>
-                                <td className="p-2 relative border border-gray-300">
+                                <td className="p-2 relative ">
                                 <button
                                     className="bg-teal-500 text-white p-2 rounded flex items-center"
                                     onClick={() => toggleDropdown(index)}

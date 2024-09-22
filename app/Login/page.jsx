@@ -41,12 +41,12 @@ export default function Login() {
                     </div>
                     <div className="flex -mx-3">
                         <div className="w-full px-3 mb-2 group">
-                            <button className="block w-full max-w-xs mx-auto bg-gradient-to-r from-cyan-300 via-teal-300 to-teal-200 text-gray-600 dark:text-white rounded-lg px-3 py-3 font-semibold">LOG IN
+                            <button className="block w-full max-w-xs mx-auto bg-gradient-to-r from-cyan-300 via-teal-300 to-teal-200 text-white dark:text-white rounded-lg px-3 py-3 font-semibold">LOG IN
                             </button>
                             
                         </div>
                     </div>
-                    <Link href="/Signup" ><span className='flex items-center justify-center underline hover:text-rose-500'>if you dont have create new Account</span></Link>
+                    <Link href="/Signup" ><span className='flex items-center justify-center underline hover:text-orange-500'>if you dont have create new Account</span></Link>
                 </div>
             </div>
         </div>
