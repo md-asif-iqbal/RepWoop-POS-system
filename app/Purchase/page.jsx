@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { GrUserSettings } from 'react-icons/gr';
+import { TbEdit, TbInvoice } from 'react-icons/tb';
+import { IoTvOutline } from "react-icons/io5";
 
 export default function Purchase() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -229,7 +231,7 @@ export default function Purchase() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
       {/* Title Section */}
   
-      <div className=" mb-4  shadow-sm rounded-lg ">
+      <div className=" mb-4  shadow-sm rounded-lg font-bold">
       <h1 className="text-3xl text-gray-500 mx-5 ">Purchase</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Purchase" className="group text-gray-600 dark:text-white text-xl hover:text-rose-500">
@@ -347,67 +349,35 @@ export default function Purchase() {
                                     <ul className="py-1">
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Invoice Action')}
                                         >
                                             <span className="mr-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                fillRule="evenodd"
-                                                d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm3 4a1 1 0 110-2h6a1 1 0 110 2H7z"
-                                                clipRule="evenodd"
-                                                />
-                                            </svg>
+                                            <TbInvoice size={16}/>
                                             </span>
                                             Invoice
                                         </button>
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Show Action')}
                                         >
-                                            <span className="mr-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path
-                                                fillRule="evenodd"
-                                                d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.536 7.464A5 5 0 118.465 3.537 5 5 0 0113.536 9.464z"
-                                                clipRule="evenodd"
-                                                />
-                                            </svg>
+                                            <span className="mr-2 ">
+                                            <IoTvOutline size={16}/>
                                             </span>
                                             Show
                                         </button>
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Edit Action')}
                                         >
-                                            <span className="mr-2">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-5 w-5"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                            >
-                                                <path d="M15.293 2.293a1 1 0 011.414 0l1 1a1 1 0 010 1.414L7.414 14H6v-1.414L15.293 2.293z" />
-                                                <path
-                                                fillRule="evenodd"
-                                                d="M4 13.5a1 1 0 011-1H6v1.414L15.293 5.414l-1-1L5 13.5V14h1a1 1 0 010 2H4a1 1 0 01-1-1v-1.5z"
-                                                clipRule="evenodd"
-                                                />
-                                            </svg>
+                                            <span className="mr-2 ">
+                                           
+                                            <TbEdit size={16}/>
+                                            
                                             </span>
                                             Edit
                                         </button>
