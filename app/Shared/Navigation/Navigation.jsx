@@ -156,7 +156,7 @@ export default function Navigation({toggleSidebar}) {
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><Link href="/Login">Log In</Link></li>
       </ul>
             </div>
           </div>
