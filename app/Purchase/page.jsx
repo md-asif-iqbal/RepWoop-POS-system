@@ -6,7 +6,8 @@ import { TbEdit, TbInvoice } from 'react-icons/tb';
 import { IoTvOutline } from "react-icons/io5";
 import { MdOutlineDeleteSweep, MdOutlinePayments } from 'react-icons/md';
 import { FaPrint } from "react-icons/fa";
-
+import { PDFDocument,StandardFonts, rgb } from 'pdf-lib';
+import logo from "../../assets/logo.png"
 export default function Purchase() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(null);
     const [selectedPurchase, setSelectedPurchase] = useState(null);
@@ -185,6 +186,89 @@ export default function Purchase() {
         });
         setPurchases(purchasesData); // Reset the filtered purchases to the original data
       };
+      const generateInvoice = async (purchase) => {
+                       // Create a new PDFDocument with A4 size
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
+
+    // Load the standard Helvetica font
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    // Add Repwoop logo and company name at the top
+    const fetchImage = async (imageUrl) => {
+      const res = await fetch(imageUrl);
+      return res.arrayBuffer();
+    };
+
+    const logoBytes = await fetchImage(logo.src); // Fetch the image from the imported logo
+    const logoImage = await pdfDoc.embedPng(logoBytes); // Embed as PNG
+    const logoDims = logoImage.scale(0.3); // Scale the logo to fit
+
+    // Draw the logo on the top
+    page.drawImage(logoImage, { x: 50, y: 750, width: logoDims.width, height: logoDims.height });
+    
+    // Company name directly below the logo
+    page.drawText("Repwoop Company", { x: 50, y: 720, size: 18, font: helveticaFont, color: rgb(0, 0, 0) });
+
+    // Company details below the logo and name
+    page.drawText("Address: Holding 53 (1st floor), Sahajatpur, Gulshan, Dhaka 1219", { x: 50, y: 700, size: 12, font: helveticaFont });
+    page.drawText("Phone: 01779724380", { x: 50, y: 685, size: 12, font: helveticaFont });
+    page.drawText("Email: info@repwoop.com", { x: 50, y: 670, size: 12, font: helveticaFont });
+
+    // Add invoice header information
+    page.drawText(`Invoice No: ${purchase.billNo}`, { x: 400, y: 750, size: 12, font: helveticaFont });
+    page.drawText(`Date: ${purchase.purchaseDate}`, { x: 400, y: 735, size: 12, font: helveticaFont });
+
+    // Invoice table - header
+    page.drawText(`#`, { x: 50, y: 620, size: 10, font: helveticaFont });
+    page.drawText(`Details`, { x: 80, y: 620, size: 10, font: helveticaFont });
+    page.drawText(`Qty`, { x: 300, y: 620, size: 10, font: helveticaFont });
+    page.drawText(`Price`, { x: 350, y: 620, size: 10, font: helveticaFont });
+    page.drawText(`Net.A`, { x: 450, y: 620, size: 10, font: helveticaFont });
+
+    // Draw lines for table
+    page.drawLine({ start: { x: 50, y: 610 }, end: { x: 540, y: 610 }, thickness: 0.5, color: rgb(0, 0, 0) }); // Line under header
+
+    // Table Row for each item (just 1 for demo purposes)
+    page.drawText(`1`, { x: 50, y: 590, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.items}`, { x: 80, y: 590, size: 10, font: helveticaFont });
+    page.drawText(`1 pc`, { x: 300, y: 590, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.payable}`, { x: 350, y: 590, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.payable}`, { x: 450, y: 590, size: 10, font: helveticaFont });
+
+    // Draw line after row
+    page.drawLine({ start: { x: 50, y: 580 }, end: { x: 540, y: 580 }, thickness: 0.5, color: rgb(0, 0, 0) });
+
+    // Summary section (Grand Total, Paid, Due)
+    page.drawText(`Grand Total:`, { x: 350, y: 540, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.payable}`, { x: 450, y: 540, size: 10, font: helveticaFont });
+
+    page.drawText(`Paid:`, { x: 350, y: 520, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.paid}`, { x: 450, y: 520, size: 10, font: helveticaFont });
+
+    page.drawText(`Due:`, { x: 350, y: 500, size: 10, font: helveticaFont });
+    page.drawText(`${purchase.due}`, { x: 450, y: 500, size: 10, font: helveticaFont });
+
+    // Draw a final line
+    page.drawLine({ start: { x: 50, y: 490 }, end: { x: 540, y: 490 }, thickness: 0.5, color: rgb(0, 0, 0) });
+
+    // Add Note
+    page.drawText(`Note: Thank you for your business!`, { x: 50, y: 470, size: 10, font: helveticaFont });
+
+    // Serialize the PDF to bytes (Uint8Array)
+    const pdfBytes = await pdfDoc.save();
+
+    // Create a Blob from the bytes and open it in a new window to print
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const blobUrl = URL.createObjectURL(blob);
+
+    // Open a new window/tab with the PDF content
+    const newTab = window.open(blobUrl);
+    newTab.onload = () => {
+      newTab.focus(); // Focus on the new tab
+      newTab.print(); // Automatically trigger the print dialog
+    };
+  };
     
       // Function to apply filters
       const applyFilters = () => {
@@ -347,12 +431,12 @@ export default function Purchase() {
                                     </svg>
                                 </button>
                                 {isDropdownOpen === index && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-20">
+                                    <div className="absolute transition-transform duration-700 right-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-20">
                                     <ul className="py-1">
                                         <li>
                                         <button
                                             className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
-                                            onClick={() => alert('Invoice Action')}
+                                            onClick={() => generateInvoice(purchase)}
                                         >
                                             <span className="mr-2">
                                             <FaPrint size={16} className='text-teal-500'/>
