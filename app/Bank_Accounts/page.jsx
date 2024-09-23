@@ -117,19 +117,19 @@ export default function AccountPage() {
                 <td className="py-2 px-4 border">Tk.{account.currentBalance.toFixed(2)}</td>
                 <td className="py-2 px-4 border grid grid-cols-1 md:grid-cols-2 gap-5">
                   <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500 dark:text-white px-4 py-2 rounded mr-2"
+                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowAddBalanceModal(true); }}
                   >
                     Add Balance
                   </button>
                   <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500 dark:text-white px-4 py-2 rounded mr-2"
+                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowWithdrawModal(true); }}
                   >
                     Withdraw Balance
                   </button>
                   <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500  dark:text-white px-4 py-2 rounded mr-2"
+                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowTransferModal(true); }}
                   >
                     Transfer
