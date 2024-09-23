@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 
 export default function AccountPage() {
   const [accounts, setAccounts] = useState([
-    { id: 1, name: 'PlayBoy', openingBalance: 0, currentBalance: 1200050351 },
-    { id: 2, name: 'PlayGirl', openingBalance: 1000000, currentBalance: 1000000 },
+    { id: 1, name: 'PlayBoy', openingBalance: 0, currentBalance: 120000000 },
+    { id: 2, name: 'PlayGirl', openingBalance: 1000000, currentBalance: 100000 },
   ]);
 
   const [showAddBalanceModal, setShowAddBalanceModal] = useState(false);
@@ -71,11 +71,11 @@ export default function AccountPage() {
     
   return (
     <div className='dark:bg-[#141432] h-full'>
-        <div className="container mx-auto px-4 py-8  mt-[5%]">
+        <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
       <div className="bg-white p-4 shadow-md rounded-md ">
         <h2 className="text-2xl font-bold mb-4">New Account</h2>
-        <div className="flex space-x-4">
+        <div className="md:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
             type="text"
             placeholder="Enter Account Name"
