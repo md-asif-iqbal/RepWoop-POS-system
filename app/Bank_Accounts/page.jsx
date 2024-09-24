@@ -29,21 +29,7 @@ export default function AccountPage() {
     setBalanceForm({ amount: '', note: '', owner: '' }); // Reset form
   };
 
-  const handleWithdrawBalance = () => {
-    const updatedAccounts = accounts.map(account => {
-      if (account.id === selectedAccount.id) {
-        return {
-          ...account,
-          currentBalance: account.currentBalance - parseFloat(balanceForm.amount),
-        };
-      }
-      return account;
-    });
-
-    setAccounts(updatedAccounts);
-    setShowWithdrawModal(false); // Close modal
-    setBalanceForm({ amount: '', note: '', owner: '' }); // Reset form
-  };
+  
 
   const handleTransferBalance = () => {
     const fromAccount = accounts.find(account => account.name === balanceForm.owner);
@@ -115,19 +101,14 @@ export default function AccountPage() {
                 <td className="py-2 px-4 border">{account.name}</td>
                 <td className="py-2 px-4 border">Tk.{account.openingBalance.toFixed(2)}</td>
                 <td className="py-2 px-4 border">Tk.{account.currentBalance.toFixed(2)}</td>
-                <td className="py-2 px-4 border grid grid-cols-1 md:grid-cols-2 gap-5">
+                <td className="py-2 px-4 border grid grid-cols-1 md:grid-cols-2 gap-5 ">
                   <button
                     className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowAddBalanceModal(true); }}
                   >
                     Add Balance
                   </button>
-                  <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
-                    onClick={() => { setSelectedAccount(account); setShowWithdrawModal(true); }}
-                  >
-                    Withdraw Balance
-                  </button>
+                  
                   <button
                     className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowTransferModal(true); }}
@@ -135,7 +116,7 @@ export default function AccountPage() {
                     Transfer
                   </button>
                   <button
-                    className="bg-teal-500 text-white px-4 py-2 rounded mr-2"
+                    className="bg-teal-500 text-white px-4 py-2 rounded mr-2 "
                     onClick={() => alert("History clicked")}
                   >
                     History
@@ -217,77 +198,7 @@ export default function AccountPage() {
         </div>
       )}
 
-      {/* Modal for Withdrawing Balance */}
-      {showWithdrawModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Withdraw Balance from {selectedAccount?.name}</h2>
-              <button
-                className="text-gray-500 text-2xl font-bold"
-                onClick={() => setShowWithdrawModal(false)}
-              >
-                &times;
-              </button>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium">Amount</label>
-              <input
-                type="number"
-                className="w-full border border-gray-300 rounded px-4 py-2"
-                value={balanceForm.amount}
-                onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
-              />
-            </div>
-
-            {/* Note Field */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium">Note</label>
-              <textarea
-                className="w-full border border-gray-300 rounded px-4 py-2"
-                rows="3"
-                value={balanceForm.note}
-                onChange={(e) => setBalanceForm({ ...balanceForm, note: e.target.value })}
-              ></textarea>
-            </div>
-
-            {/* Owner Select Box */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium">Owner</label>
-              <select
-                className="w-full border border-gray-300 rounded px-4 py-2"
-                value={balanceForm.owner}
-                onChange={(e) => setBalanceForm({ ...balanceForm, owner: e.target.value })}
-              >
-                <option value="">Select Owner</option>
-                {accounts.map((account) => (
-                  <option key={account.id} value={account.name}>
-                    {account.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="flex justify-end space-x-4">
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-                onClick={handleWithdrawBalance}
-              >
-                Withdraw
-              </button>
-              <button
-                className="bg-gray-300 px-4 py-2 rounded"
-                onClick={() => setShowWithdrawModal(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal for Transferring Balance */}
+      {/* Modal for Transferring Balance to other account */}
       {showTransferModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">

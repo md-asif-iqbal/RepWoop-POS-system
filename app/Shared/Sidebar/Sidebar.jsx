@@ -57,7 +57,7 @@ export default function Sidebar({isSidebarOpen}) {
 
             <div className={`space-y-4  transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
                 {/* font*/}
-                <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/>
+               <Link href="/"> <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/></Link>
                 <div className="text-start">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500 '>
