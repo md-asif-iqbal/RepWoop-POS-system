@@ -9,6 +9,7 @@ import { FaPrint } from "react-icons/fa";
 import { PDFDocument,StandardFonts, rgb } from 'pdf-lib';
 import logo from "../../assets/logo.png"
 export default function Purchase() {
+    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
     const [isDropdownOpen, setIsDropdownOpen] = useState(null);
     const [selectedPurchase, setSelectedPurchase] = useState(null);
 
@@ -322,11 +323,11 @@ export default function Purchase() {
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Purchase" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
             Purchase
-            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+            <span className={spanClass}></span>
             </Link>
             <Link href="/Purchase/Create" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
             + Add Purchase
-            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+            <span className={spanClass}></span>
             </Link>
         </div>
       </div>

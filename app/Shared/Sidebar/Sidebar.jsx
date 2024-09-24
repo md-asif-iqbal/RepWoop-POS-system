@@ -42,6 +42,7 @@ import { usePathname } from 'next/navigation';
 
 
 export default function Sidebar({isSidebarOpen}) {
+    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
     const pathname = usePathname();
 
@@ -69,7 +70,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                           Dashboard
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -81,7 +82,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                          Owners
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -93,7 +94,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Bank Accounts
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -105,7 +106,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Cash Book
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         
@@ -126,7 +127,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             POS
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -139,7 +140,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Sales
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -151,7 +152,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Returns
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -163,7 +164,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Purchase
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -175,7 +176,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                         Stock
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -187,7 +188,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                         Damages
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                         </Link>
                         </li>
                     </ul>
@@ -208,7 +209,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Units
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -220,7 +221,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Products
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -232,7 +233,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Categories
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -244,7 +245,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Brands
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                     </ul>
@@ -266,7 +267,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Expenses
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -278,7 +279,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Payments
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                     </ul>
@@ -298,7 +299,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Promotional SMS
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                     </ul>
@@ -318,7 +319,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Customers
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -330,7 +331,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Suppliers
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -342,7 +343,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                             Employee and Salary
-                            <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                            <span className={spanClass}></span>
                             </Link>
                         </li>
                     </ul>
@@ -362,7 +363,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Profit Loss Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -374,7 +375,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Today Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -386,7 +387,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Current Month Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -398,7 +399,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Summary Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -410,7 +411,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Daily Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -422,7 +423,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Customer Due Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -434,7 +435,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Supplier Due Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         
@@ -447,7 +448,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Low Stock Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -459,7 +460,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Top Customer
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -472,7 +473,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Top Product (All Time)
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -484,7 +485,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Category Wise Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -496,7 +497,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Purchase Report
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -507,7 +508,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Customer Ledger
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -518,7 +519,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                 Supplier Ledger
-                                <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                <span className={spanClass}></span>
                             </Link>
                         </li>
                     </ul>
@@ -538,7 +539,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                     Settings
-                                    <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                    <span className={spanClass}></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -550,7 +551,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                     Roles & Permissions
-                                    <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                    <span className={spanClass}></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -562,7 +563,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                     Users
-                                    <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                    <span className={spanClass}></span>
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -574,7 +575,7 @@ export default function Sidebar({isSidebarOpen}) {
                             : 'group text-gray-600 dark:text-white '
                         }`}>
                                     Assets Management
-                                    <span className="block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></span>
+                                    <span className={spanClass}></span>
                                 </Link>
                             </li>
                             </ul>
