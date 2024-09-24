@@ -55,11 +55,11 @@ export default function page() {
       <div className=" mb-4  shadow-md rounded-lg ">
       <h1 className="text-3xl text-gray-500 mx-5 ">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
-            <Link href="/Owners" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
+            <Link href="/Owners" className="group text-gray-600 dark:text-white text-md hover:text-orange-500">
             Owners
             <span className={spanClass}></span>
             </Link>
-            <Link href="/Owners/Create" className="group text-gray-600 dark:text-white text-xl hover:text-orange-500">
+            <Link href="/Owners/Create" className="group text-gray-600 dark:text-white text-md hover:text-orange-500">
             + Add new Owners
             <span className={spanClass}></span>
             </Link>
@@ -68,7 +68,7 @@ export default function page() {
               {/* Table Section */}
               <div className="relative overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white dark:bg-[#141432] shadow-md rounded-lg">
         <table className="min-w-full table-auto">
-          <thead className="bg-teal-500 text-gray-600 dark:text-white">
+          <thead className="bg-teal-500 text-white dark:text-white">
             <tr>
               <th className="px-4 py-2 text-left">#</th>
               <th className="px-4 py-2 text-left">Name</th>

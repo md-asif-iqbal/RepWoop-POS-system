@@ -591,7 +591,7 @@ export default function Sidebar({isSidebarOpen}) {
             </div>
         </div>
         {/* <Outlet */}
-        {/* <div className="flex-1 p-2 text-xl font-bold"> */}
+        {/* <div className="flex-1 p-2 text-md font-bold"> */}
                 {/* <Dashboard/> */}
         {/* </div> */}
     </div>

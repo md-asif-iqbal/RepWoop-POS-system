@@ -133,7 +133,7 @@ export default function AccountPage() {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Add Balance to {selectedAccount?.name}</h2>
+              <h2 className="text-md font-bold">Add Balance to {selectedAccount?.name}</h2>
               <button
                 className="text-gray-500 text-2xl font-bold"
                 onClick={() => setShowAddBalanceModal(false)}
@@ -203,7 +203,7 @@ export default function AccountPage() {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Transfer Balance to {selectedAccount?.name}</h2>
+              <h2 className="text-md font-bold">Transfer Balance to {selectedAccount?.name}</h2>
               <button
                 className="text-gray-500 text-2xl font-bold"
                 onClick={() => setShowTransferModal(false)}

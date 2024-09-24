@@ -63,7 +63,7 @@ export default function Navigation({toggleSidebar}) {
                 </div>
                
                 </div>
-                <a className=" text-gray-600 dark:text-white text-xl">Repwoop POS Software</a>
+                <a className=" text-gray-600 dark:text-white text-md">Repwoop POS Software</a>
             </div>
             {/* nav center */}
             <div className="navbar-center hidden lg:flex">

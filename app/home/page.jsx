@@ -140,7 +140,7 @@ export default function Dashboard() {
         </div>
 
         <div className="lg:mt-5 min-h-screen bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 p-4">
-        <h2 className="text-xl  mb-4">Total Summary</h2>
+        <h2 className="text-md  mb-4">Total Summary</h2>
           {/* Dashboard cards and charts */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Cards */}
@@ -201,7 +201,7 @@ export default function Dashboard() {
           </div>
           <div className="p-0 mb-5 mt-5">
       {/* Today Summary */}
-      <h2 className="text-xl  mb-4">Today Summary</h2>
+      <h2 className="text-md  mb-4">Today Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-blue-600 text-white p-4 rounded shadow-md">
           <h3 className=" ">TODAY SOLD</h3>
@@ -222,7 +222,7 @@ export default function Dashboard() {
       </div>
    
       {/* Current Month Summary */}
-      <h2 className="text-xl  mb-4">Current Month Summary</h2>
+      <h2 className="text-md  mb-4">Current Month Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-teal-500 text-white p-4 rounded shadow-md">
           <h3 className=" ">SOLD IN SEP 2024</h3>
@@ -297,7 +297,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="">
-      <h2 className="text-xl  mb-4 ">Expired Products</h2>
+      <h2 className="text-md  mb-4 ">Expired Products</h2>
       <div className="overflow-x-auto rounded-lg shadow-xl dark:bg-[#202047]">
         <table className="min-w-full table-auto border ">
           <thead>
