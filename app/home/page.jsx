@@ -180,7 +180,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 text-white">
             {/* Additional Stats */}
             <div className="bg-[#FF9F43] p-4 rounded shadow-md text-center">
               <p>100</p>

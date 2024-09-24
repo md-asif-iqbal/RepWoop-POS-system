@@ -60,14 +60,14 @@ export default function Sidebar({isSidebarOpen}) {
                 {/* font*/}
                <Link href="/"> <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/></Link>
                 <div className="text-start">
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500 '>
                         <IoHome size={24}/>
                         <Link href="/"  className=
                         {`${
                           pathname === '/' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                           Dashboard
                             <span className={spanClass}></span>
@@ -79,7 +79,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Owners' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                          Owners
                             <span className={spanClass}></span>
@@ -91,7 +91,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Bank_Accounts' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Bank Accounts
                             <span className={spanClass}></span>
@@ -103,7 +103,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Cash_Book' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Cash Book
                             <span className={spanClass}></span>
@@ -114,17 +114,17 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 {/* Sales & Purchase */}
                 <div className="">
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                     Sales & Purchase 
                     </span>
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                         <FaCartArrowDown size={24}/>
                         <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             POS
                             <span className={spanClass}></span>
@@ -137,7 +137,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Sales' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Sales
                             <span className={spanClass}></span>
@@ -149,7 +149,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Returns' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Returns
                             <span className={spanClass}></span>
@@ -161,7 +161,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Purchase' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Purchase
                             <span className={spanClass}></span>
@@ -173,7 +173,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Stock' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                         Stock
                             <span className={spanClass}></span>
@@ -185,7 +185,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Damages' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                         Damages
                             <span className={spanClass}></span>
@@ -196,17 +196,17 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Product Information */}
                 <div>
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                     Product Information 
                     </span>
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                         <GiWeight size={24}/>
                             <Link href="/Units" className=
                         {`${
                           pathname === '/Units' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Units
                             <span className={spanClass}></span>
@@ -218,7 +218,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Products' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Products
                             <span className={spanClass}></span>
@@ -230,7 +230,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Categories' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Categories
                             <span className={spanClass}></span>
@@ -242,7 +242,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Brands' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Brands
                             <span className={spanClass}></span>
@@ -254,17 +254,17 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Expenses & Payments */}
                 <div>
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                     Expenses & Payments 
                     </span>
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                             <GiExpense size={24}/>
                             <Link href="/Expenses" className=
                         {`${
                           pathname === '/Expenses' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Expenses
                             <span className={spanClass}></span>
@@ -276,7 +276,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Payments' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Payments
                             <span className={spanClass}></span>
@@ -286,17 +286,17 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 {/* Promotion */}
                 <div>
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                     Promotions
                     </span>
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                             <FaSms size={24}/>
                             <Link href="/Promotional-SMS" className=
                         {`${
                           pathname === '/Promotional-SMS' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Promotional SMS
                             <span className={spanClass}></span>
@@ -306,17 +306,17 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 <div>
                     {/* Peoples */}
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                     Peoples 
                     </span>
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                             <IoIosPeople size={24}/>
                             <Link href="/Customers" className=
                         {`${
                           pathname === '/Customers' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Customers
                             <span className={spanClass}></span>
@@ -328,7 +328,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Suppliers' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Suppliers
                             <span className={spanClass}></span>
@@ -340,7 +340,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Employee-and-Salary' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                             Employee and Salary
                             <span className={spanClass}></span>
@@ -351,8 +351,8 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Reports */}
                 <div>
-                    <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">Reports</span>
-                    <ul className="pt-2 space-y-4  text-gray-600 dark:text-white text-sm">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">Reports</span>
+                    <ul className="pt-2 space-y-4  text-gray-500 dark:text-white text-sm">
                 
                         <li className='flex items-center gap-3 hover:text-orange-500'>
                         <GiTakeMyMoney size={24}/>
@@ -360,7 +360,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Profit-Loss-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Profit Loss Report
                                 <span className={spanClass}></span>
@@ -372,7 +372,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Today-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Today Report
                                 <span className={spanClass}></span>
@@ -384,7 +384,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Current-Month-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Current Month Report
                                 <span className={spanClass}></span>
@@ -396,7 +396,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Summary-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Summary Report
                                 <span className={spanClass}></span>
@@ -408,7 +408,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Daily-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Daily Report
                                 <span className={spanClass}></span>
@@ -420,7 +420,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Customer-Due-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Customer Due Report
                                 <span className={spanClass}></span>
@@ -432,7 +432,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Supplier-Due-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Supplier Due Report
                                 <span className={spanClass}></span>
@@ -445,7 +445,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Low-Stock-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Low Stock Report
                                 <span className={spanClass}></span>
@@ -457,7 +457,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Top-Customer' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Top Customer
                                 <span className={spanClass}></span>
@@ -470,7 +470,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Top-Product' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Top Product (All Time)
                                 <span className={spanClass}></span>
@@ -482,7 +482,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Category-Wise-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Category Wise Report
                                 <span className={spanClass}></span>
@@ -494,7 +494,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Purchase-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Purchase Report
                                 <span className={spanClass}></span>
@@ -505,7 +505,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Customer-Ledger' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Customer Ledger
                                 <span className={spanClass}></span>
@@ -516,7 +516,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Supplier-Ledger' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                 Supplier Ledger
                                 <span className={spanClass}></span>
@@ -526,17 +526,17 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                  {/* Settings & Customize */}
                  <div>
-                            <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">
+                            <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
                                 Settings & Customize 
                             </span>
-                            <ul className="pt-2 space-y-4 text-gray-600 dark:text-white text-sm">
+                            <ul className="pt-2 space-y-4 text-gray-500 dark:text-white text-sm">
                             <li className='flex items-center gap-3 hover:text-orange-500'>
                             <MdOutlineSettings size={24}/>
                                 <Link href="/Settings" className=
                         {`${
                           pathname === '/Settings' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                     Settings
                                     <span className={spanClass}></span>
@@ -548,7 +548,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Roles-And-Permissions' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                     Roles & Permissions
                                     <span className={spanClass}></span>
@@ -560,7 +560,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Users' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                     Users
                                     <span className={spanClass}></span>
@@ -572,7 +572,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {`${
                           pathname === '/Assets-Management' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white '
+                            : 'group text-gray-500 dark:text-white '
                         }`}>
                                     Assets Management
                                     <span className={spanClass}></span>
@@ -582,9 +582,9 @@ export default function Sidebar({isSidebarOpen}) {
                         </div>
 
                         {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-600 dark:text-white text-sm'>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white text-sm'>
                         <MdBackup size={24}/>
-                            <span className="uppercase text-sm text-gray-600 dark:text-white font-bold">Backup</span>
+                            <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">Backup</span>
                         </div>
                     
                 

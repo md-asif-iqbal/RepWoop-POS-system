@@ -128,7 +128,7 @@ const SalesReturnList = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-600">
+      <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500">
       <CiSearch size={20}/>
       </button>
     </div>

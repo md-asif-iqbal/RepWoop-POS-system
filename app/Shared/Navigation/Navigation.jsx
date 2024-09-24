@@ -63,7 +63,7 @@ export default function Navigation({toggleSidebar}) {
                 </div>
                
                 </div>
-                <a className=" text-gray-600 dark:text-white text-md">Repwoop POS Software</a>
+                <a className=" text-gray-500 dark:text-white text-md">Repwoop POS Software</a>
             </div>
             {/* nav center */}
             <div className="navbar-center hidden lg:flex">
@@ -73,7 +73,7 @@ export default function Navigation({toggleSidebar}) {
                         {`${
                           pathname === '/POS' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                             POS
                   <span className={spanClass}></span>
@@ -85,7 +85,7 @@ export default function Navigation({toggleSidebar}) {
                   {`${
                     pathname === '/Sales' 
                       ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                      : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                      : 'group text-gray-500 dark:text-white hover:text-orange-500'
                   }`}
                
                   >
@@ -101,7 +101,7 @@ export default function Navigation({toggleSidebar}) {
                         {`${
                           pathname === '/Stock' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                             Stock
                   <span className={spanClass}></span>
@@ -112,7 +112,7 @@ export default function Navigation({toggleSidebar}) {
                         {`${
                           pathname === '/Today-Report' 
                             ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
-                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
+                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                   Today Report
                   <span className={spanClass}></span>

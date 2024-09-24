@@ -151,7 +151,7 @@ export default function page() {
         // Extract unique customer names from salesData
   const uniqueCustomers = [...new Set(salesData.map(sale => sale.customer))];
   return (
-    <div className='bg-white dark:bg-[#141432] text-gray-600 dark:text-white'>
+    <div className='bg-white dark:bg-[#141432] text-gray-500 dark:text-white'>
         <div className="p-4 mt-[5%]">
       {/* Header with statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">

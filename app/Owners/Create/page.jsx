@@ -31,11 +31,11 @@ export default function CreateOwner() {
         <div className=" shadow-md rounded-lg mt-[25%] lg:mt-[5%] ">
       <h1 className="text-3xl text-gray-500 mx-5 ">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
-            <Link href="/Owners" className="group text-gray-600 dark:text-white text-md hover:text-orange-500">
+            <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Owners
             <span className={spanClass}></span>
             </Link>
-            <Link href="/Owners/Create" className="group text-gray-600 dark:text-white text-md hover:text-orange-500">
+            <Link href="/Owners/Create" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             + Add new Owners
             <span className={spanClass}></span>
             </Link>
@@ -128,7 +128,7 @@ export default function CreateOwner() {
           <div className="text-center">
             <button
               type="submit"
-              className="w-full bg-teal-500 text-gray-600 dark:text-white py-2 px-4 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+              className="w-full bg-teal-500 text-gray-500 dark:text-white py-2 px-4 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             >
               Submit
             </button>
