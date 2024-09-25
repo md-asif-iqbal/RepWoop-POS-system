@@ -131,15 +131,15 @@ export default function Dashboard() {
     },
   ];
   return (
-    <div className="overflow-auto dark:text-white scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-8">
-      <main className="ml-1/5 flex-grow h-screen mt-[5%]">
+    <div className="overflow-auto  dark:text-white  p-8">
+      <main className="ml-1/5 flex-grow  mt-[5%]">
         {/* Header */}
         <div className="flex justify-between items-center">
           <h2 className="text-3xl font-medium">Welcome Back!</h2>
           <p className="">{`${day} ${month} ${year}`}</p>
         </div>
 
-        <div className="lg:mt-5 min-h-screen bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 p-4">
+        <div className="lg:mt-5  bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 p-4">
         <h2 className="text-md  mb-4">Total Summary</h2>
           {/* Dashboard cards and charts */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
