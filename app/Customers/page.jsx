@@ -166,6 +166,14 @@ export default function CustomersList() {
     );
     setFilteredCustomers(filtered);
   };
+  const resetFilters = () => {
+    setFilter({
+        name: "",
+        mobileNumber: "",
+    });
+    setFilteredCustomers(customers); // Reset the filtered purchases to the original data
+  };
+
 
   const openModal = (customer) => {
     setSelectedCustomer(customer);
@@ -224,7 +232,7 @@ export default function CustomersList() {
           Filter
         </button>
         <button
-          onClick={() => setFilter({ name: "", mobileNumber: "" })}
+           onClick={resetFilters}
           className="bg-red-500 text-white px-14 py-2 rounded"
         >
           Reset
@@ -306,7 +314,7 @@ export default function CustomersList() {
                     <td className="border px-4 py-2">
                       {customer.walletBalance}
                       <br />
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-500 dark:text-white">
                         {customer.walletText}
                       </span>
                     </td>
