@@ -4,16 +4,7 @@ import Link from "next/link";
 import Sidebar from "./Shared/Sidebar/Sidebar";
 import Navigation from "./Shared/Navigation/Navigation";
 import Footer from "./Shared/Footer/Footer";
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata = {
   title: "Repwoop POS Software",
@@ -25,8 +16,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className="font">
        <div className="h-screen flex ">
       {/* LEFT */}
       <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-0">
