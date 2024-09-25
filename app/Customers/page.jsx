@@ -292,7 +292,7 @@ export default function CustomersList() {
                   </tr>
                 ))
               : customers.map((customer, index) => (
-                  <tr key={customer.id} className="bg-white border">
+                  <tr key={customer.id} className="bg-white dark:bg-[#232350] dark:text-white border">
                     <td className="border px-4 py-2 text-center">
                       {index + 1}
                     </td>
