@@ -39,7 +39,12 @@ import { MdBackup } from "react-icons/md";
 import Image from 'next/image';
 import logo from '../../../assets/logo.png'
 import { usePathname } from 'next/navigation';
-import { Component,UserRound,Landmark } from 'lucide-react';
+
+
+import { Component,UserRound,Landmark,Banknote } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
+import { BaggageClaim } from 'lucide-react';
 
 
 export default function Sidebar({isSidebarOpen}) {
@@ -99,7 +104,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <GiCash size={24}/>
+                        <Banknote size={18} strokeWidth={1}/>
                         <Link href="/Cash_Book" className=
                         {`${
                           pathname === '/Cash_Book' 
@@ -115,12 +120,12 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 {/* Sales & Purchase */}
                 <div className="">
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
                     Sales & Purchase 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <FaCartArrowDown size={24}/>
+                        <ShoppingCart size={18} strokeWidth={1}/>
                         <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 
@@ -132,7 +137,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <IoBagHandle size={24}/>
+                        <ShoppingBag size={18} strokeWidth={1}/>
                         <Link href="/Sales" 
                         className=
                         {`${
@@ -145,7 +150,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <TbTruckReturn size={24}/>
+                        <BaggageClaim size={18} strokeWidth={1}/>
                         <Link href="/Returns" className=
                         {`${
                           pathname === '/Returns' 
@@ -197,7 +202,7 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Product Information */}
                 <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
                     Product Information 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
@@ -255,7 +260,7 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Expenses & Payments */}
                 <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
                     Expenses & Payments 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
@@ -287,7 +292,7 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 {/* Promotion */}
                 <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white">
                     Promotions
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
@@ -307,7 +312,7 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                 <div>
                     {/* Peoples */}
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
                     Peoples 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
@@ -352,7 +357,7 @@ export default function Sidebar({isSidebarOpen}) {
 
                 {/* Reports */}
                 <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">Reports</span>
+                    <span className="uppercase text-sm text-gray-500 dark:text-white ">Reports</span>
                     <ul className="pt-2 space-y-4  text-gray-500 dark:text-white ">
                 
                         <li className='flex items-center gap-3 hover:text-orange-500'>
@@ -527,7 +532,7 @@ export default function Sidebar({isSidebarOpen}) {
                 </div>
                  {/* Settings & Customize */}
                  <div>
-                            <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">
+                            <span className="uppercase text-sm text-gray-500 dark:text-white ">
                                 Settings & Customize 
                             </span>
                             <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
@@ -585,7 +590,7 @@ export default function Sidebar({isSidebarOpen}) {
                         {/* Backup */}
                         <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white '>
                         <MdBackup size={24}/>
-                            <span className="uppercase text-sm text-gray-500 dark:text-white font-bold">Backup</span>
+                            <span className="uppercase text-sm text-gray-500 dark:text-white ">Backup</span>
                         </div>
                     
                 
