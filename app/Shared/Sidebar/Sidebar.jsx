@@ -39,6 +39,7 @@ import { MdBackup } from "react-icons/md";
 import Image from 'next/image';
 import logo from '../../../assets/logo.png'
 import { usePathname } from 'next/navigation';
+import { Component,UserRound,Landmark } from 'lucide-react';
 
 
 export default function Sidebar({isSidebarOpen}) {
@@ -62,7 +63,7 @@ export default function Sidebar({isSidebarOpen}) {
                 <div className="text-start">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500 '>
-                        <IoHome size={24}/>
+                        <Component size={18} strokeWidth={1} />
                         <Link href="/"  className=
                         {`${
                           pathname === '/' 
@@ -74,7 +75,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <MdPerson3 size={24}/>
+                        <UserRound size={18} strokeWidth={1}/>
                         <Link href="/Owners"  className=
                         {`${
                           pathname === '/Owners' 
@@ -86,7 +87,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <GiBank size={24}/>
+                        <Landmark size={18} strokeWidth={1}/>
                         <Link href="/Bank_Accounts" className=
                         {`${
                           pathname === '/Bank_Accounts' 
