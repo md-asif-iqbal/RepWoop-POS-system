@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 export default function Navigation({toggleSidebar}) {
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-
+    
   const pathname = usePathname();
 
 
@@ -68,7 +68,7 @@ export default function Navigation({toggleSidebar}) {
             {/* nav center */}
             <div className="navbar-center hidden lg:flex">
               <ul className="menu-horizontal gap-8 px-1">
-                <li>
+                <li >
                   <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 

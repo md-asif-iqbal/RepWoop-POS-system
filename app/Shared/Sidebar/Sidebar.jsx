@@ -57,7 +57,7 @@ export default function Sidebar({isSidebarOpen}) {
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
     const pathname = usePathname();
-
+    
   return (
     <div>
           <div
@@ -73,52 +73,66 @@ export default function Sidebar({isSidebarOpen}) {
                <Link href="/"> <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/></Link>
                 <div className="text-start">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <LayoutDashboard size={20}  strokeWidth={1} />
+                        <li>
+                        
                         <Link href="/"  className=
                         {`${
                           pathname === '/' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                          Dashboard
-                            <span className={spanClass}></span>
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span><LayoutDashboard size={20}  strokeWidth={1} /></span> 
+                          <div>
+                          <p>Dashboard</p>
+                          <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <UserRound size={20} strokeWidth={1}/>
+                        <li>
+                        
                         <Link href="/Owners"  className=
                         {`${
                           pathname === '/Owners' 
-                            ? ' group text-orange-500 ' 
-                            : 'group text-gray-600 dark:text-white hover:text-orange-500'
-                        }`}>
-                         Owners
-                            <span className={spanClass}></span>
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span><UserRound size={20} strokeWidth={1}/></span> 
+                          <div>
+                          <p>Owners</p>
+                          <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Landmark size={20} strokeWidth={1}/>
+
+                        <li >
                         <Link href="/Bank_Accounts" className=
                         {`${
                           pathname === '/Bank_Accounts' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
+                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                            : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
                         }`}>
-                            Bank Accounts
+                            <span><Landmark size={20} strokeWidth={1}/></span> 
+                            <div>
+                            <p>Bank Accounts</p>
                             <span className={spanClass}></span>
+                            </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Banknote size={20} strokeWidth={1}/>
+                        <li>
+                        
                         <Link href="/Cash_Book" className=
                         {`${
                           pathname === '/Cash_Book' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                            Cash Book
-                            <span className={spanClass}></span>
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                            <Banknote size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                          <p>Cash Book</p>
+                          <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
                         
@@ -130,68 +144,92 @@ export default function Sidebar({isSidebarOpen}) {
                     Sales & Purchase 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <ShoppingCart size={20} strokeWidth={1}/>
+                        <li>
+                        
                         <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                            POS
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                          <ShoppingCart size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                            <p>POS</p>
                             <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <ShoppingBag size={20} strokeWidth={1}/>
+                        <li>
+                        
                         <Link href="/Sales" 
                         className=
                         {`${
                           pathname === '/Sales' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                            Sales
+                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                          <ShoppingBag size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                            <p>Sales</p>
                             <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <RotateCcwSquare size={20} strokeWidth={1}/>
+                        <li>
+                      
                         <Link href="/Returns" className=
                         {`${
                           pathname === '/Returns' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                            Returns
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                          <RotateCcwSquare size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                            <p>Returns</p>
                             <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <BaggageClaim size={20} strokeWidth={1}/>
+                        <li>
                         <Link href="/Purchase" className=
                         {`${
                           pathname === '/Purchase' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                            Purchase
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                          <BaggageClaim size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                            <p>Purchase</p>
                             <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Boxes size={20} strokeWidth={1}/>
+                        <li>
+                        
                         <Link href="/Stock" className=
                         {`${
                           pathname === '/Stock' 
-                            ? ' group text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500'
-                        }`}>
-                        Stock
+                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
+                      }`}>
+                          <span>
+                          <Boxes size={20} strokeWidth={1}/>
+                          </span> 
+                          <div>
+                            <p>Stock</p>
                             <span className={spanClass}></span>
+                          </div>
                         </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <RiFileDamageFill size={20}/>
                         <Link href="/Damages" className=
                         {`${
@@ -212,7 +250,7 @@ export default function Sidebar({isSidebarOpen}) {
                     Product Information 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Weight size={20} strokeWidth={1}/>
                             <Link href="/Units" className=
                         {`${
@@ -224,7 +262,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Package size={20} strokeWidth={1}/>
                             <Link href="/Products" className=
                         {`${
@@ -236,7 +274,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Component size={20} strokeWidth={1} />
                             <Link href="/Categories" className=
                         {`${
@@ -248,7 +286,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Ribbon size={20} strokeWidth={1}/>
                             <Link href="/Brands" className=
                         {`${
@@ -270,7 +308,7 @@ export default function Sidebar({isSidebarOpen}) {
                     Expenses & Payments 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                             <Wallet size={20} strokeWidth={1} />
                             <Link href="/Expenses" className=
                         {`${
@@ -282,7 +320,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <BadgeDollarSign size={20} strokeWidth={1} />
                             <Link href="/Payments" className=
                         {`${
@@ -302,7 +340,7 @@ export default function Sidebar({isSidebarOpen}) {
                     Promotions
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <MailPlus size={20} strokeWidth={1} />
                             <Link href="/Promotional-SMS" className=
                         {`${
@@ -322,7 +360,7 @@ export default function Sidebar({isSidebarOpen}) {
                     Peoples 
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Users size={20} strokeWidth={1} />
                             <Link href="/Customers" className=
                         {`${
@@ -334,7 +372,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <PackageCheck size={20} strokeWidth={1} />
                             <Link href="/Suppliers" className=
                         {`${
@@ -346,7 +384,7 @@ export default function Sidebar({isSidebarOpen}) {
                             <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <UserCog size={20}  strokeWidth={1} />
                             <Link href="/Employee-and-Salary" className=
                         {`${
@@ -366,7 +404,7 @@ export default function Sidebar({isSidebarOpen}) {
                     <span className="uppercase text-sm text-gray-500 dark:text-white ">Reports</span>
                     <ul className="pt-2 space-y-4  text-gray-500 dark:text-white ">
                 
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <ChartColumn size={20} strokeWidth={1} />
                             <Link href="/Profit-Loss-Report" className=
                         {`${
@@ -378,7 +416,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <CalendarDays size={20} strokeWidth={1} />
                         
                             <Link href="/Today-Report" className=
@@ -391,7 +429,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <CalendarClock size={20} strokeWidth={1} />
                             <Link href="/Current-Month-Report" className=
                         {`${
@@ -403,7 +441,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <FileClock size={20} strokeWidth={1} />
                             <Link href="/Summary-Report" className=
                         {`${
@@ -415,7 +453,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <CalendarCog size={20} strokeWidth={1} />
                             <Link href="/Daily-Report" className=
                         {`${
@@ -427,7 +465,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <TbReportMoney size={22} strokeWidth={1}/>
                             <Link href="/Customer-Due-Report" className=
                         {`${
@@ -439,7 +477,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <FileChartColumnIncreasing size={20} strokeWidth={1} />
                             <Link href="/Supplier-Due-Report" className=
                         {`${
@@ -452,7 +490,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <PackageMinus size={20}  strokeWidth={1} />
                             <Link href="/Low-Stock-Report" className=
                         {`${
@@ -464,7 +502,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <UserRoundSearch size={20} strokeWidth={1} />
                             <Link href="/Top-Customer" className=
                         {`${
@@ -476,7 +514,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <ChartNoAxesCombined size={20} strokeWidth={1} />
                         
                             <Link href="/Top-Product" className=
@@ -489,7 +527,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <FileBox size={20} strokeWidth={1} />
                             <Link href="/Category-Wise-Report" className=
                         {`${
@@ -501,7 +539,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <Receipt size={20} strokeWidth={1} />
                             <Link href="/Purchase-Report" className=
                         {`${
@@ -513,7 +551,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <CalendarPlus size={20} strokeWidth={1} />
                             <Link href="/Customer-Ledger" className=
                         {`${
@@ -525,7 +563,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 <span className={spanClass}></span>
                             </Link>
                         </li>
-                        <li className='flex items-center gap-3 hover:text-orange-500'>
+                        <li>
                         <CalendarFold size={20} strokeWidth={1} />
                             <Link href="/Supplier-Ledger" className=
                         {`${
@@ -545,7 +583,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 Settings & Customize 
                             </span>
                             <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                            <li className='flex items-center gap-3 hover:text-orange-500'>
+                            <li>
                             <Settings size={20} strokeWidth={1} />
                                 <Link href="/Settings" className=
                         {`${
@@ -557,7 +595,7 @@ export default function Sidebar({isSidebarOpen}) {
                                     <span className={spanClass}></span>
                                 </Link>
                             </li>
-                            <li className='flex items-center gap-3 hover:text-orange-500'>
+                            <li>
                             <BadgeInfo size={20} strokeWidth={1} />
                                 <Link href="/Roles-And-Permissions" className=
                         {`${
@@ -569,7 +607,7 @@ export default function Sidebar({isSidebarOpen}) {
                                     <span className={spanClass}></span>
                                 </Link>
                             </li>
-                            <li className='flex items-center gap-3 hover:text-orange-500'>
+                            <li>
                             <UserCheck size={20} strokeWidth={1} />
                                 <Link href="/Users" className=
                         {`${
@@ -581,7 +619,7 @@ export default function Sidebar({isSidebarOpen}) {
                                     <span className={spanClass}></span>
                                 </Link>
                             </li>
-                            <li className='flex items-center gap-3 hover:text-orange-500'>
+                            <li>
                             
                             <Cog size={20} strokeWidth={1} />
                                 <Link href="/Assets-Management" className=
