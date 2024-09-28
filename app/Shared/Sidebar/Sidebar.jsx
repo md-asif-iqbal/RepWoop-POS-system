@@ -41,7 +41,7 @@ import logo from '../../../assets/logo.png'
 import { usePathname } from 'next/navigation';
 
 
-import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDollarSign, LayoutList, LayoutDashboard, MailPlus } from 'lucide-react';
+import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDollarSign, LayoutList, LayoutDashboard, MailPlus, Users, PackageCheck, UserCog, ChartColumn, CalendarClock, CalendarDays, FileClock } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { ShoppingBag } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
@@ -75,7 +75,7 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500 '>
                         
-                        <LayoutDashboard size={18} strokeWidth={1} />
+                        <LayoutDashboard size={20} strokeWidth={1} />
                         <Link href="/"  className=
                         {`${
                           pathname === '/' 
@@ -87,7 +87,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <UserRound size={18} strokeWidth={1}/>
+                        <UserRound size={20} strokeWidth={1}/>
                         <Link href="/Owners"  className=
                         {`${
                           pathname === '/Owners' 
@@ -99,7 +99,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Landmark size={18} strokeWidth={1}/>
+                        <Landmark size={20} strokeWidth={1}/>
                         <Link href="/Bank_Accounts" className=
                         {`${
                           pathname === '/Bank_Accounts' 
@@ -111,7 +111,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Banknote size={18} strokeWidth={1}/>
+                        <Banknote size={20} strokeWidth={1}/>
                         <Link href="/Cash_Book" className=
                         {`${
                           pathname === '/Cash_Book' 
@@ -132,7 +132,7 @@ export default function Sidebar({isSidebarOpen}) {
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <ShoppingCart size={18} strokeWidth={1}/>
+                        <ShoppingCart size={20} strokeWidth={1}/>
                         <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 
@@ -144,7 +144,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <ShoppingBag size={18} strokeWidth={1}/>
+                        <ShoppingBag size={20} strokeWidth={1}/>
                         <Link href="/Sales" 
                         className=
                         {`${
@@ -157,7 +157,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <RotateCcwSquare size={18} strokeWidth={1}/>
+                        <RotateCcwSquare size={20} strokeWidth={1}/>
                         <Link href="/Returns" className=
                         {`${
                           pathname === '/Returns' 
@@ -169,7 +169,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <BaggageClaim size={18} strokeWidth={1}/>
+                        <BaggageClaim size={20} strokeWidth={1}/>
                         <Link href="/Purchase" className=
                         {`${
                           pathname === '/Purchase' 
@@ -181,7 +181,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Boxes size={18} strokeWidth={1}/>
+                        <Boxes size={20} strokeWidth={1}/>
                         <Link href="/Stock" className=
                         {`${
                           pathname === '/Stock' 
@@ -193,7 +193,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <RiFileDamageFill size={24}/>
+                        <RiFileDamageFill size={20}/>
                         <Link href="/Damages" className=
                         {`${
                           pathname === '/Damages' 
@@ -214,7 +214,7 @@ export default function Sidebar({isSidebarOpen}) {
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Weight size={18} strokeWidth={1}/>
+                        <Weight size={20} strokeWidth={1}/>
                             <Link href="/Units" className=
                         {`${
                           pathname === '/Units' 
@@ -226,7 +226,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Package size={18} strokeWidth={1}/>
+                        <Package size={20} strokeWidth={1}/>
                             <Link href="/Products" className=
                         {`${
                           pathname === '/Products' 
@@ -238,7 +238,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Component size={18} strokeWidth={1} />
+                        <Component size={20} strokeWidth={1} />
                             <Link href="/Categories" className=
                         {`${
                           pathname === '/Categories' 
@@ -250,7 +250,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Ribbon size={18} strokeWidth={1}/>
+                        <Ribbon size={20} strokeWidth={1}/>
                             <Link href="/Brands" className=
                         {`${
                           pathname === '/Brands' 
@@ -272,7 +272,7 @@ export default function Sidebar({isSidebarOpen}) {
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <Wallet size={18} strokeWidth={1} />
+                            <Wallet size={20} strokeWidth={1} />
                             <Link href="/Expenses" className=
                         {`${
                           pathname === '/Expenses' 
@@ -284,7 +284,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <BadgeDollarSign size={18} strokeWidth={1} />
+                        <BadgeDollarSign size={20} strokeWidth={1} />
                             <Link href="/Payments" className=
                         {`${
                           pathname === '/Payments' 
@@ -304,7 +304,7 @@ export default function Sidebar({isSidebarOpen}) {
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <MailPlus size={18} strokeWidth={1} />
+                        <MailPlus size={20} strokeWidth={1} />
                             <Link href="/Promotional-SMS" className=
                         {`${
                           pathname === '/Promotional-SMS' 
@@ -324,7 +324,7 @@ export default function Sidebar({isSidebarOpen}) {
                     </span>
                     <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <IoIosPeople size={24}/>
+                        <Users size={20} strokeWidth={1} />
                             <Link href="/Customers" className=
                         {`${
                           pathname === '/Customers' 
@@ -336,7 +336,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <FaPeopleCarry size={24}/>
+                        <PackageCheck size={20} strokeWidth={1} />
                             <Link href="/Suppliers" className=
                         {`${
                           pathname === '/Suppliers' 
@@ -348,7 +348,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <MdManageAccounts size={24}/>
+                        <UserCog size={20}  strokeWidth={1} />
                             <Link href="/Employee-and-Salary" className=
                         {`${
                           pathname === '/Employee-and-Salary' 
@@ -368,7 +368,7 @@ export default function Sidebar({isSidebarOpen}) {
                     <ul className="pt-2 space-y-4  text-gray-500 dark:text-white ">
                 
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <GiTakeMyMoney size={24}/>
+                        <ChartColumn size={20} strokeWidth={1} />
                             <Link href="/Profit-Loss-Report" className=
                         {`${
                           pathname === '/Profit-Loss-Report' 
@@ -380,7 +380,8 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <Ri24HoursLine size={24}/>
+                        <CalendarDays size={20} strokeWidth={1} />
+                        
                             <Link href="/Today-Report" className=
                         {`${
                           pathname === '/Today-Report' 
@@ -392,7 +393,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <IoCalendarNumberSharp size={24}/>
+                        <CalendarClock size={20} strokeWidth={1} />
                             <Link href="/Current-Month-Report" className=
                         {`${
                           pathname === '/Current-Month-Report' 
@@ -404,7 +405,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <TbReport size={24}/>
+                        <FileClock size={20} strokeWidth={1} />
                             <Link href="/Summary-Report" className=
                         {`${
                           pathname === '/Summary-Report' 
@@ -416,7 +417,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <RiCalendarScheduleFill size={24}/>
+                        <RiCalendarScheduleFill size={20}/>
                             <Link href="/Daily-Report" className=
                         {`${
                           pathname === '/Daily-Report' 
@@ -428,7 +429,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <TbReportMoney size={24}/>
+                        <TbReportMoney size={20}/>
                             <Link href="/Customer-Due-Report" className=
                         {`${
                           pathname === '/Customer-Due-Report' 
@@ -440,7 +441,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <BiSolidReport size={24}/>
+                        <BiSolidReport size={20}/>
                             <Link href="/Supplier-Due-Report" className=
                         {`${
                           pathname === '/Supplier-Due-Report' 
@@ -453,7 +454,7 @@ export default function Sidebar({isSidebarOpen}) {
                         </li>
                         
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <PiBoxArrowDownBold size={24}/>
+                        <PiBoxArrowDownBold size={20}/>
                             <Link href="/Low-Stock-Report" className=
                         {`${
                           pathname === '/Low-Stock-Report' 
@@ -465,7 +466,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <FaPeopleGroup size={24} />
+                        <FaPeopleGroup size={20} />
                             <Link href="/Top-Customer" className=
                         {`${
                           pathname === '/Top-Customer' 
@@ -477,7 +478,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <GiProgression size={24} />
+                        <GiProgression size={20} />
                         
                             <Link href="/Top-Product" className=
                         {`${
@@ -490,7 +491,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <FaBoxTissue size={23} />
+                        <FaBoxTissue size={20} />
                             <Link href="/Category-Wise-Report" className=
                         {`${
                           pathname === '/Category-Wise-Report' 
@@ -502,7 +503,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </Link>
                         </li>
                         <li className='flex items-center gap-3 hover:text-orange-500'>
-                        <TbReportMoney size={23}/>
+                        <TbReportMoney size={20}/>
                             <Link href="/Purchase-Report" className=
                         {`${
                           pathname === '/Purchase-Report' 
@@ -544,7 +545,7 @@ export default function Sidebar({isSidebarOpen}) {
                             </span>
                             <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
                             <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <MdOutlineSettings size={24}/>
+                            <MdOutlineSettings size={20}/>
                                 <Link href="/Settings" className=
                         {`${
                           pathname === '/Settings' 
@@ -556,7 +557,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <BiErrorAlt size={24}/>
+                            <BiErrorAlt size={20}/>
                                 <Link href="/Roles-And-Permissions" className=
                         {`${
                           pathname === '/Roles-And-Permissions' 
@@ -568,7 +569,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <FaUserCog size={24}/>
+                            <FaUserCog size={20}/>
                                 <Link href="/Users" className=
                         {`${
                           pathname === '/Users' 
@@ -580,7 +581,7 @@ export default function Sidebar({isSidebarOpen}) {
                                 </Link>
                             </li>
                             <li className='flex items-center gap-3 hover:text-orange-500'>
-                            <SiNginxproxymanager size={24}/>
+                            <SiNginxproxymanager size={20}/>
                                 <Link href="/Assets-Management" className=
                         {`${
                           pathname === '/Assets-Management' 
@@ -596,7 +597,7 @@ export default function Sidebar({isSidebarOpen}) {
 
                         {/* Backup */}
                         <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white '>
-                        <MdBackup size={24}/>
+                        <MdBackup size={20}/>
                             <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
                         </div>
                     
