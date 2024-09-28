@@ -72,7 +72,7 @@ export default function Navigation({toggleSidebar}) {
                   <Link href="/POS" className=
                         {`${
                           pathname === '/POS' 
-                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            ? ' group text-orange-500  ' 
                             : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                             POS
@@ -84,7 +84,7 @@ export default function Navigation({toggleSidebar}) {
                   <Link href="/Sales"  className=
                   {`${
                     pathname === '/Sales' 
-                      ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                      ? ' group text-orange-500  ' 
                       : 'group text-gray-500 dark:text-white hover:text-orange-500'
                   }`}
                
@@ -100,7 +100,7 @@ export default function Navigation({toggleSidebar}) {
                   <Link href="/Stock" className=
                         {`${
                           pathname === '/Stock' 
-                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            ? ' group text-orange-500  ' 
                             : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                             Stock
@@ -111,7 +111,7 @@ export default function Navigation({toggleSidebar}) {
                   <Link href="/Today-Report" className=
                         {`${
                           pathname === '/Today-Report' 
-                            ? ' group text-orange-500  border-b-2 border-red-500 pb-1' 
+                            ? ' group text-orange-500  ' 
                             : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
                   Today Report
