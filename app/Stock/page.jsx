@@ -236,7 +236,7 @@ export default function Stock() {
   };
   
   return (
-    <div>
+    <div className=''>
        <div  className="p-4 max-w-full mx-auto mt-[5%]">
       {/* Title and Print Button */}
       <div className="flex justify-between items-center mb-4">
@@ -296,7 +296,7 @@ export default function Stock() {
       </div>
 
       {/* Product Stock Table */}
-      <div ref={printRef} className="overflow-auto">
+      <div ref={printRef} className="overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
   <table className=" w-full table-auto border-collapse bg-white text-sm text-center">
     <thead className="bg-gray-100">
       <tr>
