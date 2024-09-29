@@ -12,7 +12,8 @@ export default function Stock() {
     {
       id: 1,
       image: '/path-to-image', // replace with actual image path
-      product: 'Mobile Phone - 000001',
+      product: 'Mobile Phone',
+      productCode: '000001',
       category: 'Electronics',
       price: '4500.00 TK',
       cost: '4150.00 TK',
@@ -27,7 +28,8 @@ export default function Stock() {
     {
       id: 2,
       image: '/path-to-image',
-      product: 'Laptop Computer - 000002',
+      product: 'Laptop Computer',
+      productCode: '000002',
       category: 'Hardware',
       price: '72000.00 TK',
       cost: '70000.00 TK',
@@ -39,11 +41,11 @@ export default function Stock() {
       sellValue: '795000 TK',
       purchaseValue: '754000 TK',
     },
-    // Add 18 more product entries below with similar structure
     {
       id: 3,
       image: '/path-to-image',
-      product: 'Desktop Computer - 000003',
+      product: 'Desktop Computer',
+      productCode: '000003',
       category: 'Electronics',
       price: '458.00 TK',
       cost: '375.00 TK',
@@ -58,7 +60,8 @@ export default function Stock() {
     {
       id: 4,
       image: '/path-to-image',
-      product: 'T Shirt - 000004',
+      product: 'T Shirt',
+      productCode: '000004',
       category: 'Fashion',
       price: '1500.00 TK',
       cost: '1200.00 TK',
@@ -73,8 +76,9 @@ export default function Stock() {
     {
       id: 5,
       image: '/path-to-image',
-      product: 'Ladies Shirt - 000005',
-      category: 'Document',
+      product: 'Ladies Shirt',
+      productCode: '000005',
+      category: 'Fashion',
       price: '900.00 TK',
       cost: '700.00 TK',
       purchased: '100 pc',
@@ -85,11 +89,11 @@ export default function Stock() {
       sellValue: '90000 TK',
       purchaseValue: '70000 TK',
     },
-    // More rows to meet the 20 product entries...
     {
       id: 6,
       image: '/path-to-image',
-      product: 'Freez - 000006',
+      product: 'Freezer',
+      productCode: '000006',
       category: 'Hardware',
       price: '46000.00 TK',
       cost: '42000.00 TK',
@@ -104,7 +108,8 @@ export default function Stock() {
     {
       id: 7,
       image: '/path-to-image',
-      product: 'Air Condition - 000007',
+      product: 'Air Conditioner',
+      productCode: '000007',
       category: 'Hardware',
       price: '94000.00 TK',
       cost: '91350.00 TK',
@@ -119,7 +124,8 @@ export default function Stock() {
     {
       id: 8,
       image: '/path-to-image',
-      product: 'Door Export - 000008',
+      product: 'Door Export',
+      productCode: '000008',
       category: 'Electronics',
       price: '15000.00 TK',
       cost: '13945.00 TK',
@@ -134,8 +140,9 @@ export default function Stock() {
     {
       id: 9,
       image: '/path-to-image',
-      product: 'Blazer For Men - 000009',
-      category: 'Document',
+      product: 'Blazer For Men',
+      productCode: '000009',
+      category: 'Fashion',
       price: '3000.00 TK',
       cost: '2500.00 TK',
       purchased: '100 pc',
@@ -149,8 +156,9 @@ export default function Stock() {
     {
       id: 10,
       image: '/path-to-image',
-      product: 'Drill Machine - 000010',
-      category: 'Document',
+      product: 'Drill Machine',
+      productCode: '000010',
+      category: 'Hardware',
       price: '3000.00 TK',
       cost: '2500.00 TK',
       purchased: '100 pc',
@@ -161,51 +169,135 @@ export default function Stock() {
       sellValue: '267000 TK',
       purchaseValue: '222500 TK',
     },
-    // Continue up to 20...
+    {
+      id: 11,
+      image: '/path-to-image',
+      product: 'Smart Watch',
+      productCode: '000011',
+      category: 'Electronics',
+      price: '5000.00 TK',
+      cost: '4500.00 TK',
+      purchased: '100 pc',
+      sold: '15 pc',
+      damaged: '0 pc',
+      returned: '0 pc',
+      availableStock: '85 pc',
+      sellValue: '75000 TK',
+      purchaseValue: '67500 TK',
+    },
+    {
+      id: 12,
+      image: '/path-to-image',
+      product: 'Washing Machine',
+      productCode: '000012',
+      category: 'Hardware',
+      price: '15000.00 TK',
+      cost: '13000.00 TK',
+      purchased: '100 pc',
+      sold: '20 pc',
+      damaged: '2 pc',
+      returned: '1 pc',
+      availableStock: '77 pc',
+      sellValue: '300000 TK',
+      purchaseValue: '260000 TK',
+    },
+    {
+      id: 13,
+      image: '/path-to-image',
+      product: 'Smart TV',
+      productCode: '000013',
+      category: 'Electronics',
+      price: '60000.00 TK',
+      cost: '55000.00 TK',
+      purchased: '100 pc',
+      sold: '25 pc',
+      damaged: '1 pc',
+      returned: '0 pc',
+      availableStock: '74 pc',
+      sellValue: '1500000 TK',
+      purchaseValue: '1375000 TK',
+    },
+    {
+      id: 14,
+      image: '/path-to-image',
+      product: 'Refrigerator',
+      productCode: '000014',
+      category: 'Hardware',
+      price: '35000.00 TK',
+      cost: '32000.00 TK',
+      purchased: '100 pc',
+      sold: '18 pc',
+      damaged: '2 pc',
+      returned: '1 pc',
+      availableStock: '79 pc',
+      sellValue: '630000 TK',
+      purchaseValue: '576000 TK',
+    },
+    {
+      id: 15,
+      image: '/path-to-image',
+      product: 'Men\'s Shoes',
+      productCode: '000015',
+      category: 'Fashion',
+      price: '2500.00 TK',
+      cost: '2200.00 TK',
+      purchased: '100 pc',
+      sold: '30 pc',
+      damaged: '1 pc',
+      returned: '2 pc',
+      availableStock: '67 pc',
+      sellValue: '75000 TK',
+      purchaseValue: '66000 TK',
+    },
   ];
+  
 
-  // State to hold the filter values
   const [filters, setFilters] = useState({
     productName: '',
     productCode: '',
     category: '',
   });
 
-  // State to hold filtered data
   const [filteredData, setFilteredData] = useState(initialData);
 
-  // Function to handle filter changes
+  // Function to handle filter changes and automatically apply the filter
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    console.log("hi");
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: value,
-    }));
+    setFilters((prevFilters) => {
+      const newFilters = {
+        ...prevFilters,
+        [name]: value,
+      };
+      applyFilters(newFilters); // Automatically apply filters when input changes
+      return newFilters;
+    });
   };
 
   // Function to filter the data based on the filters
-  const applyFilters = () => {
+  const applyFilters = (newFilters = filters) => {
     const filtered = initialData.filter((item) => {
-      return (
-        returnItem.productName.toLowerCase().includes(filters.toLowerCase()) &&
-        (filters.productCode === '' || item.product.toLowerCase().includes(filters.productCode.toLowerCase())) &&
-        (filters.category === '' || item.category.toLowerCase().includes(filters.category.toLowerCase()))
-      );
+      const productNameMatch =
+        newFilters.productName === '' || item.product.toLowerCase().includes(newFilters.productName.toLowerCase());
+      const productCodeMatch =
+        newFilters.productCode === '' || item.productCode.toLowerCase().includes(newFilters.productCode.toLowerCase());
+      const categoryMatch =
+        newFilters.category === '' || item.category.toLowerCase().includes(newFilters.category.toLowerCase());
+
+      return productNameMatch && productCodeMatch && categoryMatch;
     });
     setFilteredData(filtered);
   };
 
   // Function to reset the filters and show all data
   const resetFilters = () => {
-    setFilters({
+    const resetFilterState = {
       productName: '',
       productCode: '',
       category: '',
-    });
+    };
+    setFilters(resetFilterState);
     setFilteredData(initialData); // Reset the data to the initial state
   };
-
   // Function to handle printing and downloading PDF
   const handlePrint = () => {
     const imageHeader = document.querySelector(".image-header");
@@ -249,8 +341,8 @@ export default function Stock() {
         </button>
       </div>
 
-      {/* Filter Options */}
-      <div className="flex flex-wrap gap-4 mb-6">
+            {/* Filter Options */}
+            <div className="flex flex-wrap gap-4 mb-6">
         {/* Product Name Input */}
         <input
           type="text"
@@ -283,7 +375,6 @@ export default function Stock() {
           <option value="Hardware">Hardware</option>
           <option value="Fashion">Fashion</option>
           <option value="Document">Document</option>
-          {/* Add more categories as needed */}
         </select>
 
         {/* Filter and Reset Buttons */}
@@ -330,7 +421,7 @@ export default function Stock() {
               className="w-16 h-16 object-cover"
             />
           </td>
-          <td className="border px-1 py-2">{product.product}</td>
+          <td className="border px-1 py-2">{product.product} {product.productCode}</td>
           <td className="border px-1 py-2">{product.category}</td>
           <td className="border px-1 py-2">{product.price}</td>
           <td className="border px-1 py-2">{product.cost}</td>
