@@ -66,7 +66,7 @@ export default function Sidebar({isSidebarOpen}) {
     <div>
           <div
              id="sidebar"
-             className={`sidebar  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3 rounded-l-3xl  h-screen   transition-all duration-600 ease-in-out 
+             className={`sidebar  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   h-screen   transition-all duration-600 ease-in-out 
              ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
              style={{ overflowY: 'auto' }}
