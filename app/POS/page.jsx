@@ -2,24 +2,55 @@
 import React, { useState } from 'react'
 
 export default function POSManage() {
-    const [searchTerm, setSearchTerm] = useState("");
-
+   
     const products = [
-      { id: 1, name: "Air Conditioner", price: 96000, stock: 96 },
-      { id: 2, name: "Blazer For Men", price: 3000, stock: 98 },
-      { id: 3, name: "Desktop Computer", price: 458, stock: 99 },
-      { id: 4, name: "Door Export", price: 15000, stock: 100 },
-      { id: 5, name: "Drill Machine", price: 3000, stock: 100 },
-      { id: 6, name: "Freezer", price: 4500, stock: 100 },
-      { id: 7, name: "Gaming Laptop", price: 150000, stock: 100 },
-      { id: 8, name: "Ladie's Shirt", price: 900, stock: 100 },
-      { id: 9, name: "Laptop Computer", price: 78000, stock: 100 },
-      { id: 10, name: "Mobile Phone", price: 4500, stock: 100 },
+      { id: 1, name: "Air Conditioner", price: 96000, stock: 96, category: "House" },
+      { id: 2, name: "Blazer For Men", price: 3000, stock: 98, category: "Fashion" },
+      { id: 3, name: "Desktop Computer", price: 458, stock: 99, category: "Electronics" },
+      { id: 4, name: "Door Export", price: 15000, stock: 100, category: "House" },
+      { id: 5, name: "Drill Machine", price: 3000, stock: 100, category: "Hardware" },
+      { id: 6, name: "Freezer", price: 4500, stock: 100, category: "House" },
+      { id: 7, name: "Gaming Laptop", price: 150000, stock: 100, category: "Electronics" },
+      { id: 8, name: "Ladie's Shirt", price: 900, stock: 100, category: "Fashion" },
+      { id: 9, name: "Laptop Computer", price: 78000, stock: 100, category: "Electronics" },
+      { id: 10, name: "Mobile Phone", price: 4500, stock: 100, category: "Electronics" },
+      { id: 11, name: "Printer", price: 12000, stock: 50, category: "Document" },
+      { id: 12, name: "Scanner", price: 5000, stock: 70, category: "Document" },
+      { id: 13, name: "Smartwatch", price: 6000, stock: 30, category: "Electronics" },
+      { id: 14, name: "Leather Jacket", price: 7000, stock: 20, category: "Fashion" },
+      { id: 15, name: "Hammer", price: 1200, stock: 100, category: "Hardware" },
+      { id: 16, name: "Television", price: 45000, stock: 80, category: "House" },
     ];
-  
-    const filteredProducts = products.filter(product =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+
+     // State for the filtered products, search term, and selected category
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  // Function to filter products by category
+  const filterByCategory = (category) => {
+    setSelectedCategory(category);
+    const filtered = products.filter((product) => product.category === category);
+    setFilteredProducts(filtered);
+  };
+
+  // Function to handle search term
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    const searchFilteredProducts = products.filter((product) => {
+      return product.name.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+
+    // If a category is selected, further filter by category
+    if (selectedCategory) {
+      setFilteredProducts(
+        searchFilteredProducts.filter((product) => product.category === selectedCategory)
+      );
+    } else {
+      setFilteredProducts(searchFilteredProducts);
+    }
+  };
+
   
     return (
         <div className='bg-white dark:bg-[#141432] dark:text-white'>
@@ -200,7 +231,7 @@ export default function POSManage() {
                     placeholder="Search products..."
                     className="border dark:text-black border-teal-500 w-[100%] rounded-l-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={handleSearch}
                     />
                     <button
                     className="bg-green-500 text-white md:px-10 py-2 rounded-r-md hover:bg-green-600 focus:outline-none"
@@ -213,7 +244,11 @@ export default function POSManage() {
                 {/* Reset Button */}
                 <button
                     className="lg:ml-2 bg-blue-500 text-white px-8 mt-2 md:mt-0 md:px-10  py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-                    onClick={() => setSearchTerm("")}
+                    onClick={() => {
+                      setFilteredProducts(products); // Reset filteredProducts to the full list
+                      setSearchTerm(""); // Clear the search term
+                      setSelectedCategory(""); // Clear the selected category
+                    }}
                 >
                     Reset
                 </button>
@@ -224,26 +259,26 @@ export default function POSManage() {
             {/* Categories */}
             <h1 className='text-md font-bold mb-2'>Categories</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
-              <button className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button  onClick={() => filterByCategory('Document')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 Document
               </button>
-              <button className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Electronics')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 Electronics
               </button>
-              <button className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Fashion')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 Fashion
               </button>
-              <button className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Hardware')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 Hardware
               </button>
-              <button className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('House')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 House
               </button>
             </div>
   
             {/* Product List */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.slice(0, 10).map((product) => (
+              {filteredProducts?.slice(0, 10).map((product) => (
                 <div key={product.id} className="border border-gray-300 p-2 rounded-md">
                   <div className="bg-gray-200 h-24 flex justify-center items-center rounded-md">
                     <span>No Image</span>
