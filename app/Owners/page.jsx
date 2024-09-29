@@ -53,7 +53,7 @@ export default function page() {
       {/* Title Section */}
   
       <div className=" mb-4  shadow-md rounded-lg ">
-      <h1 className="text-3xl text-gray-500 mx-5 dark:text-white">Owners</h1>
+      <h1 className="text-xl text-gray-500 mx-5 dark:text-white">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Owners

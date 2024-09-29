@@ -319,7 +319,7 @@ export default function Purchase() {
       {/* Title Section */}
   
       <div className=" mb-4  shadow-md rounded-lg font-bold">
-      <h1 className="text-3xl text-gray-500 mx-5 ">Purchase</h1>
+      <h1 className="text-xl text-gray-500 mx-5 ">Purchase</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Purchase" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Purchase

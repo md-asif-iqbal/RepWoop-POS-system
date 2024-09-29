@@ -60,7 +60,7 @@ export default function AccountPage() {
         <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
       <div className="bg-white p-4 shadow-md rounded-md ">
-        <h2 className="text-2xl font-bold mb-4">New Account</h2>
+        <h2 className="text-xl font-bold mb-4">New Account</h2>
         <div className="md:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
             type="text"
@@ -83,7 +83,7 @@ export default function AccountPage() {
 
       {/* Accounts Table */}
       <div className="bg-white p-4 mt-8 shadow-sm rounded-lg dark:bg-[#1a1a3d]">
-        <h2 className="text-2xl font-bold mb-4 dark:text-white">Accounts</h2>
+        <h2 className="text-xl font-bold mb-4 dark:text-white">Accounts</h2>
         <table className="min-w-full border-collapse rounded-lg">
           <thead className='rounded-lg'>
             <tr className="bg-teal-500 text-white">
@@ -135,7 +135,7 @@ export default function AccountPage() {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md font-bold">Add Balance to {selectedAccount?.name}</h2>
               <button
-                className="text-gray-500 text-2xl font-bold"
+                className="text-gray-500 text-xl font-bold"
                 onClick={() => setShowAddBalanceModal(false)}
               >
                 &times;
@@ -205,7 +205,7 @@ export default function AccountPage() {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md font-bold">Transfer Balance to {selectedAccount?.name}</h2>
               <button
-                className="text-gray-500 text-2xl font-bold"
+                className="text-gray-500 text-xl font-bold"
                 onClick={() => setShowTransferModal(false)}
               >
                 &times;

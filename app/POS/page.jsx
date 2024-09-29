@@ -51,12 +51,12 @@ export default function POSManage() {
     }
   };
 
-  
+
     return (
         <div className='bg-white dark:bg-[#141432] dark:text-white'>
             <div className="container mx-auto p-4 mt-[5%] ">
         {/* POS Manage Header */}
-        <h1 className="text-3xl font-bold mb-6 ">POS Manage</h1>
+        <h1 className="text-xl font-bold mb-6 ">POS Manage</h1>
   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Section: Input and Payment */}

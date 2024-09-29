@@ -113,7 +113,7 @@ const SalesReturnList = () => {
     <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100">
         <div className=" container mx-auto mt-[5%] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
   <div className="flex justify-between items-center mb-4">
-    <h1 className="text-2xl font-bold">Sales Return List</h1>
+    <h1 className="text-xl font-bold">Sales Return List</h1>
     <button className="bg-orange-500 text-white px-4 py-2 rounded">Add New Sales Return</button>
   </div>
 

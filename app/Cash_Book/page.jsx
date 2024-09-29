@@ -78,7 +78,7 @@ export default function Cash_Book() {
   return (
    <div className='dark:bg-[#141432] h-screen'>
     <div className='mt-[5%] shadow-sm p-4 items-center'>
-      <h1 className='text-2xl font-bold text-gray-500 dark:text-white'>Cash Book</h1>
+      <h1 className='text-xl font-bold text-gray-500 dark:text-white'>Cash Book</h1>
     </div>
        <div className="p-4  w-full mx-auto mt-[5%] dark:bg-[#1a1a38] ">
       {/* Title and Print Button aligned in opposite directions */}
