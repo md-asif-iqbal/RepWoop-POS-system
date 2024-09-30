@@ -57,8 +57,8 @@ export default function AddProduct() {
         });
       };
   return (
-    <div>
-         <div className="container mx-auto p-4 md:mt-[5%]">
+    <div className='h-screen'>
+         <div className="container mx-auto p-4 md:mt-[5%] mt-[20%] overflow-y-auto">
       <h1 className="text-2xl font-bold mb-4">Add Damage</h1>
 
       {/* Form */}
