@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
       <body
         className="font">
        <div className="h-screen flex ">
-      {/* LEFT */}
-      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-0">
+      {/* LEFT w-[14%] */}
+      <div className="w-[8%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-0">
         <Sidebar />
       </div>
       {/* RIGHT */}

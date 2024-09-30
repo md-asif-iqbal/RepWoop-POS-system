@@ -100,7 +100,7 @@ export default function page() {
 
                   {/* Dropdown Menu */}
                   {isDropdownOpen === owner.id && (
-                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[#141432] shadow-lg rounded-md border border-gray-200 z-50">
+                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[#141432] shadow-lg rounded-md border border-gray-200 z-20">
                       <button className="block w-full px-4 py-2 text-left text-gray-700 dark:text-white hover:bg-gray-800">
                         Edit
                       </button>

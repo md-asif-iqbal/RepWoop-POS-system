@@ -45,7 +45,8 @@ import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDoll
     LayoutList, LayoutDashboard, MailPlus, Users, PackageCheck, UserCog, ChartColumn,
     CalendarClock, CalendarDays, FileClock, CalendarCog, FileChartColumnIncreasing,
     PackageMinus, UserRoundSearch, ChartNoAxesCombined, Receipt, FileBox, CalendarPlus,
-    CalendarFold, Cog, BadgeInfo, DatabaseBackup, UserCheck, Settings } from 'lucide-react';
+    CalendarFold, Cog, BadgeInfo, DatabaseBackup, UserCheck, Settings, 
+    AlignJustify} from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { ShoppingBag } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
@@ -57,16 +58,27 @@ import { Package } from 'lucide-react';
 import { Ribbon } from 'lucide-react';
 
 
-export default function Sidebar({isSidebarOpen}) {
+export default function Sidebar() {
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
     const pathname = usePathname();
-    
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Function to toggle sidebar visibility
+    const toggleSidebar = () => {
+      setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar open/close
+    };
   return (
     <div>
+        <div className="dropdown md:hidden">
+                <div tabIndex={0} role="button" className="btn btn-ghost md:hidden mt-2 lg:mt-0" onClick={toggleSidebar}>
+                <AlignJustify size={20} strokeWidth={2} />
+                </div>
+               
+                </div>
           <div
              id="sidebar"
-             className={`sidebar  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   h-screen   transition-all duration-600 ease-in-out 
+             className={`sidebar fixed z-50  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   h-screen   transition-all duration-700 ease-in-out 
              ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
              style={{ overflowY: 'auto' }}

@@ -250,7 +250,7 @@ export default function page() {
                       <GrUserSettings />
                     </button>
                     {selectedInvoice === sale.invoiceNo && (
-                      <div className="absolute bg-white shadow-lg rounded p-2 mt-2 z-50 right-10">
+                      <div className="absolute bg-white shadow-lg rounded p-2 mt-2 z-20 right-10">
                         <ul className="text-gray-700">
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Print</li>
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Challan Print</li>
