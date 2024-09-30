@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
+import { BadgePlus } from "lucide-react";
 const SalesReturnList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState("");
@@ -108,14 +109,206 @@ const SalesReturnList = () => {
       (selectedPaymentStatus === "" || returnItem.paymentStatus === selectedPaymentStatus)
     );
   });
+  // model add new return item
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // State to store input values and totals
+  const [orderTax, setOrderTax] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [subtotal, setSubtotal] = useState(20); // Example subtotal from the table
+  const [grandTotal, setGrandTotal] = useState(0);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  // Function to calculate the grand total
+  const calculateGrandTotal = () => {
+    const taxAmount = (subtotal * orderTax) / 100;
+    const total = subtotal + taxAmount - discount + shipping;
+    setGrandTotal(total);
+  };
+
+  // Handlers to update the values and recalculate the grand total
+  const handleOrderTaxChange = (e) => {
+    setOrderTax(Number(e.target.value));
+    calculateGrandTotal();
+  };
+
+  const handleDiscountChange = (e) => {
+    setDiscount(Number(e.target.value));
+    calculateGrandTotal();
+  };
+
+  const handleShippingChange = (e) => {
+    setShipping(Number(e.target.value));
+    calculateGrandTotal();
+  };
 
   return (
     <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100">
-        <div className=" container mx-auto mt-[5%] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
-  <div className="flex justify-between items-center mb-4">
-    <h1 className="text-xl font-bold">Sales Return List</h1>
-    <button className="bg-orange-500 text-white px-4 py-2 rounded">Add New Sales Return</button>
-  </div>
+        <div className=" container mx-auto mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
+          <div className="flex justify-between items-center mb-4">
+            <h1 className="text-xl font-bold">Sales Return List</h1>
+            <button
+              onClick={openModal}
+              className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+            >
+              Add New Sales Return
+            </button>
+        </div>
+          {/* Modal */}
+
+            {isOpen && (
+                    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+                      <div className="bg-white rounded-lg w-full max-w-6xl p-6 relative overflow-y-auto max-h-[90vh]">
+                        <div className="flex justify-between items-center mb-4">
+                          <h2 className="text-2xl font-bold">Add Sales Return</h2>
+                          <button
+                            onClick={closeModal}
+                            className="text-red-600 hover:bg-rose-600 rounded-full p-2 px-3 items-center hover:text-white font-bold text-sm"
+                          >
+                            ✕
+                          </button>
+                        </div>
+
+                        {/* Modal Form */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                          <div>
+                            <label className="block font-semibold">Customer Name</label>
+                            <select className="w-full border p-2 rounded">
+                              <option>Choose Customer</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block font-semibold">Date</label>
+                            <input type="date" className="w-full border p-2 rounded" />
+                          </div>
+                          <div>
+                            <label className="block font-semibold">Reference No.</label>
+                            <input type="text" className="w-full border p-2 rounded" />
+                          </div>
+                          <div>
+                            <label className="block font-semibold">Product Name</label>
+                            <input
+                              type="text"
+                              placeholder="Please type product code and select"
+                              className="w-full border p-2 rounded"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Responsive Table */}
+                        <div className="overflow-x-auto mb-6">
+                          <table className="min-w-full text-left border-collapse">
+                            <thead>
+                              <tr>
+                                <th className="border p-2">Product Name</th>
+                                <th className="border p-2">Net Unit Price($)</th>
+                                <th className="border p-2">Stock</th>
+                                <th className="border p-2">QTY</th>
+                                <th className="border p-2">Discount($)</th>
+                                <th className="border p-2">Tax %</th>
+                                <th className="border p-2">Subtotal($)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="border p-2">Example Product</td>
+                                <td className="border p-2">$10.00</td>
+                                <td className="border p-2">20</td>
+                                <td className="border p-2">2</td>
+                                <td className="border p-2">$0.00</td>
+                                <td className="border p-2">5%</td>
+                                <td className="border p-2">${subtotal}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                          <div>
+                            <label className="block font-semibold">Order Tax (%)</label>
+                            <input
+                              type="number"
+                              
+                              onChange={handleOrderTaxChange}
+                              className="w-full border p-2 rounded"
+                            />
+                          </div>
+                          <div>
+                            <label className="block font-semibold">Discount ($)</label>
+                            <input
+                              type="number"
+                              
+                              onChange={handleDiscountChange}
+                              className="w-full border p-2 rounded"
+                            />
+                          </div>
+                          <div>
+                            <label className="block font-semibold">Shipping ($)</label>
+                            <input
+                              type="number"
+                              
+                              onChange={handleShippingChange}
+                              className="w-full border p-2 rounded"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center mb-6">
+                          <div>
+                            <label className="block font-semibold">Status</label>
+                            <select className="w-full border p-2 rounded">
+                              <option>Choose</option>
+                            </select>
+                          </div>
+                          <div className="text-right">
+                            <h3 className="font-bold text-lg">
+                              Grand Total: ${grandTotal.toFixed(2)}
+                            </h3>
+                          </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="flex justify-end">
+                          <button
+                            onClick={closeModal}
+                            className="bg-gray-300 px-4 py-2 mr-2 rounded hover:bg-gray-400"
+                          >
+                            Cancel
+                          </button>
+                          <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   {/* Search, Filters, and Sort Section */}
   <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
