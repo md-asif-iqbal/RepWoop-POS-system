@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import html2pdf from 'html2pdf.js';
+import { Trash2 } from 'lucide-react';
 export default function Damages() {
     const printRef = useRef();
     const [filterText, setFilterText] = useState('');
@@ -17,7 +18,7 @@ export default function Damages() {
       ]);
 
   const [showOptions, setShowOptions] = useState(null); // To show options on a row
-
+  const [showModal, setShowModal] = useState(false);
   // Function to handle filtering
   const handleFilterChange = (e) => {
     setFilterText(e.target.value);
@@ -31,6 +32,7 @@ export default function Damages() {
   // Function to handle delete
   const handleDelete = (id) => {
     setDamages(damages.filter((damage) => damage.id !== id));
+    setShowModal(false);
   };
 
   // Print functionality
@@ -119,11 +121,43 @@ export default function Damages() {
                                 <td className="border p-2 print:table-cell">{damage.note}</td>
                                 <td className="border p-2 print:hidden relative"> {/* Hidden when printing */}
                                 <button
-                                    onClick={() => handleDelete(damage.id)}
-                                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                    onClick={() => setShowModal(true)}
+                                    className="bg-transparent rounded-md border text-red-500 px-2 py-2 hover:bg-red-600 hover:text-white"
                                 >
-                                    Delete
+                                    <Trash2 size={20} strokeWidth={1.5} />
                                 </button>
+                                {/* Modal */}
+                                {showModal && (
+                                    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
+                                    <div className="bg-white rounded-lg p-10">
+                                        <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                        <p className="mb-6">You wont be able to revert this!</p>
+
+                                        {/* Show details */}
+                                        <div className="mb-6">
+                                        <p><strong>Item ID:</strong> {damage.product}</p>
+                                        <p><strong>Item Name:</strong> {damage.quantity}</p>
+                                        {/* Add any other details you want to display */}
+                                        </div>
+
+                                        {/* Buttons */}
+                                        <div className="flex justify-center">
+                                        <button
+                                            onClick={() => handleDelete(damage.id)}
+                                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                        >
+                                            Yes, delete it!
+                                        </button>
+                                        <button
+                                            onClick={() => setShowModal(false)}
+                                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                        >
+                                            Cancel
+                                        </button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                )}
                                 </td>
                             </tr>
                             ))}
