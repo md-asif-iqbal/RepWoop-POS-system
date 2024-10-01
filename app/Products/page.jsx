@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import Papa from "papaparse"; // For CSV parsing
 import * as XLSX from 'xlsx';
+import { Eye, Filter, View } from 'lucide-react';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+import { TbEdit } from 'react-icons/tb';
 
 export default function ProductList() {
     const [showModal, setShowModal] = useState(false);
@@ -43,6 +46,28 @@ export default function ProductList() {
     { id: 19, product: 'HP Spectre x360', sku: 'PT019', category: 'Laptop', brand: 'HP', price: 1350.00, createdDate: '2023-09-09', unit: 'Pc', qty: 85, createdBy: 'Ethan' },
     { id: 20, product: 'Acer Predator Helios', sku: 'PT020', category: 'Laptop', brand: 'Acer', price: 1499.99, createdDate: '2023-09-14', unit: 'Pc', qty: 95, createdBy: 'Zoe' },
   ];
+  const [showModal2, setShowModal2] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    console.log("test");
+      setModalVisible(true);
+      setTimeout(() => {
+          setShowModal2(true);
+      }, 0); // Small delay to trigger transition
+  };
+
+  const handleCloseModal = () => {
+      setShowModal2(false);
+      setTimeout(() => {
+          setModalVisible(false);
+      }, 300); // Delay based on transition duration
+  };
+
+
+
+
+
 
   // Function to handle select all products
   const handleSelectAll = (e) => {
@@ -193,6 +218,10 @@ export default function ProductList() {
       console.error("Error submitting data:", error);
     }
   };
+//   const handleDelete = (id) => {
+//     setSelectedProducts(products.filter((product) => product.id !== id));
+//     setShowModal2(false);
+//   };
 
   return (
     <div>
@@ -247,7 +276,7 @@ export default function ProductList() {
        
         <div className="flex space-x-2">
           <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
-            {showFilters ? '✕' : 'Filter'}
+            {showFilters ? '✕' : <Filter size={20} strokeWidth={2} /> }
           </button>
           {/* <select className="border border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
             <option value="">Sort by Price</option>
@@ -333,7 +362,7 @@ export default function ProductList() {
               <th className="px-4 py-2 text-left">Brand</th>
               <th className="px-4 py-2 text-left">Price</th>
               <th className="px-4 py-2 text-left">Unit</th>
-              <th className="px-4 py-2 text-left">Qty</th>
+              <th className="px-4 py-2 text-left">Quantity</th>
               <th className="px-4 py-2 text-left">Created Date</th>
               <th className="px-4 py-2 text-left">Created By</th>
               <th className="px-4 py-2 text-left">Action</th>
@@ -366,9 +395,47 @@ export default function ProductList() {
                 <td className="px-4 py-2">{product.createdDate}</td>
                 <td className="px-4 py-2">{product.createdBy}</td>
                 <td className="px-4 py-2 flex space-x-2">
-                  <button className="text-blue-500 hover:text-blue-600">View</button>
-                  <button className="text-yellow-500 hover:text-yellow-600">Edit</button>
-                  <button className="text-red-500 hover:text-red-600">Delete</button>
+                  <button className="border rounded-lg p-2 transform hover:scale-110 hover:bg-[#092C4C] hover:text-white"><Eye size={16} strokeWidth={1.5} /></button>
+                  <button className="p-2 rounded-lg border transform text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
+                  <TbEdit size={16}/>
+                </button>
+                <button onClick={handleOpenModal} className="p-2 rounded-lg transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
+                  <RiDeleteBin5Line size={16}/>
+                </button>
+                    {/* Modal */}
+                    {modalVisible && (
+                        <div
+                                        className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
+                                    >
+                                        <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
+                                            <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                            <p className="mb-6">You wont be able to revert this!</p>
+
+                                            {/* Show details */}
+                                            <div className="mb-6">
+                                                <p><strong>Item ID:</strong> {product.product}</p>
+                                                <p><strong>Item Name:</strong> {product.qty}</p>
+                                            </div>
+
+                                            {/* Buttons */}
+                                            <div className="flex justify-center">
+                                                <button
+                                                    onClick={() => handleDelete(product.id)}
+                                                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                                >
+                                                    Yes, delete it!
+                                                </button>
+                                                <button
+                                                    onClick={handleCloseModal}
+                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                        </div>
+                    )}
+
                 </td>
               </tr>
             ))}

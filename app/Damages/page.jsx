@@ -19,6 +19,22 @@ export default function Damages() {
 
   const [showOptions, setShowOptions] = useState(null); // To show options on a row
   const [showModal, setShowModal] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    console.log("test");
+      setModalVisible(true);
+      setTimeout(() => {
+          setShowModal(true);
+      }, 0); // Small delay to trigger transition
+  };
+
+  const handleCloseModal = () => {
+      setShowModal(false);
+      setTimeout(() => {
+          setModalVisible(false);
+      }, 300); // Delay based on transition duration
+  };
   // Function to handle filtering
   const handleFilterChange = (e) => {
     setFilterText(e.target.value);
@@ -121,41 +137,43 @@ export default function Damages() {
                                 <td className="border p-2 print:table-cell">{damage.note}</td>
                                 <td className="border p-2 print:hidden relative"> {/* Hidden when printing */}
                                 <button
-                                    onClick={() => setShowModal(true)}
-                                    className="bg-transparent rounded-md border text-red-500 px-2 py-2 hover:bg-red-600 hover:text-white"
+                                    onClick={handleOpenModal}
+                                    className="bg-transparent rounded-lg border text-red-500 p-2 hover:bg-red-600 hover:text-white"
                                 >
-                                    <Trash2 size={20} strokeWidth={1.5} />
+                                    <Trash2 size={16} strokeWidth={1.5} />
                                 </button>
+
                                 {/* Modal */}
-                                {showModal && (
-                                    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
-                                    <div className="bg-white rounded-lg p-10">
-                                        <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
-                                        <p className="mb-6">You wont be able to revert this!</p>
+                                {modalVisible && (
+                                    <div
+                                        className={`fixed inset-0 flex items-center justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
+                                    >
+                                        <div className="bg-white rounded-lg p-10 transition-all duration-300 ease-in-out">
+                                            <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                            <p className="mb-6">You wont be able to revert this!</p>
 
-                                        {/* Show details */}
-                                        <div className="mb-6">
-                                        <p><strong>Item ID:</strong> {damage.product}</p>
-                                        <p><strong>Item Name:</strong> {damage.quantity}</p>
-                                        {/* Add any other details you want to display */}
-                                        </div>
+                                            {/* Show details */}
+                                            <div className="mb-6">
+                                                <p><strong>Item ID:</strong> {damage.product}</p>
+                                                <p><strong>Item Name:</strong> {damage.quantity}</p>
+                                            </div>
 
-                                        {/* Buttons */}
-                                        <div className="flex justify-center">
-                                        <button
-                                            onClick={() => handleDelete(damage.id)}
-                                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
-                                        >
-                                            Yes, delete it!
-                                        </button>
-                                        <button
-                                            onClick={() => setShowModal(false)}
-                                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                                        >
-                                            Cancel
-                                        </button>
+                                            {/* Buttons */}
+                                            <div className="flex justify-center">
+                                                <button
+                                                    onClick={() => handleDelete(damage.id)}
+                                                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                                >
+                                                    Yes, delete it!
+                                                </button>
+                                                <button
+                                                    onClick={handleCloseModal}
+                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 )}
                                 </td>
