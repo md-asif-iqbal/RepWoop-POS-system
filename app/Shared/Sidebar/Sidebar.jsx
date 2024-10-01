@@ -71,14 +71,14 @@ export default function Sidebar() {
   return (
     <div>
         <div className="dropdown md:hidden">
-                <div tabIndex={0} role="button" className="btn btn-ghost md:hidden mt-2 lg:mt-0" onClick={toggleSidebar}>
+                <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden mt-2 lg:mt-0" onClick={toggleSidebar}>
                 <AlignJustify size={20} strokeWidth={2} />
                 </div>
                
                 </div>
           <div
              id="sidebar"
-             className={`sidebar fixed z-50  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   h-screen   transition-all duration-700 ease-in-out 
+             className={`sidebar  fixed z-50 md:z-0 md:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
              ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
              style={{ overflowY: 'auto' }}
@@ -86,7 +86,7 @@ export default function Sidebar() {
 
             <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
                 {/* font*/}
-               <Link href="/"> <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent '/></Link>
+               <Link href="/"> <Image src={logo} width={200} height={300} alt='Repwoop POS Software' className='bg-transparent w-[60%] xl:w-[100%]'/></Link>
                 <div className="text-start">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
                         <li>

@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <Sidebar />
       </div>
       {/* RIGHT */}
-      <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[92%] bg-[#F7F8FA] overflow-scroll flex flex-col">
+      <div className="w-[90%] md:w-[95%] lg:w-[84%] xl:w-[92%] bg-[#F7F8FA] overflow-scroll flex flex-col">
         <Navigation />
         {children}
         <Footer/>

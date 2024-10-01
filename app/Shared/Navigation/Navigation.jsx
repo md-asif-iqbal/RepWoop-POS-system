@@ -43,7 +43,7 @@ export default function Navigation({toggleSidebar}) {
   };
 
   return (
-    <div className='w-[85%] fixed top-0 z-50'>
+    <div className='w-[90%] lg:w-[85%] fixed top-0 z-50'>
         <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm">
             <div className="navbar-start">
                 
