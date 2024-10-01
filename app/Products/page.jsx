@@ -118,7 +118,26 @@ export default function ProductList() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Filter and sort the products based on the selected filters and sorting
-
+  const filteredProducts = products
+    .filter((product) =>
+      product.product.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (filters.product === '' || product.product === filters.product) &&
+      (filters.category === '' || product.category === filters.category) &&
+      (filters.brand === '' || product.brand === filters.brand)
+    )
+    .sort((a, b) => {
+      if (sortOrder === 'Low to High') {
+        return a.price - b.price; // Ascending order
+      } else if (sortOrder === 'High to Low') {
+        return b.price - a.price; // Descending order
+      } else if (dateSortOrder === 'Oldest First') {
+        return new Date(a.createdDate) - new Date(b.createdDate); // Ascending date
+      } else if (dateSortOrder === 'Newest First') {
+        return new Date(b.createdDate) - new Date(a.createdDate); // Descending date
+      } else {
+        return 0; // No sorting if not selected
+      }
+    });
 
   // Get unique values for filters
   const uniqueProducts = [...new Set(products.map((product) => product.product))];
@@ -305,7 +324,7 @@ export default function ProductList() {
         <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-200">
-              <th className="px-4 py-2">
+              <th className="px-4 py-2 text-left">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
               <th className="px-4 py-2 text-left">Product</th>
@@ -323,7 +342,7 @@ export default function ProductList() {
           <tbody>
             {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
               <tr key={product.id} className="border-t border-gray-200 hover:bg-gray-100">
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 text-left">
                   <input
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}

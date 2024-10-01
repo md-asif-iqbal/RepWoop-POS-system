@@ -92,13 +92,13 @@ export default function Navigation({toggleSidebar}) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/Today-Report" className=
+                  <Link href="/Products" className=
                         {`${
-                          pathname === '/Today-Report' 
+                          pathname === '/Products' 
                             ? ' group text-orange-500  ' 
                             : 'group text-gray-500 dark:text-white hover:text-orange-500'
                         }`}>
-                  Today Report
+                  Products
                   <span className={spanClass}></span>
                   </Link>
                 </li>
