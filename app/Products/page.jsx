@@ -209,33 +209,7 @@ export default function ProductList() {
                 Import Product
             </button>
              {/* Modal */}
-                {showModal && (
-                    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg p-6 w-1/2">
-                        <h2 className="text-xl font-bold mb-4">Import Products</h2>
-                        <input
-                        type="file"
-                        accept=".csv, .xlsx"
-                        onChange={handleFileUpload}
-                        className="mb-4"
-                        />
-                        <div className="flex justify-end space-x-4">
-                        <button
-                            className="px-4 py-2 bg-green-500 text-white rounded"
-                            onClick={submitProducts}
-                        >
-                            Submit
-                        </button>
-                        <button
-                            className="px-4 py-2 bg-red-500 text-white rounded"
-                            onClick={() => setShowModal(false)}
-                        >
-                            Close
-                        </button>
-                        </div>
-                    </div>
-                    </div>
-                )}
+                
           <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">PDF</button>
           <button onClick={exportExcel} className="px-4 py-2 bg-yellow-500 text-white rounded">Excel</button>
           <button onClick={handlePrint} className="px-4 py-2 bg-gray-500 text-white rounded">Print</button>
