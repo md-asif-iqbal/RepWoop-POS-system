@@ -237,7 +237,7 @@ export default function ProductList() {
                     </div>
                 )}
           <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">PDF</button>
-          <button onClick={exportExcel} className="px-4 py-2 bg-yellow-500 text-white rounded">Excel</button>
+          
           <button onClick={handlePrint} className="px-4 py-2 bg-gray-500 text-white rounded">Print</button>
         </div>
       </div>
