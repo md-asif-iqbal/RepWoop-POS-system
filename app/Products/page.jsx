@@ -10,7 +10,7 @@ import { TbEdit } from 'react-icons/tb';
 export default function ProductList() {
     const [showModal, setShowModal] = useState(false);
     const [product, setProducts] = useState([]);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
@@ -227,7 +227,7 @@ export default function ProductList() {
     <div>
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
       {/* Action Buttons */}
-      <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
+      <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold mb-2 md:mb-0">Product List</h2>
         <div className="md:flex space-x-2 space-y-2 md:space-y-0">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
@@ -272,7 +272,7 @@ export default function ProductList() {
       </div>
 
       {/* Search and Filter Section */}
-      <div className="flex justify-end items-end mb-4">
+      <div className="flex md:justify-end md:items-end mb-4">
        
         <div className="flex space-x-2">
           <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
