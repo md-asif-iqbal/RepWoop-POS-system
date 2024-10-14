@@ -7,34 +7,34 @@ import { Eye, Filter, View } from 'lucide-react';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { TbEdit } from 'react-icons/tb';
 
-export default function CategoryList() {
+export default function Brands() {
     const [showModal, setShowModal] = useState(false);
     const [products, setProducts] = useState([
-        { id: 1, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-15', status: 'Active' },
-        { id: 2, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-12', status: 'Inactive' },
-        { id: 3, category: 'Shoe', categorySlug: 'shoe', createdOn: '2023-09-01', status: 'Active' },
-        { id: 4, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-21', status: 'Inactive' },
-        { id: 5, category: 'Speaker', categorySlug: 'speaker', createdOn: '2023-08-10', status: 'Active' },
-        { id: 6, category: 'Furniture', categorySlug: 'furniture', createdOn: '2023-08-08', status: 'Inactive' },
-        { id: 7, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-14', status: 'Active' },
-        { id: 8, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-12', status: 'Inactive' },
-        { id: 9, category: 'Chairs', categorySlug: 'chairs', createdOn: '2023-07-29', status: 'Active' },
-        { id: 10, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-01', status: 'Inactive' },
-        { id: 11, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-15', status: 'Active' },
-        { id: 12, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-10', status: 'Inactive' },
-        { id: 13, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-20', status: 'Active' },
-        { id: 14, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-18', status: 'Inactive' },
-        { id: 15, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-22', status: 'Active' },
-        { id: 16, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-09-03', status: 'Inactive' },
-        { id: 17, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-08-31', status: 'Active' },
-        { id: 18, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-06', status: 'Inactive' },
-        { id: 19, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-09', status: 'Active' },
-        { id: 20, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-14', status: 'Inactive' }
+        { id: 1, brand: 'Dell', logo: 'dell-logo.png', createdOn: '2023-08-15', status: 'Active' },
+        { id: 2, brand: 'Sony', logo: 'sony-logo.png', createdOn: '2023-08-12', status: 'Inactive' },
+        { id: 3, brand: 'Nike', logo: 'nike-logo.png', createdOn: '2023-09-01', status: 'Active' },
+        { id: 4, brand: 'Samsung', logo: 'samsung-logo.png', createdOn: '2023-08-21', status: 'Inactive' },
+        { id: 5, brand: 'Bose', logo: 'bose-logo.png', createdOn: '2023-08-10', status: 'Active' },
+        { id: 6, brand: 'Ikea', logo: 'ikea-logo.png', createdOn: '2023-08-08', status: 'Inactive' },
+        { id: 7, brand: 'Gucci', logo: 'gucci-logo.png', createdOn: '2023-08-14', status: 'Active' },
+        { id: 8, brand: 'Apple', logo: 'apple-logo.png', createdOn: '2023-09-12', status: 'Inactive' },
+        { id: 9, brand: 'Herman Miller', logo: 'herman-miller-logo.png', createdOn: '2023-07-29', status: 'Active' },
+        { id: 10, brand: 'Louis Vuitton', logo: 'lv-logo.png', createdOn: '2023-08-01', status: 'Inactive' },
+        { id: 11, brand: 'HP', logo: 'hp-logo.png', createdOn: '2023-09-15', status: 'Active' },
+        { id: 12, brand: 'Google', logo: 'google-logo.png', createdOn: '2023-09-10', status: 'Inactive' },
+        { id: 13, brand: 'OnePlus', logo: 'oneplus-logo.png', createdOn: '2023-09-20', status: 'Active' },
+        { id: 14, brand: 'Xiaomi', logo: 'xiaomi-logo.png', createdOn: '2023-09-18', status: 'Inactive' },
+        { id: 15, brand: 'Asus', logo: 'asus-logo.png', createdOn: '2023-08-22', status: 'Active' },
+        { id: 16, brand: 'Beats', logo: 'beats-logo.png', createdOn: '2023-09-03', status: 'Inactive' },
+        { id: 17, brand: 'JBL', logo: 'jbl-logo.png', createdOn: '2023-08-31', status: 'Active' },
+        { id: 18, brand: 'Lenovo', logo: 'lenovo-logo.png', createdOn: '2023-09-06', status: 'Inactive' },
+        { id: 19, brand: 'Acer', logo: 'acer-logo.png', createdOn: '2023-09-09', status: 'Active' },
+        { id: 20, brand: 'Microsoft', logo: 'microsoft-logo.png', createdOn: '2023-09-14', status: 'Inactive' }
     ]);
     
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [filters, setFilters] = useState({ category: '', createdOn: '', status: '' });
+    const [filters, setFilters] = useState({ brand: '', createdOn: '', status: '' });
     const [sortOrder, setSortOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 10;
@@ -75,7 +75,7 @@ export default function CategoryList() {
         const doc = new jsPDF();
         doc.text('Product List', 20, 10);
         products.forEach((product, index) => {
-            doc.text(`${index + 1}. ${product.category}, Created On: ${product.createdOn}, Status: ${product.status}`, 20, 20 + index * 10);
+            doc.text(`${index + 1}. ${product.brand}, Created On: ${product.createdOn}, Status: ${product.status}`, 20, 20 + index * 10);
         });
         doc.save('products.pdf');
     };
@@ -90,10 +90,10 @@ export default function CategoryList() {
     // Filtering and sorting
     const filteredProducts = products
         .filter(product => 
-            (filters.category === '' || product.category === filters.category) &&
+            (filters.brand === '' || product.brand === filters.brand) &&
             (filters.createdOn === '' || product.createdOn === filters.createdOn) &&
             (filters.status === '' || product.status === filters.status) &&
-            product.category.toLowerCase().includes(searchTerm.toLowerCase())
+            product.brand.toLowerCase().includes(searchTerm.toLowerCase())
         )
         .sort((a, b) => sortOrder === 'asc' ? new Date(a.createdOn) - new Date(b.createdOn) : new Date(b.createdOn) - new Date(a.createdOn));
 
@@ -105,7 +105,7 @@ export default function CategoryList() {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     // Unique filter values
-    const uniqueCategories = [...new Set(products.map(product => product.category))];
+    const uniqueCategories = [...new Set(products.map(product => product.brand))];
     const uniqueCreatedOn = [...new Set(products.map(product => product.createdOn))];
     const uniqueStatuses = [...new Set(products.map(product => product.status))];
      // Toggle Filters
@@ -153,7 +153,7 @@ export default function CategoryList() {
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito bg-white  dark:bg-[#151530] dark:text-white">
             {/* Action Buttons */}
             <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold mb-2 md:mb-0">Category list</h2>
+                <h2 className="text-2xl font-semibold mb-2 md:mb-0">Brands List</h2>
                 <div className="md:flex space-x-2 space-y-2 md:space-y-0">
                     <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
                     <button onClick={handleOpenModal} className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
@@ -200,10 +200,10 @@ export default function CategoryList() {
             className="border border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
             />
                 <div className="flex space-x-2">
-                    <select onChange={(e) => setFilters({ ...filters, category: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Category</option>
-                        {uniqueCategories.map((category, index) => (
-                            <option key={index} value={category}>{category}</option>
+                    <select onChange={(e) => setFilters({ ...filters, brand: e.target.value })} className="border p-2 rounded">
+                        <option value="">Filter by brand</option>
+                        {uniqueCategories.map((brand, index) => (
+                            <option key={index} value={brand}>{brand}</option>
                         ))}
                     </select>
                     <select onChange={(e) => setFilters({ ...filters, createdOn: e.target.value })} className="border p-2 rounded">
@@ -233,8 +233,8 @@ export default function CategoryList() {
                     <th className="border px-4 py-2 text-left">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
-                        <th className="border px-4 py-2">Category</th>
-                        <th className="border px-4 py-2">Category Slug</th>
+                        <th className="border px-4 py-2">brand</th>
+                        <th className="border px-4 py-2">Logo</th>
                         <th className="border px-4 py-2">Created On</th>
                         <th className="border px-4 py-2">Status</th>
                         <th className="border px-4 py-2">Actions</th>
@@ -251,8 +251,8 @@ export default function CategoryList() {
                                     onChange={(e) => handleSelectProduct(e, product.id)}
                                   />
                                 </td>
-                                <td className=" px-4 py-2">{product.category}</td>
-                                <td className=" px-4 py-2 border">{product.categorySlug}</td>
+                                <td className=" px-4 py-2">{product.brand}</td>
+                                <td className=" px-4 py-2 border">{product.logo}</td>
                                 <td className=" px-4 py-2">{product.createdOn}</td>
                                 <td className=" px-4 py-2 border"><span className={`px-2 py-1 text-xs font-semibold rounded-full ${
                                                 product.status === "Active"
@@ -279,7 +279,7 @@ export default function CategoryList() {
 
                                             {/* Show details */}
                                             <div className="mb-6">
-                                                <p><strong>Item ID:</strong> {product.category}</p>
+                                                <p><strong>Item ID:</strong> {product.brand}</p>
                                                 <p><strong>Item Name:</strong> {product.id}</p>
                                             </div>
 
