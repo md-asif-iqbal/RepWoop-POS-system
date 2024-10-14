@@ -21,11 +21,11 @@ export default function RootLayout({ children }) {
         className="font">
        <div className="h-screen flex ">
       {/* LEFT w-[14%] */}
-      {/* <div className="w-[8%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-0">
+      <div className="w-[8%]  md:w-[8%] lg:w-[16%] xl:w-[14%] p-0 bg-[#F7F8FA] dark:bg-[#141432]">
         <Sidebar />
-      </div> */}
+      </div>
       {/* RIGHT */}
-      <div className="w-[100%]  bg-[#F7F8FA] overflow-scroll flex flex-col">
+      <div className="w-[90%] md:w-[95%] lg:w-[84%] xl:w-[92%] bg-[#F7F8FA] dark:bg-[#141432] overflow-scroll flex flex-col">
         <Navigation />
         {children}
         <Footer/>
