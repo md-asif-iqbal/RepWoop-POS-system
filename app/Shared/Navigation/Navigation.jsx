@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState,useEffect } from 'react'
-import { AlignJustify, SunMoon} from 'lucide-react';
+import { AlignJustify, Moon, SunMedium, SunMoon} from 'lucide-react';
 
 
 
@@ -113,7 +113,7 @@ export default function Navigation() {
 
             <div className='navbar-end'>
             <div className="w-full h-full flex flex-col justify-end items-end">
-              <div className="flex justify-end items-end">
+              <div className="flex justify-end items-end px-4">
                 {/* Sun Icon */}
                 <span>
                   <svg
@@ -122,7 +122,7 @@ export default function Navigation() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <SunMoon />
+                    <SunMedium  />
                   </svg>
                 </span>
 
@@ -144,17 +144,12 @@ export default function Navigation() {
                 {/* Moon Icon */}
                 <span>
                   <svg
-                    className={`h-6 w-6 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}
+                    className={`h-6 w-6 ${theme === 'dark' ? 'text-white' : 'text-gray-400'}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                    />
+                    <Moon />
                   </svg>
                 </span>
               </div>

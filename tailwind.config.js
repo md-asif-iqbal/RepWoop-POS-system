@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,17 +9,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        nunito: ['Nunito', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'], // Add the Nunito font
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--background)", // Define background color
+        foreground: "var(--foreground)", // Define foreground color
       },
     },
   },
-  darkMode: 'class',
+  darkMode: 'class', // Enable dark mode support
   plugins: [
-    require('daisyui'),
-    require('tailwind-scrollbar'),
+    require('daisyui'), // Add DaisyUI plugin
+    require('tailwind-scrollbar'), // Add scrollbar plugin
   ],
 };

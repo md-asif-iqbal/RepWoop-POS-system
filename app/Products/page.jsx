@@ -350,9 +350,9 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-md rounded-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-200 text-black">
               <th className="px-4 py-2 text-left">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
@@ -386,7 +386,7 @@ export default function ProductList() {
                   />
                   {product.product}
                 </td>
-                <td className="px-4 py-2">{product.sku}</td>
+                <td className="px-4 py-2 ">{product.sku}</td>
                 <td className="px-4 py-2">{product.category}</td>
                 <td className="px-4 py-2">{product.brand}</td>
                 <td className="px-4 py-2">${product.price.toFixed(2)}</td>
@@ -444,7 +444,7 @@ export default function ProductList() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4">
+      <div className="lg:flex justify-center items-center gap-5 mt-4">
         {[...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()].map((number) => (
           <button
             key={number + 1}
@@ -454,7 +454,9 @@ export default function ProductList() {
             {number + 1}
           </button>
         ))}
+         <div >Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} entries</div>
       </div>
+     
         </div>
     </div>
   );
