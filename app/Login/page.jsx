@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div className=''>
+    <div className='font-nunito text-sm'>
         <div className="min-w-screen min-h-screen bg-white dark:bg-[#141432] flex items-center justify-center px-5 py-5 ">
     <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full lg:w-[70%] overflow-hidden">
         <div className="md:flex w-full">

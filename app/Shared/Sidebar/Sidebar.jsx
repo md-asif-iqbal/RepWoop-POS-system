@@ -69,7 +69,7 @@ export default function Sidebar() {
       setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar open/close
     };
   return (
-    <div>
+    <div className='font-nunito text-sm'>
         <div className="dropdown lg:hidden">
                 <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden mt-2  md:mt-6 dark:text-white " onClick={toggleSidebar}>
                 <AlignJustify size={20} strokeWidth={2} />

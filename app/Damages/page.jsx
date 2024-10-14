@@ -75,7 +75,7 @@ export default function Damages() {
     damage.product.toLowerCase().includes(filterText.toLowerCase()) || damage.quantity.toLowerCase().includes(filterText.toLowerCase())
   );
   return (
-    <div>
+    <div className='font-nunito text-sm'>
         <div className="container mx-auto p-4 md:mt-[5%]">
         <h1 className="text-2xl font-bold mb-4">Damages</h1>
 

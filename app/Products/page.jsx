@@ -224,8 +224,8 @@ export default function ProductList() {
 //   };
 
   return (
-    <div>
-        <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+    <div className='font-nunito text-sm'>
+        <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito text-sm">
       {/* Action Buttons */}
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold mb-2 md:mb-0">Product List</h2>

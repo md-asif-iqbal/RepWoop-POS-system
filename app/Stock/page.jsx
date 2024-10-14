@@ -328,7 +328,7 @@ export default function Stock() {
   };
   
   return (
-    <div className=''>
+    <div className='font-nunito text-sm'>
        <div  className="p-4 max-w-full mx-auto mt-[5%]">
       {/* Title and Print Button */}
       <div className="flex justify-between items-center mb-4">

@@ -47,7 +47,7 @@ export default function Navigation() {
   
 
   return (
-    <div className='w-[86%] fixed top-0 z-50'>
+    <div className='w-[86%] fixed top-0 z-50 '>
 
         <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm">
             <div className="navbar-start">
@@ -128,15 +128,15 @@ export default function Navigation() {
 
                 {/* Toggle Switch */}
                 <div
-                  className={`w-14 h-7 flex items-center rounded-full mx-3 px-1 cursor-pointer transition-colors duration-500 ${
+                  className={`w-11 h-6 flex items-center rounded-full mx-3 px-1 cursor-pointer transition-colors duration-500 ${
                     theme === 'dark' ? 'bg-rose-500' : 'bg-[#FF9F43]'
                   }`}
                   onClick={handleToggle}
                 >
                   {/* Switch Knob */}
                   <div
-                    className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-500 ease-in-out ${
-                      theme === 'dark' ? 'translate-x-7' : ''
+                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-500 ease-in-out ${
+                      theme === 'dark' ? 'translate-x-5' : ''
                     }`}
                   ></div>
                 </div>

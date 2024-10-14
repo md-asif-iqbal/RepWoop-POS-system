@@ -56,7 +56,7 @@ export default function AccountPage() {
 
     
   return (
-    <div className='dark:bg-[#141432] h-full'>
+    <div className='dark:bg-[#141432] h-full font-nunito text-sm'>
         <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
       <div className="bg-white p-4 shadow-md rounded-md ">

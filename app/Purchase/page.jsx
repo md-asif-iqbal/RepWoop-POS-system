@@ -314,7 +314,7 @@ export default function Purchase() {
 
       
   return (
-    <div className='bg-white dark:bg-[#141432]'>
+    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
       {/* Title Section */}
   

@@ -48,7 +48,7 @@ export default function page() {
         setDropdownOpen(isDropdownOpen === id ? null : id);
       };
   return (
-    <div className='bg-white dark:bg-[#141432] h-screen'>
+    <div className='bg-white dark:bg-[#141432] h-screen font-nunito text-sm'>
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full min-h-full">
       {/* Title Section */}
   

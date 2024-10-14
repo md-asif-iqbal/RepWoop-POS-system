@@ -222,7 +222,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
 //   };
 
   return (
-    <div>
+    <div className=' font-nunito text-sm'>
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
       {/* Action Buttons */}
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
@@ -355,7 +355,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
           <tbody>
             {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
                 
-              <tr key={product.id} className="border-t border-gray-200 hover:bg-gray-100">
+              <tr key={product.id} className="border-t border-gray-200 ">
                 <td className="px-4 py-2 text-left">
                   <input
                     type="checkbox"

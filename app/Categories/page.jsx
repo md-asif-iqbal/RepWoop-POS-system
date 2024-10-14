@@ -150,7 +150,7 @@ export default function CategoryList() {
 
 
     return (
-        <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito bg-white  dark:bg-[#151530] dark:text-white">
+        <div className=" font-nunito text-sm container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] bg-white  dark:bg-[#151530] dark:text-white">
             {/* Action Buttons */}
             <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
                 <h2 className="text-2xl font-semibold mb-2 md:mb-0">Category list</h2>

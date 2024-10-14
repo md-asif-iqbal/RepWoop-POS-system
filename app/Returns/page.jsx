@@ -151,7 +151,7 @@ const SalesReturnList = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100">
+    <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 font-nunito text-sm">
         <div className=" container mx-auto mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-xl font-bold">Sales Return List</h1>

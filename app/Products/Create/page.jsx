@@ -42,7 +42,7 @@ export default function ProductList() {
 
 
   return (
-    <div>
+    <div className='font-nunito text-sm'>
          <div className="container mx-auto px-4 py-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Product List</h2>
