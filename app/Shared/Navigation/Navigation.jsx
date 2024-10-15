@@ -47,7 +47,7 @@ export default function Navigation() {
   
 
   return (
-    <div className='w-[86%] fixed top-0 z-50 '>
+    <div className='w-[86%] fixed top-0 z-50 font-nunito text-sm'>
 
         <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm">
             <div className="navbar-start">
