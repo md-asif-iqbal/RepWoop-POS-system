@@ -59,7 +59,7 @@ export default function AccountPage() {
     <div className='dark:bg-[#141432] h-full font-nunito text-sm'>
         <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
-      <div className="bg-white p-4 shadow-md rounded-md ">
+      <div className="bg-white p-4 shadow-sm rounded-md ">
         <h2 className="text-xl font-bold mb-4">New Account</h2>
         <div className="md:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
@@ -131,7 +131,7 @@ export default function AccountPage() {
          {/* Modal for Adding Balance */}
       {showAddBalanceModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+          <div className="bg-white p-8 rounded-lg shadow-sm w-1/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md font-bold">Add Balance to {selectedAccount?.name}</h2>
               <button
@@ -201,7 +201,7 @@ export default function AccountPage() {
       {/* Modal for Transferring Balance to other account */}
       {showTransferModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+          <div className="bg-white p-8 rounded-lg shadow-sm w-1/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md font-bold">Transfer Balance to {selectedAccount?.name}</h2>
               <button

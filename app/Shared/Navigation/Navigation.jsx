@@ -135,7 +135,7 @@ export default function Navigation() {
                 >
                   {/* Switch Knob */}
                   <div
-                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-500 ease-in-out ${
+                    className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform duration-500 ease-in-out ${
                       theme === 'dark' ? 'translate-x-5' : ''
                     }`}
                   ></div>

@@ -155,19 +155,19 @@ export default function page() {
         <div className="p-4 mt-[5%]">
       {/* Header with statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-blue-600 text-white p-4 rounded shadow-md">
+        <div className="bg-blue-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Sold Today</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-pink-600 text-white p-4 rounded shadow-md">
+        <div className="bg-pink-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Today Received</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-red-500 text-white p-4 rounded shadow-md">
+        <div className="bg-red-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Today Profit</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-green-600 text-white p-4 rounded shadow-md">
+        <div className="bg-green-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Total Sold</h3>
           <p className="">Tk 30000000.5</p>
         </div>
@@ -250,7 +250,7 @@ export default function page() {
                       <GrUserSettings />
                     </button>
                     {selectedInvoice === sale.invoiceNo && (
-                      <div className="absolute bg-white shadow-lg rounded p-2 mt-2 z-20 right-10">
+                      <div className="absolute bg-white shadow-sm rounded p-2 mt-2 z-20 right-10">
                         <ul className="text-gray-700">
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Print</li>
                           <li className="p-2 hover:bg-gray-100 cursor-pointer">Challan Print</li>

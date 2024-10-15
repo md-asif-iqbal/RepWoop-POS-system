@@ -55,7 +55,7 @@ export default function ProductList() {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white shadow-sm rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 text-left">Product</th>

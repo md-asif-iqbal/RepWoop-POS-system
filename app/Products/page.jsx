@@ -350,7 +350,7 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-200 text-black">
               <th className="px-4 py-2 text-left">

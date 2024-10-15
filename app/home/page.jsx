@@ -145,7 +145,7 @@ export default function Dashboard() {
           {/* Dashboard cards and charts */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Cards */}
-            <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
+            <div className=" p-4 rounded shadow-sm flex justify-start gap-5 items-center">
             <span className="p-3 bg-rose-300 rounded-full bg-opacity-30">
               <BiSolidShoppingBags size={28} className="text-[#FF9F43]"/>
               
@@ -153,7 +153,7 @@ export default function Dashboard() {
               <div><p>$307144</p>
               <p>Total Purchase Due</p></div>
             </div>
-            <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
+            <div className=" p-4 rounded shadow-sm flex justify-start gap-5 items-center">
             <span className="p-3 bg-green-300 rounded-full bg-opacity-30">
               <BadgeDollarSign strokeWidth={2} className="text-green-500 "/>
             </span>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                 <p>Total Sales Due</p>
               </div>
             </div>
-            <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
+            <div className=" p-4 rounded shadow-sm flex justify-start gap-5 items-center">
             <span className="p-3 bg-cyan-300 rounded-full bg-opacity-30">
             
               <ArrowDownFromLine strokeWidth={2} className="text-cyan-500"/>
@@ -172,7 +172,7 @@ export default function Dashboard() {
               <p>Total Sale Amount</p>
               </div>
             </div>
-            <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
+            <div className=" p-4 rounded shadow-sm flex justify-start gap-5 items-center">
             <span className="p-3 bg-rose-300 rounded-full bg-opacity-30">
               <ArrowUpFromLine strokeWidth={2} className="text-rose-500"/>
             </span>
@@ -185,19 +185,19 @@ export default function Dashboard() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 text-white">
             {/* Additional Stats */}
-            <div className="bg-[#FF9F43] p-4 rounded shadow-md text-center">
+            <div className="bg-[#FF9F43] p-4 rounded shadow-sm text-center">
               <p>100</p>
               <p>Customers</p>
             </div>
-            <div className="bg-sky-400 p-4 rounded shadow-md text-center">
+            <div className="bg-sky-400 p-4 rounded shadow-sm text-center">
               <p>110</p>
               <p>Suppliers</p>
             </div>
-            <div className="bg-indigo-400 p-4 rounded shadow-md text-center">
+            <div className="bg-indigo-400 p-4 rounded shadow-sm text-center">
               <p>150</p>
               <p>Purchase Invoice</p>
             </div>
-            <div className="bg-[#28C76F] p-4 rounded shadow-md text-center">
+            <div className="bg-[#28C76F] p-4 rounded shadow-sm text-center">
               <p>170</p>
               <p>Sales Invoice</p>
             </div>
@@ -206,19 +206,19 @@ export default function Dashboard() {
       {/* Today Summary */}
       <h2 className="text-md  mb-4">Today Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-blue-600 text-white p-4 rounded shadow-md">
+        <div className="bg-blue-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SOLD</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-pink-600 text-white p-4 rounded shadow-md">
+        <div className="bg-pink-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SOLD - PURCHASE COST</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-red-500 text-white p-4 rounded shadow-md">
+        <div className="bg-red-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY EXPENSE</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-green-600 text-white p-4 rounded shadow-md">
+        <div className="bg-green-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SELL PROFIT</h3>
           <p className="">Tk 30,000</p>
         </div>
@@ -227,23 +227,23 @@ export default function Dashboard() {
       {/* Current Month Summary */}
       <h2 className="text-md  mb-4">Current Month Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-teal-500 text-white p-4 rounded shadow-md">
+        <div className="bg-teal-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">SOLD IN SEP 2024</h3>
           <p className="">Tk 20,003,886,022</p>
         </div>
-        <div className="bg-purple-500 text-white p-4 rounded shadow-md">
+        <div className="bg-purple-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">PURCHASED - IN SEP 2024</h3>
           <p className="">Tk 20,0033,884,105</p>
         </div>
-        <div className="bg-orange-500 text-white p-4 rounded shadow-md">
+        <div className="bg-orange-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">EXPENSE IN SEP 2024</h3>
           <p className="">Tk 20,00200</p>
         </div>
-        <div className="bg-cyan-400 text-white p-4 rounded shadow-md">
+        <div className="bg-cyan-400 text-white p-4 rounded shadow-sm">
           <h3 className=" ">RETURNED IN SEP 2024</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-purple-600 text-white p-4 rounded shadow-md">
+        <div className="bg-purple-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">PROFIT SEP 2024</h3>
           <p className="">123,122</p>
         </div>
@@ -252,7 +252,7 @@ export default function Dashboard() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Chart Area */}
-            <div className="mt-8 p-4 rounded-lg shadow-lg dark:bg-[#202047]">
+            <div className="mt-8 p-4 rounded-lg shadow-sm dark:bg-[#202047]">
               <h3 className=" font-bold mb-4">Purchase & Sales</h3>
               <div className="flex justify-between mb-4">
                 <div className="text-green-500">Sales</div>
@@ -268,7 +268,7 @@ export default function Dashboard() {
               <Bar data={data} options={options} />
             </div>
             {/* Recent Products Table */}
-            <div className="mt-8 p-4  rounded  shadow-lg dark:bg-[#202047]">
+            <div className="mt-8 p-4  rounded  shadow-sm dark:bg-[#202047]">
               <h3 className=" font-bold mb-4">Recent Products</h3>
               <table className="table-auto w-full">
                 <thead>
@@ -301,7 +301,7 @@ export default function Dashboard() {
         </div>
         <div className="">
       <h2 className="text-md  mb-4 ">Expired Products</h2>
-      <div className="overflow-x-auto rounded-lg shadow-xl dark:bg-[#202047]">
+      <div className="overflow-x-auto rounded-lg shadow-sm dark:bg-[#202047]">
         <table className="min-w-full table-auto border ">
           <thead>
             <tr className=" uppercase text-sm leading-normal">

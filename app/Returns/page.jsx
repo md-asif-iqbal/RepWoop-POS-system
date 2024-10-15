@@ -381,7 +381,7 @@ const SalesReturnList = () => {
 
   {/* Sales Return Table */}
   <div className="overflow-x-auto dark:bg-[#141432]">
-    <table className="min-w-full bg-white dark:bg-[#29294e] border rounded-md shadow-md">
+    <table className="min-w-full bg-white dark:bg-[#29294e] border rounded-md shadow-sm">
       <thead className="">
         <tr>
         <th className="p-4 text-left">Product</th>

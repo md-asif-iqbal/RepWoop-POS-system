@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className='font-nunito text-sm'>
         <div className="min-w-screen min-h-screen bg-white dark:bg-[#141432] flex items-center justify-center px-5 py-5 ">
-    <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full lg:w-[70%] overflow-hidden">
+    <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-sm w-full lg:w-[70%] overflow-hidden">
         <div className="md:flex w-full">
             <div className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
                 <svg id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641" 

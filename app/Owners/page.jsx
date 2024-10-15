@@ -52,7 +52,7 @@ export default function page() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full min-h-full">
       {/* Title Section */}
   
-      <div className=" mb-4  shadow-md rounded-lg ">
+      <div className=" mb-4  shadow-sm rounded-lg ">
       <h1 className="text-xl text-gray-500 mx-5 dark:text-white">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
@@ -66,7 +66,7 @@ export default function page() {
         </div>
       </div>
               {/* Table Section */}
-              <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-md rounded-lg">
+              <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm rounded-lg">
         <table className="min-w-full table-auto">
           <thead className="bg-teal-500 text-white dark:text-white">
             <tr>
@@ -100,7 +100,7 @@ export default function page() {
 
                   {/* Dropdown Menu */}
                   {isDropdownOpen === owner.id && (
-                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[#141432] shadow-lg rounded-md border border-gray-200 z-20">
+                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[#141432] shadow-sm rounded-md border border-gray-200 z-20">
                       <button className="block w-full px-4 py-2 text-left text-gray-700 dark:text-white hover:bg-gray-800">
                         Edit
                       </button>

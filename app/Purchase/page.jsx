@@ -318,7 +318,7 @@ export default function Purchase() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
       {/* Title Section */}
   
-      <div className=" mb-4  shadow-md rounded-lg font-bold">
+      <div className=" mb-4  shadow-sm rounded-lg font-bold">
       <h1 className="text-xl text-gray-500 mx-5 ">Purchase</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Purchase" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
@@ -432,7 +432,7 @@ export default function Purchase() {
                                     </svg>
                                 </button>
                                 {isDropdownOpen === index && (
-                                    <div className="absolute transition-transform duration-700 right-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-20">
+                                    <div className="absolute transition-transform duration-700 right-0 mt-2 w-48 bg-white shadow-sm rounded-md overflow-hidden z-20">
                                     <ul className="py-1">
                                         <li>
                                         <button
