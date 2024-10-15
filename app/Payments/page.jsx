@@ -173,8 +173,7 @@ export default function Payments() {
         page.drawText("0.00", { x: 150, y: yPosition, size: 12, font: helveticaFont }); // Assuming no previous due
         page.drawText(invoiceData.amount.toFixed(2), { x: 300, y: yPosition, size: 12, font: helveticaFont });
         page.drawText("0.00", { x: 450, y: yPosition, size: 12, font: helveticaFont }); // Assuming no remaining due
-    
-        // Serialize the PDF to bytes (Uint8Array)
+
         const pdfBytes = await pdfDoc.save();
     
         // Create a Blob from the bytes and open it in a new window to print
@@ -184,8 +183,8 @@ export default function Payments() {
         // Open the new PDF in a new tab/window
         const newTab = window.open(blobUrl);
         newTab.onload = () => {
-          newTab.focus(); // Focus on the new tab
-          newTab.print(); // Automatically trigger the print dialog
+          newTab.focus();
+          newTab.print(); 
         };
     };
     

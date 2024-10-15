@@ -39,11 +39,7 @@ export default function Brands() {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 10;
 
-    // Modal handlers
-    // const handleOpenModal = () => setShowModal(true);
-    // const handleCloseModal = () => setShowModal(false);
 
-    // File upload handler
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
         const fileType = file.name.split('.').pop();
@@ -70,7 +66,7 @@ export default function Brands() {
         }
     };
 
-    // Export functions
+
     const exportPDF = () => {
         const doc = new jsPDF();
         doc.text('Product List', 20, 10);
@@ -87,7 +83,7 @@ export default function Brands() {
         XLSX.writeFile(wb, 'products.xlsx');
     };
 
-    // Filtering and sorting
+
     const filteredProducts = products
         .filter(product => 
             (filters.brand === '' || product.brand === filters.brand) &&
@@ -101,14 +97,12 @@ export default function Brands() {
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    // Handle pagination
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    // Unique filter values
     const uniqueCategories = [...new Set(products.map(product => product.brand))];
     const uniqueCreatedOn = [...new Set(products.map(product => product.createdOn))];
     const uniqueStatuses = [...new Set(products.map(product => product.status))];
-     // Toggle Filters
+
      const [showFilters, setShowFilters] = useState(false);
       const toggleFilters = () => {
         setShowFilters(!showFilters);
