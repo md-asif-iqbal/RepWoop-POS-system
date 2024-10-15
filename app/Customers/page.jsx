@@ -146,33 +146,35 @@ export default function CustomersList() {
     },
   ];
 
-  const handlePrint = () => {
-    window.print();
-  };
 
-  const handleFilter = (e) => {
-    const { name, value } = e.target;
-    setFilter((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const applyFilter = () => {
-    const filtered = customers.filter(
-      (customer) =>
-        customer.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-        customer.phone.includes(filter.mobileNumber)
-    );
-    setFilteredCustomers(filtered);
-  };
-  const resetFilters = () => {
-    setFilter({
-        name: "",
-        mobileNumber: "",
-    });
-    setFilteredCustomers(customers); // Reset the filtered purchases to the original data
-  };
+    // Handle input changes
+    const handleFilter = (e) => {
+      const { name, value } = e.target;
+      setFilter((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    };
+  
+    // Apply filters
+    const applyFilter = () => {
+      const filtered = customers.filter((customer) => {
+        const nameMatch = filter.name
+          ? customer.name.toLowerCase().includes(filter.name.toLowerCase())
+          : true;
+        const mobileMatch = filter.mobileNumber
+          ? customer.phone.includes(filter.mobileNumber)
+          : true;
+        return nameMatch && mobileMatch;
+      });
+      setFilteredCustomers(filtered);
+    };
+  
+    // Reset filters
+    const resetFilters = () => {
+      setFilter({ name: '', mobileNumber: '' });
+      setFilteredCustomers(customers); // Reset to original data
+    };
 
 
   const openModal = (customer) => {
@@ -183,6 +185,26 @@ export default function CustomersList() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedCustomer(null);
+  };
+  const handlePrint = () => {
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Customer Information</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
   };
 
   return (
@@ -251,7 +273,7 @@ export default function CustomersList() {
                     Print
                 </button>
         </div>
-        <table className="table-auto w-full border-collapse border">
+        <table id="table-to-print" className="table-auto w-full border-collapse border">
           <thead>
             <tr className="bg-gray-200 dark:bg-[#232350] dark:text-white">
               <th className="border px-4 py-2">#</th>
@@ -335,7 +357,7 @@ export default function CustomersList() {
 
       {/* Modal Section */}
       {isModalOpen && selectedCustomer && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-10">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-lg font-bold mb-4">
               Customer: {selectedCustomer.name}

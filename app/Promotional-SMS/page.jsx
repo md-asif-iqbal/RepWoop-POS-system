@@ -26,10 +26,10 @@ export default function PromotionalSMS() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-[#1d1d3b] ">
-    <div className="w-full rounded-lg p-8 py-[5%]">
+    <div className="w-full rounded-lg lg:p-8 ">
       <h2 className="text-3xl font-semibold mb-6 text-gray-700 text-left dark:text-white">Promotional SMS</h2>
       
-      <form className="space-y-4 w-1/2">
+      <form className="space-y-4 lg:w-1/2 p-2">
         {/* Select Customers Dropdown */}
         <div>
           <label className="block text-gray-700 text-sm font-semibold mb-2 text-left dark:text-white">Select Customers</label>

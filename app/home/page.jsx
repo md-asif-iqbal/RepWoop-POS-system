@@ -7,6 +7,7 @@ import { TbEdit, TbShoppingCartDollar } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { BsCashCoin } from "react-icons/bs";
+import { ArrowDownFromLine, ArrowUpFromLine, BadgeDollarSign } from "lucide-react";
 // Register necessary Chart.js components
 ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
@@ -131,7 +132,7 @@ export default function Dashboard() {
     },
   ];
   return (
-    <div className=" dark:text-white p-8 font-nunito text-sm">
+    <div className=" dark:text-white lg:p-8 font-nunito text-sm">
       <main className="ml-1/5 flex-grow  mt-[5%]">
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -145,15 +146,16 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Cards */}
             <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
-            <span className="p-3 bg-rose-200 rounded-full bg-opacity-30">
+            <span className="p-3 bg-rose-300 rounded-full bg-opacity-30">
               <BiSolidShoppingBags size={28} className="text-[#FF9F43]"/>
+              
             </span>
               <div><p>$307144</p>
               <p>Total Purchase Due</p></div>
             </div>
             <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
-            <span className="p-3 bg-gray-300 rounded-full bg-opacity-30">
-              <BsCashCoin size={28} className=""/>
+            <span className="p-3 bg-green-300 rounded-full bg-opacity-30">
+              <BadgeDollarSign strokeWidth={2} className="text-green-500 "/>
             </span>
               <div>
                 <p>$4385</p>
@@ -161,8 +163,9 @@ export default function Dashboard() {
               </div>
             </div>
             <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
-            <span className="p-3 bg-gray-300 rounded-full bg-opacity-30">
-              <BiSolidShoppingBags size={28} className=""/>
+            <span className="p-3 bg-cyan-300 rounded-full bg-opacity-30">
+            
+              <ArrowDownFromLine strokeWidth={2} className="text-cyan-500"/>
             </span>
               <div>
               <p>$385656.5</p>
@@ -170,8 +173,8 @@ export default function Dashboard() {
               </div>
             </div>
             <div className=" p-4 rounded shadow-md flex justify-start gap-5 items-center">
-            <span className="p-3 bg-gray-300 rounded-full bg-opacity-30">
-              <BiSolidShoppingBags size={28} className=""/>
+            <span className="p-3 bg-rose-300 rounded-full bg-opacity-30">
+              <ArrowUpFromLine strokeWidth={2} className="text-rose-500"/>
             </span>
               <div>
               <p>$40000</p>
