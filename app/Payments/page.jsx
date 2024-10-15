@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-
+import { PDFDocument,StandardFonts, rgb } from 'pdf-lib';
+import logo from "../../assets/logo.png"
 export default function Payments() {
     const data = [
         { id: 1, customer: "Amina Rahman", supplier: "", date: "2023-10-01", amount: 1200.50, type: "Credit", wallet: "Mobile Wallet", note: "Payment for services" },
@@ -48,25 +49,30 @@ export default function Payments() {
       
     
       const [currentPage, setCurrentPage] = useState(1);
-      const [itemsPerPage] = useState(10);
+      const [itemsPerPage] = useState(15);
       const [nameFilter, setNameFilter] = useState('');
       const [startDateFilter, setStartDateFilter] = useState('');
       const [endDateFilter, setEndDateFilter] = useState('');
     
-      // Unique customer and supplier options combined
       const names = Array.from(new Set(data.map(item => item.customer).concat(data.map(item => item.supplier)))).sort();
+
+      // Filter data function
+      const filterDataByDate = (data, startDate, endDate, nameFilter) => {
+        return data.filter(item => {
+          const itemDate = new Date(item.date);
+          const withinDateRange = 
+            (!startDate || itemDate >= new Date(startDate)) && 
+            (!endDate || itemDate <= new Date(endDate));
+    
+          return (
+            (nameFilter === '' || item.customer === nameFilter || item.supplier === nameFilter) &&
+            withinDateRange
+          );
+        });
+      };
     
       // Filtered data based on filters
-      const filteredData = data.filter(item => {
-        const withinDateRange =
-          (!startDateFilter || new Date(item.date) >= new Date(startDateFilter)) &&
-          (!endDateFilter || new Date(item.date) <= new Date(endDateFilter));
-    
-        return (
-          (nameFilter === '' || item.customer === nameFilter || item.supplier === nameFilter) &&
-          withinDateRange
-        );
-      });
+      const filteredData = filterDataByDate(data, startDateFilter, endDateFilter, nameFilter);
     
       // Total pages
       const totalPages = Math.ceil(filteredData.length / itemsPerPage);
@@ -111,14 +117,96 @@ export default function Payments() {
         // Add delete logic here
       };
     
-      const handleInvoice = (id) => {
-        // Add invoice generation logic here
-      };
+       // Function to generate the PDF
+       const generateInvoice = async (invoiceData) => {
+        const pdfDoc = await PDFDocument.create();
+        const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
+        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    
+        // Set initial y position for writing text
+        let yPosition = 750;
+        const lineHeight = 20;
+    
+        // Company details at the top
+        page.drawText("Repwoop Company", { x: 50, y: yPosition, size: 18, font: helveticaFont });
+        page.drawText("Address: Holding 53 (1st floor), Sahajatpur, Gulshan, Dhaka 1219", { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+        page.drawText("Phone: 01779724380", { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+        page.drawText("Email: info@repwoop.com", { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+    
+        // Invoice header
+        yPosition -= 30;
+        page.drawText("Payment Invoice", { x: 250, y: yPosition, size: 16, font: helveticaFont, color: rgb(0, 0, 0) });
+    
+        // Invoice details
+        yPosition -= 40;
+        page.drawText(`Payment No: ${invoiceData.id}`, { x: 50, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText(`Date: ${invoiceData.date}`, { x: 400, y: yPosition, size: 12, font: helveticaFont });
+    
+        // Customer or Supplier information
+        yPosition -= lineHeight;
+        page.drawText(`Name: ${invoiceData.customer || invoiceData.supplier || '---'}`, { x: 50, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText(`Address: ---`, { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+        page.drawText(`Mobile: ---`, { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+    
+        // Account and Transaction information
+        yPosition -= 20;
+        page.drawText("Account Type: ", { x: 50, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText(`${invoiceData.type === 'Credit' ? 'Customer' : 'Supplier'}`, { x: 150, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("Account: ", { x: 400, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText(invoiceData.wallet, { x: 450, y: yPosition, size: 12, font: helveticaFont });
+    
+        page.drawText("Transaction Type: ", { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+        page.drawText(`${invoiceData.type}`, { x: 150, y: yPosition, size: 12, font: helveticaFont });
+    
+        page.drawText("Note: ", { x: 50, y: yPosition -= lineHeight, size: 12, font: helveticaFont });
+        page.drawText(invoiceData.note || "---", { x: 150, y: yPosition, size: 12, font: helveticaFont });
+    
+        // Transaction details
+        yPosition -= 40;
+        page.drawText("Date", { x: 50, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("Previous Due", { x: 150, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("Paid", { x: 300, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("Due", { x: 450, y: yPosition, size: 12, font: helveticaFont });
+    
+        yPosition -= lineHeight;
+        page.drawText(invoiceData.date, { x: 50, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("0.00", { x: 150, y: yPosition, size: 12, font: helveticaFont }); // Assuming no previous due
+        page.drawText(invoiceData.amount.toFixed(2), { x: 300, y: yPosition, size: 12, font: helveticaFont });
+        page.drawText("0.00", { x: 450, y: yPosition, size: 12, font: helveticaFont }); // Assuming no remaining due
+    
+        // Serialize the PDF to bytes (Uint8Array)
+        const pdfBytes = await pdfDoc.save();
+    
+        // Create a Blob from the bytes and open it in a new window to print
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const blobUrl = URL.createObjectURL(blob);
+    
+        // Open the new PDF in a new tab/window
+        const newTab = window.open(blobUrl);
+        newTab.onload = () => {
+          newTab.focus(); // Focus on the new tab
+          newTab.print(); // Automatically trigger the print dialog
+        };
+    };
+    
+    
+    
+    const handleInvoice = (id) => {
+        // Find the purchase data based on the provided ID
+        const purchase = data.find(p => p.id === id);
+        console.log(purchase);
+        if (purchase) {
+            // Generate invoice using the purchase data
+            generateInvoice(purchase);
+        } else {
+            console.error("Purchase not found");
+        }
+    };
     
       return (
-        <div className="container mx-auto mt-[5%] px-4 sm:px-6 lg:px-8 text-sm">
+        <div className="container mx-auto mt-[18%] lg:mt-[5%] px-4 sm:px-6 lg:px-8 text-sm  lg:h-screen mb-5">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold mb-5 mt-5">Paytem Management</h2>
+            <h2 className="text-xl font-bold mb-5 mt-5 dark:text-white">Paytem Management</h2>
             <button 
               onClick={handlePrint} 
               className="bg-green-500 text-white rounded px-4 py-2"
@@ -164,7 +252,7 @@ export default function Payments() {
             </button>
           </div>
     
-          <table id="table-to-print" className="min-w-full border border-gray-300">
+          <table id="table-to-print" className="min-w-full border border-gray-300 text-center dark:bg-[#1d1d3b]">
             <thead>
               <tr className="bg-gray-200">
                 <th className="border border-gray-300 px-4 py-2">SL</th>
@@ -186,7 +274,7 @@ export default function Payments() {
                         {item.customer ? `Customer Name: ${item.customer}` : item.supplier ? `Supplier Name: ${item.supplier}` : 'N/A'}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">{item.date}</td>
-                    <td className="border border-gray-300 px-4 py-2">{item.amount}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.amount} TK</td>
                     <td className="border border-gray-300 px-4 py-2">{item.type}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.wallet}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.note || 'N/A'}</td>

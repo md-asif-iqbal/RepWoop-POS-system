@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { Children, useState } from 'react'
+import React, { Children, useEffect, useRef, useState } from 'react'
 import { IoHome } from "react-icons/io5";
 import { MdPerson3 } from "react-icons/md";
 import { GiBank, GiCash } from "react-icons/gi";
@@ -62,12 +62,36 @@ export default function Sidebar() {
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
     const pathname = usePathname();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
+    const sidebarRef = useRef(null); // Create a ref for the sidebar
+  
     // Function to toggle sidebar visibility
     const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar open/close
+      setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+      console.log("Sidebar is now", !isSidebarOpen ? "open" : "closed"); // Log the new state
     };
+  
+    // Close the sidebar when clicking outside
+    const handleClickOutside = (event) => {
+      // Check if the click was outside the sidebar
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
+        setIsSidebarOpen(false); // Close the sidebar if clicking outside and it's open
+        console.log("Sidebar is closed"); // Debugging log
+      }
+    };
+  
+    useEffect(() => {
+      // Add event listener for clicks
+      document.addEventListener('mousedown', handleClickOutside);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
+
+
   return (
     <div className='font-nunito text-sm'>
         <div className="dropdown lg:hidden">
@@ -76,12 +100,12 @@ export default function Sidebar() {
                 </div>
                
                 </div>
-          <div
+          <div ref={sidebarRef} // Attach the ref to the sidebar
              id="sidebar"
              className={`sidebar  fixed z-50  lg:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
              ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
-             style={{ overflowY: 'auto' }}
+             style={{ overflowY: 'auto', maxHeight:"100vh" }}
          >
 
             <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
