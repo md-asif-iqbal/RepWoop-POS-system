@@ -56,24 +56,24 @@ export default function NewEmployeeForm () {
         + New Employee
         <span className={spanClass}></span>
         </Link>
-        <Link href="/Employee-and-Salary" className= {`${
-                          pathname === '/Owners' 
+        <Link href="/Employee-and-Salary/Salary" className= {`${
+                          pathname === '/Employee-and-Salary/Salary' 
                           ? ' group text-orange-500  hover:text-orange-500' 
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 '
                       }`}>
         Employees Salary
         <span className={spanClass}></span>
         </Link>
-        <Link href="/Employee-and-Salary" className= {`${
-                          pathname === '/Owners' 
+        <Link href="/Employee-and-Salary/New-Salary" className= {`${
+                          pathname === '/Employee-and-Salary/New-Salary' 
                           ? ' group text-orange-500  hover:text-orange-500' 
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 '
                       }`}>
         + New Employee Salary
         <span className={spanClass}></span>
         </Link>
-        <Link href="/Employee-and-Salary" className= {`${
-                          pathname === '/Owners' 
+        <Link href="/Employee-and-Salary/Payments" className= {`${
+                          pathname === '/Employee-and-Salary/Payments' 
                           ? ' group text-orange-500  hover:text-orange-500' 
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 '
                       }`}>
@@ -209,7 +209,7 @@ export default function NewEmployeeForm () {
         {/* Save Button */}
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save
