@@ -64,8 +64,8 @@ export default function NewEmployeeForm () {
         Employees Salary
         <span className={spanClass}></span>
         </Link>
-        <Link href="/Employee-and-Salary/New-Salary" className= {`${
-                          pathname === '/Employee-and-Salary/New-Salary' 
+        <Link href="/Employee-and-Salary/Salary/Create" className= {`${
+                          pathname === '/Employee-and-Salary/Salary/Create' 
                           ? ' group text-orange-500  hover:text-orange-500' 
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 '
                       }`}>
