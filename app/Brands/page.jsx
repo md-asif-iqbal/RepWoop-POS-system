@@ -107,7 +107,7 @@ export default function Brands() {
       const toggleFilters = () => {
         setShowFilters(!showFilters);
       };
-      // Function to handle select all products
+
       const handleSelectAll = (e) => {
         if (e.target.checked) {
           const allProductIds = products.map((product) => product.id);
@@ -116,7 +116,7 @@ export default function Brands() {
           setSelectedProducts([]);
         }
       };
-        // Function to handle individual product selection
+
         const handleSelectProduct = (e, productId) => {
           if (e.target.checked) {
             setSelectedProducts([...selectedProducts, productId]);

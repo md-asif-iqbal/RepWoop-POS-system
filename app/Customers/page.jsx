@@ -220,7 +220,7 @@ export default function CustomersList() {
             Customers
             <span className={spanClass}></span>
             </Link>
-            <Link href="/POS" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
+            <Link href="/Customers/Create" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             + Add Customers
             <span className={spanClass}></span>
             </Link>
