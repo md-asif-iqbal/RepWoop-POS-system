@@ -29,7 +29,6 @@ export default function SuppliersAdded() {
     // Handle the form data (send to API, log to console, etc.)
     console.log("Form Data Submitted: ", formData);
 
-    // You can reset the form after submission if needed
     // setSuppliersName("");
     // setEmail("");
     // setPhone("");
