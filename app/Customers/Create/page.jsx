@@ -29,7 +29,7 @@ export default function CustomerAdded() {
     // Handle the form data (send to API, log to console, etc.)
     console.log("Form Data Submitted: ", formData);
 
-    // You can reset the form after submission if needed
+
     // setCustomerName("");
     // setEmail("");
     // setPhone("");
