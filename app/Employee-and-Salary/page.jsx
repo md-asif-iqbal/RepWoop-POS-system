@@ -104,8 +104,8 @@ export default function EmployeeAndSalary() {
         Employees
         <span className={spanClass}></span>
         </Link>
-        <Link href="/Employee-and-Salary" className={`${
-                          pathname === '/Owners' 
+        <Link href="/Employee-and-Salary/New-Employee" className={`${
+                          pathname === '/Employee-and-Salary/New-Employee' 
                           ? ' group text-orange-500  hover:text-orange-500' 
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 '
                       }`}>
