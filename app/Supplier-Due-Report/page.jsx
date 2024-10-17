@@ -30,7 +30,38 @@ export default function SupplierDueReport() {
         { id: 25, name: 'Advanced Tech', email: 'advanced@tech.com', phone: '01678549823', address: 'Barisal', invoiceDue: 75000, directDue: 10000 },
         { id: 26, name: 'Smart Innovations', email: 'smart@innovations.com', phone: '01989562347', address: 'Sylhet', invoiceDue: 54000, directDue: 3000 },
         { id: 27, name: 'Solution Suppliers', email: 'solution@supplier.com', phone: '01989563214', address: 'Gazipur', invoiceDue: 8000, directDue: 1000 },
-      ];
+        { id: 28, name: 'Tech Masters', email: 'techmasters@supplier.com', phone: '01998765432', address: 'Chittagong', invoiceDue: 12000, directDue: 1000 },
+        { id: 29, name: 'FutureTech BD', email: 'futuretech@gmail.com', phone: '01712345678', address: 'Dhaka', invoiceDue: 24000, directDue: 1500 },
+        { id: 30, name: 'Smart Innovations', email: 'smart@innovations.com', phone: '01989562347', address: 'Sylhet', invoiceDue: 42000, directDue: 2000 },
+        { id: 31, name: 'Elite Traders', email: 'elite@traders.com', phone: '01893214567', address: 'Uttara, Dhaka', invoiceDue: 35000, directDue: 5000 },
+        { id: 32, name: 'Tech Masters', email: 'masters@tech.com', phone: '01876543219', address: 'Comilla', invoiceDue: 28000, directDue: 3000 },
+        { id: 33, name: 'Global Suppliers', email: 'global@supplier.com', phone: '01778965234', address: 'Uttara, Dhaka', invoiceDue: 51000, directDue: 7000 },
+        { id: 34, name: 'China Supplier', email: 'china@suppliers.com', phone: '01987654321', address: 'China BD', invoiceDue: 0, directDue: 8000 },
+        { id: 35, name: 'Global Suppliers', email: 'globalsupplier@bd.com', phone: '01798765432', address: 'Banani, Dhaka', invoiceDue: 85000, directDue: 4000 },
+        { id: 36, name: 'Smart Tech BD', email: 'smarttechbd@bd.com', phone: '01698765432', address: 'Dhanmondi, Dhaka', invoiceDue: 67000, directDue: 6000 },
+        { id: 37, name: 'Elite Traders', email: 'elite@traders.com', phone: '01987654321', address: 'Gulshan, Dhaka', invoiceDue: 23000, directDue: 2000 },
+        { id: 38, name: 'Tech Masters', email: 'info@techmasters.com', phone: '01876543210', address: 'Barisal', invoiceDue: 12500, directDue: 3000 },
+        { id: 39, name: 'Smart Innovations', email: 'smart@innovations.com', phone: '01987765432', address: 'Sylhet', invoiceDue: 30000, directDue: 4000 },
+        { id: 40, name: 'Global Suppliers', email: 'global@supplier.com', phone: '01798762345', address: 'Gazipur', invoiceDue: 47000, directDue: 10000 },
+        { id: 41, name: 'Smart Tech BD', email: 'contact@smarttechbd.com', phone: '01698761234', address: 'Mohakhali, Dhaka', invoiceDue: 52000, directDue: 7000 },
+        { id: 42, name: 'FutureTech BD', email: 'info@futuretechbd.com', phone: '01712234567', address: 'Chittagong', invoiceDue: 39000, directDue: 8000 },
+        { id: 43, name: 'Phoenix BD', email: 'phoenixbd@gmail.com', phone: '01698711234', address: 'Uttara, Dhaka', invoiceDue: 74000, directDue: 1000 },
+        { id: 44, name: 'Pro Traders', email: 'protraders@bd.com', phone: '01798712345', address: 'Sylhet', invoiceDue: 53000, directDue: 2500 },
+        { id: 45, name: 'Infinity Tech', email: 'infinity@techbd.com', phone: '01987651234', address: 'Gazipur', invoiceDue: 68000, directDue: 5000 },
+        { id: 46, name: 'Elite Traders', email: 'elite_traders@gmail.com', phone: '01712398765', address: 'Banani, Dhaka', invoiceDue: 9000, directDue: 0 },
+        { id: 47, name: 'Tech Masters', email: 'tech.masters@gmail.com', phone: '01698754321', address: 'Mirpur, Dhaka', invoiceDue: 22000, directDue: 4000 },
+        { id: 48, name: 'Smart Innovations', email: 'innovations@bd.com', phone: '01987761234', address: 'Gulshan, Dhaka', invoiceDue: 66000, directDue: 1000 },
+        { id: 49, name: 'Pro Traders', email: 'pro@traders.com', phone: '01791234567', address: 'Dhanmondi, Dhaka', invoiceDue: 21000, directDue: 2000 },
+        { id: 50, name: 'Global Suppliers', email: 'globalsupplier@dhaka.com', phone: '01698712345', address: 'Uttara, Dhaka', invoiceDue: 38000, directDue: 3000 },
+        { id: 51, name: 'Elite Traders', email: 'elite@tradersbd.com', phone: '01876523456', address: 'Comilla', invoiceDue: 18000, directDue: 500 },
+        { id: 52, name: 'China Supplier', email: 'china_sup@bd.com', phone: '01876541234', address: 'Dhaka', invoiceDue: 6000, directDue: 4000 },
+        { id: 53, name: 'Infinity Tech', email: 'info@infinitytech.com', phone: '01986754321', address: 'Banani, Dhaka', invoiceDue: 76000, directDue: 9000 },
+        { id: 54, name: 'Phoenix BD', email: 'contact@phoenixbd.com', phone: '01798762345', address: 'Chittagong', invoiceDue: 50000, directDue: 1000 },
+        { id: 55, name: 'FutureTech BD', email: 'support@futuretechbd.com', phone: '01698765423', address: 'Mohakhali, Dhaka', invoiceDue: 34000, directDue: 4000 },
+        { id: 56, name: 'Pro Traders', email: 'info@protraders.com', phone: '01876598765', address: 'Sylhet', invoiceDue: 29000, directDue: 3000 },
+        { id: 57, name: 'Smart Tech BD', email: 'smartbd@tech.com', phone: '01787654321', address: 'Mirpur, Dhaka', invoiceDue: 17000, directDue: 2000 },
+        { id: 58, name: 'Global Suppliers', email: 'globalsuppliers@bd.com', phone: '01676543219', address: 'Gazipur', invoiceDue: 44000, directDue: 5000 },
+    ];
     
       const [currentPage, setCurrentPage] = useState(1);
       const [filteredData, setFilteredData] = useState(data);
@@ -90,8 +121,8 @@ export default function SupplierDueReport() {
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%]">
     <h1 className="text-2xl font-bold mb-4">Supplier Due Report</h1>
 
-    <div className="flex flex-wrap justify-between items-center mb-4">
-      <div className="flex space-x-2 w-full md:w-full">
+    <div className="md:flex flex-wrap justify-between items-center mb-4">
+      <div className="md:flex md:space-x-2 w-full md:w-full">
         <select
           onChange={(e) => handleSupplierChange(e.target.value)}
           className="border p-2 w-full md:w-1/2"
@@ -104,15 +135,15 @@ export default function SupplierDueReport() {
           ))}
         </select>
         
-        <button onClick={resetFilter} className="bg-gray-500 text-white px-8 py-2 rounded">Reset</button>
+        <button onClick={resetFilter} className="bg-gray-500 text-white px-8 py-2 mt-5 md:mt-0 mr-5 md:mr-0 rounded">Reset</button>
         <button onClick={handlePrint} className="bg-green-500 text-white px-8 py-2 rounded ">Print</button>
       </div>
      
     </div>
 
-    <table id='table-to-print' className="table-auto w-full border-collapse border">
+    <table id='table-to-print' className="table-auto w-full border-collapse border dark:text-white md:mt-10">
       <thead>
-        <tr className="bg-gray-200">
+        <tr className="bg-gray-200 text-black">
           <th className="border p-2">SL</th>
           <th className="border p-2">Name</th>
           <th className="border p-2">Email</th>
