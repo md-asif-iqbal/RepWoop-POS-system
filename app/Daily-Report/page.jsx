@@ -40,6 +40,8 @@ export default function DailyReport() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [filteredData, setFilteredData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20; // Set items per page
 
   // Filter data based on date range
   const filterData = () => {
@@ -54,6 +56,7 @@ export default function DailyReport() {
     }
 
     setFilteredData(filtered);
+    setCurrentPage(1); // Reset to first page after filtering
   };
 
   // Reset filter
@@ -61,39 +64,73 @@ export default function DailyReport() {
     setFilteredData(data);
     setStartDate('');
     setEndDate('');
+    setCurrentPage(1); // Reset to first page
   };
+
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  // Print functionality
+  const handlePrint = () => {
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Customer Information</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
+  };
+
 
   return (
     <div>
         
-        <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Daily Report</h1>
+        <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] ">
+      <h1 className="text-2xl font-bold mb-5 dark:text-white">Daily Report</h1>
 
-      <div className="flex justify-between mb-4">
-        <div className="flex space-x-2">
+      <div className="flex justify-between  w-full mb-5">
+        <div className="flex md:space-x-2 w-full ">
           <input
             type="date"
             value={startDate}
             onChange={e => setStartDate(e.target.value)}
-            className="border p-2"
+            className="border p-2 w-full"
             placeholder="Enter Start Date"
           />
           <input
             type="date"
             value={endDate}
             onChange={e => setEndDate(e.target.value)}
-            className="border p-2"
+            className="border p-2 w-full"
             placeholder="Enter End Date"
           />
-          <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
-          <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded">Reset</button>
+          <button onClick={filterData} className="bg-blue-500 text-white px-8 py-2 rounded ">Filter</button>
+          <button onClick={resetFilter} className="bg-gray-500 text-white px-8 py-2 rounded">Reset</button>
         </div>
-        <button onClick={() => window.print()} className="bg-green-500 text-white px-4 py-2 rounded">Print</button>
+        <button onClick={handlePrint} className="bg-green-500 text-white px-8 md:ml-2 py-2 rounded">Print</button>
       </div>
 
-      <table className="table-auto w-full border-collapse border">
+      <table id='table-to-print' className="table-auto w-full border-collapse border text-center">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-200 ">
             <th className="border p-2">ID</th>
             <th className="border p-2">Date</th>
             <th className="border p-2">Sell Amount</th>
@@ -104,8 +141,8 @@ export default function DailyReport() {
             <th className="border p-2">Net Profit</th>
           </tr>
         </thead>
-        <tbody>
-          {filteredData.map((item) => (
+        <tbody className="dark:text-white ">
+          {currentData.map((item) => (
             <tr key={item.id}>
               <td className="border p-2">{item.id}</td>
               <td className="border p-2">{item.date}</td>
@@ -132,7 +169,20 @@ export default function DailyReport() {
           </tr>
         </tfoot>
       </table>
+      {/* Pagination */}
+     <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => handlePageChange(i + 1)}
+            className={`px-4 py-2 ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </div>
+     
     </div>
   )
 }
