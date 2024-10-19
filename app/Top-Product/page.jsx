@@ -123,7 +123,24 @@ export default function TopProductsReport() {
 
   // Print functionality
   const handlePrint = () => {
-    window.print();
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Top Product List</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
   };
 
 
