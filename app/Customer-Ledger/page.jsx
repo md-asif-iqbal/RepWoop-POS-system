@@ -179,7 +179,7 @@ export default function CustomerLedger () {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
+    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm md:h-screen">
       <h1 className="text-2xl font-bold mb-4">Customer Ledger</h1>
 
       <div className="md:flex flex-wrap justify-between items-center mb-4">
