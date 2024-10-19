@@ -83,7 +83,7 @@ export default function PurchaseReport() {
         setProductFilter('');
         setStartDate('');
         setEndDate('');
-        setCurrentPage(1); // Reset to first page
+        setCurrentPage(1); 
       };
     
       // Pagination logic
