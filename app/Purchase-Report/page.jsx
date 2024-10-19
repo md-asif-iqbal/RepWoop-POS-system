@@ -62,7 +62,7 @@ export default function PurchaseReport() {
       const [productFilter, setProductFilter] = useState('');
       const [startDate, setStartDate] = useState('');
       const [endDate, setEndDate] = useState('');
-      const itemsPerPage = 20; // Set items per page for pagination
+      const itemsPerPage = 15; // Set items per page for pagination
     
       // Filter function based on product name and date range
       const filterData = () => {
@@ -83,7 +83,7 @@ export default function PurchaseReport() {
         setProductFilter('');
         setStartDate('');
         setEndDate('');
-        setCurrentPage(1); 
+        setCurrentPage(1); // Reset to first page
       };
     
       // Pagination logic
@@ -105,12 +105,12 @@ export default function PurchaseReport() {
         <head>
           <title>Porchase Report</title>
           <style>
-            body { font-family: Arial, sans-serif; }
+            body { font-family: Arial, sans-serif;}
             table { border-collapse: collapse; width: 100%; }
             th, td { border: 1px solid #000; padding: 8px; text-align: left; }
           </style>
         </head>
-        <body onload="window.print()">
+        <body onload="window.print()" >
           ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
         </body>
       </html>
@@ -119,7 +119,7 @@ export default function PurchaseReport() {
   };
     
       return (
-        <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%]">
+        <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
           <h1 className="text-2xl font-bold mb-4">Purchase Report</h1>
     
           <div className="md:flex flex-wrap justify-between items-center mb-4">
@@ -160,7 +160,7 @@ export default function PurchaseReport() {
             <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded w-full md:w-1/12 mb-2">Print</button>
          </div>
     
-          <table className="table-auto w-full border-collapse border">
+          <table id='table-to-print' className="table-auto w-full border-collapse border">
             <thead>
               <tr className="bg-gray-200">
                 <th className="border p-2">#</th>

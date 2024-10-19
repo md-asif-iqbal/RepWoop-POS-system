@@ -106,7 +106,7 @@ export default function LowStockReport() {
       };
     
       return (
-        <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%]">
+        <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
           <h1 className="text-2xl font-bold mb-4">Low Stock Report</h1>
     
           <div className="md:flex flex-wrap justify-between items-center mb-4">

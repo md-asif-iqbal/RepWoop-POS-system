@@ -50,7 +50,7 @@ export default function CategorySalesPurchasesReport() {
   const [brandFilter, setBrandFilter] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const itemsPerPage = 20; // Set items per page for pagination
+  const itemsPerPage = 15; // Set items per page for pagination
 
   // Filter function based on category, brand, and date range
   const filterData = () => {
@@ -110,7 +110,7 @@ export default function CategorySalesPurchasesReport() {
     newWindow.document.close();
   };
   return (
-    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%]">
+    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
     <h1 className="text-2xl font-bold mb-4">Category-wise Sales and Purchases Report</h1>
 
     <div className="md:flex flex-wrap justify-between items-center mb-4 mt-5">
