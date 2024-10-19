@@ -223,7 +223,7 @@ export default function CustomerLedger () {
 
 
      
-      {/* Display customer details and ledger */}
+      
       {initialCustomer && (
         <div>
           <div className="grid md:grid-cols-2 mb-4">
