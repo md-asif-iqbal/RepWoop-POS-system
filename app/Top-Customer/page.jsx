@@ -72,9 +72,26 @@ export default function TopCustomersReport() {
     setCurrentPage(pageNumber);
   };
 
-  // Print functionality
-  const handlePrint = () => {
-    window.print();
+   // Print functionality
+   const handlePrint = () => {
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Top Customer</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
   };
 
   return (
@@ -110,7 +127,7 @@ export default function TopCustomersReport() {
       <h2 className="text-xl font-semibold mb-4 text-center">Top Customers (Based on Sell Amount)</h2>
       <p className="text-center mb-4">Report From {startDate || '01/10/2024'} to {endDate || '31/10/2024'}</p>
 
-      <table className="table-auto w-full border-collapse border">
+      <table id='table-to-print' className="table-auto w-full border-collapse border">
         <thead>
           <tr className="bg-gray-200">
             <th className="border p-2">#</th>
