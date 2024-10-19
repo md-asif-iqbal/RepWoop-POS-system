@@ -41,7 +41,7 @@ export default function TopCustomersReport() {
   const [filteredData, setFilteredData] = useState(data);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const itemsPerPage = 10; // Set items per page for pagination
+  const itemsPerPage = 20; // Set items per page for pagination
 
   // Filter function based on start date and end date
   const filterData = () => {
@@ -78,29 +78,34 @@ export default function TopCustomersReport() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%]">
       <h1 className="text-2xl font-bold mb-4">Top Customers</h1>
 
-      <div className="flex flex-wrap justify-between items-center mb-4">
+      <div className="md:flex flex-wrap justify-between items-center mb-4">
+            <div className="md:flex md:space-x-2 w-full md:w-full">
         {/* Date filtering */}
         <input
           type="date"
           placeholder="Start Date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border p-2"
+          className="border p-2 w-full"
         />
         <input
           type="date"
           placeholder="End Date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="border p-2"
+          className="border p-2 w-full"
         />
-        <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
-        <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded">Reset</button>
-        <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded">Print</button>
+        <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded w-full md:w-1/4">Filter</button>
+        <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded w-full md:w-1/4">Reset</button>
+        
       </div>
+      </div>
+      <div className='flex items-center justify-end'>
+            <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded w-full md:w-1/12 mb-2">Print</button>
+         </div>
 
       <h2 className="text-xl font-semibold mb-4 text-center">Top Customers (Based on Sell Amount)</h2>
       <p className="text-center mb-4">Report From {startDate || '01/10/2024'} to {endDate || '31/10/2024'}</p>
