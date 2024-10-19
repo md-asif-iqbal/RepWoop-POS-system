@@ -121,7 +121,10 @@ export default function TopProductsReport() {
     setCurrentPage(pageNumber);
   };
 
-  
+  // Print functionality
+  const handlePrint = () => {
+    window.print();
+  };
 
 
   return (
