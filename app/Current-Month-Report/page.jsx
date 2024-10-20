@@ -66,6 +66,13 @@ export default function CurrentMonthReport() {
     { id: 10, customer: 'GlobalCom LLC', paymentDate: '2024-10-25', amount: 'TK 300,000' },
   ];
 
+  const defaultEntries = 10; // Default to 10 entries per page
+
+  // State for controlling the number of entries per page for each table
+  const [entriesPerPage1, setEntriesPerPage1] = useState(defaultEntries);
+  const [entriesPerPage2, setEntriesPerPage2] = useState(defaultEntries);
+  const [entriesPerPage3, setEntriesPerPage3] = useState(defaultEntries);
+  const [entriesPerPage4, setEntriesPerPage4] = useState(defaultEntries);
     // State for pagination and search
     const [search1, setSearch1] = useState('');
     const [search2, setSearch2] = useState('');
@@ -76,9 +83,14 @@ export default function CurrentMonthReport() {
     const [currentPage3, setCurrentPage3] = useState(0);
     const [currentPage4, setCurrentPage4] = useState(0);
   
-    const paginate = (data, page) => {
+    const paginate = (data, page, entriesPerPage) => {
       const startIndex = page * entriesPerPage;
       return data.slice(startIndex, startIndex + entriesPerPage);
+    };
+  
+    const handleEntriesPerPageChange = (e, setEntriesPerPage, setCurrentPage) => {
+      setEntriesPerPage(Number(e.target.value));
+      setCurrentPage(0); // Reset to first page when changing entries per page
     };
   
     const exportToExcel = (data, filename) => {
@@ -109,7 +121,7 @@ export default function CurrentMonthReport() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 font-bold">Current Month Report </h1>
+  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Current Month Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
                           pathname === '/Today-Report' 
@@ -185,6 +197,18 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage1, setCurrentPage1)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={topSaleProducts.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
@@ -196,7 +220,7 @@ export default function CurrentMonthReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(topSaleProducts.filter(product => product.productName.toLowerCase().includes(search1.toLowerCase())), currentPage1).map((product, index) => (
+              {paginate(topSaleProducts.filter(product => product.productName.toLowerCase().includes(search1.toLowerCase())), currentPage1,entriesPerPage1).map((product, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage1 * entriesPerPage}</td>
                   <td className="border p-2">{product.productName}</td>
@@ -250,6 +274,19 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage2} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage2, setCurrentPage2)}
+             className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={expenses.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
@@ -260,7 +297,7 @@ export default function CurrentMonthReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(expenses.filter(exp => exp.expense.toLowerCase().includes(search2.toLowerCase())), currentPage2).map((expense, index) => (
+              {paginate(expenses.filter(exp => exp.expense.toLowerCase().includes(search2.toLowerCase())), currentPage2,entriesPerPage2).map((expense, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage2 * entriesPerPage}</td>
                   <td className="border p-2">{expense.expense}</td>
@@ -313,6 +350,18 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage3, setCurrentPage3)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={paymentsToSuppliers.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
@@ -323,7 +372,7 @@ export default function CurrentMonthReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(paymentsToSuppliers.filter(payment => payment.supplier.toLowerCase().includes(search3.toLowerCase())), currentPage3).map((payment, index) => (
+              {paginate(paymentsToSuppliers.filter(payment => payment.supplier.toLowerCase().includes(search3.toLowerCase())), currentPage3,entriesPerPage3).map((payment, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage3 * entriesPerPage}</td>
                   <td className="border p-2">{payment.supplier}</td>
@@ -376,6 +425,18 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage4, setCurrentPage4)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={paymentsFromCustomers.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
@@ -386,7 +447,7 @@ export default function CurrentMonthReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(paymentsFromCustomers.filter(payment => payment.customer.toLowerCase().includes(search4.toLowerCase())), currentPage4).map((payment, index) => (
+              {paginate(paymentsFromCustomers.filter(payment => payment.customer.toLowerCase().includes(search4.toLowerCase())), currentPage4,entriesPerPage4).map((payment, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage4 * entriesPerPage}</td>
                   <td className="border p-2">{payment.customer}</td>

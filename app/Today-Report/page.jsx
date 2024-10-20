@@ -12,7 +12,7 @@ export default function TodayReport() {
     const pathname = usePathname();
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
-    const entriesPerPage = 5;
+    const entriesPerPage = 10;
 
     // Data for each table
     const topSaleProducts = [
@@ -49,6 +49,14 @@ export default function TodayReport() {
       { id: 4, customer: 'Rony Akter', paymentDate: '2024-10-04', amount: 'TK 40000' },
       { id: 5, customer: 'Shakil Khan', paymentDate: '2024-10-05', amount: 'TK 35000' },
     ];
+
+    const defaultEntries = 10; // Default to 10 entries per page
+
+    // State for controlling the number of entries per page for each table
+    const [entriesPerPage1, setEntriesPerPage1] = useState(defaultEntries);
+    const [entriesPerPage2, setEntriesPerPage2] = useState(defaultEntries);
+    const [entriesPerPage3, setEntriesPerPage3] = useState(defaultEntries);
+    const [entriesPerPage4, setEntriesPerPage4] = useState(defaultEntries);
   
     // State for pagination for each table
     const [currentPage1, setCurrentPage1] = useState(0);
@@ -62,10 +70,15 @@ export default function TodayReport() {
   const [search3, setSearch3] = useState('');
   const [search4, setSearch4] = useState('');
   
-    const paginate = (data, page) => {
-      const startIndex = page * entriesPerPage;
-      return data.slice(startIndex, startIndex + entriesPerPage);
-    };
+  const paginate = (data, page, entriesPerPage) => {
+    const startIndex = page * entriesPerPage;
+    return data.slice(startIndex, startIndex + entriesPerPage);
+  };
+
+  const handleEntriesPerPageChange = (e, setEntriesPerPage, setCurrentPage) => {
+    setEntriesPerPage(Number(e.target.value));
+    setCurrentPage(0); // Reset to first page when changing entries per page
+  };
     const handleSearch = (data, searchTerm, fields) => {
         return data.filter(item =>
           fields.some(field => item[field].toLowerCase().includes(searchTerm.toLowerCase()))
@@ -196,6 +209,18 @@ export default function TodayReport() {
               onChange={(e) => setSearch1(e.target.value)}
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage1, setCurrentPage1)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={topSaleProducts.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
@@ -207,7 +232,7 @@ export default function TodayReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(handleSearch(topSaleProducts, search1, ['productName']), currentPage1).map((product, index) => (
+              {paginate(handleSearch(topSaleProducts, search1, ['productName']), currentPage1,entriesPerPage1).map((product, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage1 * entriesPerPage}</td>
                   <td className="border p-2">{product.productName}</td>
@@ -271,6 +296,18 @@ export default function TodayReport() {
               onChange={(e) => setSearch2(e.target.value)}
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage2, setCurrentPage2)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={expenses.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
@@ -281,7 +318,7 @@ export default function TodayReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(handleSearch(expenses, search2, ['expense']), currentPage2).map((expense, index) => (
+              {paginate(handleSearch(expenses, search2, ['expense']), currentPage2,entriesPerPage2).map((expense, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage2 * entriesPerPage}</td>
                   <td className="border p-2">{expense.expense}</td>
@@ -344,6 +381,18 @@ export default function TodayReport() {
               onChange={(e) => setSearch3(e.target.value)}
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage3, setCurrentPage3)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={paymentsToSuppliers.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
@@ -354,7 +403,7 @@ export default function TodayReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(handleSearch(paymentsToSuppliers, search3, ['supplier']), currentPage3).map((payment, index) => (
+              {paginate(handleSearch(paymentsToSuppliers, search3, ['supplier']), currentPage3,entriesPerPage3).map((payment, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage3 * entriesPerPage}</td>
                   <td className="border p-2">{payment.supplier}</td>
@@ -417,6 +466,18 @@ export default function TodayReport() {
               onChange={(e) => setSearch4(e.target.value)}
             />
           </div>
+          <div className="mt-4">
+            <label>Show </label>
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage4, setCurrentPage4)} className="border p-2">
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={paymentsFromCustomers.length}>All</option>
+            </select>
+            <label> entries</label>
+          </div>
           <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
@@ -427,7 +488,7 @@ export default function TodayReport() {
               </tr>
             </thead>
             <tbody>
-              {paginate(handleSearch(paymentsFromCustomers, search4, ['customer']), currentPage4).map((payment, index) => (
+              {paginate(handleSearch(paymentsFromCustomers, search4, ['customer']), currentPage4,entriesPerPage4).map((payment, index) => (
                 <tr key={index}>
                   <td className="border p-2">{index + 1 + currentPage4 * entriesPerPage}</td>
                   <td className="border p-2">{payment.customer}</td>
