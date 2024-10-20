@@ -185,7 +185,7 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -250,7 +250,7 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -313,7 +313,7 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -376,7 +376,7 @@ export default function CurrentMonthReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
                 <th className="border p-2">#</th>

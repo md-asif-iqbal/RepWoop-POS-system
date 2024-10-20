@@ -117,8 +117,8 @@ export default function SummaryReport() {
     <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
               {/* Title Section */}
 
-  <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Today Report </h1>
+  <div className=" mb-4  shadow-sm rounded-sm">
+  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Summary Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
                           pathname === '/Today-Report' 
@@ -213,7 +213,7 @@ export default function SummaryReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -278,7 +278,7 @@ export default function SummaryReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -341,7 +341,7 @@ export default function SummaryReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -404,7 +404,7 @@ export default function SummaryReport() {
               className="border p-2 ml-2"
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>

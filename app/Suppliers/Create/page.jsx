@@ -41,7 +41,7 @@ export default function SuppliersAdded() {
 
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full dark:text-white">
         {/* Title Section */}
-      <div className=" mb-4  shadow-sm rounded-lg font-bold">
+      <div className=" mb-4  shadow-sm rounded-lg">
       <h1 className="text-xl text-gray-500 mx-5 ">Suppliers </h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Suppliers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">

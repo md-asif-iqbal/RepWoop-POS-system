@@ -196,7 +196,7 @@ export default function TodayReport() {
               onChange={(e) => setSearch1(e.target.value)}
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -271,7 +271,7 @@ export default function TodayReport() {
               onChange={(e) => setSearch2(e.target.value)}
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -344,7 +344,7 @@ export default function TodayReport() {
               onChange={(e) => setSearch3(e.target.value)}
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>
@@ -417,7 +417,7 @@ export default function TodayReport() {
               onChange={(e) => setSearch4(e.target.value)}
             />
           </div>
-          <table className="table-auto w-full mt-4">
+          <table className="text-center table-auto w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">#</th>

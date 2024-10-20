@@ -91,7 +91,7 @@ export default function EmployeePayments() {
 <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
           {/* Title Section */}
 
-<div className=" mb-4  shadow-sm rounded-lg font-bold">
+<div className=" mb-4  shadow-sm rounded-lg">
 <h1 className="text-xl text-gray-500 dark:text-white md:mx-5 ">Employee and Salary</h1>
 <div className=' lg:flex items-start justify-start md:mx-5 py-5 gap-10 '>
     <Link href="/Employee-and-Salary" className= {`${

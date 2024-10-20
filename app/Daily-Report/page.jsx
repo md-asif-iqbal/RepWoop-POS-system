@@ -41,7 +41,7 @@ export default function DailyReport() {
   const [endDate, setEndDate] = useState('');
   const [filteredData, setFilteredData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; // Set items per page
+  const itemsPerPage = 50; // Set items per page
 
   // Filter data based on date range
   const filterData = () => {
