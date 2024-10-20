@@ -13,45 +13,59 @@ export default function CurrentMonthReport() {
     const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
     const entriesPerPage = 10;
 
-    // Sample data for each table
-    const topSaleProducts = [
-      { id: 1, productName: 'Product A', quantity: 10, totalSale: 1000, saleAmount: 'TK 1000' },
-      { id: 2, productName: 'Product B', quantity: 20, totalSale: 2000, saleAmount: 'TK 2000' },
-      { id: 3, productName: 'Product C', quantity: 30, totalSale: 3000, saleAmount: 'TK 3000' },
-      { id: 4, productName: 'Product D', quantity: 40, totalSale: 4000, saleAmount: 'TK 4000' },
-      { id: 5, productName: 'Product E', quantity: 50, totalSale: 5000, saleAmount: 'TK 5000' },
-      { id: 6, productName: 'Product F', quantity: 60, totalSale: 6000, saleAmount: 'TK 6000' },
-      { id: 7, productName: 'Product G', quantity: 70, totalSale: 7000, saleAmount: 'TK 7000' },
-      { id: 8, productName: 'Product H', quantity: 80, totalSale: 8000, saleAmount: 'TK 8000' },
-      { id: 9, productName: 'Product I', quantity: 90, totalSale: 9000, saleAmount: 'TK 9000' },
-      { id: 10, productName: 'Product J', quantity: 100, totalSale: 10000, saleAmount: 'TK 10000' },
-      { id: 11, productName: 'Product K', quantity: 110, totalSale: 11000, saleAmount: 'TK 11000' },
-    ];
-  
-    const expenses = [
-      { id: 1, expense: 'Office Rent', category: 'Administrative', amount: 'TK 30000' },
-      { id: 2, expense: 'Electricity Bill', category: 'Utility', amount: 'TK 5000' },
-      { id: 3, expense: 'Internet Bill', category: 'Utility', amount: 'TK 2000' },
-      { id: 4, expense: 'Stationery', category: 'Office Supplies', amount: 'TK 1500' },
-      { id: 5, expense: 'Travel Expenses', category: 'Logistics', amount: 'TK 8000' },
-    ];
-  
-    const paymentsToSuppliers = [
-      { id: 1, supplier: 'Supplier A', paymentDate: '2024-10-01', amount: 'TK 50000' },
-      { id: 2, supplier: 'Supplier B', paymentDate: '2024-10-02', amount: 'TK 60000' },
-      { id: 3, supplier: 'Supplier C', paymentDate: '2024-10-03', amount: 'TK 30000' },
-      { id: 4, supplier: 'Supplier D', paymentDate: '2024-10-04', amount: 'TK 40000' },
-      { id: 5, supplier: 'Supplier E', paymentDate: '2024-10-05', amount: 'TK 70000' },
-    ];
-  
-    const paymentsFromCustomers = [
-      { id: 1, customer: 'Customer A', paymentDate: '2024-10-01', amount: 'TK 50000' },
-      { id: 2, customer: 'Customer B', paymentDate: '2024-10-02', amount: 'TK 30000' },
-      { id: 3, customer: 'Customer C', paymentDate: '2024-10-03', amount: 'TK 20000' },
-      { id: 4, customer: 'Customer D', paymentDate: '2024-10-04', amount: 'TK 40000' },
-      { id: 5, customer: 'Customer E', paymentDate: '2024-10-05', amount: 'TK 35000' },
-    ];
-  
+    // Sample data for each table with 10 entries
+  const topSaleProducts = [
+    { id: 1, productName: 'Mobile Phone', quantity: 150, totalSale: 75000, saleAmount: 'TK 75,000' },
+    { id: 2, productName: 'Laptop', quantity: 80, totalSale: 400000, saleAmount: 'TK 400,000' },
+    { id: 3, productName: 'Headphones', quantity: 100, totalSale: 30000, saleAmount: 'TK 30,000' },
+    { id: 4, productName: 'Smartwatch', quantity: 50, totalSale: 75000, saleAmount: 'TK 75,000' },
+    { id: 5, productName: 'Tablet', quantity: 40, totalSale: 200000, saleAmount: 'TK 200,000' },
+    { id: 6, productName: 'Keyboard', quantity: 90, totalSale: 27000, saleAmount: 'TK 27,000' },
+    { id: 7, productName: 'Mouse', quantity: 110, totalSale: 22000, saleAmount: 'TK 22,000' },
+    { id: 8, productName: 'Monitor', quantity: 30, totalSale: 60000, saleAmount: 'TK 60,000' },
+    { id: 9, productName: 'Printer', quantity: 20, totalSale: 50000, saleAmount: 'TK 50,000' },
+    { id: 10, productName: 'Camera', quantity: 60, totalSale: 180000, saleAmount: 'TK 180,000' },
+  ];
+
+  const expenses = [
+    { id: 1, expense: 'Office Rent', category: 'Administrative', amount: 'TK 120,000' },
+    { id: 2, expense: 'Electricity Bill', category: 'Utility', amount: 'TK 35,000' },
+    { id: 3, expense: 'Internet Bill', category: 'Utility', amount: 'TK 10,000' },
+    { id: 4, expense: 'Office Supplies', category: 'Stationery', amount: 'TK 15,000' },
+    { id: 5, expense: 'Travel Expenses', category: 'Logistics', amount: 'TK 25,000' },
+    { id: 6, expense: 'Marketing Costs', category: 'Advertising', amount: 'TK 100,000' },
+    { id: 7, expense: 'Staff Training', category: 'HR', amount: 'TK 50,000' },
+    { id: 8, expense: 'Software Subscription', category: 'IT', amount: 'TK 60,000' },
+    { id: 9, expense: 'Website Maintenance', category: 'IT', amount: 'TK 20,000' },
+    { id: 10, expense: 'Security Services', category: 'Administrative', amount: 'TK 40,000' },
+  ];
+
+  const paymentsToSuppliers = [
+    { id: 1, supplier: 'TechMart Ltd.', paymentDate: '2024-10-01', amount: 'TK 500,000' },
+    { id: 2, supplier: 'Office World Supplies', paymentDate: '2024-10-05', amount: 'TK 150,000' },
+    { id: 3, supplier: 'City Electric Co.', paymentDate: '2024-10-10', amount: 'TK 80,000' },
+    { id: 4, supplier: 'NetCom Solutions', paymentDate: '2024-10-12', amount: 'TK 120,000' },
+    { id: 5, supplier: 'WorkTech Office Furniture', paymentDate: '2024-10-15', amount: 'TK 200,000' },
+    { id: 6, supplier: 'CleanWorld Services', paymentDate: '2024-10-18', amount: 'TK 50,000' },
+    { id: 7, supplier: 'OfficeEquip Ltd.', paymentDate: '2024-10-20', amount: 'TK 100,000' },
+    { id: 8, supplier: 'Global IT Supplies', paymentDate: '2024-10-22', amount: 'TK 250,000' },
+    { id: 9, supplier: 'Marketing Pro', paymentDate: '2024-10-25', amount: 'TK 180,000' },
+    { id: 10, supplier: 'Security Guard Services', paymentDate: '2024-10-28', amount: 'TK 70,000' },
+  ];
+
+  const paymentsFromCustomers = [
+    { id: 1, customer: 'John Doe', paymentDate: '2024-10-02', amount: 'TK 125,000' },
+    { id: 2, customer: 'Jane Smith', paymentDate: '2024-10-06', amount: 'TK 75,000' },
+    { id: 3, customer: 'Acme Corporation', paymentDate: '2024-10-08', amount: 'TK 180,000' },
+    { id: 4, customer: 'Global Industries', paymentDate: '2024-10-11', amount: 'TK 250,000' },
+    { id: 5, customer: 'Tech Innovators', paymentDate: '2024-10-13', amount: 'TK 320,000' },
+    { id: 6, customer: 'Future Tech Solutions', paymentDate: '2024-10-15', amount: 'TK 210,000' },
+    { id: 7, customer: 'Creative Minds Ltd.', paymentDate: '2024-10-18', amount: 'TK 270,000' },
+    { id: 8, customer: 'Digital Ventures', paymentDate: '2024-10-20', amount: 'TK 180,000' },
+    { id: 9, customer: 'NextGen Enterprises', paymentDate: '2024-10-22', amount: 'TK 150,000' },
+    { id: 10, customer: 'GlobalCom LLC', paymentDate: '2024-10-25', amount: 'TK 300,000' },
+  ];
+
     // State for pagination and search
     const [search1, setSearch1] = useState('');
     const [search2, setSearch2] = useState('');
@@ -89,13 +103,13 @@ export default function CurrentMonthReport() {
       doc.save(`${title}.pdf`);
     };
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
+    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white'>
 
     <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
               {/* Title Section */}
 
-  <div className=" mb-4  shadow-sm rounded-sm font-bold">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Today Report </h1>
+  <div className=" mb-4  shadow-sm rounded-sm ">
+  <h1 className="text-xl text-gray-500 dark:text-white mx-5 font-bold">Current Month Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
                           pathname === '/Today-Report' 
@@ -127,38 +141,42 @@ export default function CurrentMonthReport() {
       {/* Top Summary Boxes */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-green-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-lg font-bold">SALE AMOUNT</h3>
-          <p className="text-3xl mt-2">TK 4,167,593</p>
+          <h3 className="text-sm font-bold">SALE AMOUNT</h3>
+          <p className="text-md ">TK 4,167,593</p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-lg font-bold">PURCHASE COST</h3>
-          <p className="text-3xl mt-2">TK 3,651,596</p>
+          <h3 className="text-sm font-bold">PURCHASE COST</h3>
+          <p className="text-md ">TK 3,651,596</p>
         </div>
         <div className="bg-gray-700 text-white p-4 rounded shadow-md">
-          <h3 className="text-lg font-bold">EXPENSE</h3>
-          <p className="text-3xl mt-2">TK 25,130</p>
+          <h3 className="text-sm font-bold">EXPENSE</h3>
+          <p className="text-md ">TK 25,130</p>
         </div>
         <div className="bg-teal-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-lg font-bold">SELL PROFIT</h3>
-          <p className="text-3xl mt-2">TK 515,997</p>
+          <h3 className="text-sm font-bold">SELL PROFIT</h3>
+          <p className="text-md ">TK 515,997</p>
         </div>
       </div>
 
       {/* Tables */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 ">
         {/* Top Sale Product Table */}
-        <div>
-          <h2 className="text-xl font-bold">Top Sale Product</h2>
-          <div className="flex justify-between mt-4">
-            <CSVLink data={topSaleProducts} filename="top-sale-products.csv" className="bg-blue-500 text-white px-2 py-1">
+        <div className='border rounded'>
+          <h2 className="text-lg  bg-teal-500 p-2 text-white">Top Sale Product</h2>
+          <div className="md:flex justify-between mt-4 ">
+            <div className="md:flex gap-2 mb-2 md:mb-0">
+            <button className="bg-blue-500 text-white px-2 py-1">
+            <CSVLink data={topSaleProducts} filename="top-sale-products.csv" >
               Export CSV
             </CSVLink>
+            </button>
             <button className="bg-green-500 text-white px-2 py-1" onClick={() => exportToExcel(topSaleProducts, 'Top Sale Product')}>
               Export Excel
             </button>
             <button className="bg-red-500 text-white px-2 py-1" onClick={() => exportPDF(topSaleProducts, 'Top Sale Product')}>
               Export PDF
             </button>
+            </div>
             <input
               type="text"
               placeholder="Search..."
@@ -189,21 +207,41 @@ export default function CurrentMonthReport() {
               ))}
             </tbody>
           </table>
+          {/* Pagination */}
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setCurrentPage1(Math.max(0, currentPage1 - 1))}
+              className="bg-gray-300 p-2"
+            >
+              Previous
+            </button>
+            <span className="p-2">Page {currentPage1 + 1}</span>
+            <button
+              onClick={() => setCurrentPage1(currentPage1 + 1)}
+              className="bg-gray-300 p-2"
+            >
+              Next
+            </button>
+          </div>
         </div>
 
         {/* Expense Table */}
-        <div>
-          <h2 className="text-xl font-bold">Expense</h2>
-          <div className="flex justify-between mt-4">
-            <CSVLink data={expenses} filename="expenses.csv" className="bg-blue-500 text-white px-2 py-1">
+        <div className='border rounded '>
+          <h2 className="text-lg bg-[#F96868] p-2 text-white ">Expense</h2>
+          <div className="md:flex justify-between mt-4 ">
+            <div className="md:flex gap-2 mb-2 md:mb-0">
+            <button className="bg-blue-500 text-white px-2 py-1">
+            <CSVLink data={expenses} filename="expenses.csv" >
               Export CSV
             </CSVLink>
+            </button>
             <button className="bg-green-500 text-white px-2 py-1" onClick={() => exportToExcel(expenses, 'Expenses')}>
               Export Excel
             </button>
             <button className="bg-red-500 text-white px-2 py-1" onClick={() => exportPDF(expenses, 'Expenses')}>
               Export PDF
             </button>
+            </div>
             <input
               type="text"
               placeholder="Search..."
@@ -232,21 +270,41 @@ export default function CurrentMonthReport() {
               ))}
             </tbody>
           </table>
+          {/* Pagination */}
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setCurrentPage2(Math.max(0, currentPage2 - 1))}
+              className="bg-gray-300 p-2"
+            >
+              Previous
+            </button>
+            <span className="p-2">Page {currentPage2 + 1}</span>
+            <button
+              onClick={() => setCurrentPage2(currentPage2 + 1)}
+              className="bg-gray-300 p-2"
+            >
+              Next
+            </button>
+          </div>
         </div>
 
         {/* Pay to Supplier Table */}
-        <div>
-          <h2 className="text-xl font-bold">Pay to Supplier</h2>
-          <div className="flex justify-between mt-4">
-            <CSVLink data={paymentsToSuppliers} filename="payments-to-suppliers.csv" className="bg-blue-500 text-white px-2 py-1">
+        <div className='border rounded '>
+          <h2 className="text-lg p-2 bg-gray-200">Pay to Supplier</h2>
+          <div className="md:flex justify-between mt-4 ">
+            <div className="md:flex gap-2 mb-2 md:mb-0">
+           <button className="bg-blue-500 text-white px-2 py-1">
+           <CSVLink data={paymentsToSuppliers} filename="payments-to-suppliers.csv" >
               Export CSV
             </CSVLink>
+           </button>
             <button className="bg-green-500 text-white px-2 py-1" onClick={() => exportToExcel(paymentsToSuppliers, 'Payments to Suppliers')}>
               Export Excel
             </button>
             <button className="bg-red-500 text-white px-2 py-1" onClick={() => exportPDF(paymentsToSuppliers, 'Payments to Suppliers')}>
               Export PDF
             </button>
+            </div>
             <input
               type="text"
               placeholder="Search..."
@@ -275,21 +333,41 @@ export default function CurrentMonthReport() {
               ))}
             </tbody>
           </table>
+          {/* Pagination */}
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setCurrentPage3(Math.max(0, currentPage3 - 1))}
+              className="bg-gray-300 p-2"
+            >
+              Previous
+            </button>
+            <span className="p-2">Page {currentPage3 + 1}</span>
+            <button
+              onClick={() => setCurrentPage3(currentPage3 + 1)}
+              className="bg-gray-300 p-2"
+            >
+              Next
+            </button>
+          </div>
         </div>
 
         {/* Receive from Customer Table */}
-        <div>
-          <h2 className="text-xl font-bold">Receive from Customer</h2>
-          <div className="flex justify-between mt-4">
-            <CSVLink data={paymentsFromCustomers} filename="payments-from-customers.csv" className="bg-blue-500 text-white px-2 py-1">
+        <div className='border rounded '>
+          <h2 className="text-lg p-2 bg-gray-200">Receive from Customer</h2>
+          <div className="md:flex justify-between mt-4 ">
+            <div className="md:flex gap-2 mb-2 md:mb-0">
+           <button className="bg-blue-500 text-white px-2 py-1">
+           <CSVLink data={paymentsFromCustomers} filename="payments-from-customers.csv" >
               Export CSV
             </CSVLink>
+           </button>
             <button className="bg-green-500 text-white px-2 py-1" onClick={() => exportToExcel(paymentsFromCustomers, 'Payments from Customers')}>
               Export Excel
             </button>
             <button className="bg-red-500 text-white px-2 py-1" onClick={() => exportPDF(paymentsFromCustomers, 'Payments from Customers')}>
               Export PDF
             </button>
+            </div>
             <input
               type="text"
               placeholder="Search..."
@@ -318,6 +396,22 @@ export default function CurrentMonthReport() {
               ))}
             </tbody>
           </table>
+          {/* Pagination */}
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setCurrentPage4(Math.max(0, currentPage4 - 1))}
+              className="bg-gray-300 p-2"
+            >
+              Previous
+            </button>
+            <span className="p-2">Page {currentPage4 + 1}</span>
+            <button
+              onClick={() => setCurrentPage4(currentPage4 + 1)}
+              className="bg-gray-300 p-2"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

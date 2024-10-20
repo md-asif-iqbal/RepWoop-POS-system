@@ -97,12 +97,12 @@ export default function TodayReport() {
     };
 
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
+    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white'>
 
     <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
               {/* Title Section */}
 
-  <div className=" mb-4  shadow-sm rounded-sm font-bold">
+  <div className=" mb-4  shadow-sm rounded-sm ">
   <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Today Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
