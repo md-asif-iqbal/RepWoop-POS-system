@@ -207,40 +207,40 @@ export default function page() {
 
       {/* Sales Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full ">
+        <table className="table-auto w-full border-collapse border">
           <thead className="border">
-            <tr>
-              <th className="p-2">Invoice No.</th>
-              <th className="p-2">Customer</th>
-              <th className="p-2">Items</th>
-              <th className="p-2">Date</th>
-              <th className="p-2">Discount</th>
-              <th className="p-2">Receivable</th>
-              <th className="p-2">Paid</th>
-              <th className="p-2">Due</th>
-              <th className="p-2">Purchase Cost</th>
-              <th className="p-2">Profit</th>
-              <th className="p-2">Status</th>
-              <th className="p-2">Actions</th>
+            <tr className='bg-emerald-500 text-white'>
+              <th className="p-2 border">Invoice No.</th>
+              <th className="p-2 border">Customer</th>
+              <th className="p-2 border">Items</th>
+              <th className="p-2 border">Date</th>
+              <th className="p-2 border">Discount</th>
+              <th className="p-2 border">Receivable</th>
+              <th className="p-2 border">Paid</th>
+              <th className="p-2 border">Due</th>
+              <th className="p-2 border">Purchase Cost</th>
+              <th className="p-2 border">Profit</th>
+              <th className="p-2 border">Status</th>
+              <th className="p-2 border">Actions</th>
             </tr>
           </thead>
           <tbody className='border'>
             {salesData.map((sale) => (
               <tr key={sale.invoiceNo} className="border">
-                <td className="p-2">{sale.invoiceNo}</td>
-                <td className="p-2">{sale.customer}</td>
-                <td className="p-2">{sale.items}</td>
-                <td className="p-2">{sale.date}</td>
-                <td className="p-2">{sale.discount}</td>
-                <td className="p-2">{sale.receivable}</td>
-                <td className="p-2">{sale.paid}</td>
-                <td className="p-2">{sale.due}</td>
-                <td className="p-2">{sale.purchaseCost}</td>
-                <td className="p-2">{sale.profit}</td>
-                <td className={`p-2 ${sale.status === "PAID" ? "text-green-500" : "text-red-500"}`}>
+                <td className="p-2 border">{sale.invoiceNo}</td>
+                <td className="p-2 border">{sale.customer}</td>
+                <td className="p-2 border">{sale.items}</td>
+                <td className="p-2 border">{sale.date}</td>
+                <td className="p-2 border">{sale.discount}</td>
+                <td className="p-2 border">{sale.receivable}</td>
+                <td className="p-2 border">{sale.paid}</td>
+                <td className="p-2 border">{sale.due}</td>
+                <td className="p-2 border">{sale.purchaseCost}</td>
+                <td className="p-2 border">{sale.profit}</td>
+                <td className={`p-2 border ${sale.status === "PAID" ? "text-green-500" : "text-red-500"}`}>
                   {sale.status}
                 </td>
-                <td className="p-2">
+                <td className="p-2 border">
                   {/* Action buttons */}
                   <div className="relative">
                     <button
