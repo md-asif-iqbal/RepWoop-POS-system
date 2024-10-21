@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 export default function Settings () {
@@ -12,6 +13,15 @@ export default function Settings () {
     const [lowStockQuantity, setLowStockQuantity] = useState(2);
     const [currency, setCurrency] = useState('TK');
     const [darkMode, setDarkMode] = useState(false);
+    const [logo, setLogo] = useState('/assets/logo.png'); // Default logo image
+    // Handle logo upload
+  const handleLogoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const logoURL = URL.createObjectURL(file);
+      setLogo(logoURL);
+    }
+  };
 
   const handleSaveChanges = () => {
     // Handle saving changes
@@ -26,6 +36,20 @@ export default function Settings () {
     <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
       <h3 className="text-lg  mb-4">Company Details</h3>
       <div className="md:flex flex-wrap gap-4">
+      <div className="flex-1">
+            <label className="block text-sm mb-1">Company Logo</label>
+            <div className="md:flex items-center space-x-4">
+              {/* Logo Preview */}
+              <Image src={logo} alt="Company Logo" width={100} height={200} className="h-16 w-16 object-cover border" />
+              {/* Logo Upload Input */}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleLogoChange}
+                className="p-2 border"
+              />
+            </div>
+          </div>
         <div className="flex-1">
           <label className="block text-sm mb-1">Company Name</label>
           <input
