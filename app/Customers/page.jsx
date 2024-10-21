@@ -359,7 +359,7 @@ export default function CustomersList() {
       {isModalOpen && selectedCustomer && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-10">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-lg font-bold mb-4">
+            <h2 className="text-lg  mb-4">
               Customer: {selectedCustomer.name}
             </h2>
             <p>Email: {selectedCustomer.email}</p>

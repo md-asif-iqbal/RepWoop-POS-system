@@ -138,13 +138,13 @@ export default function EmployeePayments() {
 </div>
 
 <div className="md:container md:mx-auto md:px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Employee Payments</h1>
+      <h1 className="text-2xl  mb-4">Employee Payments</h1>
 
       <div className="md:flex md:justify-between mb-4 w-full">
       
         <div className="md:flex w-full">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="joiningDate">
+            <label className="block tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="joiningDate">
               Start Date<span className="text-red-500">*</span>
             </label>
             <input
@@ -156,7 +156,7 @@ export default function EmployeePayments() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="joiningDate">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="joiningDate">
               End Date<span className="text-red-500">*</span>
             </label>
             <input

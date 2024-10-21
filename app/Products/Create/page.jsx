@@ -45,7 +45,7 @@ export default function ProductList() {
     <div className='font-nunito text-sm'>
          <div className="container mx-auto px-4 py-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold">Product List</h2>
+        <h2 className="text-2xl ">Product List</h2>
         <div className="flex space-x-2">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
           <button className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>

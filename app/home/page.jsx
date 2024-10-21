@@ -253,7 +253,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Chart Area */}
             <div className="mt-8 p-4 rounded-lg shadow-sm dark:bg-[#202047]">
-              <h3 className=" font-bold mb-4">Purchase & Sales</h3>
+              <h3 className="  mb-4">Purchase & Sales</h3>
               <div className="flex justify-between mb-4">
                 <div className="text-green-500">Sales</div>
                 <div className="text-red-500">Purchase</div>
@@ -269,7 +269,7 @@ export default function Dashboard() {
             </div>
             {/* Recent Products Table */}
             <div className="mt-8 p-4  rounded  shadow-sm dark:bg-[#202047]">
-              <h3 className=" font-bold mb-4">Recent Products</h3>
+              <h3 className="  mb-4">Recent Products</h3>
               <table className="table-auto w-full">
                 <thead>
                   <tr className="text-left">

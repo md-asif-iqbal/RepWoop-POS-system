@@ -104,7 +104,7 @@ export default function DailyReport() {
     <div>
         
         <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] ">
-      <h1 className="text-2xl font-bold mb-5 dark:text-white">Daily Report</h1>
+      <h1 className="text-2xl  mb-5 dark:text-white">Daily Report</h1>
 
       <div className="flex justify-between  w-full mb-5">
         <div className="flex md:space-x-2 w-full ">
@@ -158,14 +158,14 @@ export default function DailyReport() {
         {/* Total Row */}
         <tfoot>
           <tr className="bg-gray-100">
-            <td className="border p-2 font-bold">Total:</td>
-            <td className="border p-2 font-bold"></td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.sellAmount, 0)}</td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.purchaseAmount, 0)}</td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.expenses, 0)}</td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.returned, 0)}</td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.grossProfit, 0)}</td>
-            <td className="border p-2 font-bold">{filteredData.reduce((acc, curr) => acc + curr.netProfit, 0)}</td>
+            <td className="border p-2 ">Total:</td>
+            <td className="border p-2 "></td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.sellAmount, 0)}</td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.purchaseAmount, 0)}</td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.expenses, 0)}</td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.returned, 0)}</td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.grossProfit, 0)}</td>
+            <td className="border p-2 ">{filteredData.reduce((acc, curr) => acc + curr.netProfit, 0)}</td>
           </tr>
         </tfoot>
       </table>

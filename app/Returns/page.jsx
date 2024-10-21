@@ -154,7 +154,7 @@ const SalesReturnList = () => {
     <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 font-nunito text-sm">
         <div className=" container mx-auto mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-xl font-bold">Sales Return List</h1>
+            <h1 className="text-xl ">Sales Return List</h1>
             <button
               onClick={openModal}
               className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
@@ -168,10 +168,10 @@ const SalesReturnList = () => {
                     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-20">
                       <div className="bg-white rounded-lg w-full max-w-6xl p-6 relative overflow-y-auto max-h-[90vh]">
                         <div className="flex justify-between items-center mb-4">
-                          <h2 className="text-2xl font-bold">Add Sales Return</h2>
+                          <h2 className="text-2xl ">Add Sales Return</h2>
                           <button
                             onClick={closeModal}
-                            className="text-red-600 hover:bg-rose-600 rounded-full p-2 px-3 items-center hover:text-white font-bold text-sm"
+                            className="text-red-600 hover:bg-rose-600 rounded-full p-2 px-3 items-center hover:text-white  text-sm"
                           >
                             ✕
                           </button>
@@ -180,21 +180,21 @@ const SalesReturnList = () => {
                         {/* Modal Form */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                           <div>
-                            <label className="block font-semibold">Customer Name</label>
+                            <label className="block ">Customer Name</label>
                             <select className="w-full border p-2 rounded">
                               <option>Choose Customer</option>
                             </select>
                           </div>
                           <div>
-                            <label className="block font-semibold">Date</label>
+                            <label className="block ">Date</label>
                             <input type="date" className="w-full border p-2 rounded" />
                           </div>
                           <div>
-                            <label className="block font-semibold">Reference No.</label>
+                            <label className="block ">Reference No.</label>
                             <input type="text" className="w-full border p-2 rounded" />
                           </div>
                           <div>
-                            <label className="block font-semibold">Product Name</label>
+                            <label className="block ">Product Name</label>
                             <input
                               type="text"
                               placeholder="Please type product code and select"
@@ -233,7 +233,7 @@ const SalesReturnList = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                           <div>
-                            <label className="block font-semibold">Order Tax (%)</label>
+                            <label className="block ">Order Tax (%)</label>
                             <input
                               type="number"
                               
@@ -242,7 +242,7 @@ const SalesReturnList = () => {
                             />
                           </div>
                           <div>
-                            <label className="block font-semibold">Discount ($)</label>
+                            <label className="block ">Discount ($)</label>
                             <input
                               type="number"
                               
@@ -251,7 +251,7 @@ const SalesReturnList = () => {
                             />
                           </div>
                           <div>
-                            <label className="block font-semibold">Shipping ($)</label>
+                            <label className="block ">Shipping ($)</label>
                             <input
                               type="number"
                               
@@ -263,13 +263,13 @@ const SalesReturnList = () => {
 
                         <div className="flex justify-between items-center mb-6">
                           <div>
-                            <label className="block font-semibold">Status</label>
+                            <label className="block ">Status</label>
                             <select className="w-full border p-2 rounded">
                               <option>Choose</option>
                             </select>
                           </div>
                           <div className="text-right">
-                            <h3 className="font-bold text-lg">
+                            <h3 className=" text-lg">
                               Grand Total: ${grandTotal.toFixed(2)}
                             </h3>
                           </div>
@@ -415,7 +415,7 @@ const SalesReturnList = () => {
             <td className="p-4">{returnItem.customer}</td>
             <td className="p-4">
               <span
-                className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                className={`px-2 py-1 text-xs  rounded-full ${
                   returnItem.status === "Received"
                     ? "bg-green-100 text-green-700"
                     : returnItem.status === "Pending"
@@ -431,7 +431,7 @@ const SalesReturnList = () => {
             <td className="p-4">{returnItem.due}</td>
             <td className="p-4">
               <span
-                className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                className={`px-2 py-1 text-xs  rounded-full ${
                   returnItem.paymentStatus === "Paid"
                     ? "bg-green-100 text-green-700"
                     : returnItem.paymentStatus === "Unpaid"

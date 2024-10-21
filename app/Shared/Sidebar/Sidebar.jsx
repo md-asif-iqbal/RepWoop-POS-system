@@ -822,7 +822,7 @@ export default function Sidebar() {
             </div>
         </div>
         {/* <Outlet */}
-        {/* <div className="flex-1 p-2 text-md font-bold"> */}
+        {/* <div className="flex-1 p-2 text-md "> */}
                 {/* <Dashboard/> */}
         {/* </div> */}
     </div>

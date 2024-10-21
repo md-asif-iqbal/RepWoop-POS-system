@@ -59,7 +59,7 @@ export default function SuppliersAdded() {
       <form className="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4 text-sm dark:bg-[#181838] " onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="Suppliers-name">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="Suppliers-name">
               Suppliers Name<span className="text-red-500">*</span>
             </label>
             <input
@@ -73,7 +73,7 @@ export default function SuppliersAdded() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="email">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -89,7 +89,7 @@ export default function SuppliersAdded() {
 
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="phone">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="phone">
               Phone<span className="text-red-500">*</span>
             </label>
             <input
@@ -103,7 +103,7 @@ export default function SuppliersAdded() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="address">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="address">
               Address
             </label>
             <input
@@ -119,7 +119,7 @@ export default function SuppliersAdded() {
 
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="opening-receivable">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="opening-receivable">
               Opening Receivable
             </label>
             <input
@@ -132,7 +132,7 @@ export default function SuppliersAdded() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="opening-payable">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="opening-payable">
               Opening Payable
             </label>
             <input
@@ -148,7 +148,7 @@ export default function SuppliersAdded() {
 
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+            className="bg-teal-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save

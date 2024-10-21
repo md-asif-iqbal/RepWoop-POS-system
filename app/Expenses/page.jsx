@@ -226,7 +226,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
       {/* Action Buttons */}
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold mb-2 md:mb-0">Product List</h2>
+        <h2 className="text-2xl  mb-2 md:mb-0">Product List</h2>
         <div className="md:flex space-x-2 space-y-2 md:space-y-0">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
           <button
@@ -239,7 +239,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                 {showModal && (
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                     <div className="bg-white rounded-lg p-6 w-1/2">
-                        <h2 className="text-xl font-bold mb-4">Import Products</h2>
+                        <h2 className="text-xl  mb-4">Import Products</h2>
                         <input
                         type="file"
                         accept=".csv, .xlsx"
@@ -368,7 +368,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                 <td className="px-4 py-2">{product.reference}</td>
                 <td className="px-4 py-2">{product.date}</td>
                 <td className="px-4 py-2">
-                <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                <span className={`px-2 py-1 text-xs  rounded-full ${
                                                 product.status === "Active"
                                                   ? "bg-green-100 text-green-700"
                                                   : product.status === "Inactive"
@@ -394,7 +394,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                            <h2 className="text-xl  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}
@@ -407,13 +407,13 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                                             <div className="flex justify-center">
                                                 <button
                                                     onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
                                                 >
                                                     Yes, delete it!
                                                 </button>
                                                 <button
                                                     onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
                                                 >
                                                     Cancel
                                                 </button>

@@ -101,12 +101,12 @@ export default function EmployeeSalary() {
     </div>
   </div>
   <div className="w-full  mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">Employee Salary</h2>
+      <h2 className="text-xl  mb-4">Employee Salary</h2>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
         {/* Salary Month and Employee */}
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="salaryMonth">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="salaryMonth">
               Salary Month<span className="text-red-500">*</span>
             </label>
             <input
@@ -120,7 +120,7 @@ export default function EmployeeSalary() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="employee">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="employee">
               Employee<span className="text-red-500">*</span>
             </label>
             <select
@@ -144,7 +144,7 @@ export default function EmployeeSalary() {
         {/* Basic Salary, Overtime Rate, Total Overtime, Total Salary */}
         <div className="flex -mx-3 mb-6">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="basicSalary">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="basicSalary">
               Basic Salary<span className="text-red-500">*</span>
             </label>
             <input
@@ -159,7 +159,7 @@ export default function EmployeeSalary() {
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="overtimeRate">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="overtimeRate">
               Overtime Rate
             </label>
             <input
@@ -173,7 +173,7 @@ export default function EmployeeSalary() {
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="totalOvertime">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="totalOvertime">
               Total Overtime (hr)
             </label>
             <input
@@ -187,7 +187,7 @@ export default function EmployeeSalary() {
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="totalSalary">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="totalSalary">
               Total Salary
             </label>
             <input
@@ -205,7 +205,7 @@ export default function EmployeeSalary() {
         {/* Advance Amount and Pay Amount */}
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="advanceAmount">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="advanceAmount">
               Advance Amount
             </label>
             <input
@@ -219,7 +219,7 @@ export default function EmployeeSalary() {
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="payAmount">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="payAmount">
               Pay Amount
             </label>
             <input
@@ -238,7 +238,7 @@ export default function EmployeeSalary() {
         {/* Transaction Account */}
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-2/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="transactionAccount">
+            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="transactionAccount">
               Transaction Account
             </label>
             <select
@@ -260,7 +260,7 @@ export default function EmployeeSalary() {
         {/* Save Button */}
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+            className="bg-teal-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save

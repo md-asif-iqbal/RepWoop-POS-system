@@ -78,7 +78,7 @@ export default function Cash_Book() {
   return (
    <div className='dark:bg-[#141432] md:h-screen font-nunito text-sm'>
     <div className='mt-[5%] shadow-sm p-4 items-center'>
-      <h1 className='text-xl font-bold text-gray-500 dark:text-white'>Cash Book</h1>
+      <h1 className='text-xl  text-gray-500 dark:text-white'>Cash Book</h1>
     </div>
        <div className="p-4  w-full mx-auto mt-[5%] dark:bg-[#1a1a38] ">
       {/* Title and Print Button aligned in opposite directions */}
@@ -98,19 +98,19 @@ export default function Cash_Book() {
         {/* Balance Information */}
         <div className="space-y-2 text-sm dark:text-white">
           <p>
-            <span className="font-semibold">Opening Balance: </span>0.00
+            <span className="">Opening Balance: </span>0.00
           </p>
           <p>
-            <span className="font-semibold">Previous Balance: </span>5,217,410
+            <span className="">Previous Balance: </span>5,217,410
           </p>
           <p>
-            <span className="font-semibold">Current Balance: </span>5,259,540
+            <span className="">Current Balance: </span>5,259,540
           </p>
         </div>
 
         {/* Transaction Table */}
         <div className="mt-6">
-          <table className="min-w-full bg-white dark:bg-[#1a1a38] border border-gray-300 rounded-lg font-semibold">
+          <table className="min-w-full bg-white dark:bg-[#1a1a38] border border-gray-300 rounded-lg ">
             <thead>
               <tr className="bg-teal-500 text-left text-white  text-sm">
                 <th className="py-2 px-4 border-b">#</th>
@@ -137,7 +137,7 @@ export default function Cash_Book() {
             </tbody>
             <tfoot>
               <tr className="bg-gray-100 dark:bg-[#1a1a38] text-sm">
-                <td colSpan="6" className="py-2 px-4 border-t text-right font-semibold">
+                <td colSpan="6" className="py-2 px-4 border-t text-right ">
                   Total
                 </td>
                 <td className="py-2 px-4 border-t text-green-600">

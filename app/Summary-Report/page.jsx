@@ -268,8 +268,8 @@ export default function SummaryReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="4">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
+              <td className="border p-2 " colSpan="4">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
               </tr>
             </tfoot>
           </table>
@@ -349,8 +349,8 @@ export default function SummaryReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(expenses, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(expenses, 'amount')}</td>
               </tr>
             </tfoot>
           </table>
@@ -430,8 +430,8 @@ export default function SummaryReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
               </tr>
             </tfoot>
           </table>
@@ -511,8 +511,8 @@ export default function SummaryReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
               </tr>
             </tfoot>
           </table>

@@ -269,7 +269,7 @@ export default function SupplierLedger() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm md:h-screen">
-    <h1 className="text-2xl font-bold mb-4">Supplier Ledger</h1>
+    <h1 className="text-2xl  mb-4">Supplier Ledger</h1>
 
     <div className="md:flex flex-wrap justify-between items-center mb-4 ">
             <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -336,7 +336,7 @@ export default function SupplierLedger() {
         {/* If transactions are available, show ledger table */}
         {filteredTransactions.length > 0 ? (
           <>
-            <h3 className="text-lg font-bold mb-2">Supplier Ledger</h3>
+            <h3 className="text-lg  mb-2">Supplier Ledger</h3>
             <table id="table-to-print" className="table-auto w-full border-collapse border">
               <thead>
                 <tr className="bg-gray-200">

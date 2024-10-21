@@ -77,7 +77,7 @@ export default function Damages() {
   return (
     <div className='font-nunito text-sm'>
         <div className="container mx-auto p-4 md:mt-[5%]">
-        <h1 className="text-2xl font-bold mb-4">Damages</h1>
+        <h1 className="text-2xl  mb-4">Damages</h1>
 
             {/* Search Bar with Filter and Reset */}
             <div className="flex flex-wrap justify-between mb-4">
@@ -149,7 +149,7 @@ export default function Damages() {
                                         className={`fixed inset-0 flex items-center justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white rounded-lg p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                            <h2 className="text-xl  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}
@@ -162,13 +162,13 @@ export default function Damages() {
                                             <div className="flex justify-center">
                                                 <button
                                                     onClick={() => handleDelete(damage.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
                                                 >
                                                     Yes, delete it!
                                                 </button>
                                                 <button
                                                     onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
                                                 >
                                                     Cancel
                                                 </button>

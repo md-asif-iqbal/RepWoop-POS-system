@@ -59,12 +59,12 @@ export default function AddProduct() {
   return (
     <div className='h-screen font-nunito text-sm'>
          <div className="container mx-auto p-4 md:mt-[5%] mt-[20%] overflow-y-auto">
-      <h1 className="text-2xl font-bold mb-4">Add Damage</h1>
+      <h1 className="text-2xl  mb-4">Add Damage</h1>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product">
+          <label className="block text-gray-700 text-sm  mb-2" htmlFor="product">
             Product
           </label>
           <select
@@ -85,7 +85,7 @@ export default function AddProduct() {
         {/* Show input fields dynamically based on the selected product's available units */}
         {selectedProduct && Object.keys(selectedProduct.units).map((unitType) => (
           <div key={unitType} className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={unitType}>
+            <label className="block text-gray-700 text-sm  mb-2" htmlFor={unitType}>
               {unitType.charAt(0).toUpperCase() + unitType.slice(1)} Available: {selectedProduct.units[unitType]}
             </label>
             <input
@@ -100,7 +100,7 @@ export default function AddProduct() {
         ))}
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
+          <label className="block text-gray-700 text-sm  mb-2" htmlFor="date">
             Date
           </label>
           <input
@@ -113,7 +113,7 @@ export default function AddProduct() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="note">
+          <label className="block text-gray-700 text-sm  mb-2" htmlFor="note">
             Note
           </label>
           <textarea
@@ -126,7 +126,7 @@ export default function AddProduct() {
 
         <div className="flex items-center justify-between">
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-500 hover:bg-green-700 text-white  py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Add Damage

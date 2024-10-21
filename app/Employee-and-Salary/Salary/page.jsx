@@ -220,7 +220,7 @@ export default function Salary() {
       <div className="overflow-auto">
         {/* Print Button */}
       <div className="flex justify-between mt-4 mb-4">
-        <h1 className='text-md font-bold'>Employees Salary</h1>
+        <h1 className='text-md '>Employees Salary</h1>
         <button
           className="bg-teal-500 text-white rounded px-8 py-2 border"
           onClick={() => handlePrint()}

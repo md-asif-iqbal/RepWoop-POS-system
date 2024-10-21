@@ -83,12 +83,12 @@ export default function NewEmployeeForm () {
     </div>
   </div>
   <div className="w-full  mx-auto p-4 dark:bg-[#1b1b3b]">
-      <h2 className="text-xl font-bold mb-4 dark:text-white">New Employee</h2>
+      <h2 className="text-xl  mb-4 dark:text-white">New Employee</h2>
       <form className="bg-white dark:bg-[#1b1b3b] shadow-sm  rounded px-8 pt-6 pb-8 mb-4 dark:text-white" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           {/* Joining Date */}
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="joiningDate">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="joiningDate">
               Joining Date<span className="text-red-500">*</span>
             </label>
             <input
@@ -104,7 +104,7 @@ export default function NewEmployeeForm () {
 
           {/* Name */}
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="name">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="name">
               Name<span className="text-red-500">*</span>
             </label>
             <input
@@ -123,7 +123,7 @@ export default function NewEmployeeForm () {
         <div className="flex flex-wrap -mx-3 mb-6">
           {/* Email */}
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="email">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -139,7 +139,7 @@ export default function NewEmployeeForm () {
 
           {/* Phone */}
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="phone">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="phone">
               Phone<span className="text-red-500">*</span>
             </label>
             <input
@@ -158,7 +158,7 @@ export default function NewEmployeeForm () {
         <div className="flex flex-wrap -mx-3 mb-6">
           {/* Salary */}
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="salary">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="salary">
               Salary<span className="text-red-500">*</span>
             </label>
             <input
@@ -175,7 +175,7 @@ export default function NewEmployeeForm () {
 
           {/* Overtime Rate */}
           <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="overtimeRate">
+            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="overtimeRate">
               Overtime Rate<span className="text-red-500">*</span>
             </label>
             <input
@@ -193,7 +193,7 @@ export default function NewEmployeeForm () {
 
         {/* Address */}
         <div className="w-full px-3 mb-6">
-          <label className="block  tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2" htmlFor="address">
+          <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="address">
             Address
           </label>
           <textarea
@@ -209,7 +209,7 @@ export default function NewEmployeeForm () {
         {/* Save Button */}
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+            className="bg-teal-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save

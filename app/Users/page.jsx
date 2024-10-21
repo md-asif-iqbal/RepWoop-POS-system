@@ -74,7 +74,7 @@ export default function Users() {
     </div>
   </div>
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold mb-4">Users</h2>
+      <h2 className="text-xl  mb-4">Users</h2>
       
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse">
@@ -100,11 +100,11 @@ export default function Users() {
                 </td>
                 <td className="border px-2 py-2">
                  <Link href="/Users/Create">
-                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mr-2">
+                 <button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-2 rounded mr-2">
                   <Pencil size={16}/>
                   </button>
                  </Link>
-                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-2 rounded">
+                  <button className="bg-red-500 hover:bg-red-700 text-white  py-2 px-2 rounded">
                   <Trash2 size={16} />
                   </button>
                 </td>

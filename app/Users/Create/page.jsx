@@ -62,7 +62,7 @@ export default function NewUsers() {
   </div>
 
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold mb-6">Make User</h2>
+      <h2 className="text-xl  mb-6">Make User</h2>
 
       <form onSubmit={handleSaveUser} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* First Name */}

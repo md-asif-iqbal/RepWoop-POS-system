@@ -83,8 +83,7 @@ export default function Assets() {
         
     </div>
   </div>
-  <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold mb-4">Assets</h2>
+  <div className="container mx-auto mt-2 md:mt-10">
 
       {/* Filter Section */}
       <div className="mb-4 md:flex md:space-x-4">
@@ -139,7 +138,7 @@ export default function Assets() {
               </tr>
             ))}
             {/* Totals Row */}
-            <tr className="font-bold">
+            <tr className="">
               <td className="border px-4 py-2 text-right" colSpan="2">
                 Total
               </td>

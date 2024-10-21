@@ -69,11 +69,11 @@ export default function Brands() {
 
     const exportPDF = () => {
         const doc = new jsPDF();
-        doc.text('Product List', 20, 10);
+        doc.text('Brands List', 20, 10);
         products.forEach((product, index) => {
             doc.text(`${index + 1}. ${product.brand}, Created On: ${product.createdOn}, Status: ${product.status}`, 20, 20 + index * 10);
         });
-        doc.save('products.pdf');
+        doc.save('Brands.pdf');
     };
 
     const exportExcel = () => {
@@ -147,7 +147,7 @@ export default function Brands() {
         <div className="text-sm container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito bg-white  dark:bg-[#151530] dark:text-white">
             {/* Action Buttons */}
             <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold mb-2 md:mb-0">Brands List</h2>
+                <h2 className="text-2xl  mb-2 md:mb-0">Brands List</h2>
                 <div className="md:flex space-x-2 space-y-2 md:space-y-0">
                     <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
                     <button onClick={handleOpenModal} className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
@@ -160,7 +160,7 @@ export default function Brands() {
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
                     <div className="bg-white rounded-lg p-6 w-1/2">
-                        <h2 className="text-xl font-bold mb-4">Import Products</h2>
+                        <h2 className="text-xl  mb-4">Import Products</h2>
                         <input
                             type="file"
                             accept=".csv, .xlsx"
@@ -248,7 +248,7 @@ export default function Brands() {
                                 <td className=" px-4 py-2">{product.brand}</td>
                                 <td className=" px-4 py-2 border">{product.logo}</td>
                                 <td className=" px-4 py-2">{product.createdOn}</td>
-                                <td className=" px-4 py-2 border"><span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                                <td className=" px-4 py-2 border"><span className={`px-2 py-1 text-xs  rounded-full ${
                                                 product.status === "Active"
                                                   ? "bg-green-100 text-green-700"
                                                   : product.status === "Inactive"
@@ -268,7 +268,7 @@ export default function Brands() {
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-xl font-semibold mb-4">Are you sure?</h2>
+                                            <h2 className="text-xl  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}
@@ -281,13 +281,13 @@ export default function Brands() {
                                             <div className="flex justify-center">
                                                 <button
                                                     onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-2"
+                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
                                                 >
                                                     Yes, delete it!
                                                 </button>
                                                 <button
                                                     onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
                                                 >
                                                     Cancel
                                                 </button>

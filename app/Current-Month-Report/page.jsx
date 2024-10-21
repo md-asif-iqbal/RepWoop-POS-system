@@ -162,19 +162,19 @@ export default function CurrentMonthReport() {
       {/* Top Summary Boxes */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-green-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-sm font-bold">SALE AMOUNT</h3>
+          <h3 className="text-sm ">SALE AMOUNT</h3>
           <p className="text-md ">TK 4,167,593</p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-sm font-bold">PURCHASE COST</h3>
+          <h3 className="text-sm ">PURCHASE COST</h3>
           <p className="text-md ">TK 3,651,596</p>
         </div>
         <div className="bg-gray-700 text-white p-4 rounded shadow-md">
-          <h3 className="text-sm font-bold">EXPENSE</h3>
+          <h3 className="text-sm ">EXPENSE</h3>
           <p className="text-md ">TK 25,130</p>
         </div>
         <div className="bg-teal-500 text-white p-4 rounded shadow-md">
-          <h3 className="text-sm font-bold">SELL PROFIT</h3>
+          <h3 className="text-sm ">SELL PROFIT</h3>
           <p className="text-md ">TK 515,997</p>
         </div>
       </div>
@@ -241,8 +241,8 @@ export default function CurrentMonthReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="4">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
+              <td className="border p-2 " colSpan="4">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
               </tr>
             </tfoot>
             
@@ -324,8 +324,8 @@ export default function CurrentMonthReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(expenses, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(expenses, 'amount')}</td>
               </tr>
             </tfoot>
           </table>
@@ -405,8 +405,8 @@ export default function CurrentMonthReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
               </tr>
             </tfoot>
           </table>
@@ -486,8 +486,8 @@ export default function CurrentMonthReport() {
             </tbody>
             <tfoot>
               <tr>
-              <td className="border p-2 font-bold" colSpan="3">Total:</td>
-              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
+              <td className="border p-2 " colSpan="3">Total:</td>
+              <td className="border p-2 ">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
               </tr>
             </tfoot>
           </table>

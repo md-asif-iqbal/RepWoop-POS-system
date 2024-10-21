@@ -56,7 +56,7 @@ export default function POSManage() {
         <div className='bg-white dark:bg-[#141432] dark:text-white font-nunito text-sm'>
             <div className="container mx-auto p-4 mt-[5%] ">
         {/* POS Manage Header */}
-        <h1 className="text-xl font-bold mb-6 ">POS Manage</h1>
+        <h1 className="text-xl  mb-6 ">POS Manage</h1>
   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Section: Input and Payment */}
@@ -103,7 +103,7 @@ export default function POSManage() {
                         <div className=" p-6">
                             {/* Header */}
                             <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-md font-semibold">Add Customer</h2>
+                            <h2 className="text-md ">Add Customer</h2>
                             </div>
 
                             {/* Form */}
@@ -221,7 +221,7 @@ export default function POSManage() {
   
           {/* Right Section: Product Category and List */}
           <div className="bg-gray-100 dark:bg-[#202047] p-4 rounded-lg shadow-sm">
-          <h1 className='text-md font-bold mb-2'>Product List</h1>
+          <h1 className='text-md  mb-2'>Product List</h1>
             {/* Search Bar and Filtering */}
             <div className="md:flex items-center mb-4">
                 {/* Search Input and Button */}
@@ -257,7 +257,7 @@ export default function POSManage() {
 
   
             {/* Categories */}
-            <h1 className='text-md font-bold mb-2'>Categories</h1>
+            <h1 className='text-md  mb-2'>Categories</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
               <button  onClick={() => filterByCategory('Document')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
                 Document
@@ -283,7 +283,7 @@ export default function POSManage() {
                   <div className="bg-gray-200 h-24 flex justify-center items-center rounded-md">
                     <span>No Image</span>
                   </div>
-                  <p className="mt-2 font-bold">{product.name} - 0000{product.id}</p>
+                  <p className="mt-2 ">{product.name} - 0000{product.id}</p>
                   <p>{product.price.toFixed(2)} Tk</p>
                   <p>Stock: {product.stock} pc</p>
                 </div>
