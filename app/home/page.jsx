@@ -135,7 +135,7 @@ export default function Dashboard() {
     <div className=" dark:text-white lg:p-8 font-nunito text-sm">
       <main className="ml-1/5 flex-grow  md:mt-[5%] mt-[20%]">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center p-4">
           <h2 className="text-lg font-medium">Welcome Back!</h2>
           <p className="">{`${day} ${month} ${year}`}</p>
         </div>
@@ -301,8 +301,8 @@ export default function Dashboard() {
         </div>
         <div className="">
       <h2 className="text-md  mb-4 ">Expired Products</h2>
-      <div className="overflow-x-auto  shadow-sm dark:bg-[#202047]">
-        <table className="w-full table-auto border text-center">
+      <div className="overflow-x-auto  shadow-sm dark:bg-[#202047] w-full">
+        <table className="w-full table-auto border text-center ">
           <thead>
             <tr className=" bg-emerald-500 text-white text-sm leading-normal ">
               <th className="py-2 border ">Product</th>

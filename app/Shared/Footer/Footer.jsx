@@ -9,7 +9,7 @@ export default function Footer() {
     <div className="flex flex-wrap items-center md:justify-between justify-center">
       <div className="w-full md:w-4/12 px-4 mx-auto text-center">
         <div className="text-sm text-blueGray-500  py-1">
-          Copyright © <span id="get-current-year">2024</span> POS Software by Repwoop cpmpany
+          Copyright © <span id="get-current-year">2024</span> POS Software by Repwoop Company
         </div>
       </div>
     </div>
