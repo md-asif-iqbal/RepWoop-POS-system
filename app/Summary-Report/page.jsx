@@ -121,6 +121,13 @@ export default function SummaryReport() {
       });
       doc.save(`${title}.pdf`);
     };
+    const calculateTotalAmount = (data, key) => {
+      return data.reduce((acc, item) => {
+        // Remove any non-numeric characters (such as 'TK' and ',') and convert to a number
+        const numericValue = parseInt(item[key].replace(/[^0-9]/g, ''), 10);
+        return acc + numericValue;
+      }, 0);
+    };
 
 
   return (
@@ -259,6 +266,12 @@ export default function SummaryReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="4">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">
@@ -334,6 +347,12 @@ export default function SummaryReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(expenses, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">
@@ -409,6 +428,12 @@ export default function SummaryReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">
@@ -484,6 +509,12 @@ export default function SummaryReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 flex justify-center">

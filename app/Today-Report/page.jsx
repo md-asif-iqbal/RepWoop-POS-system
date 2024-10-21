@@ -16,38 +16,38 @@ export default function TodayReport() {
 
     // Data for each table
     const topSaleProducts = [
-      { id: 1, productName: 'Mobile Phone', quantity: 10, totalSale: 50000, saleAmount: 'TK 50000' },
-      { id: 2, productName: 'Laptop', quantity: 5, totalSale: 200000, saleAmount: 'TK 200000' },
-      { id: 3, productName: 'Headphones', quantity: 15, totalSale: 45000, saleAmount: 'TK 45000' },
-      { id: 4, productName: 'Monitor', quantity: 8, totalSale: 80000, saleAmount: 'TK 80000' },
-      { id: 5, productName: 'Keyboard', quantity: 20, totalSale: 10000, saleAmount: 'TK 10000' },
-      { id: 6, productName: 'Mouse', quantity: 25, totalSale: 12500, saleAmount: 'TK 12500' },
-      { id: 7, productName: 'Printer', quantity: 2, totalSale: 50000, saleAmount: 'TK 50000' },
+      { id: 1, productName: 'Mobile Phone', quantity: 10, totalSale: 50000, saleAmount: '50000' },
+      { id: 2, productName: 'Laptop', quantity: 5, totalSale: 200000, saleAmount: ' 200000' },
+      { id: 3, productName: 'Headphones', quantity: 15, totalSale: 45000, saleAmount: ' 45000' },
+      { id: 4, productName: 'Monitor', quantity: 8, totalSale: 80000, saleAmount: ' 80000' },
+      { id: 5, productName: 'Keyboard', quantity: 20, totalSale: 10000, saleAmount: ' 10000' },
+      { id: 6, productName: 'Mouse', quantity: 25, totalSale: 12500, saleAmount: ' 12500' },
+      { id: 7, productName: 'Printer', quantity: 2, totalSale: 50000, saleAmount: ' 50000' },
     ];
   
     const expenses = [
-      { id: 1, expense: 'Office Rent', category: 'Administrative', amount: 'TK 30000' },
-      { id: 2, expense: 'Electricity Bill', category: 'Utility', amount: 'TK 5000' },
-      { id: 3, expense: 'Internet Bill', category: 'Utility', amount: 'TK 2000' },
-      { id: 4, expense: 'Stationery', category: 'Office Supplies', amount: 'TK 1500' },
-      { id: 5, expense: 'Travel Expenses', category: 'Logistics', amount: 'TK 8000' },
-      { id: 6, expense: 'Snacks', category: 'Entertainment', amount: 'TK 1000' },
+      { id: 1, expense: 'Office Rent', category: 'Administrative', amount: ' 30000' },
+      { id: 2, expense: 'Electricity Bill', category: 'Utility', amount: ' 5000' },
+      { id: 3, expense: 'Internet Bill', category: 'Utility', amount: ' 2000' },
+      { id: 4, expense: 'Stationery', category: 'Office Supplies', amount: ' 1500' },
+      { id: 5, expense: 'Travel Expenses', category: 'Logistics', amount: ' 8000' },
+      { id: 6, expense: 'Snacks', category: 'Entertainment', amount: ' 1000' },
     ];
   
     const paymentsToSuppliers = [
-      { id: 1, supplier: 'Hasan Trading', paymentDate: '2024-10-01', amount: 'TK 50000' },
-      { id: 2, supplier: 'Alif Corporation', paymentDate: '2024-10-02', amount: 'TK 60000' },
-      { id: 3, supplier: 'Khan Enterprise', paymentDate: '2024-10-03', amount: 'TK 30000' },
-      { id: 4, supplier: 'Mithila Supplies', paymentDate: '2024-10-04', amount: 'TK 40000' },
-      { id: 5, supplier: 'Bengal Suppliers', paymentDate: '2024-10-05', amount: 'TK 70000' },
+      { id: 1, supplier: 'Hasan Trading', paymentDate: '2024-10-01', amount: '50000' },
+      { id: 2, supplier: 'Alif Corporation', paymentDate: '2024-10-02', amount: ' 60000' },
+      { id: 3, supplier: 'Khan Enterprise', paymentDate: '2024-10-03', amount: ' 30000' },
+      { id: 4, supplier: 'Mithila Supplies', paymentDate: '2024-10-04', amount: ' 40000' },
+      { id: 5, supplier: 'Bengal Suppliers', paymentDate: '2024-10-05', amount: ' 70000' },
     ];
   
     const paymentsFromCustomers = [
-      { id: 1, customer: 'Sakib Rabby', paymentDate: '2024-10-01', amount: 'TK 50000' },
-      { id: 2, customer: 'Ahmed Zubyer', paymentDate: '2024-10-02', amount: 'TK 30000' },
-      { id: 3, customer: 'Mahmud Hasan', paymentDate: '2024-10-03', amount: 'TK 20000' },
-      { id: 4, customer: 'Rony Akter', paymentDate: '2024-10-04', amount: 'TK 40000' },
-      { id: 5, customer: 'Shakil Khan', paymentDate: '2024-10-05', amount: 'TK 35000' },
+      { id: 1, customer: 'Sakib Rabby', paymentDate: '2024-10-01', amount: ' 50000' },
+      { id: 2, customer: 'Ahmed Zubyer', paymentDate: '2024-10-02', amount: ' 30000' },
+      { id: 3, customer: 'Mahmud Hasan', paymentDate: '2024-10-03', amount: ' 20000' },
+      { id: 4, customer: 'Rony Akter', paymentDate: '2024-10-04', amount: ' 40000' },
+      { id: 5, customer: 'Shakil Khan', paymentDate: '2024-10-05', amount: ' 35000' },
     ];
 
     const defaultEntries = 10; // Default to 10 entries per page
@@ -107,6 +107,14 @@ export default function TodayReport() {
         ]),
       });
       doc.save(`${title}.pdf`);
+    };
+
+    const calculateTotalAmount = (data, key) => {
+      return data.reduce((acc, item) => {
+        // Remove any non-numeric characters (such as 'TK' and ',') and convert to a number
+        const numericValue = parseInt(item[key].replace(/[^0-9]/g, ''), 10);
+        return acc + numericValue;
+      }, 0);
     };
 
   return (
@@ -238,10 +246,16 @@ export default function TodayReport() {
                   <td className="border p-2">{product.productName}</td>
                   <td className="border p-2">{product.quantity}</td>
                   <td className="border p-2">{product.totalSale}</td>
-                  <td className="border p-2">{product.saleAmount}</td>
+                  <td className="border p-2"> TK {product.saleAmount}</td>
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="4">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(topSaleProducts, 'saleAmount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 md:flex justify-center">
@@ -327,6 +341,12 @@ export default function TodayReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(expenses, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 md:flex justify-center">
@@ -412,6 +432,12 @@ export default function TodayReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsToSuppliers, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 md:flex justify-center">
@@ -497,6 +523,12 @@ export default function TodayReport() {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+              <td className="border p-2 font-bold" colSpan="3">Total:</td>
+              <td className="border p-2 font-bold">TK {calculateTotalAmount(paymentsFromCustomers, 'amount')}</td>
+              </tr>
+            </tfoot>
           </table>
           {/* Pagination */}
           <div className="mt-4 md:flex justify-center">
