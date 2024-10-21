@@ -60,7 +60,7 @@ export default function POSManage() {
   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Section: Input and Payment */}
-          <div className="bg-gray-100 dark:bg-[#202047] p-4 rounded-lg shadow-sm w-full">
+          <div className="bg-gray-100 dark:bg-[#202047] p-4  shadow-sm w-full">
             <div className="flex flex-col gap-4 dark:text-black items-center w-full">
               {/* Scan Barcode & Product Name Input */}
               <input
@@ -220,7 +220,7 @@ export default function POSManage() {
           </div>
   
           {/* Right Section: Product Category and List */}
-          <div className="bg-gray-100 dark:bg-[#202047] p-4 rounded-lg shadow-sm">
+          <div className="bg-gray-100 dark:bg-[#202047] p-4  shadow-sm">
           <h1 className='text-md  mb-2'>Product List</h1>
             {/* Search Bar and Filtering */}
             <div className="md:flex items-center mb-4">

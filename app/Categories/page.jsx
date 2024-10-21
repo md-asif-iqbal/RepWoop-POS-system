@@ -165,7 +165,7 @@ export default function CategoryList() {
             {/* Modal for Importing Products */}
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
-                    <div className="bg-white rounded-lg p-6 w-1/2">
+                    <div className="bg-white  p-6 w-1/2">
                         <h2 className="text-lg  mb-4">Import Products</h2>
                         <input
                             type="file"
@@ -263,17 +263,17 @@ export default function CategoryList() {
                                               }`}>{product.status}</span></td>
                                 <td className=" px-4 py-2  flex space-x-2 items-center justify-center gap-5">
                                     
-                                <button className="p-2 rounded-lg border transform text-center text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
+                                <button className="p-2  border transform text-center text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
                                   <TbEdit size={16}/>
                                 </button>
-                                <button onClick={handleOpenModal} className="p-2 text-center rounded-lg transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
+                                <button onClick={handleOpenModal} className="p-2 text-center  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
                                   <RiDeleteBin5Line size={16}/>
                                 </button>
                                 {modalVisible && (
                                   <div
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
-                                        <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
+                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
                                             <h2 className="text-lg  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 

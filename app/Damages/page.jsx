@@ -138,7 +138,7 @@ export default function Damages() {
                                 <td className="border p-2 print:hidden relative"> {/* Hidden when printing */}
                                 <button
                                     onClick={handleOpenModal}
-                                    className="bg-transparent rounded-lg border text-red-500 p-2 hover:bg-red-600 hover:text-white"
+                                    className="bg-transparent  border text-red-500 p-2 hover:bg-red-600 hover:text-white"
                                 >
                                     <Trash2 size={16} strokeWidth={1.5} />
                                 </button>
@@ -148,7 +148,7 @@ export default function Damages() {
                                     <div
                                         className={`fixed inset-0 flex items-center justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
-                                        <div className="bg-white rounded-lg p-10 transition-all duration-300 ease-in-out">
+                                        <div className="bg-white  p-10 transition-all duration-300 ease-in-out">
                                             <h2 className="text-lg  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 

@@ -93,7 +93,7 @@ export default function EmployeeAndSalary() {
     <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
               {/* Title Section */}
 
-  <div className=" mb-4  shadow-sm rounded-lg">
+  <div className=" mb-4  shadow-sm ">
   <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
     <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Employee-and-Salary" className= {`${

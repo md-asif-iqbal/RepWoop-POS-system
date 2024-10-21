@@ -4,11 +4,14 @@
 import React, { useState } from 'react'
 import { GrUserSettings } from 'react-icons/gr';
 
-export default function page() {
+export default function Sales() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [selectedInvoice, setSelectedInvoice] = useState(null);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [selectedCustomer, setSelectedCustomer] = useState("");
+    const [billNumber, setBillNumber] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [selectedCustomer, setSelectedCustomer] = useState('');
+
     const handleActionClick = (invoiceId) => {
       setSelectedInvoice(invoiceId);
       // You can implement specific logic for each action
@@ -147,9 +150,45 @@ export default function page() {
           status: "PAID",
         },
       ];
+      const [filteredData, setFilteredData] = useState(salesData); // Initialize with full data
+      const uniqueCustomers = [...new Set(salesData.map((item) => item.customer))];
 
-        // Extract unique customer names from salesData
-  const uniqueCustomers = [...new Set(salesData.map(sale => sale.customer))];
+  // Filter Function
+  const handleFilter = () => {
+    let filtered = salesData;
+
+    if (billNumber) {
+      filtered = filtered.filter((item) =>
+        item.invoiceNo.toString().includes(billNumber)
+      );
+    }
+
+    if (startDate) {
+      filtered = filtered.filter(
+        (item) => new Date(item.date) >= new Date(startDate)
+      );
+    }
+
+    if (endDate) {
+      filtered = filtered.filter((item) => new Date(item.date) <= new Date(endDate));
+    }
+
+    if (selectedCustomer) {
+      filtered = filtered.filter((item) => item.customer === selectedCustomer);
+    }
+
+    setFilteredData(filtered);
+  };
+
+  // Reset Function
+  const handleReset = () => {
+    setBillNumber('');
+    setStartDate('');
+    setEndDate('');
+    setSelectedCustomer('');
+    setFilteredData(salesData); // Reset to original salesData
+  };
+
   return (
     <div className='bg-white dark:bg-[#141432] text-gray-500 dark:text-white font-nunito text-sm'>
         <div className="p-2 mt-[5%]">
@@ -159,7 +198,7 @@ export default function page() {
           <h3 className=" ">Sold Today</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-pink-600 text-white p-4 rounded shadow-sm">
+        <div className="bg-violet-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Today Received</h3>
           <p className="">Tk 20,000</p>
         </div>
@@ -175,24 +214,29 @@ export default function page() {
 
       {/* Filter Section */}
       <div className="flex flex-wrap gap-4 mb-6">
-        <input
+      <input
           type="text"
           placeholder="Bill Number"
+          value={billNumber}
+          onChange={(e) => setBillNumber(e.target.value)}
           className="border rounded p-2 w-full md:w-1/6"
         />
         <input
           type="date"
-          className="border rounded dark:text-black  p-2 w-full md:w-1/6"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          className="border rounded dark:text-black p-2 w-full md:w-1/6"
         />
         <input
           type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
           className="border rounded dark:text-black p-2 w-full md:w-1/6"
         />
-        {/* Customer Selector */}
         <select
           value={selectedCustomer}
           onChange={(e) => setSelectedCustomer(e.target.value)}
-          className="border rounded p-2 w-full md:w-1/6 dark:text-black "
+          className="border rounded p-2 w-full md:w-1/6 dark:text-black"
         >
           <option value="">Select Customer</option>
           {uniqueCustomers.map((customer, index) => (
@@ -201,8 +245,18 @@ export default function page() {
             </option>
           ))}
         </select>
-        <button className="bg-blue-500 text-white p-2 rounded w-full md:w-1/6">Filter</button>
-        <button className="bg-gray-500 text-white p-2 rounded w-full md:w-[11%]">Reset</button>
+        <button
+          onClick={handleFilter}
+          className="bg-blue-500 text-white p-2 rounded w-full md:w-1/6"
+        >
+          Filter
+        </button>
+        <button
+          onClick={handleReset}
+          className="bg-gray-500 text-white p-2 rounded w-full md:w-[11%]"
+        >
+          Reset
+        </button>
       </div>
 
       {/* Sales Table */}
@@ -225,7 +279,7 @@ export default function page() {
             </tr>
           </thead>
           <tbody className='border'>
-            {salesData.map((sale) => (
+            {filteredData.map((sale) => (
               <tr key={sale.invoiceNo} className="border">
                 <td className="p-2 border">{sale.invoiceNo}</td>
                 <td className="p-2 border">{sale.customer}</td>
@@ -245,7 +299,7 @@ export default function page() {
                   <div className="relative">
                     <button
                       onClick={() => handleActionClick(sale.invoiceNo)}
-                      className="p-1 rounded-lg transform cursor-pointer text-sky-400 hover:text-red-500 hover:scale-110 border-2"
+                      className="p-1  transform cursor-pointer text-sky-400 hover:text-red-500 hover:scale-110 border-2"
                     >
                       <GrUserSettings />
                     </button>

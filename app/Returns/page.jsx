@@ -166,7 +166,7 @@ const SalesReturnList = () => {
 
             {isOpen && (
                     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-20">
-                      <div className="bg-white rounded-lg w-full max-w-6xl p-6 relative overflow-y-auto max-h-[90vh]">
+                      <div className="bg-white  w-full max-w-6xl p-6 relative overflow-y-auto max-h-[90vh]">
                         <div className="flex justify-between items-center mb-4">
                           <h2 className="text-lg ">Add Sales Return</h2>
                           <button
@@ -444,10 +444,10 @@ const SalesReturnList = () => {
             </td>
             <td className="p-2 flex space-x-2">
               <div className="flex item-center justify-center gap-5">
-                <button className="p-1 rounded-lg border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
+                <button className="p-1  border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
                   <TbEdit size={16}/>
                 </button>
-                <button className="p-1 rounded-lg transform text-red-600 hover:text-red-500 hover:scale-110 border-2">
+                <button className="p-1  transform text-red-600 hover:text-red-500 hover:scale-110 border-2">
                   <RiDeleteBin5Line size={16}/>
                 </button>
               </div>

@@ -82,10 +82,10 @@ export default function AccountPage() {
       </div>
 
       {/* Accounts Table */}
-      <div className="bg-white p-4 mt-8 shadow-sm rounded-lg dark:bg-[#1a1a3d]">
+      <div className="bg-white p-4 mt-8 shadow-sm  dark:bg-[#1a1a3d]">
         <h2 className="text-lg  mb-4 dark:text-white">Accounts</h2>
-        <table className="min-w-full border-collapse rounded-lg">
-          <thead className='rounded-lg'>
+        <table className="min-w-full border-collapse ">
+          <thead className=''>
             <tr className="bg-emerald-500 text-white">
               <th className="py-2 px-4 border">#</th>
               <th className="py-2 px-4 border">Name</th>
@@ -131,7 +131,7 @@ export default function AccountPage() {
          {/* Modal for Adding Balance */}
       {showAddBalanceModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-sm w-1/3">
+          <div className="bg-white p-8  shadow-sm w-1/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md ">Add Balance to {selectedAccount?.name}</h2>
               <button
@@ -201,7 +201,7 @@ export default function AccountPage() {
       {/* Modal for Transferring Balance to other account */}
       {showTransferModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-lg shadow-sm w-1/3">
+          <div className="bg-white p-8  shadow-sm w-1/3">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md ">Transfer Balance to {selectedAccount?.name}</h2>
               <button

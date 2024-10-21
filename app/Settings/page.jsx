@@ -33,7 +33,7 @@ export default function Settings () {
     <h2 className="text-lg mb-6">Settings</h2>
     
     {/* Company Details */}
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+    <div className="bg-gray-100 p-4  shadow-md mb-6">
       <h3 className="text-lg  mb-4">Company Details</h3>
       <div className="md:flex flex-wrap gap-4">
       <div className="flex-1">
@@ -90,7 +90,7 @@ export default function Settings () {
     </div>
 
     {/* Invoice Settings */}
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+    <div className="bg-gray-100 p-4  shadow-md mb-6">
       <h3 className="text-lg  mb-4">Invoice Settings</h3>
       <div className="md:flex md:flex-wrap gap-4">
         <div className="flex-1">
@@ -147,7 +147,7 @@ export default function Settings () {
     </div>
 
     {/* Barcode Settings */}
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+    <div className="bg-gray-100 p-4  shadow-md mb-6">
       <h3 className="text-lg  mb-4">Barcode Settings</h3>
       <div className="flex items-center space-x-4">
         <label className="flex items-center">
@@ -176,7 +176,7 @@ export default function Settings () {
     </div>
 
     {/* Other Settings */}
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+    <div className="bg-gray-100 p-4  shadow-md mb-6">
       <h3 className="text-lg  mb-4">Other Settings</h3>
       <div className="md:flex md:flex-wrap gap-4">
         

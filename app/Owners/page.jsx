@@ -52,7 +52,7 @@ export default function page() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full min-h-full">
       {/* Title Section */}
   
-      <div className=" mb-4  shadow-sm rounded-lg ">
+      <div className=" mb-4  shadow-sm  ">
       <h1 className="text-lg text-gray-500 mx-5 dark:text-white">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
@@ -66,7 +66,7 @@ export default function page() {
         </div>
       </div>
               {/* Table Section */}
-              <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm rounded-lg">
+              <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm ">
         <table className="min-w-full table-auto">
           <thead className="bg-emerald-500 text-white dark:text-white">
             <tr>

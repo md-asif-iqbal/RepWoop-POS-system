@@ -210,7 +210,7 @@ export default function Dashboard() {
           <h3 className=" ">TODAY SOLD</h3>
           <p className="">Tk 20,000</p>
         </div>
-        <div className="bg-pink-600 text-white p-4 rounded shadow-sm">
+        <div className="bg-violet-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SOLD - PURCHASE COST</h3>
           <p className="">Tk 20,000</p>
         </div>
@@ -252,7 +252,7 @@ export default function Dashboard() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Chart Area */}
-            <div className="mt-8 p-4 rounded-lg shadow-sm dark:bg-[#202047]">
+            <div className="mt-8 p-4  shadow-sm dark:bg-[#202047]">
               <h3 className="  mb-4">Purchase & Sales</h3>
               <div className="flex justify-between mb-4">
                 <div className="text-green-500">Sales</div>
@@ -272,7 +272,7 @@ export default function Dashboard() {
               <h3 className="  mb-4">Recent Products</h3>
               <table className="table-auto w-full">
                 <thead>
-                  <tr className="">
+                  <tr className="bg-emerald-500 text-white">
                     <th className="p-2">Products</th>
                     <th className="p-2">Price</th>
                   </tr>
@@ -301,15 +301,15 @@ export default function Dashboard() {
         </div>
         <div className="">
       <h2 className="text-md  mb-4 ">Expired Products</h2>
-      <div className="overflow-x-auto rounded-lg shadow-sm dark:bg-[#202047]">
-        <table className="min-w-full table-auto border ">
+      <div className="overflow-x-auto  shadow-sm dark:bg-[#202047]">
+        <table className="w-full table-auto border text-center">
           <thead>
-            <tr className=" uppercase text-sm leading-normal">
-              <th className="py-3 px-6 ">Product</th>
-              <th className="py-3 px-6 ">SKU</th>
-              <th className="py-3 px-6 ">Manufactured Date</th>
-              <th className="py-3 px-6 ">Expired Date</th>
-              <th className="py-3 px-6 text-center">Action</th>
+            <tr className=" bg-emerald-500 text-white text-sm leading-normal ">
+              <th className="py-2 border ">Product</th>
+              <th className="py-2 border ">SKU</th>
+              <th className="py-2 border ">Manufactured Date</th>
+              <th className="py-2 border ">Expired Date</th>
+              <th className="py-2 border text-center">Action</th>
             </tr>
           </thead>
           <tbody className=" text-sm font-light">
@@ -318,8 +318,8 @@ export default function Dashboard() {
                 key={product.id}
                 className="border-b border-gray-200 "
               >
-                <td className="py-3 px-6  whitespace-nowrap flex items-center">
-                  <input type="checkbox" className="mr-2" />
+                <td className="py-2 border  whitespace-nowrap flex items-center">
+                  <input type="checkbox" className="mr-2 ml-2" />
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -329,15 +329,15 @@ export default function Dashboard() {
                   />
                   <span className="font-medium">{product.name}</span>
                 </td>
-                <td className="py-3 px-6 ">{product.sku}</td>
-                <td className="py-3 px-6 ">{product.manufacturedDate}</td>
-                <td className="py-3 px-6 ">{product.expiredDate}</td>
-                <td className="py-3 px-6 text-center">
+                <td className="py-2 border ">{product.sku}</td>
+                <td className="py-2 border ">{product.manufacturedDate}</td>
+                <td className="py-2 border ">{product.expiredDate}</td>
+                <td className="py-2 border text-center">
                   <div className="flex item-center justify-center gap-5">
-                    <button className="p-1 rounded-lg border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110 ">
+                    <button className="p-1  border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110 ">
                     <TbEdit size={16}/>
                     </button>
-                    <button className="p-1 rounded-lg transform text-red-600 hover:text-red-500 hover:scale-110 border-2 ">
+                    <button className="p-1  transform text-red-600 hover:text-red-500 hover:scale-110 border-2 ">
                     <RiDeleteBin5Line size={16}/>
                     </button>
                   </div>

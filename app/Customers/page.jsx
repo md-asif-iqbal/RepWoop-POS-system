@@ -213,7 +213,7 @@ export default function CustomersList() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
                   {/* Title Section */}
   
-      <div className=" mb-4  shadow-sm rounded-lg">
+      <div className=" mb-4  shadow-sm ">
       <h1 className="text-lg text-gray-500 mx-5 ">Customers</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Customers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
@@ -358,7 +358,7 @@ export default function CustomersList() {
       {/* Modal Section */}
       {isModalOpen && selectedCustomer && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-10">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-6  shadow-sm">
             <h2 className="text-lg  mb-4">
               Customer: {selectedCustomer.name}
             </h2>

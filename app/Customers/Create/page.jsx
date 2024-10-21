@@ -42,7 +42,7 @@ export default function CustomerAdded() {
 
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full dark:text-white">
         {/* Title Section */}
-      <div className=" mb-4  shadow-sm rounded-lg">
+      <div className=" mb-4  shadow-sm ">
       <h1 className="text-lg text-gray-500 mx-5 ">Customers</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Customers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">

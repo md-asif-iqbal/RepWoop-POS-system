@@ -240,7 +240,7 @@ export default function ProductList() {
              {/* Modal */}
                 {showModal && (
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg p-6 w-1/2">
+                    <div className="bg-white  p-6 w-1/2">
                         <h2 className="text-lg  mb-4">Import Products</h2>
                         <input
                         type="file"
@@ -395,11 +395,11 @@ export default function ProductList() {
                 <td className="px-4 py-2">{product.createdDate}</td>
                 <td className="px-4 py-2">{product.createdBy}</td>
                 <td className="px-4 py-2 flex space-x-2">
-                  <button className="border rounded-lg p-2 transform hover:scale-110 hover:bg-[#092C4C] hover:text-white"><Eye size={16} strokeWidth={1.5} /></button>
-                  <button className="p-2 rounded-lg border transform text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
+                  <button className="border  p-2 transform hover:scale-110 hover:bg-[#092C4C] hover:text-white"><Eye size={16} strokeWidth={1.5} /></button>
+                  <button className="p-2  border transform text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
                   <TbEdit size={16}/>
                 </button>
-                <button onClick={handleOpenModal} className="p-2 rounded-lg transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
+                <button onClick={handleOpenModal} className="p-2  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
                   <RiDeleteBin5Line size={16}/>
                 </button>
                     {/* Modal */}
@@ -407,7 +407,7 @@ export default function ProductList() {
                         <div
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
-                                        <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
+                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
                                             <h2 className="text-lg  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
