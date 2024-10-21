@@ -43,7 +43,7 @@ export default function CustomerAdded() {
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full dark:text-white">
         {/* Title Section */}
       <div className=" mb-4  shadow-sm rounded-lg">
-      <h1 className="text-xl text-gray-500 mx-5 ">Customers</h1>
+      <h1 className="text-lg text-gray-500 mx-5 ">Customers</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Customers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Customers
@@ -56,7 +56,7 @@ export default function CustomerAdded() {
         </div>
       </div>
       <div className="w-full  mx-auto p-4">
-      <h2 className="text-xl  mb-4">New Customer</h2>
+      <h2 className="text-lg  mb-4">New Customer</h2>
       <form className="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4 text-sm dark:bg-[#181838] " onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">

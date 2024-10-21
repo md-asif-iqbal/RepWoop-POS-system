@@ -104,7 +104,7 @@ export default function DailyReport() {
     <div>
         
         <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] ">
-      <h1 className="text-2xl  mb-5 dark:text-white">Daily Report</h1>
+      <h1 className="text-lg  mb-5 dark:text-white">Daily Report</h1>
 
       <div className="flex justify-between  w-full mb-5">
         <div className="flex md:space-x-2 w-full ">
@@ -130,7 +130,7 @@ export default function DailyReport() {
 
       <table id='table-to-print' className="table-auto w-full border-collapse border text-center">
         <thead>
-          <tr className="bg-gray-200 ">
+          <tr className='bg-emerald-500 text-white'>
             <th className="border p-2">ID</th>
             <th className="border p-2">Date</th>
             <th className="border p-2">Sell Amount</th>

@@ -332,7 +332,7 @@ export default function Stock() {
        <div  className="p-2 max-w-full mx-auto mt-[5%]">
       {/* Title and Print Button */}
       <div className="flex justify-between items-center mb-4">
-        <div className="text-xl  text-gray-600">Product Stock</div>
+        <div className="text-lg  text-gray-600">Product Stock</div>
         <button
           onClick={handlePrint}
           className="bg-emerald-500 text-white cursor-pointer  px-10 py-2 rounded-md hover:bg-teal-600"

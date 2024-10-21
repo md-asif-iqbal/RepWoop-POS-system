@@ -92,7 +92,7 @@ export default function EmployeePayments() {
           {/* Title Section */}
 
 <div className=" mb-4  shadow-sm rounded-lg">
-<h1 className="text-xl text-gray-500 dark:text-white md:mx-5 ">Employee and Salary</h1>
+<h1 className="text-lg text-gray-500 dark:text-white md:mx-5 ">Employee and Salary</h1>
 <div className=' lg:flex items-start justify-start md:mx-5 py-5 gap-10 '>
     <Link href="/Employee-and-Salary" className= {`${
                       pathname === '/Employee-and-Salary' 
@@ -138,7 +138,7 @@ export default function EmployeePayments() {
 </div>
 
 <div className="md:container md:mx-auto md:px-4 py-8">
-      <h1 className="text-2xl  mb-4">Employee Payments</h1>
+      <h1 className="text-lg  mb-4">Employee Payments</h1>
 
       <div className="md:flex md:justify-between mb-4 w-full">
       

@@ -120,7 +120,7 @@ export default function PurchaseReport() {
     
       return (
         <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-          <h1 className="text-2xl  mb-4">Purchase Report</h1>
+          <h1 className="text-lg  mb-4">Purchase Report</h1>
     
           <div className="md:flex flex-wrap justify-between items-center mb-4">
             <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -162,8 +162,8 @@ export default function PurchaseReport() {
     
           <table id='table-to-print' className="table-auto w-full border-collapse border">
             <thead>
-              <tr className="bg-gray-200">
-                <th className="border p-2">#</th>
+              <tr className='bg-emerald-500 text-white'>
+                <th className="border p-2">SL</th>
                 <th className="border p-2">Date</th>
                 <th className="border p-2">Purchase No</th>
                 <th className="border p-2">Product Name</th>

@@ -30,7 +30,7 @@ export default function Settings () {
 
   return (
     <div className="container mx-auto px-4 py-8 t-[25%] sm:mt-[5%]">
-    <h2 className="text-2xl mb-6">Settings</h2>
+    <h2 className="text-lg mb-6">Settings</h2>
     
     {/* Company Details */}
     <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">

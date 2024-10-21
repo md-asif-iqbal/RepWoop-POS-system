@@ -119,7 +119,7 @@ export default function SupplierDueReport() {
   };
   return (
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-    <h1 className="text-2xl  mb-4">Supplier Due Report</h1>
+    <h1 className="text-lg  mb-4">Supplier Due Report</h1>
 
     <div className="md:flex flex-wrap justify-between items-center mb-4">
       <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -143,7 +143,7 @@ export default function SupplierDueReport() {
 
     <table id='table-to-print' className="table-auto w-full border-collapse border dark:text-white md:mt-10">
       <thead>
-        <tr className="bg-gray-200 text-black">
+        <tr className='bg-emerald-500 text-white'>
           <th className="border p-2">SL</th>
           <th className="border p-2">Name</th>
           <th className="border p-2">Email</th>

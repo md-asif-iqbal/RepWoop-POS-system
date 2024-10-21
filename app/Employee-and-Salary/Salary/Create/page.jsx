@@ -56,7 +56,7 @@ export default function EmployeeSalary() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-lg">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
     <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Employee-and-Salary" className= {`${
                           pathname === '/Employee-and-Salary' 
@@ -101,7 +101,7 @@ export default function EmployeeSalary() {
     </div>
   </div>
   <div className="w-full  mx-auto p-4">
-      <h2 className="text-xl  mb-4">Employee Salary</h2>
+      <h2 className="text-lg  mb-4">Employee Salary</h2>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
         {/* Salary Month and Employee */}
         <div className="flex flex-wrap -mx-3 mb-6">

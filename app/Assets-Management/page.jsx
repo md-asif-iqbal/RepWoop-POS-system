@@ -62,7 +62,7 @@ export default function Assets() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Assets </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Assets </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Assets-Management" className= {`${
                           pathname === '/Assets-Management' 

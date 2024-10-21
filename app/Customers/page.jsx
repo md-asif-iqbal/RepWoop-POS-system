@@ -214,7 +214,7 @@ export default function CustomersList() {
                   {/* Title Section */}
   
       <div className=" mb-4  shadow-sm rounded-lg">
-      <h1 className="text-xl text-gray-500 mx-5 ">Customers</h1>
+      <h1 className="text-lg text-gray-500 mx-5 ">Customers</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Customers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Customers
@@ -275,7 +275,7 @@ export default function CustomersList() {
         </div>
         <table id="table-to-print" className="table-auto w-full border-collapse border">
           <thead>
-            <tr className="bg-emerald-500 dark:bg-[#232350] dark:text-white">
+            <tr className="bg-emerald-500 dark:bg-[#232350] text-white">
               <th className="border px-4 py-2">#</th>
               <th className="border px-4 py-2">Name</th>
               <th className="border px-4 py-2">Email</th>

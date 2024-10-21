@@ -78,12 +78,12 @@ export default function Cash_Book() {
   return (
    <div className='dark:bg-[#141432] md:h-screen font-nunito text-sm'>
     <div className='mt-[5%] shadow-sm p-4 items-center'>
-      <h1 className='text-xl  text-gray-500 dark:text-white'>Cash Book</h1>
+      <h1 className='text-lg  text-gray-500 dark:text-white'>Cash Book</h1>
     </div>
        <div className="p-2  w-full mx-auto mt-[5%] dark:bg-[#1a1a38] ">
       {/* Title and Print Button aligned in opposite directions */}
       <div className="md:flex md:justify-between items-center mb-4 dark:text-white">
-        <div className="text-xl dark:text-white text-gray-500">Cash Book</div>
+        <div className="text-lg dark:text-white text-gray-500">Cash Book</div>
         <button
            onClick={handlePrint}
           className="bg-emerald-500 text-white cursor-pointer  px-10 py-2 rounded-md hover:bg-teal-600"

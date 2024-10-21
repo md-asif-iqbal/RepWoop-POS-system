@@ -75,7 +75,7 @@ export default function AddUnits() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Add Unit </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Add Unit </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Units" className= {`${
                           pathname === '/Units' 
@@ -97,7 +97,7 @@ export default function AddUnits() {
     </div>
   </div>
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold mb-4">New Unit</h2>
+      <h2 className="text-lg font-bold mb-4">New Unit</h2>
 
       <form onSubmit={handleAddUnit} >
         {/* Unit Name */}

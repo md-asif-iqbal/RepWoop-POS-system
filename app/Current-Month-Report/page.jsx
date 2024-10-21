@@ -130,7 +130,7 @@ export default function CurrentMonthReport() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Current Month Report </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Current Month Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
                           pathname === '/Today-Report' 
@@ -221,7 +221,7 @@ export default function CurrentMonthReport() {
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
-                <th className="border p-2">#</th>
+                <th className="border p-2">SL</th>
                 <th className="border p-2">Product Name</th>
                 <th className="border p-2">Quantity</th>
                 <th className="border p-2">Total Sale</th>
@@ -306,7 +306,7 @@ export default function CurrentMonthReport() {
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
-                <th className="border p-2">#</th>
+                <th className="border p-2">SL</th>
                 <th className="border p-2">Expense</th>
                 <th className="border p-2">Category</th>
                 <th className="border p-2">Amount</th>
@@ -387,7 +387,7 @@ export default function CurrentMonthReport() {
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
-                <th className="border p-2">#</th>
+                <th className="border p-2">SL</th>
                 <th className="border p-2">Supplier</th>
                 <th className="border p-2">Payment Date</th>
                 <th className="border p-2">Amount</th>
@@ -468,7 +468,7 @@ export default function CurrentMonthReport() {
           <table className="table-auto w-full mt-4 text-center">
             <thead>
               <tr>
-                <th className="border p-2">#</th>
+                <th className="border p-2">SL</th>
                 <th className="border p-2">Customer</th>
                 <th className="border p-2">Payment Date</th>
                 <th className="border p-2">Amount</th>

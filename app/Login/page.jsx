@@ -17,7 +17,7 @@ export default function Login() {
             </div>
             <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
                 <div className="text-center mb-10">
-                    <h1 className="text-xl text-gray-900">Log In</h1>
+                    <h1 className="text-lg text-gray-900">Log In</h1>
                 </div>
                 <div>
                     

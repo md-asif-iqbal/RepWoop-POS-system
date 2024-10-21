@@ -52,7 +52,7 @@ export default function Users() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Users </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Users </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Users" className= {`${
                           pathname === '/Users' 
@@ -74,7 +74,7 @@ export default function Users() {
     </div>
   </div>
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl  mb-4">Users</h2>
+      <h2 className="text-lg  mb-4">Users</h2>
       
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse">

@@ -77,7 +77,7 @@ export default function Damages() {
   return (
     <div className='font-nunito text-sm'>
         <div className="container mx-auto p-4 md:mt-[5%]">
-        <h1 className="text-2xl  mb-4">Damages</h1>
+        <h1 className="text-lg  mb-4">Damages</h1>
 
             {/* Search Bar with Filter and Reset */}
             <div className="flex flex-wrap justify-between mb-4">
@@ -149,7 +149,7 @@ export default function Damages() {
                                         className={`fixed inset-0 flex items-center justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white rounded-lg p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-xl  mb-4">Are you sure?</h2>
+                                            <h2 className="text-lg  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}

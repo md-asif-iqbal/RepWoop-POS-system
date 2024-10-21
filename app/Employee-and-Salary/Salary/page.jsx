@@ -125,7 +125,7 @@ export default function Salary() {
           {/* Title Section */}
 
 <div className=" mb-4  shadow-sm rounded-lg">
-<h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
+<h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
 <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
     <Link href="/Employee-and-Salary" className= {`${
                       pathname === '/Employee-and-Salary' 

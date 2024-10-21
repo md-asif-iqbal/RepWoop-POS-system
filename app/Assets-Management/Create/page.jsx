@@ -40,7 +40,7 @@ export default function CreateAssets() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-xl text-gray-500 dark:text-white mx-5 ">Add Assets </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Add Assets </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Assets-Management" className= {`${
                           pathname === '/Assets-Management' 
@@ -63,7 +63,7 @@ export default function CreateAssets() {
   </div>
 
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-xl  mb-4">Add Assets</h2>
+      <h2 className="text-lg  mb-4">Add Assets</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Asset Name */}

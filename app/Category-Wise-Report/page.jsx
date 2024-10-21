@@ -111,7 +111,7 @@ export default function CategorySalesPurchasesReport() {
   };
   return (
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-    <h1 className="text-2xl  mb-4">Category-wise Sales and Purchases Report</h1>
+    <h1 className="text-lg  mb-4">Category-wise Sales and Purchases Report</h1>
 
     <div className="md:flex flex-wrap justify-between items-center mb-4 mt-5">
             <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -166,7 +166,7 @@ export default function CategorySalesPurchasesReport() {
          </div>
     <table id='table-to-print' className="table-auto w-full border-collapse border">
       <thead>
-        <tr className="bg-gray-200">
+        <tr className='bg-emerald-500 text-white'>
           <th className="border p-2">SL</th>
           <th className="border p-2">Category Name</th>
           <th className="border p-2">Total Sales Quantity</th>

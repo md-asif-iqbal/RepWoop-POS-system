@@ -136,7 +136,7 @@ export default function Dashboard() {
       <main className="ml-1/5 flex-grow  mt-[5%]">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-medium">Welcome Back!</h2>
+          <h2 className="text-lg font-medium">Welcome Back!</h2>
           <p className="">{`${day} ${month} ${year}`}</p>
         </div>
 

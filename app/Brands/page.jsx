@@ -147,7 +147,7 @@ export default function Brands() {
         <div className="text-sm container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito bg-white  dark:bg-[#151530] dark:text-white">
             {/* Action Buttons */}
             <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl  mb-2 md:mb-0">Brands List</h2>
+                <h2 className="text-lg  mb-2 md:mb-0">Brands List</h2>
                 <div className="md:flex space-x-2 space-y-2 md:space-y-0">
                     <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
                     <button onClick={handleOpenModal} className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
@@ -160,7 +160,7 @@ export default function Brands() {
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
                     <div className="bg-white rounded-lg p-6 w-1/2">
-                        <h2 className="text-xl  mb-4">Import Products</h2>
+                        <h2 className="text-lg  mb-4">Import Products</h2>
                         <input
                             type="file"
                             accept=".csv, .xlsx"
@@ -268,7 +268,7 @@ export default function Brands() {
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white w-[20%] border text-center rounded-lg p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-xl  mb-4">Are you sure?</h2>
+                                            <h2 className="text-lg  mb-4">Are you sure?</h2>
                                             <p className="mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}

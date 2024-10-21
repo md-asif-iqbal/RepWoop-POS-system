@@ -79,7 +79,7 @@ export default function ProfitLossReportge() {
       };
   return (
     <div className="container mx-auto px-4 py-8 mt-[25%] sm:mt-[5%]  w-full">
-    <h2 className="text-xl  mb-4">Profit Loss Report</h2>
+    <h2 className="text-lg  mb-4">Profit Loss Report</h2>
     
     {/* Date Filtering Inputs */}
     <div className="mb-4 md:flex md:space-x-4 w-full">
@@ -118,7 +118,7 @@ export default function ProfitLossReportge() {
     {/* Profit Loss Report Table */}
     <table id='table-to-print' className="table-auto w-full text-center">
       <thead>
-        <tr>
+        <tr className='bg-emerald-500 text-white'>
           <th className="border p-2">Month</th>
           <th className="border p-2">Sales</th>
           <th className="border p-2">Cost of Goods Sold</th>
