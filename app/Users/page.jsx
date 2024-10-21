@@ -114,8 +114,6 @@ export default function Users() {
         </table>
       </div>
     </div>
-
- 
 </div>
 </div>
   )
