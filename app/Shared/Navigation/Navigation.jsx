@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState,useEffect } from 'react'
 import { AlignJustify, Moon, SunMedium, SunMoon} from 'lucide-react';
+import Sidebar from '../Sidebar/Sidebar';
 
 
 
@@ -47,12 +48,11 @@ export default function Navigation() {
   
 
   return (
-    <div className='w-[86%] fixed top-0 z-50 font-nunito text-sm'>
+    <div className='w-[100%] lg:w-[86%] fixed top-0 z-50 font-nunito text-sm'>
 
-        <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm">
-            <div className="navbar-start">
-           
-                
+        <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm items-center">
+            <div className="navbar-start flex items-center">
+            <span className='md:hidden '><Sidebar /></span>
                 <a className=" text-gray-500 dark:text-white text-md">Repwoop POS Software</a>
             </div>
             {/* nav center */}

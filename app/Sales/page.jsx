@@ -213,13 +213,13 @@ export default function Sales() {
       </div>
 
       {/* Filter Section */}
-      <div className="flex flex-wrap gap-4 mb-6">
+      <div className="md:flex flex-wrap gap-4 mb-6">
       <input
           type="text"
           placeholder="Bill Number"
           value={billNumber}
           onChange={(e) => setBillNumber(e.target.value)}
-          className="border rounded p-2 w-full md:w-1/6"
+          className="border rounded p-2 dark:text-black w-full md:w-1/6"
         />
         <input
           type="date"

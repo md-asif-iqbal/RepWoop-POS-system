@@ -94,9 +94,9 @@ export default function Sidebar() {
 
   return (
     <div className='font-nunito text-sm'>
-        <div className="dropdown lg:hidden">
-                <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden mt-2  md:mt-6 dark:text-white " onClick={toggleSidebar}>
-                <AlignJustify size={20} strokeWidth={2} />
+        <div className="dropdown lg:hidden items-center">
+                <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
+                <AlignJustify size={20} strokeWidth={2} className='' />
                 </div>
                
                 </div>

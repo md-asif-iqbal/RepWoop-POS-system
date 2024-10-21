@@ -133,7 +133,7 @@ export default function Dashboard() {
   ];
   return (
     <div className=" dark:text-white lg:p-8 font-nunito text-sm">
-      <main className="ml-1/5 flex-grow  mt-[5%]">
+      <main className="ml-1/5 flex-grow  md:mt-[5%] mt-[20%]">
         {/* Header */}
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-medium">Welcome Back!</h2>
