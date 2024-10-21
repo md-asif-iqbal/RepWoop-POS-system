@@ -175,7 +175,7 @@ export default function TodayReport() {
         </div>
 
         {/* Sell Profit Box */}
-        <div className="bg-teal-500 text-white p-4 rounded shadow-md">
+        <div className="bg-emerald-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm ">SELL PROFIT</h3>
           <p className="text-md ">TK 0</p>
         </div>
@@ -184,7 +184,7 @@ export default function TodayReport() {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Top Sale Product Table */}
         <div className='border rounded '>
-          <h2 className="text-lg  bg-teal-500 p-2 text-white">Top Sale Product</h2>
+          <h2 className="text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex">
               <button

@@ -203,7 +203,7 @@ export default function Salary() {
           onChange={(e) => setEndDate(e.target.value)}
         />
         <button
-          className="bg-teal-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
+          className="bg-emerald-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
           onClick={handleFilter}
         >
           Filter
@@ -222,7 +222,7 @@ export default function Salary() {
       <div className="flex justify-between mt-4 mb-4">
         <h1 className='text-md '>Employees Salary</h1>
         <button
-          className="bg-teal-500 text-white rounded px-8 py-2 border"
+          className="bg-emerald-500 text-white rounded px-8 py-2 border"
           onClick={() => handlePrint()}
         >
           Print
@@ -260,7 +260,7 @@ export default function Salary() {
                 <td className="px-4 py-2 border">{employee.paid}</td>
                 <td className="px-4 py-2 border">{employee.due}</td>
                 <td className="px-4 py-2 border">
-                  <button className="bg-teal-500 text-white rounded px-2 py-1">
+                  <button className="bg-emerald-500 text-white rounded px-2 py-1">
                     Actions
                   </button>
                 </td>
@@ -277,7 +277,7 @@ export default function Salary() {
           <button
             key={index}
             onClick={() => paginate(index + 1)}
-            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-teal-500 text-white' : 'bg-gray-300'}`}
+            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-emerald-500 text-white' : 'bg-gray-300'}`}
           >
             {index + 1}
           </button>

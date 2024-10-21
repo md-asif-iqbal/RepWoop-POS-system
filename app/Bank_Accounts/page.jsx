@@ -73,7 +73,7 @@ export default function AccountPage() {
             className="border border-gray-300 rounded px-4 py-2 flex-1"
           />
           <button
-            className="bg-teal-500 text-white px-4 py-2 rounded"
+            className="bg-emerald-500 text-white px-4 py-2 rounded"
             onClick={() => alert("Account Added")}
           >
             Save
@@ -86,7 +86,7 @@ export default function AccountPage() {
         <h2 className="text-xl  mb-4 dark:text-white">Accounts</h2>
         <table className="min-w-full border-collapse rounded-lg">
           <thead className='rounded-lg'>
-            <tr className="bg-teal-500 text-white">
+            <tr className="bg-emerald-500 text-white">
               <th className="py-2 px-4 border">#</th>
               <th className="py-2 px-4 border">Name</th>
               <th className="py-2 px-4 border">Opening Balance</th>
@@ -103,20 +103,20 @@ export default function AccountPage() {
                 <td className="py-2 px-4 border">Tk.{account.currentBalance.toFixed(2)}</td>
                 <td className="py-2 px-4 border grid grid-cols-1 md:grid-cols-2 gap-5 ">
                   <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
+                    className="border-b-2 border-teal-500 hover:bg-emerald-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowAddBalanceModal(true); }}
                   >
                     Add Balance
                   </button>
                   
                   <button
-                    className="border-b-2 border-teal-500 hover:bg-teal-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
+                    className="border-b-2 border-teal-500 hover:bg-emerald-500 hover:text-white dark:text-white px-4 py-2 rounded mr-2"
                     onClick={() => { setSelectedAccount(account); setShowTransferModal(true); }}
                   >
                     Transfer
                   </button>
                   <button
-                    className="bg-teal-500 text-white px-4 py-2 rounded mr-2 "
+                    className="bg-emerald-500 text-white px-4 py-2 rounded mr-2 "
                     onClick={() => alert("History clicked")}
                   >
                     History

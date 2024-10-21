@@ -27,12 +27,12 @@ export default function PromotionalSMS() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-[#1d1d3b] ">
     <div className="w-full rounded-lg lg:p-8 ">
-      <h2 className="text-3xl  mb-6 text-gray-700 text-left dark:text-white">Promotional SMS</h2>
+      <h2 className="text-3xl  mb-6 text-gray-700  dark:text-white">Promotional SMS</h2>
       
       <form className="space-y-4 lg:w-1/2 p-2">
         {/* Select Customers Dropdown */}
         <div>
-          <label className="block text-gray-700 text-sm  mb-2 text-left dark:text-white">Select Customers</label>
+          <label className="block text-gray-700 text-sm  mb-2  dark:text-white">Select Customers</label>
           <select
             value={selectedCustomer}
             onChange={(e) => setSelectedCustomer(e.target.value)}
@@ -49,7 +49,7 @@ export default function PromotionalSMS() {
 
         {/* SMS Body Input */}
         <div>
-          <label className="block text-gray-700 text-sm  mb-2 text-left dark:text-white">SMS Body</label>
+          <label className="block text-gray-700 text-sm  mb-2  dark:text-white">SMS Body</label>
           <textarea
             value={smsBody}
             onChange={(e) => setSmsBody(e.target.value)}
@@ -64,7 +64,7 @@ export default function PromotionalSMS() {
           <button
             type="button"
             onClick={handleSend}
-            className="bg-teal-500 text-white px-6 py-2 rounded-md hover:bg-teal-600 transition-colors duration-300"
+            className="bg-emerald-500 text-white px-6 py-2 rounded-md hover:bg-teal-600 transition-colors duration-300"
           >
             Send
           </button>

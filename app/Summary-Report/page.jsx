@@ -199,7 +199,7 @@ export default function SummaryReport() {
           <h3 className="text-sm">EXPENSE</h3>
           <p className="text-md">TK 25,130</p>
         </div>
-        <div className="bg-teal-500 text-white p-4 rounded shadow-md">
+        <div className="bg-emerald-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm">SELL PROFIT</h3>
           <p className="text-md">TK 515,997</p>
         </div>
@@ -209,7 +209,7 @@ export default function SummaryReport() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         {/* Top Sale Product Table */}
         <div className='border rounded'>
-          <h2 className="text-lg  bg-teal-500 p-2 text-white">Top Sale Product</h2>
+          <h2 className="text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
           
           <div className="md:flex justify-between mt-4">
             <div className="md:flex gap-2">

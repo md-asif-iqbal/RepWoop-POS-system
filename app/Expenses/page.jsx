@@ -226,7 +226,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
       {/* Action Buttons */}
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
-        <h2 className="text-2xl  mb-2 md:mb-0">Product List</h2>
+        <h2 className="text-2xl  mb-2 md:mb-0">Expenses</h2>
         <div className="md:flex space-x-2 space-y-2 md:space-y-0">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
           <button
@@ -336,19 +336,19 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-black">
-              <th className="px-4 py-2 text-left">
+            <tr className="bg-emerald-500 text-white">
+              <th className="px-4 py-2 ">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
-              <th className="px-4 py-2 text-left">Category Name</th>
-              <th className="px-4 py-2 text-left">Reference</th>
-              <th className="px-4 py-2 text-left">Date</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Amount</th>
-              <th className="px-4 py-2 text-left">Description</th>
-              <th className="px-4 py-2 text-left">Action</th>
+              <th className="px-4 py-2 ">Category Name</th>
+              <th className="px-4 py-2 ">Reference</th>
+              <th className="px-4 py-2 ">Date</th>
+              <th className="px-4 py-2 ">Status</th>
+              <th className="px-4 py-2 ">Amount</th>
+              <th className="px-4 py-2 ">Description</th>
+              <th className="px-4 py-2 ">Action</th>
               
             </tr>
           </thead>
@@ -356,7 +356,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
             {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
                 
               <tr key={product.id} className="border-t border-gray-200 ">
-                <td className="px-4 py-2 text-left">
+                <td className="px-4 py-2 ">
                   <input
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}

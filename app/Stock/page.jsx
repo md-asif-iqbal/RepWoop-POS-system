@@ -329,13 +329,13 @@ export default function Stock() {
   
   return (
     <div className='font-nunito text-sm'>
-       <div  className="p-4 max-w-full mx-auto mt-[5%]">
+       <div  className="p-2 max-w-full mx-auto mt-[5%]">
       {/* Title and Print Button */}
       <div className="flex justify-between items-center mb-4">
         <div className="text-xl  text-gray-600">Product Stock</div>
         <button
           onClick={handlePrint}
-          className="bg-teal-500 text-white cursor-pointer  px-10 py-2 rounded-md hover:bg-teal-600"
+          className="bg-emerald-500 text-white cursor-pointer  px-10 py-2 rounded-md hover:bg-teal-600"
         >
           Print
         </button>
@@ -390,21 +390,21 @@ export default function Stock() {
       <div ref={printRef} className="overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
   <table className=" w-full table-auto border-collapse bg-white text-sm text-center">
     <thead className="bg-gray-100">
-      <tr>
-        <th className="border px-1 py-2">#</th>
+      <tr className='bg-emerald-500 text-white'>
+        <th className=" px-1 py-2">#</th>
         {/* Add class for image header */}
-        <th className="border px-1 py-2 image-header">Image</th>
-        <th className="border px-1 py-2">Product</th>
-        <th className="border px-1 py-2">Category</th>
-        <th className="border px-1 py-2">Price</th>
-        <th className="border px-1 py-2">Cost</th>
-        <th className="border px-1 py-2">Purchased</th>
-        <th className="border px-1 py-2">Sold</th>
-        <th className="border px-1 py-2">Damaged</th>
-        <th className="border px-1 py-2">Returned</th>
-        <th className="border px-1 py-2">Available Stock</th>
-        <th className="border px-1 py-2">Sell Value</th>
-        <th className="border px-1 py-2">Purchase Value</th>
+        <th className=" px-1 py-2 image-header">Image</th>
+        <th className=" px-1 py-2">Product</th>
+        <th className=" px-1 py-2">Category</th>
+        <th className=" px-1 py-2">Price</th>
+        <th className=" px-1 py-2">Cost</th>
+        <th className=" px-1 py-2">Purchased</th>
+        <th className=" px-1 py-2">Sold</th>
+        <th className=" px-1 py-2">Damaged</th>
+        <th className=" px-1 py-2">Returned</th>
+        <th className=" px-1 py-2">Available Stock</th>
+        <th className=" px-1 py-2">Sell Value</th>
+        <th className=" px-1 py-2">Purchase Value</th>
       </tr>
     </thead>
     <tbody>

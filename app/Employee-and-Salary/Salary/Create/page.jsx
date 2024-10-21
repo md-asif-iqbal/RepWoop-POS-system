@@ -260,7 +260,7 @@ export default function EmployeeSalary() {
         {/* Save Button */}
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+            className="bg-emerald-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save

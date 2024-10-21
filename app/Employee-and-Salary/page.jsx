@@ -157,7 +157,7 @@ export default function EmployeeAndSalary() {
           onChange={(e) => setFilterPhone(e.target.value)}
         />
         <button
-          className="bg-teal-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
+          className="bg-emerald-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
           onClick={handleFilter}
         >
           Filter
@@ -183,7 +183,7 @@ export default function EmployeeAndSalary() {
         </div>
         <table id="table-to-print" className="table-auto w-full border-collapse border dark:text-white" >
           <thead>
-            <tr className='bg-teal-500 text-white'>
+            <tr className='bg-emerald-500 text-white'>
               <th className="px-4 py-2 border">#</th>
               <th className="px-4 py-2 border">Joining Date</th>
               <th className="px-4 py-2 border">Name</th>
@@ -225,7 +225,7 @@ export default function EmployeeAndSalary() {
           <button
             key={index}
             onClick={() => paginate(index + 1)}
-            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-teal-500 text-white' : 'bg-gray-300'}`}
+            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-emerald-500 text-white' : 'bg-gray-300'}`}
           >
             {index + 1}
           </button>

@@ -205,7 +205,7 @@ const SalesReturnList = () => {
 
                         {/* Responsive Table */}
                         <div className="overflow-x-auto mb-6">
-                          <table className="min-w-full text-left border-collapse">
+                          <table className="min-w-full  border-collapse">
                             <thead>
                               <tr>
                                 <th className="border p-2">Product Name</th>
@@ -381,43 +381,43 @@ const SalesReturnList = () => {
 
   {/* Sales Return Table */}
   <div className="overflow-x-auto dark:bg-[#141432]">
-    <table className="min-w-full bg-white dark:bg-[#29294e] border rounded-md shadow-sm">
+    <table className="w-full bg-white dark:bg-[#29294e] border rounded-md shadow-sm text-center border-collapse">
       <thead className="">
-        <tr>
-        <th className="p-4 text-left">Product</th>
+        <tr className="bg-emerald-500 text-white ">
+        <th className="p-2 ">Product</th>
     
-          <th className="p-4 text-left">Product Image</th>
-          <th className="p-4 text-left">Product Name</th>
-          <th className="p-4 text-left">Date</th>
-          <th className="p-4 text-left">Customer</th>
-          <th className="p-4 text-left">Status</th>
-          <th className="p-4 text-left">Grand Total ($)</th>
-          <th className="p-4 text-left">Paid ($)</th>
-          <th className="p-4 text-left">Due ($)</th>
-          <th className="p-4 text-left">Payment Status</th>
-          <th className="p-4 text-left">Action</th>
+          <th className="p-2  ">Product Image</th>
+          <th className="p-2 ">Product Name</th>
+          <th className="p-2 ">Date</th>
+          <th className="p-2 ">Customer</th>
+          <th className="p-2 ">Status</th>
+          <th className="p-2 ">Grand Total ($)</th>
+          <th className="p-2 ">Paid ($)</th>
+          <th className="p-2 ">Due ($)</th>
+          <th className="p-2 ">Payment Status</th>
+          <th className="p-2 ">Action</th>
         </tr>
       </thead>
       <tbody>
         {filteredSalesReturns.map((returnItem, index) => (
           <tr key={index} className="border-t border-r border-b border-l">
             {/* Select Checkbox */}
-            <td className="p-4">
+            <td className="p-2 border">
               <input type="checkbox" value={returnItem.productId} className="p-5" />
             </td>
          
             {/* Product Image */}
-            <td className="p-4">
+            <td className="p-2 border">
               <Image src={returnItem.productImage} alt={returnItem.productName} className="w-12 h-12 rounded-full"/>
             </td>
-            <td className="p-4">{returnItem.productName}</td>
-            <td className="p-4">{returnItem.date}</td>
-            <td className="p-4">{returnItem.customer}</td>
-            <td className="p-4">
+            <td className="p-2 border">{returnItem.productName}</td>
+            <td className="p-2 border">{returnItem.date}</td>
+            <td className="p-2 border">{returnItem.customer}</td>
+            <td className="p-2 border">
               <span
                 className={`px-2 py-1 text-xs  rounded-full ${
                   returnItem.status === "Received"
-                    ? "bg-green-100 text-green-700"
+                    ? "bg-green-100 text-green-700 "
                     : returnItem.status === "Pending"
                     ? "bg-red-100 text-red-700"
                     : "bg-yellow-100 text-yellow-700"
@@ -426,10 +426,10 @@ const SalesReturnList = () => {
                 {returnItem.status}
               </span>
             </td>
-            <td className="p-4">{returnItem.grandTotal}</td>
-            <td className="p-4">{returnItem.paid}</td>
-            <td className="p-4">{returnItem.due}</td>
-            <td className="p-4">
+            <td className="p-2 border">{returnItem.grandTotal}</td>
+            <td className="p-2 border">{returnItem.paid}</td>
+            <td className="p-2 border">{returnItem.due}</td>
+            <td className="p-2 border">
               <span
                 className={`px-2 py-1 text-xs  rounded-full ${
                   returnItem.paymentStatus === "Paid"
@@ -442,7 +442,7 @@ const SalesReturnList = () => {
                 {returnItem.paymentStatus}
               </span>
             </td>
-            <td className="p-4 flex space-x-2">
+            <td className="p-2 flex space-x-2">
               <div className="flex item-center justify-center gap-5">
                 <button className="p-1 rounded-lg border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
                   <TbEdit size={16}/>

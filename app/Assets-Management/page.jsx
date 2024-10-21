@@ -106,7 +106,7 @@ export default function Assets() {
       <div className="overflow-x-auto">
         <table id='table-to-print' className="table-auto w-full border-collapse">
           <thead>
-            <tr className="bg-teal-500 text-white">
+            <tr className="bg-emerald-500 text-white">
               <th className="border px-4 py-2">No</th>
               <th className="border px-4 py-2">Asset Name</th>
               <th className="border px-4 py-2">Purchase Price</th>
@@ -152,7 +152,7 @@ export default function Assets() {
 
       {/* Print Button */}
       <div className="flex justify-end mt-4">
-        <button onClick={handlePrint} className="bg-teal-500 text-white px-8 py-2 rounded hover:bg-teal-700">
+        <button onClick={handlePrint} className="bg-emerald-500 text-white px-8 py-2 rounded hover:bg-teal-700">
           Print
         </button>
       </div>

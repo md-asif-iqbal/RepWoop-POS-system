@@ -332,7 +332,7 @@ export default function Purchase() {
         </div>
       </div>
               {/* here is another section */}
-              <div className="p-4">
+              <div className="p-2">
       {/* Filter Section */}
                     <div className="mb-4 grid grid-cols-1 md:grid-cols-5 gap-4">
                         <input
@@ -389,17 +389,17 @@ export default function Purchase() {
 
                     {/* Table Section */}
                     <div className="overflow-x-auto dark:bg-[#212144] dark:text-white border rounded ">
-                        <table className="min-w-full table-auto border-collapse border border-gray-300">
+                        <table className="min-w-full table-auto border-collapse border border-gray-300 text-center">
                         <thead>
-                            <tr className="bg-teal-500 text-stone-50">
-                            <th className="p-2 text-left border border-gray-300">Bill No</th>
-                            <th className="p-2 text-left border border-gray-300">Supplier</th>
-                            <th className="p-2 text-left border border-gray-300">Purchase Date</th>
-                            <th className="p-2 text-left border border-gray-300">Items</th>
-                            <th className="p-2 text-left border border-gray-300">Payable</th>
-                            <th className="p-2 text-left border border-gray-300">Paid</th>
-                            <th className="p-2 text-left border border-gray-300">Due</th>
-                            <th className="p-2 text-left ">Actions</th>
+                            <tr className="bg-emerald-500 text-stone-50">
+                            <th className="p-2  border border-gray-300">Bill No</th>
+                            <th className="p-2  border border-gray-300">Supplier</th>
+                            <th className="p-2  border border-gray-300">Purchase Date</th>
+                            <th className="p-2  border border-gray-300">Items</th>
+                            <th className="p-2  border border-gray-300">Payable</th>
+                            <th className="p-2  border border-gray-300">Paid</th>
+                            <th className="p-2  border border-gray-300">Due</th>
+                            <th className="p-2  ">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -414,7 +414,7 @@ export default function Purchase() {
                                 <td className="p-2 border border-gray-300">{purchase.due}</td>
                                 <td className="p-2 relative ">
                                 <button
-                                    className="bg-teal-500 text-white p-2 rounded flex items-center"
+                                    className="bg-emerald-500 text-white p-2 rounded flex items-center"
                                     onClick={() => toggleDropdown(index)}
                                 >
                                     <span>Manage</span>
@@ -436,7 +436,7 @@ export default function Purchase() {
                                     <ul className="py-1">
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => generateInvoice(purchase)}
                                         >
                                             <span className="mr-2">
@@ -447,7 +447,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Show Action')}
                                         >
                                             <span className="mr-2 ">
@@ -458,7 +458,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Edit Action')}
                                         >
                                             <span className="mr-2 ">
@@ -471,7 +471,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Add Payment Action')}
                                         >
                                             <span className="mr-2">
@@ -482,7 +482,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-red-600 hover:bg-red-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-red-600 hover:bg-red-100 flex items-center"
                                             onClick={() => alert('Delete Action')}
                                         >
                                             <span className="mr-2">

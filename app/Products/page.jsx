@@ -350,28 +350,28 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-black">
-              <th className="px-4 py-2 text-left">
+            <tr className="bg-emerald-500 text-white">
+              <th className="px-4 py-2 ">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
-              <th className="px-4 py-2 text-left">Product</th>
-              <th className="px-4 py-2 text-left">SKU</th>
-              <th className="px-4 py-2 text-left">Category</th>
-              <th className="px-4 py-2 text-left">Brand</th>
-              <th className="px-4 py-2 text-left">Price</th>
-              <th className="px-4 py-2 text-left">Unit</th>
-              <th className="px-4 py-2 text-left">Quantity</th>
-              <th className="px-4 py-2 text-left">Created Date</th>
-              <th className="px-4 py-2 text-left">Created By</th>
-              <th className="px-4 py-2 text-left">Action</th>
+              <th className="px-4 py-2 ">Product</th>
+              <th className="px-4 py-2 ">SKU</th>
+              <th className="px-4 py-2 ">Category</th>
+              <th className="px-4 py-2 ">Brand</th>
+              <th className="px-4 py-2 ">Price</th>
+              <th className="px-4 py-2 ">Unit</th>
+              <th className="px-4 py-2 ">Quantity</th>
+              <th className="px-4 py-2 ">Created Date</th>
+              <th className="px-4 py-2 ">Created By</th>
+              <th className="px-4 py-2 ">Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
               <tr key={product.id} className="border-t border-gray-200 hover:bg-gray-100">
-                <td className="px-4 py-2 text-left">
+                <td className="px-4 py-2 ">
                   <input
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}

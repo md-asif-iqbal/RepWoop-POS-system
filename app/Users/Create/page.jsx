@@ -158,7 +158,7 @@ export default function NewUsers() {
         <div className="md:col-span-2 flex justify-end">
           <button
             type="submit"
-            className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-700 flex items-center"
+            className="bg-emerald-500 text-white px-4 py-2 rounded hover:bg-teal-700 flex items-center"
           >
             <i className="fas fa-save mr-2"></i> Save User
           </button>

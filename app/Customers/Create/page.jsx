@@ -149,7 +149,7 @@ export default function CustomerAdded() {
 
         <div className="flex items-center justify-center">
           <button
-            className="bg-teal-500 hover:bg-teal-700 text-white  py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-emerald-500 hover:bg-teal-700 text-white  py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Save

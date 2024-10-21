@@ -152,7 +152,7 @@ export default function page() {
   const uniqueCustomers = [...new Set(salesData.map(sale => sale.customer))];
   return (
     <div className='bg-white dark:bg-[#141432] text-gray-500 dark:text-white font-nunito text-sm'>
-        <div className="p-4 mt-[5%]">
+        <div className="p-2 mt-[5%]">
       {/* Header with statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-blue-600 text-white p-4 rounded shadow-sm">
@@ -207,7 +207,7 @@ export default function page() {
 
       {/* Sales Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full text-left">
+        <table className="table-auto w-full ">
           <thead className="border">
             <tr>
               <th className="p-2">Invoice No.</th>

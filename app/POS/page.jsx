@@ -86,7 +86,7 @@ export default function POSManage() {
                 <option>Registered Customer</option>
               </select>
               {/* Add Button */}
-              <button className="bg-teal-500 text-white w-[50%] px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none"
+              <button className="bg-emerald-500 text-white w-[50%] px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none"
               onClick={()=>document.getElementById('my_modal_3').showModal()}>
                 Add
               </button>
@@ -190,7 +190,7 @@ export default function POSManage() {
             <div className="mt-6">
               <table className="w-full border-collapse border border-gray-300 ">
                 <thead>
-                  <tr className="bg-teal-500 text-white">
+                  <tr className="bg-emerald-500 text-white">
                     <th className="border border-gray-300 p-2">Name</th>
                     <th className="border border-gray-300 p-2">Quantity</th>
                     <th className="border border-gray-300 p-2">Price</th>
@@ -259,19 +259,19 @@ export default function POSManage() {
             {/* Categories */}
             <h1 className='text-md  mb-2'>Categories</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
-              <button  onClick={() => filterByCategory('Document')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button  onClick={() => filterByCategory('Document')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
                 Document
               </button>
-              <button onClick={() => filterByCategory('Electronics')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Electronics')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
                 Electronics
               </button>
-              <button onClick={() => filterByCategory('Fashion')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Fashion')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
                 Fashion
               </button>
-              <button onClick={() => filterByCategory('Hardware')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('Hardware')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
                 Hardware
               </button>
-              <button onClick={() => filterByCategory('House')} className="bg-teal-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => filterByCategory('House')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
                 House
               </button>
             </div>

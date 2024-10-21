@@ -117,7 +117,7 @@ export default function Damages() {
                 <div ref={printRef} className="overflow-x-auto">
                         <table className="min-w-full text-center border-collapse print:block items-center justify-center">
                         <thead>
-                            <tr>
+                            <tr className='bg-emerald-500 text-white'>
                             <th className="border p-2 print:table-cell">#</th>
                             
                             <th className="border p-2 print:table-cell">Date</th>

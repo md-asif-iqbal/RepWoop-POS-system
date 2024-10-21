@@ -275,7 +275,7 @@ export default function CustomersList() {
         </div>
         <table id="table-to-print" className="table-auto w-full border-collapse border">
           <thead>
-            <tr className="bg-gray-200 dark:bg-[#232350] dark:text-white">
+            <tr className="bg-emerald-500 dark:bg-[#232350] dark:text-white">
               <th className="border px-4 py-2">#</th>
               <th className="border px-4 py-2">Name</th>
               <th className="border px-4 py-2">Email</th>

@@ -227,7 +227,7 @@ export default function Dashboard() {
       {/* Current Month Summary */}
       <h2 className="text-md  mb-4">Current Month Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-teal-500 text-white p-4 rounded shadow-sm">
+        <div className="bg-emerald-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">SOLD IN SEP 2024</h3>
           <p className="">Tk 20,003,886,022</p>
         </div>
@@ -272,7 +272,7 @@ export default function Dashboard() {
               <h3 className="  mb-4">Recent Products</h3>
               <table className="table-auto w-full">
                 <thead>
-                  <tr className="text-left">
+                  <tr className="">
                     <th className="p-2">Products</th>
                     <th className="p-2">Price</th>
                   </tr>
@@ -305,10 +305,10 @@ export default function Dashboard() {
         <table className="min-w-full table-auto border ">
           <thead>
             <tr className=" uppercase text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Product</th>
-              <th className="py-3 px-6 text-left">SKU</th>
-              <th className="py-3 px-6 text-left">Manufactured Date</th>
-              <th className="py-3 px-6 text-left">Expired Date</th>
+              <th className="py-3 px-6 ">Product</th>
+              <th className="py-3 px-6 ">SKU</th>
+              <th className="py-3 px-6 ">Manufactured Date</th>
+              <th className="py-3 px-6 ">Expired Date</th>
               <th className="py-3 px-6 text-center">Action</th>
             </tr>
           </thead>
@@ -318,7 +318,7 @@ export default function Dashboard() {
                 key={product.id}
                 className="border-b border-gray-200 "
               >
-                <td className="py-3 px-6 text-left whitespace-nowrap flex items-center">
+                <td className="py-3 px-6  whitespace-nowrap flex items-center">
                   <input type="checkbox" className="mr-2" />
                   <Image
                     src={product.image}
@@ -329,9 +329,9 @@ export default function Dashboard() {
                   />
                   <span className="font-medium">{product.name}</span>
                 </td>
-                <td className="py-3 px-6 text-left">{product.sku}</td>
-                <td className="py-3 px-6 text-left">{product.manufacturedDate}</td>
-                <td className="py-3 px-6 text-left">{product.expiredDate}</td>
+                <td className="py-3 px-6 ">{product.sku}</td>
+                <td className="py-3 px-6 ">{product.manufacturedDate}</td>
+                <td className="py-3 px-6 ">{product.expiredDate}</td>
                 <td className="py-3 px-6 text-center">
                   <div className="flex item-center justify-center gap-5">
                     <button className="p-1 rounded-lg border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110 ">

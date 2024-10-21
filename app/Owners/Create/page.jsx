@@ -128,7 +128,7 @@ export default function CreateOwner() {
           <div className="text-center">
             <button
               type="submit"
-              className="w-full bg-teal-500 text-gray-500 dark:text-white py-2 px-4 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+              className="w-full bg-emerald-500 text-gray-500 dark:text-white py-2 px-4 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             >
               Submit
             </button>

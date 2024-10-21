@@ -229,8 +229,8 @@ export default function CategoryList() {
             {/* Product Table */}
             <table className="min-w-full bg-white dark:bg-[#1c1c3c] dark:text-white border border-gray-300 font-nunito text-gray-500">
                 <thead>
-                    <tr>
-                    <th className="border px-4 py-2 text-left">
+                    <tr className='bg-emerald-500 text-white'>
+                    <th className="border px-4 py-2 ">
                 <input type="checkbox" onChange={handleSelectAll} />
               </th>
                         <th className="border px-4 py-2">Category</th>
@@ -244,7 +244,7 @@ export default function CategoryList() {
                     {currentProducts.length > 0 ? (
                         currentProducts.map((product, index) => (
                             <tr key={index} className="border-b text-center">
-                                <td className="px-4 py-2 text-left border">
+                                <td className="px-4 py-2  border">
                                   <input
                                     type="checkbox"
                                     checked={selectedProducts.includes(product.id)}

@@ -121,7 +121,7 @@ export default function SupplierList() {
           onChange={(e) => setFilterPhone(e.target.value)}
         />
         <button
-          className="bg-teal-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
+          className="bg-emerald-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
           onClick={handleFilter}
         >
           Filter
@@ -137,7 +137,7 @@ export default function SupplierList() {
           Reset
         </button>
         <button
-          className="bg-teal-500 text-white rounded px-8 py-2 mb-2 md:mb-0"
+          className="bg-emerald-500 text-white rounded px-8 py-2 mb-2 md:mb-0"
           onClick={handlePrint}
         >
           Print
@@ -147,7 +147,7 @@ export default function SupplierList() {
       <div className="overflow-x-auto">
         <table id="table-to-print" className="min-w-full bg-white dark:bg-[#141432] table-auto w-full border-collapse border">
           <thead>
-            <tr className='bg-teal-500 text-white'>
+            <tr className='bg-emerald-500 text-white'>
               <th className="px-4 border py-2">SL</th>
               <th className="px-4 border py-2">Name</th>
               <th className="px-4 border py-2">Email</th>
@@ -176,7 +176,7 @@ export default function SupplierList() {
                 <td className="px-4 border py-2">{supplier.totalDue}</td>
                 <td className="p-2 relative ">
                                 <button
-                                    className="bg-teal-500 text-white p-2 rounded flex items-center"
+                                    className="bg-emerald-500 text-white p-2 rounded flex items-center"
                                     onClick={() => toggleDropdown(index)}
                                 >
                                     <span>Manage</span>
@@ -198,7 +198,7 @@ export default function SupplierList() {
                                     <ul className="py-1">
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => generateInvoice(purchase)}
                                         >
                                             <span className="mr-2">
@@ -209,7 +209,7 @@ export default function SupplierList() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Show Action')}
                                         >
                                             <span className="mr-2 ">
@@ -220,7 +220,7 @@ export default function SupplierList() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Edit Action')}
                                         >
                                             <span className="mr-2 ">
@@ -233,7 +233,7 @@ export default function SupplierList() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
                                             onClick={() => alert('Add Payment Action')}
                                         >
                                             <span className="mr-2">
@@ -244,7 +244,7 @@ export default function SupplierList() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm text-left text-red-600 hover:bg-red-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-red-600 hover:bg-red-100 flex items-center"
                                             onClick={() => alert('Delete Action')}
                                         >
                                             <span className="mr-2">
@@ -269,7 +269,7 @@ export default function SupplierList() {
           (_, index) => (
             <button
               key={index}
-              className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? "bg-teal-500 text-white" : "bg-gray-300"}`}
+              className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? "bg-emerald-500 text-white" : "bg-gray-300"}`}
               onClick={() => paginate(index + 1)}
             >
               {index + 1}

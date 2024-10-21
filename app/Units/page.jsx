@@ -94,7 +94,7 @@ export default function Units() {
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse">
           <thead>
-            <tr className="bg-teal-500 text-white">
+            <tr className="bg-emerald-500 text-white">
               <th className="border px-4 py-2">#</th>
               <th className="border px-4 py-2">Name</th>
               <th className="border px-4 py-2">Related To</th>

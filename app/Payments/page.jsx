@@ -253,7 +253,7 @@ export default function Payments() {
     
           <table id="table-to-print" className="min-w-full border border-gray-300 text-center dark:bg-[#1d1d3b]">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className='bg-emerald-500 text-white'>
                 <th className="border border-gray-300 px-4 py-2">SL</th>
                 <th className="border border-gray-300 px-4 py-2">Customer/Supplier</th>
                 <th className="border border-gray-300 px-4 py-2">Date</th>
