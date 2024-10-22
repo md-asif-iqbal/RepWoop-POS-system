@@ -64,7 +64,7 @@ export default function AccountPage() {
         <div className="md:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
             type="text"
-            placeholder="Enter Account Name"
+            placeholder="Enter Account Name..."
             className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
           />
           <input
