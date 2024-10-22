@@ -65,15 +65,15 @@ export default function AccountPage() {
           <input
             type="text"
             placeholder="Enter Account Name"
-            className="border border-gray-300 rounded px-4 py-2 flex-1"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
           />
           <input
             type="number"
             placeholder="Opening Balance"
-            className="border border-gray-300 rounded px-4 py-2 flex-1"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
           />
           <button
-            className="bg-emerald-500 text-white px-4 py-2 rounded"
+            className="bg-emerald-500 text-white px-4 py-2 rounded "
             onClick={() => alert("Account Added")}
           >
             Save

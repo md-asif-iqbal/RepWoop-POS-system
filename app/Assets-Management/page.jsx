@@ -92,7 +92,7 @@ export default function Assets() {
           placeholder="Name"
           value={assetNameFilter}
           onChange={(e) => setAssetNameFilter(e.target.value)}
-          className="border p-2 w-full md:w-1/4"
+          className="border p-2 w-full md:w-1/4 dark:bg-white"
         />
         <button onClick={handleFilter} className="bg-green-500 text-white px-8 py-2">
           Filter
