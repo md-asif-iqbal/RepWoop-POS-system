@@ -93,7 +93,7 @@ export default function Sidebar() {
 
 
   return (
-    <div className='font-nunito text-sm'>
+    <div className='font-nunito text-sm '>
         <div className="dropdown lg:hidden items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
                 <AlignJustify size={20} strokeWidth={2} className='' />
@@ -111,7 +111,7 @@ export default function Sidebar() {
             <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
                 {/* font*/}
                <Link href="/"> <Image src={logo} width={150} height={300} alt='Repwoop POS Software' className='bg-transparent w-[60%] xl:w-[90%]'/></Link>
-                <div className="text-start">
+                <div className="text-start ">
                     <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
                         <li>
                         
@@ -813,7 +813,7 @@ export default function Sidebar() {
                         </div>
 
                         {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white '>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-10'>
                         <DatabaseBackup size={20} strokeWidth={1} />
                             <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
                         </div>

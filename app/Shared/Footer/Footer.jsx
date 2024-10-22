@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className=' bg-white dark:bg-[#171736] dark:text-white w-full font-nunito text-sm'>
+    <div className=' bg-white dark:bg-[#171736] dark:text-white w-full font-nunito text-sm p-5'>
         <footer className="relative  pb-6">
   <div className="container mx-auto px-4">
   <div className="divider"></div>

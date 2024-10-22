@@ -48,6 +48,8 @@ Repwoop POS is an advanced, feature-rich Point of Sale system designed to simpli
 - **Database**: MongoDB for storing product, transaction, and user data.
 - **Deployment**: Hosted on Heroku and Netlify for easy access and scalability.
 
+### Live Link: https://repwoop-pos-system.vercel.app/
+
 ## Installation
 
 ### Step 1: Clone the repository
