@@ -300,18 +300,18 @@ export default function Stock() {
   };
   // Function to handle printing and downloading PDF
   const handlePrint = () => {
-    const imageHeader = document.querySelector(".image-header");
-    const imageColumns = document.querySelectorAll(".image-column");
+    // const imageHeader = document.querySelector(".image-header");
+    // const imageColumns = document.querySelectorAll(".image-column");
     
-    // Hide the image header and columns
-    if (imageHeader) imageHeader.style.display = "none";
-    imageColumns.forEach((col) => {
-      col.style.display = "none";
-    });
-    const printContents = printRef.current.innerHTML;
-    const originalContents = document.body.innerHTML;
+    // // Hide the image header and columns
+    // if (imageHeader) imageHeader.style.display = "none";
+    // imageColumns.forEach((col) => {
+    //   col.style.display = "none";
+    // });
+    // const printContents = printRef.current.innerHTML;
+    // const originalContents = document.body.innerHTML;
   
-    document.body.innerHTML = printContents; // Replace the body content with the part we want to print
+    // document.body.innerHTML = printContents; // Replace the body content with the part we want to print
     window.print(); // Trigger print dialog
     // document.body.innerHTML = originalContents;
 

@@ -53,9 +53,9 @@ export default function Damages() {
 
   // Print functionality
   const handlePrint = () => {
-    const printContents = printRef.current.innerHTML;
-    const originalContents = document.body.innerHTML;
-    document.body.innerHTML = `<div style="display: flex; justify-content: center; margin-top: 2%;">${printContents}</div>`;
+    // const printContents = printRef.current.innerHTML;
+    // const originalContents = document.body.innerHTML;
+    // document.body.innerHTML = `<div style="display: flex; justify-content: center; margin-top: 2%;">${printContents}</div>`;
         window.print(); // Trigger print dialog
         // document.body.innerHTML = originalContents;
         // window.location.reload(); // Reload to re-render the original content
