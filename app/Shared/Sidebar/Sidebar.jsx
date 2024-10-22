@@ -93,7 +93,7 @@ export default function Sidebar() {
 
 
   return (
-    <div className='font-nunito text-sm '>
+    <div className='font-nunito text-sm z-50'>
         <div className="dropdown lg:hidden items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
                 <AlignJustify size={20} strokeWidth={2} className='' />
@@ -813,7 +813,7 @@ export default function Sidebar() {
                         </div>
 
                         {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-16 md:pb-10'>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-28 md:pb-8'>
                         <DatabaseBackup size={20} strokeWidth={1} />
                             <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
                         </div>
