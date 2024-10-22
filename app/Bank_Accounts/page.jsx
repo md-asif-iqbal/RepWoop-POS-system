@@ -61,10 +61,10 @@ export default function AccountPage() {
       {/* New Account Section */}
       <div className="bg-white p-4 shadow-sm rounded-md ">
         <h2 className="text-lg  mb-4">New Account</h2>
-        <div className="md:flex md:space-x-4 space-y-3 md:space-y-0">
+        <div className="lg:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
             type="text"
-            placeholder="Enter Account Name..."
+            placeholder="Enter Account Name"
             className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
           />
           <input

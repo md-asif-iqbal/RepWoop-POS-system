@@ -50,7 +50,7 @@ export default function Navigation() {
   return (
     <div className='w-[100%] lg:w-[86%] fixed top-0 z-50 font-nunito text-sm'>
 
-        <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm items-center">
+        <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm items-center ">
             <div className="navbar-start flex items-center">
             <span className='md:hidden '><Sidebar /></span>
                 <a className=" text-gray-500 dark:text-white  md:text-md">Repwoop POS Software</a>
@@ -167,7 +167,7 @@ export default function Navigation() {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 mr-10 shadow">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 mr-10 shadow dark:text-white">
         <li>
           <a className="justify-between">
             Profile
