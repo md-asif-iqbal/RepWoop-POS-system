@@ -1,9 +1,10 @@
 'use client'
 import React, { useRef } from "react";
-import html2pdf from "html2pdf.js";
+// @ts-ignore
+// import html2pdf from 'html2pdf.js';
 
 
-export default function Cash_Book() {
+export default function CashBook() {
   // Data for transactions stored in a constant
   const transactions = [
     {
@@ -61,18 +62,18 @@ export default function Cash_Book() {
   
       document.body.innerHTML = printContents; // Replace the body content with the part we want to print
       window.print(); // Trigger print dialog
-      document.body.innerHTML = originalContents; // Restore the original content after printing
+      // document.body.innerHTML = originalContents; // Restore the original content after printing
   
-      window.location.reload(); // Reload to re-render the original content
-      html2pdf()
-      .from(element)
-      .set({
-        margin: 1,
-        filename: 'cashbook.pdf',
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-      })
-      .save();
+      // window.location.reload(); // Reload to re-render the original content
+      // html2pdf()
+      // .from(element)
+      // .set({
+      //   margin: 1,
+      //   filename: 'cashbook.pdf',
+      //   html2canvas: { scale: 2 },
+      //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      // })
+      // .save();
     };
     
   return (

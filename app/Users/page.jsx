@@ -1,6 +1,7 @@
 "use client"
 
 import { Pencil, Trash2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -96,7 +97,7 @@ export default function Users() {
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">{user.role}</td>
                 <td className="border px-4 py-2">
-                  <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full mx-auto" />
+                  <Image width={200} height={300}  src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full mx-auto" />
                 </td>
                 <td className="border px-2 py-2">
                  <Link href="/Users/Create">

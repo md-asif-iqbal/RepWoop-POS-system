@@ -6,6 +6,7 @@ import * as XLSX from 'xlsx';
 import { Eye, Filter, View } from 'lucide-react';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { TbEdit } from 'react-icons/tb';
+import Image from 'next/image';
 
 export default function ProductList() {
     const [showModal, setShowModal] = useState(false);
@@ -379,7 +380,8 @@ export default function ProductList() {
                   />
                 </td>
                 <td className="px-4 py-2 flex items-center">
-                  <img
+                  <Image 
+                  width={200} height={300}
                     src={`/${product.sku}.png`}
                     alt={product.product}
                     className="w-10 h-10 object-cover rounded mr-2"

@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   transpilePackages: ['lucide-react'],
     images: {
+      unoptimized: true, 
       remotePatterns: [
         {
           protocol: 'https',
@@ -13,6 +15,7 @@ const nextConfig = {
         },
       ],
     },
+    distDir: 'out',
   };
   
   export default nextConfig;

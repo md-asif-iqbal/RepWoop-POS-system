@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState } from 'react';
-import html2pdf from 'html2pdf.js';
+// import html2pdf from 'html2pdf.js';
 import { Trash2 } from 'lucide-react';
 export default function Damages() {
     const printRef = useRef();
@@ -57,17 +57,17 @@ export default function Damages() {
     const originalContents = document.body.innerHTML;
     document.body.innerHTML = `<div style="display: flex; justify-content: center; margin-top: 2%;">${printContents}</div>`;
         window.print(); // Trigger print dialog
-        document.body.innerHTML = originalContents;
-        window.location.reload(); // Reload to re-render the original content
-        html2pdf()
-        .from(element)
-        .set({
-        margin: 1,
-        filename: 'cashbook.pdf',
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-        })
-        .save();
+        // document.body.innerHTML = originalContents;
+        // window.location.reload(); // Reload to re-render the original content
+        // html2pdf()
+        // .from(element)
+        // .set({
+        // margin: 1,
+        // filename: 'cashbook.pdf',
+        // html2canvas: { scale: 2 },
+        // jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        // })
+        // .save();
   };
 
   // Filtering logic
