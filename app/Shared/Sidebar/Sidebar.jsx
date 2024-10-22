@@ -813,7 +813,7 @@ export default function Sidebar() {
                         </div>
 
                         {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-10'>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-16 md:pb-10'>
                         <DatabaseBackup size={20} strokeWidth={1} />
                             <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
                         </div>

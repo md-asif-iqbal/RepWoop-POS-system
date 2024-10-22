@@ -301,52 +301,49 @@ export default function Dashboard() {
         </div>
         <div className="">
       <h2 className="text-md  mb-4 ">Expired Products</h2>
-      <div className="overflow-x-auto  shadow-sm dark:bg-[#202047] w-full">
-        <table className="w-full table-auto border text-center ">
-          <thead>
-            <tr className=" bg-emerald-500 text-white text-sm leading-normal ">
-              <th className="py-2 border ">Product</th>
-              <th className="py-2 border ">SKU</th>
-              <th className="py-2 border ">Manufactured Date</th>
-              <th className="py-2 border ">Expired Date</th>
-              <th className="py-2 border text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody className=" text-sm font-light">
-            {products.map((product) => (
-              <tr
-                key={product.id}
-                className="border-b border-gray-200 "
-              >
-                <td className="py-2 border  whitespace-nowrap flex items-center">
-                  <input type="checkbox" className="mr-2 ml-2" />
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={300}
-                    height={400}
-                    className="w-10 h-10 rounded-full mr-2"
-                  />
-                  <span className="font-medium">{product.name}</span>
-                </td>
-                <td className="py-2 border ">{product.sku}</td>
-                <td className="py-2 border ">{product.manufacturedDate}</td>
-                <td className="py-2 border ">{product.expiredDate}</td>
-                <td className="py-2 border text-center">
-                  <div className="flex item-center justify-center gap-5">
-                    <button className="p-1  border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110 ">
-                    <TbEdit size={16}/>
-                    </button>
-                    <button className="p-1  transform text-red-600 hover:text-red-500 hover:scale-110 border-2 ">
-                    <RiDeleteBin5Line size={16}/>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <div className="overflow-x-auto w-full">
+  <table className="min-w-full table-auto border text-center ">
+    <thead>
+      <tr className="bg-emerald-500 text-white text-sm leading-normal">
+        <th className="py-2 border">Product</th>
+        <th className="py-2 border">SKU</th>
+        <th className="py-2 border">Manufactured Date</th>
+        <th className="py-2 border">Expired Date</th>
+        <th className="py-2 border">Action</th>
+      </tr>
+    </thead>
+    <tbody className="text-sm font-light">
+      {products.map((product) => (
+        <tr key={product.id} className="border-b border-gray-200">
+          <td className="py-2 border md:flex justify-items-center items-center whitespace-nowrap">
+            <input type="checkbox" className="mr-2 ml-2 " />
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={300}
+              height={400}
+              className="w-10 h-10 rounded-full mr-2 flex items-center "
+            />
+            <span className="font-medium">{product.name}</span>
+          </td>
+          <td className="py-2 border">{product.sku}</td>
+          <td className="py-2 border">{product.manufacturedDate}</td>
+          <td className="py-2 border">{product.expiredDate}</td>
+          <td className="py-2 border">
+            <div className="flex item-center justify-center gap-5">
+              <button className="p-1 border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
+                <TbEdit size={16} />
+              </button>
+              <button className="p-1 transform text-red-600 hover:text-red-500 hover:scale-110 border-2">
+                <RiDeleteBin5Line size={16} />
+              </button>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
     </div>
       </main>
     </div>
