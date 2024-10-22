@@ -1,7 +1,7 @@
 'use client'; 
 
 import React, { useState, useRef } from 'react';
-import html2pdf from 'html2pdf.js';
+// import html2pdf from 'html2pdf.js';
 import Image from 'next/image';
 
 export default function Stock() {
