@@ -69,27 +69,26 @@ export default function Sidebar() {
     // Function to toggle sidebar visibility
     const toggleSidebar = () => {
       setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
-      console.log("Sidebar is now", !isSidebarOpen ? "open" : "closed"); // Log the new state
     };
   
-    // Close the sidebar when clicking outside
-    const handleClickOutside = (event) => {
-      // Check if the click was outside the sidebar
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
-        setIsSidebarOpen(false); // Close the sidebar if clicking outside and it's open
-        console.log("Sidebar is closed"); // Debugging log
-      }
-    };
+    // // Close the sidebar when clicking outside
+    // const handleClickOutside = (event) => {
+    //   // Check if the click was outside the sidebar
+    //   if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
+    //     setIsSidebarOpen(false); // Close the sidebar if clicking outside and it's open
+    //     console.log("Sidebar is closed"); // Debugging log
+    //   }
+    // };
   
-    useEffect(() => {
-      // Add event listener for clicks
-      document.addEventListener('mousedown', handleClickOutside);
+    // useEffect(() => {
+    //   // Add event listener for clicks
+    //   document.addEventListener('mousedown', handleClickOutside);
   
-      // Clean up the event listener on component unmount
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, []);
+    //   // Clean up the event listener on component unmount
+    //   return () => {
+    //     document.removeEventListener('mousedown', handleClickOutside);
+    //   };
+    // }, []);
 
 
   return (
