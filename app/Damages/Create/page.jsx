@@ -59,7 +59,7 @@ export default function AddProduct() {
   return (
     <div className='h-screen font-nunito text-sm'>
          <div className="container mx-auto p-4 md:mt-[5%] mt-[20%] overflow-y-auto">
-      <h1 className="text-lg  mb-4">Add Damage</h1>
+      <h1 className="text-lg dark:text-white  mb-4">Add Damage</h1>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="bg-white shadow-sm rounded px-8 pt-6 pb-8 mb-4">

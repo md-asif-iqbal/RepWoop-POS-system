@@ -34,7 +34,7 @@ export default function Roles() {
     <div className="container mx-auto p-6 mt-[20%] md:mt-[5%]">
       {/* Add Role Section */}
       <div className="mb-6">
-        <h2 className="text-xl font-bold mb-4">Add Role</h2>
+        <h2 className=" dark:text-white text-xl font-bold mb-4">Add Role</h2>
         <input
           type="text"
           placeholder="Role Name"
@@ -52,7 +52,7 @@ export default function Roles() {
 
       {/* Roles Table */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Roles</h2>
+        <h2 className=" dark:text-white text-xl font-bold mb-4">Roles</h2>
         <table className="w-full border-collapse border">
           <thead>
             <tr className="bg-gray-200">

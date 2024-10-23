@@ -63,7 +63,7 @@ export default function CreateAssets() {
   </div>
 
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-lg  mb-4">Add Assets</h2>
+      <h2 className=" dark:text-white text-lg  mb-4">Add Assets</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Asset Name */}

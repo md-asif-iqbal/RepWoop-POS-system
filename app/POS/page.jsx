@@ -56,7 +56,7 @@ export default function POSManage() {
         <div className='bg-white dark:bg-[#141432] dark:text-white font-nunito text-sm'>
             <div className="container mx-auto p-4 mt-[5%] ">
         {/* POS Manage Header */}
-        <h1 className="text-lg  mb-6 ">POS Manage</h1>
+        <h1 className="text-lg dark:text-white  mb-6 ">POS Manage</h1>
   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Section: Input and Payment */}
@@ -103,7 +103,7 @@ export default function POSManage() {
                         <div className=" p-6">
                             {/* Header */}
                             <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-md ">Add Customer</h2>
+                            <h2 className=" dark:text-white text-md ">Add Customer</h2>
                             </div>
 
                             {/* Form */}
@@ -283,7 +283,7 @@ export default function POSManage() {
                   <div className="bg-gray-200 h-24 flex justify-center items-center rounded-md">
                     <span>No Image</span>
                   </div>
-                  <p className="mt-2 ">{product.name} - 0000{product.id}</p>
+                  <p className=" dark:text-white mt-2 ">{product.name} - 0000{product.id}</p>
                   <p>{product.price.toFixed(2)} Tk</p>
                   <p>Stock: {product.stock} pc</p>
                 </div>

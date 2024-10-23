@@ -180,7 +180,7 @@ export default function CustomerLedger () {
 
   return (
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm md:h-screen">
-      <h1 className="text-lg  mb-4">Customer Ledger</h1>
+      <h1 className="text-lg dark:text-white  mb-4">Customer Ledger</h1>
 
       <div className="md:flex flex-wrap justify-between items-center mb-4">
             <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -243,7 +243,7 @@ export default function CustomerLedger () {
           {filteredTransactions.length > 0 ? (
             <>
               <h3 className="text-lg  mb-2">Customer Ledger</h3>
-              <table id="table-to-print" className="table-auto w-full border-collapse border">
+              <table id="table-to-print" className="table-auto dark:text-white w-full border-collapse border">
                 <thead>
                   <tr className='bg-emerald-500 text-white'>
                     <th className="border p-2">Date</th>

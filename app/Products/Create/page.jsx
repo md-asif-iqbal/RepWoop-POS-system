@@ -46,7 +46,7 @@ export default function ProductList() {
     <div className='font-nunito text-sm'>
          <div className="container mx-auto px-4 py-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg ">Product List</h2>
+        <h2 className=" dark:text-white text-lg ">Product List</h2>
         <div className="flex space-x-2">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
           <button className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
@@ -56,7 +56,7 @@ export default function ProductList() {
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white shadow-sm  overflow-hidden">
+        <table className="min-w-full table-auto dark:text-white bg-white shadow-sm  overflow-hidden">
           <thead>
             <tr className="bg-emerald-500 ">
               <th className="px-4 py-2 ">Product</th>
@@ -72,7 +72,7 @@ export default function ProductList() {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id} className="border-t border-gray-200 hover:bg-gray-100">
+              <tr key={product.id} className="border-t border-gray-200 ">
                 <td className="px-4 py-2 flex items-center">
                   <Image width={200} height={300} src={`/${product.sku}.png`} alt={product.product} className="w-10 h-10 object-cover rounded mr-2" />
                   {product.product}

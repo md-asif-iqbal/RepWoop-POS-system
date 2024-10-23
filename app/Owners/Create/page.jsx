@@ -29,7 +29,7 @@ export default function CreateOwner() {
   return (
     <div className="bg-white dark:bg-[#141432] font-nunito text-sm">
         <div className=" shadow-sm  mt-[25%] lg:mt-[5%] ">
-      <h1 className="text-lg text-gray-500 mx-5 ">Owners</h1>
+      <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Owners
@@ -43,7 +43,7 @@ export default function CreateOwner() {
       </div>
          <div className="flex justify-center items-center min-h-screen bg-white dark:bg-[#141432] ">
       <div className="bg-white dark:bg-[#141432] p-10  shadow-sm lg:w-[60%]  -mt-[10%]">
-        <h2 className="lg:text-lg mb-6 text-center">Add Owner Information</h2>
+        <h2 className=" dark:text-white lg:text-lg mb-6 text-center">Add Owner Information</h2>
         <form onSubmit={handleSubmit}>
         <div className="mb-6 flex flex-col items-center justify-center">
             <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-2">

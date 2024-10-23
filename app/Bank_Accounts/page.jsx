@@ -60,7 +60,7 @@ export default function AccountPage() {
         <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
       <div className="bg-white p-4 shadow-sm rounded-md ">
-        <h2 className="text-lg  mb-4">New Account</h2>
+        <h2 className=" dark:text-white text-lg  mb-4">New Account</h2>
         <div className="lg:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
             type="text"
@@ -83,7 +83,7 @@ export default function AccountPage() {
 
       {/* Accounts Table */}
       <div className="overflow-x-auto shadow-sm dark:bg-[#1a1a3d] w-full">
-  <h2 className="text-lg mb-4 dark:text-white">Accounts</h2>
+  <h2 className=" dark:text-white text-lg mb-4 dark:text-white">Accounts</h2>
   <table className="min-w-full w-full border-collapse">
     <thead>
       <tr className="bg-emerald-500 text-white">
@@ -140,7 +140,7 @@ export default function AccountPage() {
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-4 md:p-8 shadow-sm w-full max-w-xs md:max-w-md lg:max-w-lg mx-2">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-md md:text-lg">Add Balance to {selectedAccount?.name}</h2>
+                <h2 className=" dark:text-white text-md md:text-lg">Add Balance to {selectedAccount?.name}</h2>
                 <button className="text-gray-500 text-lg" onClick={() => setShowAddBalanceModal(false)}>
                   &times;
                 </button>
@@ -199,7 +199,7 @@ export default function AccountPage() {
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-4 md:p-8 shadow-sm w-full max-w-xs md:max-w-md lg:max-w-lg mx-2">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-md md:text-lg">Transfer Balance to {selectedAccount?.name}</h2>
+                <h2 className=" dark:text-white text-md md:text-lg">Transfer Balance to {selectedAccount?.name}</h2>
                 <button className="text-gray-500 text-lg" onClick={() => setShowTransferModal(false)}>
                   &times;
                 </button>

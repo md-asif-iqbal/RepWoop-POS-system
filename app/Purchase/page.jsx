@@ -319,7 +319,7 @@ export default function Purchase() {
       {/* Title Section */}
   
       <div className=" mb-4  shadow-sm ">
-      <h1 className="text-lg text-gray-500 mx-5 ">Purchase</h1>
+      <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Purchase</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Purchase" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Purchase
@@ -389,7 +389,7 @@ export default function Purchase() {
 
                     {/* Table Section */}
                     <div className="overflow-x-auto dark:bg-[#212144] dark:text-white border rounded ">
-                        <table className="min-w-full table-auto border-collapse border border-gray-300 text-center">
+                        <table className="min-w-full table-auto dark:text-white border-collapse border border-gray-300 text-center">
                         <thead>
                             <tr className="bg-emerald-500 text-stone-50">
                             <th className="p-2  border border-gray-300">Bill No</th>
@@ -436,7 +436,7 @@ export default function Purchase() {
                                     <ul className="py-1">
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700  flex items-center"
                                             onClick={() => generateInvoice(purchase)}
                                         >
                                             <span className="mr-2">
@@ -447,7 +447,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700  flex items-center"
                                             onClick={() => alert('Show Action')}
                                         >
                                             <span className="mr-2 ">
@@ -458,7 +458,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700  flex items-center"
                                             onClick={() => alert('Edit Action')}
                                         >
                                             <span className="mr-2 ">
@@ -471,7 +471,7 @@ export default function Purchase() {
                                         </li>
                                         <li>
                                         <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700 hover:bg-gray-100 flex items-center"
+                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700  flex items-center"
                                             onClick={() => alert('Add Payment Action')}
                                         >
                                             <span className="mr-2">

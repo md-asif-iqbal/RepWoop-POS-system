@@ -191,24 +191,24 @@ export default function Sales() {
 
   return (
     <div className='bg-white dark:bg-[#141432] text-gray-500 dark:text-white font-nunito text-sm'>
-        <div className="p-2 mt-[5%]">
+        <div className="p-2 md:mt-[5%] mt-[20%]">
       {/* Header with statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-blue-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Sold Today</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-violet-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Today Received</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Today Profit</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-green-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">Total Sold</h3>
-          <p className="">Tk 30000000.5</p>
+          <p className=" dark:text-white ">Tk 30000000.5</p>
         </div>
       </div>
 
@@ -261,7 +261,7 @@ export default function Sales() {
 
       {/* Sales Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border">
+        <table className="table-auto dark:text-white w-full border-collapse border">
           <thead className="border">
             <tr className='bg-emerald-500 text-white'>
               <th className="p-2 border">Invoice No.</th>
@@ -306,13 +306,13 @@ export default function Sales() {
                     {selectedInvoice === sale.invoiceNo && (
                       <div className="absolute bg-white shadow-sm rounded p-2 mt-2 z-20 right-10">
                         <ul className="text-gray-700">
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Print</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Challan Print</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Edit</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Show</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Return</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Return List</li>
-                          <li className="p-2 hover:bg-gray-100 cursor-pointer">Add Payment</li>
+                          <li className="p-2  cursor-pointer">Print</li>
+                          <li className="p-2  cursor-pointer">Challan Print</li>
+                          <li className="p-2  cursor-pointer">Edit</li>
+                          <li className="p-2  cursor-pointer">Show</li>
+                          <li className="p-2  cursor-pointer">Return</li>
+                          <li className="p-2  cursor-pointer">Return List</li>
+                          <li className="p-2  cursor-pointer">Add Payment</li>
                           <li className="p-2 hover:bg-red-100 cursor-pointer">Delete</li>
                         </ul>
                       </div>

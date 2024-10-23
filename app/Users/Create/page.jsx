@@ -62,7 +62,7 @@ export default function NewUsers() {
   </div>
 
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-lg  mb-6">Make User</h2>
+      <h2 className=" dark:text-white text-lg  mb-6">Make User</h2>
 
       <form onSubmit={handleSaveUser} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* First Name */}
@@ -151,7 +151,7 @@ export default function NewUsers() {
             onChange={handleImageUpload}
             className=" dark:bg-white w-full p-2 border rounded"
           />
-          <p className="text-sm text-gray-500 mt-2">Image Size Must be 128x128</p>
+          <p className=" dark:text-white text-sm text-gray-500 mt-2">Image Size Must be 128x128</p>
         </div>
 
         {/* Save User Button */}

@@ -137,7 +137,7 @@ export default function SummaryReport() {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Summary Report </h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5  ">Summary Report </h1>
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Today-Report" className= {`${
                           pathname === '/Today-Report' 
@@ -189,19 +189,19 @@ export default function SummaryReport() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-green-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm">SALE AMOUNT</h3>
-          <p className="text-md">TK 4,167,593</p>
+          <p className=" dark:text-white text-md">TK 4,167,593</p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm">PURCHASE COST</h3>
-          <p className="text-md">TK 3,651,596</p>
+          <p className=" dark:text-white text-md">TK 3,651,596</p>
         </div>
         <div className="bg-gray-700 text-white p-4 rounded shadow-md">
           <h3 className="text-sm">EXPENSE</h3>
-          <p className="text-md">TK 25,130</p>
+          <p className=" dark:text-white text-md">TK 25,130</p>
         </div>
         <div className="bg-emerald-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm">SELL PROFIT</h3>
-          <p className="text-md">TK 515,997</p>
+          <p className=" dark:text-white text-md">TK 515,997</p>
         </div>
       </div>
 
@@ -209,7 +209,7 @@ export default function SummaryReport() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         {/* Top Sale Product Table */}
         <div className='border rounded'>
-          <h2 className="text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
+          <h2 className=" dark:text-white text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
           
           <div className="md:flex justify-between mt-4">
             <div className="md:flex gap-2">
@@ -245,7 +245,7 @@ export default function SummaryReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -293,7 +293,7 @@ export default function SummaryReport() {
 
         {/* Expense Table */}
         <div className='border rounded'>
-          <h2 className="text-lg bg-red-500 p-2 text-white">Expense</h2>
+          <h2 className=" dark:text-white text-lg bg-red-500 p-2 text-white">Expense</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex gap-2">
            <button className="bg-blue-500 text-white px-2 py-1 ">
@@ -328,7 +328,7 @@ export default function SummaryReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -374,7 +374,7 @@ export default function SummaryReport() {
 
         {/* Pay to Supplier Table */}
         <div className='border rounded'>
-          <h2 className="text-lg p-2 bg-gray-200">Pay to Supplier</h2>
+          <h2 className=" dark:text-white text-lg p-2 bg-gray-200">Pay to Supplier</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex gap-2">
             <button className="bg-blue-500 text-white px-2 py-1 ">
@@ -409,7 +409,7 @@ export default function SummaryReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -455,7 +455,7 @@ export default function SummaryReport() {
 
         {/* Receive from Customer Table */}
         <div className='border rounded'>
-          <h2 className="text-lg p-2 bg-gray-200">Receive from Customer</h2>
+          <h2 className=" dark:text-white text-lg p-2 bg-gray-200">Receive from Customer</h2>
           <div className="flex justify-between mt-4">
           <div className='md:flex gap-2'>
           <button className="bg-blue-500 text-white px-2 py-1 ">
@@ -490,7 +490,7 @@ export default function SummaryReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>

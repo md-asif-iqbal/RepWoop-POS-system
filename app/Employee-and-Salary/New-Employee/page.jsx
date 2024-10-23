@@ -38,7 +38,7 @@ export default function NewEmployeeForm () {
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm ">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee and Salary</h1>
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">New Employee</h1>
     <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Employee-and-Salary" className= {`${
                           pathname === '/Employee-and-Salary' 
@@ -83,7 +83,7 @@ export default function NewEmployeeForm () {
     </div>
   </div>
   <div className="w-full  mx-auto p-4 dark:bg-[#1b1b3b]">
-      <h2 className="text-lg  mb-4 dark:text-white">New Employee</h2>
+      <h2 className=" dark:text-white text-lg  mb-4 dark:text-white">New Employee</h2>
       <form className="bg-white dark:bg-[#1b1b3b] shadow-sm  rounded px-8 pt-6 pb-8 mb-4 dark:text-white" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           {/* Joining Date */}

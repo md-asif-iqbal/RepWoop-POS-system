@@ -104,7 +104,7 @@ export default function Assets() {
 
       {/* Assets Table */}
       <div className="overflow-x-auto">
-        <table id='table-to-print' className="table-auto w-full border-collapse">
+        <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="border px-4 py-2">No</th>

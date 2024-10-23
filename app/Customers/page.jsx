@@ -214,7 +214,7 @@ export default function CustomersList() {
                   {/* Title Section */}
   
       <div className=" mb-4  shadow-sm ">
-      <h1 className="text-lg text-gray-500 mx-5 ">Customers</h1>
+      <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Customers</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Customers" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Customers
@@ -273,7 +273,7 @@ export default function CustomersList() {
                     Print
                 </button>
         </div>
-        <table id="table-to-print" className="table-auto w-full border-collapse border">
+        <table id="table-to-print" className="table-auto dark:text-white w-full border-collapse border">
           <thead>
             <tr className="bg-emerald-500 dark:bg-[#232350] text-white">
               <th className="border px-4 py-2">#</th>
@@ -359,7 +359,7 @@ export default function CustomersList() {
       {isModalOpen && selectedCustomer && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-10">
           <div className="bg-white p-6  shadow-sm">
-            <h2 className="text-lg  mb-4">
+            <h2 className=" dark:text-white text-lg  mb-4">
               Customer: {selectedCustomer.name}
             </h2>
             <p>Email: {selectedCustomer.email}</p>

@@ -67,7 +67,7 @@ export default function page() {
       </div>
               {/* Table Section */}
               <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm ">
-        <table className="min-w-full table-auto">
+        <table className="min-w-full table-auto dark:text-white">
           <thead className="bg-emerald-500 text-white dark:text-white">
             <tr>
               <th className="px-4 py-2 ">#</th>

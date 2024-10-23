@@ -159,32 +159,32 @@ export default function TodayReport() {
         {/* Sale Amount Box */}
         <div className="bg-green-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm ">SALE AMOUNT</h3>
-          <p className="text-md ">TK 0</p>
+          <p className=" dark:text-white text-md ">TK 0</p>
         </div>
         
         {/* Purchase Cost Box */}
         <div className="bg-[#F96868] text-white p-4 rounded shadow-md">
           <h3 className="text-sm ">PURCHASE COST</h3>
-          <p className="text-md ">TK 0</p>
+          <p className=" dark:text-white text-md ">TK 0</p>
         </div>
 
         {/* Expense Box */}
         <div className="bg-gray-700 text-white p-4 rounded shadow-md">
           <h3 className="text-sm ">EXPENSE</h3>
-          <p className="text-md ">TK 0</p>
+          <p className=" dark:text-white text-md ">TK 0</p>
         </div>
 
         {/* Sell Profit Box */}
         <div className="bg-emerald-500 text-white p-4 rounded shadow-md">
           <h3 className="text-sm ">SELL PROFIT</h3>
-          <p className="text-md ">TK 0</p>
+          <p className=" dark:text-white text-md ">TK 0</p>
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Top Sale Product Table */}
         <div className='border rounded '>
-          <h2 className="text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
+          <h2 className=" dark:text-white text-lg  bg-emerald-500 p-2 text-white">Top Sale Product</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex">
               <button
@@ -229,7 +229,7 @@ export default function TodayReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -277,7 +277,7 @@ export default function TodayReport() {
 
         {/* Expense Table */}
         <div className='border rounded '>
-          <h2 className="text-lg bg-[#F96868] p-2 text-white ">Expense</h2>
+          <h2 className=" dark:text-white text-lg bg-[#F96868] p-2 text-white ">Expense</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex">
               <button
@@ -323,7 +323,7 @@ export default function TodayReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -369,7 +369,7 @@ export default function TodayReport() {
 
         {/* Pay to Supplier Table */}
         <div className='border rounded'>
-          <h2 className="text-lg p-2 bg-gray-200">Pay to Supplier</h2>
+          <h2 className=" dark:text-white text-lg p-2 bg-gray-200">Pay to Supplier</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex">
               <button
@@ -415,7 +415,7 @@ export default function TodayReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>
@@ -461,7 +461,7 @@ export default function TodayReport() {
 
         {/* Receive from Customer Table */}
         <div className='border rounded '>
-          <h2 className="text-md text-lg p-2 bg-gray-200">Receive from Customer</h2>
+          <h2 className=" dark:text-white text-md text-lg p-2 bg-gray-200">Receive from Customer</h2>
           <div className="md:flex justify-between mt-4">
             <div className="md:flex">
               <button
@@ -506,7 +506,7 @@ export default function TodayReport() {
             </select>
             <label> entries</label>
           </div>
-          <table className="text-center table-auto w-full mt-4">
+          <table className="text-center table-auto dark:text-white w-full mt-4">
             <thead>
               <tr>
                 <th className="border p-2">SL</th>

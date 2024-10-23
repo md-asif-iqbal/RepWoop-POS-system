@@ -136,12 +136,12 @@ export default function Dashboard() {
       <main className="ml-1/5 flex-grow  md:mt-[5%] mt-[20%]">
         {/* Header */}
         <div className="flex justify-between items-center p-4">
-          <h2 className="text-lg font-medium">Welcome Back!</h2>
-          <p className="">{`${day} ${month} ${year}`}</p>
+          <h2 className=" dark:text-white text-lg font-medium">Welcome Back!</h2>
+          <p className=" dark:text-white ">{`${day} ${month} ${year}`}</p>
         </div>
 
         <div className="lg:mt-5  bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 p-4">
-        <h2 className="text-md  mb-4">Total Summary</h2>
+        <h2 className=" dark:text-white text-md  mb-4">Total Summary</h2>
           {/* Dashboard cards and charts */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Cards */}
@@ -204,48 +204,48 @@ export default function Dashboard() {
           </div>
           <div className="p-0 mb-5 mt-5">
       {/* Today Summary */}
-      <h2 className="text-md  mb-4">Today Summary</h2>
+      <h2 className=" dark:text-white text-md  mb-4">Today Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-blue-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SOLD</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-violet-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SOLD - PURCHASE COST</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY EXPENSE</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-green-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">TODAY SELL PROFIT</h3>
-          <p className="">Tk 30,000</p>
+          <p className=" dark:text-white ">Tk 30,000</p>
         </div>
       </div>
    
       {/* Current Month Summary */}
-      <h2 className="text-md  mb-4">Current Month Summary</h2>
+      <h2 className=" dark:text-white text-md  mb-4">Current Month Summary</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-emerald-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">SOLD IN SEP 2024</h3>
-          <p className="">Tk 20,003,886,022</p>
+          <p className=" dark:text-white ">Tk 20,003,886,022</p>
         </div>
         <div className="bg-purple-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">PURCHASED - IN SEP 2024</h3>
-          <p className="">Tk 20,0033,884,105</p>
+          <p className=" dark:text-white ">Tk 20,0033,884,105</p>
         </div>
         <div className="bg-orange-500 text-white p-4 rounded shadow-sm">
           <h3 className=" ">EXPENSE IN SEP 2024</h3>
-          <p className="">Tk 20,00200</p>
+          <p className=" dark:text-white ">Tk 20,00200</p>
         </div>
         <div className="bg-cyan-400 text-white p-4 rounded shadow-sm">
           <h3 className=" ">RETURNED IN SEP 2024</h3>
-          <p className="">Tk 20,000</p>
+          <p className=" dark:text-white ">Tk 20,000</p>
         </div>
         <div className="bg-purple-600 text-white p-4 rounded shadow-sm">
           <h3 className=" ">PROFIT SEP 2024</h3>
-          <p className="">123,122</p>
+          <p className=" dark:text-white ">123,122</p>
         </div>
       </div>
     </div>
@@ -270,7 +270,7 @@ export default function Dashboard() {
             {/* Recent Products Table */}
             <div className="mt-8 p-4  rounded  shadow-sm dark:bg-[#202047]">
               <h3 className="  mb-4">Recent Products</h3>
-              <table className="table-auto w-full">
+              <table className="table-auto dark:text-white w-full">
                 <thead>
                   <tr className="bg-emerald-500 text-white">
                     <th className="p-2">Products</th>
@@ -300,9 +300,9 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="">
-      <h2 className="text-md  mb-4 ">Expired Products</h2>
+      <h2 className=" dark:text-white text-md  mb-4 ">Expired Products</h2>
       <div className="overflow-x-auto w-full">
-  <table className="min-w-full table-auto border text-center ">
+  <table className="min-w-full table-auto dark:text-white border text-center ">
     <thead>
       <tr className="bg-emerald-500 text-white text-sm leading-normal">
         <th className="py-2 border">Product</th>

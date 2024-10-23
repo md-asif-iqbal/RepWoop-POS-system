@@ -96,7 +96,7 @@ export default function TopCustomersReport() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-      <h1 className="text-lg  mb-4">Top Customers</h1>
+      <h1 className="text-lg dark:text-white  mb-4">Top Customers</h1>
 
       <div className="md:flex flex-wrap justify-between items-center mb-4">
             <div className="md:flex md:space-x-2 w-full md:w-full">
@@ -124,10 +124,10 @@ export default function TopCustomersReport() {
             <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded w-full md:w-1/12 mb-2">Print</button>
          </div>
 
-      <h2 className="text-lg  mb-4 text-center">Top Customers (Based on Sell Amount)</h2>
-      <p className="text-center mb-4">Report From {startDate || '01/10/2024'} to {endDate || '31/10/2024'}</p>
+      <h2 className=" dark:text-white text-lg  mb-4 text-center">Top Customers (Based on Sell Amount)</h2>
+      <p className=" dark:text-white text-center mb-4">Report From {startDate || '01/10/2024'} to {endDate || '31/10/2024'}</p>
 
-      <table id='table-to-print' className="table-auto w-full border-collapse border">
+      <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse border">
         <thead>
           <tr className='bg-emerald-500 text-white'>
             <th className="border p-2">SL</th>

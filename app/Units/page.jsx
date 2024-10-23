@@ -92,7 +92,7 @@ export default function Units() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse">
+        <table className="table-auto dark:text-white w-full border-collapse">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="border px-4 py-2">#</th>

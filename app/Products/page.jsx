@@ -229,7 +229,7 @@ export default function ProductList() {
         <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito text-sm">
       {/* Action Buttons */}
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
-        <h2 className="text-lg  mb-2 md:mb-0">Product List</h2>
+        <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Product List</h2>
         <div className="md:flex space-x-2 space-y-2 md:space-y-0">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
           <button
@@ -242,7 +242,7 @@ export default function ProductList() {
                 {showModal && (
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                     <div className="bg-white  p-6 w-1/2">
-                        <h2 className="text-lg  mb-4">Import Products</h2>
+                        <h2 className=" dark:text-white text-lg  mb-4">Import Products</h2>
                         <input
                         type="file"
                         accept=".csv, .xlsx"
@@ -351,7 +351,7 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
+        <table className="min-w-full table-auto dark:text-white bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="px-4 py-2 ">
@@ -371,7 +371,7 @@ export default function ProductList() {
           </thead>
           <tbody>
             {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
-              <tr key={product.id} className="border-t border-gray-200 hover:bg-gray-100">
+              <tr key={product.id} className="border-t border-gray-200 ">
                 <td className="px-4 py-2 ">
                   <input
                   className='dark:bg-white'
@@ -411,8 +411,8 @@ export default function ProductList() {
                                         className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
                                     >
                                         <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className="text-lg  mb-4">Are you sure?</h2>
-                                            <p className="mb-6">You wont be able to revert this!</p>
+                                            <h2 className=" dark:text-white text-lg  mb-4">Are you sure?</h2>
+                                            <p className=" dark:text-white mb-6">You wont be able to revert this!</p>
 
                                             {/* Show details */}
                                             <div className="mb-6">

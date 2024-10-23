@@ -92,7 +92,7 @@ export default function EmployeePayments() {
           {/* Title Section */}
 
 <div className=" mb-4  shadow-sm ">
-<h1 className="text-lg text-gray-500 dark:text-white md:mx-5 ">Employee and Salary</h1>
+<h1 className="text-lg text-gray-500 dark:text-white md:mx-5 ">Employee Payments</h1>
 <div className=' lg:flex items-start justify-start md:mx-5 py-5 gap-10 '>
     <Link href="/Employee-and-Salary" className= {`${
                       pathname === '/Employee-and-Salary' 
@@ -138,7 +138,7 @@ export default function EmployeePayments() {
 </div>
 
 <div className="md:container md:mx-auto md:px-4 py-8">
-      <h1 className="text-lg  mb-4">Employee Payments</h1>
+      
 
       <div className="md:flex md:justify-between mb-4 w-full">
       
@@ -177,7 +177,7 @@ export default function EmployeePayments() {
                 <button onClick={handlePrint} className="bg-green-500 text-white px-8 py-2 mx-2 rounded">Print</button>
             </div>
 
-      <table id='table-to-print' className="table-auto w-full border-collapse border text-center">
+      <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse border text-center">
         <thead>
           <tr className="bg-gray-200">
             <th className="border p-2">SL</th>

@@ -75,10 +75,10 @@ export default function Users() {
     </div>
   </div>
   <div className="container mx-auto px-4 py-8">
-      <h2 className="text-lg  mb-4">Users</h2>
+      <h2 className=" dark:text-white text-lg  mb-4">Users</h2>
       
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse">
+        <table className="table-auto dark:text-white w-full border-collapse">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="border px-4 py-2">#</th>
