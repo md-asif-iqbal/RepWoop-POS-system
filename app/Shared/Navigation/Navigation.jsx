@@ -52,7 +52,7 @@ export default function Navigation() {
 
         <div className="navbar bg-white dark:bg-[#141432] backdrop-blur-sm items-center ">
             <div className="navbar-start flex items-center">
-            <span className='md:hidden '><Sidebar /></span>
+            <span className='min-[769px]:hidden '><Sidebar /></span>
                 <a className=" text-gray-500 dark:text-white  md:text-md">Repwoop POS Software</a>
             </div>
             {/* nav center */}

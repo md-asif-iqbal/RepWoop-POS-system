@@ -92,7 +92,7 @@ export default function NewEmployeeForm () {
               Joining Date<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="joiningDate"
               name="joiningDate"
               type="date"
@@ -108,7 +108,7 @@ export default function NewEmployeeForm () {
               Name<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="name"
               name="name"
               type="text"
@@ -127,7 +127,7 @@ export default function NewEmployeeForm () {
               Email
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="email"
               name="email"
               type="email"
@@ -143,7 +143,7 @@ export default function NewEmployeeForm () {
               Phone<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="phone"
               name="phone"
               type="text"
@@ -162,7 +162,7 @@ export default function NewEmployeeForm () {
               Salary<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="salary"
               name="salary"
               type="number"
@@ -179,7 +179,7 @@ export default function NewEmployeeForm () {
               Overtime Rate<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="overtimeRate"
               name="overtimeRate"
               type="number"

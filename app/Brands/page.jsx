@@ -165,7 +165,7 @@ export default function Brands() {
                             type="file"
                             accept=".csv, .xlsx"
                             onChange={handleFileUpload}
-                            className="mb-4 dark:bg-white"
+                            className="mb-4 bg-white"
                         />
                         <div className="flex justify-end space-x-4">
                             <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => { /* Submit logic here */ }}>Submit</button>
@@ -191,7 +191,7 @@ export default function Brands() {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 dark:bg-white px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
+            className="border border-gray-300 bg-white px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
             />
                 <div className="flex space-x-2">
                     <select onChange={(e) => setFilters({ ...filters, brand: e.target.value })} className="border p-2 rounded">
@@ -225,7 +225,7 @@ export default function Brands() {
                 <thead>
                     <tr className='bg-emerald-500 text-white'>
                     <th className="border px-4 py-2 ">
-                <input type="checkbox" onChange={handleSelectAll}  className='dark:bg-white'/>
+                <input type="checkbox" onChange={handleSelectAll}  className='bg-white'/>
               </th>
                         <th className="border px-4 py-2">brand</th>
                         <th className="border px-4 py-2">Logo</th>
@@ -240,7 +240,7 @@ export default function Brands() {
                             <tr key={index} className="border-b text-center">
                                 <td className="px-4 py-2  border">
                                   <input
-                                  className='dark:bg-white'
+                                  className='bg-white'
                                     type="checkbox"
                                     checked={selectedProducts.includes(product.id)}
                                     onChange={(e) => handleSelectProduct(e, product.id)}

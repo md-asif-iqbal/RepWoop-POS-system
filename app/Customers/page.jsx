@@ -234,7 +234,7 @@ export default function CustomersList() {
           placeholder="Name"
           value={filter.name}
           onChange={handleFilter}
-          className="border p-2 rounded w-full md:w-1/2 dark:bg-white"
+          className="border p-2 rounded w-full md:w-1/2 bg-white"
         />
         <input
           type="text"
@@ -242,7 +242,7 @@ export default function CustomersList() {
           placeholder="Mobile Number"
           value={filter.mobileNumber}
           onChange={handleFilter}
-          className="border p-2 rounded w-full md:w-1/2 dark:bg-white"
+          className="border p-2 rounded w-full md:w-1/2 bg-white"
         />
         
       </div>

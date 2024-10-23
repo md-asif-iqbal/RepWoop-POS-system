@@ -229,13 +229,13 @@ export default function Payments() {
               type="date" 
               value={startDateFilter} 
               onChange={(e) => setStartDateFilter(e.target.value)} 
-              className="border dark:bg-white rounded px-4 py-2 mb-2 sm:mb-0 sm:mr-2 flex-1"
+              className="border bg-white rounded px-4 py-2 mb-2 sm:mb-0 sm:mr-2 flex-1"
             />
             <input 
               type="date" 
               value={endDateFilter} 
               onChange={(e) => setEndDateFilter(e.target.value)} 
-              className="border dark:bg-white rounded px-4 py-2 mb-2 sm:mb-0 sm:mr-2 flex-1"
+              className="border bg-white rounded px-4 py-2 mb-2 sm:mb-0 sm:mr-2 flex-1"
             />
             <button 
               onClick={handleFilter} 

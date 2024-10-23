@@ -73,7 +73,7 @@ export default function NewUsers() {
             placeholder="Enter First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
           />
         </div>
 
@@ -85,7 +85,7 @@ export default function NewUsers() {
             placeholder="Enter Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function NewUsers() {
             placeholder="Enter Login Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className=" dark:bg-white w-full p-2 border rounded"
+            className=" bg-white w-full p-2 border rounded"
           />
         </div>
 
@@ -107,7 +107,7 @@ export default function NewUsers() {
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className=" dark:bg-white w-full p-2 border rounded"
+            className=" bg-white w-full p-2 border rounded"
           >
             <option value="">Select Role</option>
             {roles.map((roleOption, index) => (
@@ -126,7 +126,7 @@ export default function NewUsers() {
             placeholder="*******"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className=" dark:bg-white w-full p-2 border rounded"
+            className=" bg-white w-full p-2 border rounded"
           />
         </div>
 
@@ -138,7 +138,7 @@ export default function NewUsers() {
             placeholder="*******"
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
-            className=" dark:bg-white w-full p-2 border rounded"
+            className=" bg-white w-full p-2 border rounded"
           />
         </div>
 
@@ -149,7 +149,7 @@ export default function NewUsers() {
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className=" dark:bg-white w-full p-2 border rounded"
+            className=" bg-white w-full p-2 border rounded"
           />
           <p className=" dark:text-white text-sm text-gray-500 mt-2">Image Size Must be 128x128</p>
         </div>

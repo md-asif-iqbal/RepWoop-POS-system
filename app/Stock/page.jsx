@@ -350,7 +350,7 @@ export default function Stock() {
           name="productName"
           value={filters.productName}
           onChange={handleFilterChange}
-          className="border rounded-md px-3 py-2 w-full md:w-1/4 dark:bg-white"
+          className="border rounded-md px-3 py-2 w-full md:w-1/4 bg-white"
         />
 
         {/* Product Code Input */}
@@ -360,7 +360,7 @@ export default function Stock() {
           name="productCode"
           value={filters.productCode}
           onChange={handleFilterChange}
-          className="border rounded-md px-3 py-2 w-full md:w-1/4 dark:bg-white"
+          className="border rounded-md px-3 py-2 w-full md:w-1/4 bg-white"
         />
 
         {/* Select Category Dropdown */}

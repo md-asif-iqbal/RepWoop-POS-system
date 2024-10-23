@@ -250,7 +250,7 @@ export default function ProductList() {
                         type="file"
                         accept=".csv, .xlsx"
                         onChange={handleFileUpload}
-                        className="mb-4 dark:bg-white"
+                        className="mb-4 bg-white"
                         />
                         <div className="flex justify-end space-x-4">
                         <button
@@ -316,7 +316,7 @@ export default function ProductList() {
           placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border dark:bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
+          className="border bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
         />
           <select
             name="category"
@@ -354,11 +354,11 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto dark:text-white bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
+        <table className="min-w-full table-auto  bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="px-4 py-2 ">
-                <input className='dark:bg-white' type="checkbox" onChange={handleSelectAll} />
+                <input className='bg-white' type="checkbox" onChange={handleSelectAll} />
               </th>
               <th className="px-4 py-2 ">Product</th>
               <th className="px-4 py-2 ">SKU</th>
@@ -377,7 +377,7 @@ export default function ProductList() {
               <tr key={product.id} className="border-t border-gray-200 ">
                 <td className="px-4 py-2 ">
                   <input
-                  className='dark:bg-white'
+                  className='bg-white'
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}
                     onChange={(e) => handleSelectProduct(e, product.id)}

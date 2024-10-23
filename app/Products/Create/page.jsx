@@ -120,7 +120,7 @@ export default function ProductCreate() {
           <input
             type="text"
             placeholder="Product Name"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
@@ -134,7 +134,7 @@ export default function ProductCreate() {
           <input
             type="text"
             placeholder="Product Code"
-            className=" dark:bg-white p-2 border rounded w-full"
+            className="bg-white p-2 border rounded w-full"
             value={productCode}
             onChange={(e) => setProductCode(e.target.value)}
           />
@@ -150,7 +150,7 @@ export default function ProductCreate() {
            <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className=" dark:bg-white 
+              className="bg-white 
                p-2 border rounded w-full"
             >
               <option value="">Search Categories</option>
@@ -183,7 +183,7 @@ export default function ProductCreate() {
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className=" dark:bg-white 
+              className="bg-white 
                p-2 border rounded w-full"
             >
               <option value="">Search Brands</option>
@@ -213,7 +213,7 @@ export default function ProductCreate() {
           <select
             value={selectedMainUnit}
             onChange={(e) => setSelectedMainUnit(e.target.value)}
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
           >
             <option value="">Select Unit</option>
@@ -232,7 +232,7 @@ export default function ProductCreate() {
           <input
             type="text"
             placeholder="Main Unit"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             value={subUnit}
             onChange={(e) => setSubUnit(e.target.value)}
@@ -244,7 +244,7 @@ export default function ProductCreate() {
           <input
             type="number"
             placeholder="Opening Stock"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             value={openingStock}
             onChange={(e) => setOpeningStock(e.target.value)}
@@ -258,7 +258,7 @@ export default function ProductCreate() {
           <input
             type="number"
             placeholder="Sale Price"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             value={salePrice}
             onChange={(e) => setSalePrice(e.target.value)}
@@ -272,7 +272,7 @@ export default function ProductCreate() {
           <input
             type="number"
             placeholder="Purchase Cost"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             value={purchaseCost}
             onChange={(e) => setPurchaseCost(e.target.value)}
@@ -286,7 +286,7 @@ export default function ProductCreate() {
           </label>
           <textarea
             placeholder="Enter product details..."
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             rows="5"
             value={productDetails}
@@ -299,7 +299,7 @@ export default function ProductCreate() {
           <label className="block mb-2">Product Image</label>
           <input
             type="file"
-            className=" dark:bg-white 
+            className="bg-white 
              p-2 border rounded w-full"
             onChange={(e) => setProductImage(e.target.files[0])}
           />
@@ -324,7 +324,7 @@ export default function ProductCreate() {
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
               placeholder="Category Name"
-              className=" dark:bg-white 
+              className="bg-white 
                p-2 border rounded w-full mb-4"
             />
             <button
@@ -355,7 +355,7 @@ export default function ProductCreate() {
               value={newBrand}
               onChange={(e) => setNewBrand(e.target.value)}
               placeholder="Brand Name"
-              className=" dark:bg-white 
+              className="bg-white 
                p-2 border rounded w-full mb-4"
             />
             <button

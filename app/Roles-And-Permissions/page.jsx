@@ -40,7 +40,7 @@ export default function Roles() {
           placeholder="Role Name"
           value={roleName}
           onChange={(e) => setRoleName(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/2 mb-4 dark:bg-white"
+          className="border p-2 rounded w-full md:w-1/2 mb-4 bg-white"
         />
         <button
           onClick={handleAddRole}
@@ -69,7 +69,7 @@ export default function Roles() {
                 <td className="p-2 border">{role.name}</td>
                 <td className="p-2 border">{role.users}</td>
                 <td className="p-2 border flex gap-4 justify-center">
-                  <Link href="/Roles-And-Permissions/Permissions">
+                  <Link href="/Roles-And-Permissions/Create">
                     <button className="bg-emerald-500 text-white p-1 rounded">
                       Permission
                     </button>

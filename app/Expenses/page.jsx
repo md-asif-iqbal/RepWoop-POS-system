@@ -244,7 +244,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                         type="file"
                         accept=".csv, .xlsx"
                         onChange={handleFileUpload}
-                        className="mb-4 dark:bg-white"
+                        className="mb-4 bg-white"
                         />
                         <div className="flex justify-end space-x-4">
                         <button
@@ -298,11 +298,11 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
           placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border dark:bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
+          className="border bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
         />
           <select
             name="category"
-            className="border dark:bg-white border-gray-300 px-4 py-2 rounded"
+            className="border bg-white border-gray-300 px-4 py-2 rounded"
             value={filters.category}
             onChange={handleFilterChange}
           >
@@ -315,7 +315,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
           </select>
           <select
                 name="status"  // Ensure this matches the filter state key
-                className="border dark:bg-white border-gray-300 px-4 py-2 rounded"
+                className="border bg-white border-gray-300 px-4 py-2 rounded"
                 value={filters.status}
                 onChange={handleFilterChange}
                 >
@@ -326,7 +326,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                     </option>
                 ))}
             </select>
-          <select className="border dark:bg-white border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
+          <select className="border bg-white border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
             <option value="">Sort by Price</option>
             <option value="Low to High">Low to High</option>
             <option value="High to Low">High to Low</option>
@@ -340,7 +340,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="px-4 py-2 ">
-                <input className='dark:bg-white' type="checkbox" onChange={handleSelectAll} />
+                <input className='bg-white' type="checkbox" onChange={handleSelectAll} />
               </th>
               <th className="px-4 py-2 ">Category Name</th>
               <th className="px-4 py-2 ">Reference</th>
@@ -357,7 +357,7 @@ const uniqueStatuses = [...new Set(products.map((product) => product.status))];
                 
               <tr key={product.id} className="border-t border-gray-200 ">
                 <td className="px-4 py-2 ">
-                  <input className='dark:bg-white'
+                  <input className='bg-white'
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}
                     onChange={(e) => handleSelectProduct(e, product.id)}

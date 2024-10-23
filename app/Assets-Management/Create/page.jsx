@@ -74,7 +74,7 @@ export default function CreateAssets() {
             placeholder="Enter Asset Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
             required
           />
         </div>
@@ -87,7 +87,7 @@ export default function CreateAssets() {
             placeholder="Enter Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
             required
           />
         </div>
@@ -101,7 +101,7 @@ export default function CreateAssets() {
             placeholder="Enter Purchase Price"
             value={purchasePrice}
             onChange={(e) => setPurchasePrice(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
             required
           />
         </div>
@@ -115,7 +115,7 @@ export default function CreateAssets() {
             placeholder="Enter Forced Sale Price"
             value={forcedSalePrice}
             onChange={(e) => setForcedSalePrice(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-white"
+            className="w-full p-2 border rounded bg-white"
             required
           />
         </div>

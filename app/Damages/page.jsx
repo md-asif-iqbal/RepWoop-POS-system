@@ -87,7 +87,7 @@ export default function Damages() {
                 placeholder="Select Product"
                 value={filterText}
                 onChange={handleFilterChange}
-                className="border p-2 rounded w-full dark:bg-white"
+                className="border p-2 rounded w-full bg-white"
                 />
                 <button
                 onClick={() => {}}

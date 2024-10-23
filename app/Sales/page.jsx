@@ -219,24 +219,24 @@ export default function Sales() {
           placeholder="Bill Number"
           value={billNumber}
           onChange={(e) => setBillNumber(e.target.value)}
-          className="border rounded p-2 dark:text-black dark:bg-white w-full md:w-1/6"
+          className="border rounded p-2 dark:text-black bg-white w-full md:w-1/6"
         />
         <input
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border rounded dark:text-black dark:bg-white p-2 w-full md:w-1/6"
+          className="border rounded dark:text-black bg-white p-2 w-full md:w-1/6"
         />
         <input
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="border rounded dark:text-black dark:bg-white p-2 w-full md:w-1/6"
+          className="border rounded dark:text-black bg-white p-2 w-full md:w-1/6"
         />
         <select
           value={selectedCustomer}
           onChange={(e) => setSelectedCustomer(e.target.value)}
-          className="border rounded p-2 w-full md:w-1/6 dark:bg-white dark:text-black"
+          className="border rounded p-2 w-full md:w-1/6 bg-white dark:text-black"
         >
           <option value="">Select Customer</option>
           {uniqueCustomers.map((customer, index) => (

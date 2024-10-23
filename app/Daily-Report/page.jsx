@@ -112,14 +112,14 @@ export default function DailyReport() {
             type="date"
             value={startDate}
             onChange={e => setStartDate(e.target.value)}
-            className="border p-2 w-full dark:bg-white"
+            className="border p-2 w-full bg-white"
             placeholder="Enter Start Date"
           />
           <input
             type="date"
             value={endDate}
             onChange={e => setEndDate(e.target.value)}
-            className="border p-2 w-full dark:bg-white"
+            className="border p-2 w-full bg-white"
             placeholder="Enter End Date"
           />
           <button onClick={filterData} className="bg-blue-500 text-white px-8 py-2 rounded ">Filter</button>

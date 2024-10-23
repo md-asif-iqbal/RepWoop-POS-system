@@ -68,7 +68,7 @@ export default function CreateOwner() {
               name="photo"
               accept="image/*"
               onChange={handleChange}
-              className="mt-4 dark:bg-white block text-sm text-gray-500 "
+              className="mt-4 bg-white block text-sm text-gray-500 "
             />
           </div>
           {/* Name Input */}
@@ -82,7 +82,7 @@ export default function CreateOwner() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border dark:bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+              className="mt-1 p-2 block w-full border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
               placeholder="Enter your name"
               required
             />
@@ -99,7 +99,7 @@ export default function CreateOwner() {
               name="mobile"
               value={formData.mobile}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border dark:bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+              className="mt-1 p-2 block w-full border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
               placeholder="Enter your mobile number"
               required
             />
@@ -115,7 +115,7 @@ export default function CreateOwner() {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border dark:bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+              className="mt-1 p-2 block w-full border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
               placeholder="Enter your address"
               required
             />

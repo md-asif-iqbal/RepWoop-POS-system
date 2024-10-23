@@ -250,14 +250,14 @@ export default function Dashboard() {
       </div>
     </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid min-w-full grid-cols-1 md:grid-cols-2 gap-4">
             {/* Chart Area */}
-            <div className="mt-8 p-4  shadow-sm dark:bg-[#202047]">
+            <div className="mt-8   shadow-sm dark:bg-[#202047]">
               <h3 className="  mb-4">Purchase & Sales</h3>
               <div className="flex justify-between mb-4">
                 <div className="text-green-500">Sales</div>
                 <div className="text-red-500">Purchase</div>
-                <select className="bg-white dark:bg-[#303063] rounded p-2 text-black dark:text-white">
+                <select className="bg-white dark:bg-[#303063] rounded py-2 text-black dark:text-white">
                   <option>2023</option>
                   <option>2022</option>
                   <option>2021</option>
@@ -268,38 +268,38 @@ export default function Dashboard() {
               <Bar data={data} options={options} />
             </div>
             {/* Recent Products Table */}
-            <div className="mt-8 p-4  rounded  shadow-sm dark:bg-[#202047]">
-              <h3 className="  mb-4">Recent Products</h3>
-              <table className="table-auto dark:text-white w-full">
+            <div className="shadow-sm dark:bg-[#202047]">
+              <h3 className="mb-4">Recent Products</h3>
+              <table className="w-full table-auto dark:text-white">
                 <thead>
                   <tr className="bg-emerald-500 text-white">
-                    <th className="p-2">Products</th>
-                    <th className="p-2">Price</th>
+                    <th className="py-2">Products</th>
+                    <th className="py-2">Price</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-2">Lenovo 3rd Generation</td>
-                    <td className="p-2">$12500</td>
+                    <td className="py-2">Lenovo 3rd Generation</td>
+                    <td className="py-2">$12500</td>
                   </tr>
                   <tr>
-                    <td className="p-2">Bold V3.2</td>
-                    <td className="p-2">$1600</td>
+                    <td className="py-2">Bold V3.2</td>
+                    <td className="py-2">$1600</td>
                   </tr>
                   <tr>
-                    <td className="p-2">Nike Jordan</td>
-                    <td className="p-2">$2000</td>
+                    <td className="py-2">Nike Jordan</td>
+                    <td className="py-2">$2000</td>
                   </tr>
                   <tr>
-                    <td className="p-2">Apple Series 5 Watch</td>
-                    <td className="p-2">$800</td>
+                    <td className="py-2">Apple Series 5 Watch</td>
+                    <td className="py-2">$800</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="p-4">
       <h2 className=" dark:text-white text-md  mb-4 ">Expired Products</h2>
       <div className="overflow-x-auto w-full">
   <table className="min-w-full table-auto dark:text-white border text-center ">
@@ -316,7 +316,7 @@ export default function Dashboard() {
       {products.map((product) => (
         <tr key={product.id} className="border-b border-gray-200">
           <td className="py-2 border md:flex justify-items-center items-center whitespace-nowrap">
-            <input  type="checkbox" className="mr-2 ml-2 dark:bg-white" />
+            <input  type="checkbox" className="mr-2 ml-2 bg-white" />
             <Image
               src={product.image}
               alt={product.name}
@@ -330,8 +330,8 @@ export default function Dashboard() {
           <td className="py-2 border">{product.manufacturedDate}</td>
           <td className="py-2 border">{product.expiredDate}</td>
           <td className="py-2 border">
-            <div className="flex item-center justify-center gap-5">
-              <button className="p-1 border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
+            <div className="md:flex item-center justify-center gap-5">
+              <button className="p-1 mb-4 md:mb-0 border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
                 <TbEdit size={16} />
               </button>
               <button className="p-1 transform text-red-600 hover:text-red-500 hover:scale-110 border-2">

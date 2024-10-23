@@ -380,7 +380,7 @@ export default function RolesAndPermission() {
             type="checkbox"
             checked={selectAll}
             onChange={toggleSelectAllPermissions}
-            className='dark:bg-white'
+            className='bg-white'
           />
           Select All Permissions
         </label>
@@ -395,7 +395,7 @@ export default function RolesAndPermission() {
           <div>
             <label className='flex justify-between items-center mb-4 gap-2'>
               <input
-                className="form-checkbox dark:bg-white"
+                className="form-checkbox bg-white"
                 type="checkbox"
                 onChange={() => toggleSelectAllInSection(section.section)}
                 checked={section.permissions.every(perm => selectedPermissions[section.section]?.[perm])}
@@ -409,7 +409,7 @@ export default function RolesAndPermission() {
               <li key={i}>
                 <label className='flex items-center mb-4 gap-2 '>
                   <input
-                  className='dark:bg-white'
+                  className='bg-white'
                     type="checkbox"
                     checked={selectedPermissions[section.section]?.[permission] || false}
                     onChange={() => togglePermission(section.section, permission)}

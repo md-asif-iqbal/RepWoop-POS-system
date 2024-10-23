@@ -91,7 +91,7 @@ export default function AddProduct() {
             <input
               id={unitType}
               type="number"
-              className="shadow dark:bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={unitValues[unitType]}
               onChange={(e) => handleUnitInputChange(unitType, e.target.value)}
               placeholder={`Enter ${unitType}`}
@@ -106,7 +106,7 @@ export default function AddProduct() {
           <input
             id="date"
             type="date"
-            className="shadow dark:bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
