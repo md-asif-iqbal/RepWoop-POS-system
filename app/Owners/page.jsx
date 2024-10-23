@@ -66,31 +66,31 @@ export default function page() {
         </div>
       </div>
               {/* Table Section */}
-              <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm ">
-        <table className="min-w-full table-auto dark:text-white ">
+       <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm ">
+        <table className="min-w-full table-auto dark:text-white border-collapse">
           <thead className="bg-emerald-500 text-white dark:text-white">
             <tr>
-              <th className="px-4 py-2 ">#</th>
-              <th className="px-4 py-2 ">Name</th>
-              <th className="px-4 py-2 ">Mobile</th>
-              <th className="px-4 py-2 ">Address</th>
-              <th className="px-4 py-2 ">Invested</th>
-              <th className="px-4 py-2 ">Withdrawn</th>
-              <th className="px-4 py-2 ">Balance</th>
-              <th className="px-4 py-2 ">Actions</th>
+              <th className="px-4 border py-2 ">#</th>
+              <th className="px-4 border py-2 ">Name</th>
+              <th className="px-4 border py-2 ">Mobile</th>
+              <th className="px-4 border py-2 ">Address</th>
+              <th className="px-4 border py-2 ">Invested</th>
+              <th className="px-4 border py-2 ">Withdrawn</th>
+              <th className="px-4 border py-2 ">Balance</th>
+              <th className="px-4 border py-2 ">Actions</th>
             </tr>
           </thead>
           <tbody>
           {ownersData.map((owner) => (
               <tr key={owner.id} className="border-b hover:bg-gray-50 dark:hover:bg-[#141432]  dark:text-white">
-                <td className="px-4 py-2">{owner.id}</td>
-                <td className="px-4 py-2">{owner.name}</td>
-                <td className="px-4 py-2">{owner.mobile}</td>
-                <td className="px-4 py-2">{owner.address}</td>
-                <td className="px-4 py-2">{owner.invested}</td>
-                <td className="px-4 py-2">{owner.withdrawn}</td>
-                <td className="px-4 py-2">{owner.balance}</td>
-                <td className="px-4 py-2 relative">
+                <td className="px-4 border py-2">{owner.id}</td>
+                <td className="px-4 border py-2">{owner.name}</td>
+                <td className="px-4 border py-2">{owner.mobile}</td>
+                <td className="px-4 border py-2">{owner.address}</td>
+                <td className="px-4 border py-2">{owner.invested}</td>
+                <td className="px-4 border py-2">{owner.withdrawn}</td>
+                <td className="px-4 border py-2">{owner.balance}</td>
+                <td className="px-4 border py-2 relative">
                   <button
                     onClick={() => toggleDropdown(owner.id)}
                     className="flex items-center justify-center ml-6 text-gray-900 dark:text-white hover:text-rose-600"
