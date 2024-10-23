@@ -56,10 +56,10 @@ export default function AccountPage() {
 
     
   return (
-    <div className='dark:bg-[#141432] h-full font-nunito text-sm'>
-        <div className="container mx-auto px-4 py-8  mt-[25%] md:mt-[5%]">
+    <div className='dark:bg-[#141432] h-full font-nunito text-sm bg-white'>
+        <div className="  py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
-      <div className="bg-white p-4 shadow-sm rounded-md ">
+      <div className="p-0 shadow-sm rounded-md  ">
         <h2 className=" dark:text-white text-lg  mb-4">New Account</h2>
         <div className="lg:flex md:space-x-4 space-y-3 md:space-y-0">
           <input
@@ -82,7 +82,7 @@ export default function AccountPage() {
       </div>
 
       {/* Accounts Table */}
-      <div className="overflow-x-auto shadow-sm dark:bg-[#1a1a3d] w-full">
+      <div className="overflow-x-auto shadow-sm dark:bg-[#1a1a3d] w-full mt-5">
   <h2 className="  text-lg mb-4 dark:text-white">Accounts</h2>
   <table className="min-w-full w-full border-collapse">
     <thead>

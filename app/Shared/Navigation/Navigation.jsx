@@ -13,22 +13,38 @@ import Sidebar from '../Sidebar/Sidebar';
 export default function Navigation() {
 
   const [theme, setTheme] = useState(null); // State to track theme ('light' or 'dark')
-   useEffect(() => {
-    // On component mount, check local storage for saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
+ 
+  const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
+
+  const pathname = usePathname();
+  useEffect(() => {
+    // Function to detect system preference for dark mode
+    const detectSystemTheme = () => {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    };
+  
+    // Check local storage for saved theme or fallback to system theme
+    const savedTheme = localStorage.getItem('theme') || detectSystemTheme();
     setTheme(savedTheme);
+    
+    // Apply theme class to the document root (html)
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
   }, []);
-
+  
   // Toggle between light and dark mode
   const handleToggle = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+  
+    // Apply theme class to the document root (html)
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
@@ -37,15 +53,7 @@ export default function Navigation() {
       document.documentElement.classList.remove('dark');
     }
   };
-  const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
-  const pathname = usePathname();
-
-
-
-
-
-  
 
   return (
     <div className='w-[100%] lg:w-[86%] fixed top-0 z-50 font-nunito text-sm'>
