@@ -68,37 +68,42 @@ export default function Sidebar() {
     const pathname = usePathname();
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
-    const sidebarRef = useRef(null); // Create a ref for the sidebar
+    const sidebarRef = useRef(null); // Ref for the sidebar
+    const toggleButtonRef = useRef(null); // Ref for the toggle button (optional)
   
-    // Function to toggle sidebar visibility
-    const toggleSidebar = () => {
-      setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+  // Function to toggle sidebar visibility
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+  };
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if sidebarRef and toggleButtonRef are defined and not null before checking .contains()
+      if (
+        sidebarRef.current && // Ensure sidebarRef is not null
+        !sidebarRef.current.contains(event.target) && // Click is outside sidebar
+        toggleButtonRef.current && // Ensure toggleButtonRef is not null
+        !toggleButtonRef.current.contains(event.target) // Click is outside the toggle button
+      ) {
+        setIsSidebarOpen(false); // Close the sidebar
+      }
     };
-  
-    // // Close the sidebar when clicking outside
-    // const handleClickOutside = (event) => {
-    //   // Check if the click was outside the sidebar
-    //   if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isSidebarOpen) {
-    //     setIsSidebarOpen(false); // Close the sidebar if clicking outside and it's open
-    //     console.log("Sidebar is closed"); // Debugging log
-    //   }
-    // };
-  
-    // useEffect(() => {
-    //   // Add event listener for clicks
-    //   document.addEventListener('mousedown', handleClickOutside);
-  
-    //   // Clean up the event listener on component unmount
-    //   return () => {
-    //     document.removeEventListener('mousedown', handleClickOutside);
-    //   };
-    // }, []);
+
+    // Add event listener to detect outside clicks
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Clean up the event listener
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
 
   return (
     <div className='font-nunito text-sm z-50'>
         <div className="dropdown lg:hidden items-center">
-                <div tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
+                <div  ref={toggleButtonRef} tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
                 <AlignJustify size={20} strokeWidth={2} className='' />
                 </div>
                

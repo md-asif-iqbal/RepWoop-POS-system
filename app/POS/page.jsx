@@ -54,13 +54,13 @@ export default function POSManage() {
 
     return (
         <div className='bg-white dark:bg-[#141432] dark:text-white font-nunito text-sm'>
-            <div className="container mx-auto p-4 mt-[5%] ">
+            <div className=" mt-[5%] ">
         {/* POS Manage Header */}
         <h1 className="text-lg dark:text-white  mb-6 ">POS Manage</h1>
   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Section: Input and Payment */}
-          <div className="bg-gray-100 dark:bg-[#202047] p-4  shadow-sm w-full">
+          <div className="p-2 bg-white dark:bg-[#202047]  shadow-sm w-full">
             <div className="flex flex-col gap-4 dark:text-black items-center w-full">
               {/* Scan Barcode & Product Name Input */}
               <input
@@ -220,7 +220,7 @@ export default function POSManage() {
           </div>
   
           {/* Right Section: Product Category and List */}
-          <div className="bg-gray-100 dark:bg-[#202047] p-4  shadow-sm">
+          <div className="bg-white dark:bg-[#202047] p-2  shadow-sm">
           <h1 className='text-md  mb-2'>Product List</h1>
             {/* Search Bar and Filtering */}
             <div className="md:flex items-center mb-4">

@@ -56,7 +56,7 @@ export default function AccountPage() {
 
     
   return (
-    <div className='dark:bg-[#141432] h-full font-nunito text-sm bg-white'>
+    <div className='dark:bg-[#141432] h-full font-nunito text-sm bg-white p-2'>
         <div className="  py-8  mt-[25%] md:mt-[5%]">
       {/* New Account Section */}
       <div className="p-0 shadow-sm rounded-md  ">
@@ -65,15 +65,15 @@ export default function AccountPage() {
           <input
             type="text"
             placeholder="Enter Account Name"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white w-full"
           />
           <input
             type="number"
             placeholder="Opening Balance"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white w-full"
           />
           <button
-            className="bg-emerald-500 text-white px-4 py-2 rounded "
+            className="bg-emerald-500 text-white px-8 py-2 rounded "
             onClick={() => alert("Account Added")}
           >
             Save

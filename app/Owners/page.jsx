@@ -48,13 +48,13 @@ export default function page() {
         setDropdownOpen(isDropdownOpen === id ? null : id);
       };
   return (
-    <div className='bg-white dark:bg-[#141432] h-screen font-nunito text-sm'>
+    <div className='bg-white dark:bg-[#141432] h-screen font-nunito text-sm p-2'>
         <div className="p-0  mt-[25%] lg:mt-[5%]  w-full min-h-full">
       {/* Title Section */}
   
       <div className=" mb-4  shadow-sm  ">
-      <h1 className="text-lg text-gray-500 mx-5 dark:text-white">Owners</h1>
-        <div className='flex items-start justify-start mx-5 py-5 gap-10'>
+      <h1 className="text-lg text-gray-500  dark:text-white">Owners</h1>
+        <div className='flex items-start justify-start  py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
             Owners
             <span className={spanClass}></span>
@@ -67,7 +67,7 @@ export default function page() {
       </div>
               {/* Table Section */}
               <div className="relative dark:bg-[#1f1f42] overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent bg-white shadow-sm ">
-        <table className="min-w-full table-auto dark:text-white">
+        <table className="min-w-full table-auto dark:text-white ">
           <thead className="bg-emerald-500 text-white dark:text-white">
             <tr>
               <th className="px-4 py-2 ">#</th>
