@@ -65,12 +65,12 @@ export default function AccountPage() {
           <input
             type="text"
             placeholder="Enter Account Name"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white"
           />
           <input
             type="number"
             placeholder="Opening Balance"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 dark:bg-white"
+            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white"
           />
           <button
             className="bg-emerald-500 text-white px-4 py-2 rounded "
@@ -83,7 +83,7 @@ export default function AccountPage() {
 
       {/* Accounts Table */}
       <div className="overflow-x-auto shadow-sm dark:bg-[#1a1a3d] w-full">
-  <h2 className=" dark:text-white text-lg mb-4 dark:text-white">Accounts</h2>
+  <h2 className="  text-lg mb-4 dark:text-white">Accounts</h2>
   <table className="min-w-full w-full border-collapse">
     <thead>
       <tr className="bg-emerald-500 text-white">
@@ -209,7 +209,7 @@ export default function AccountPage() {
                 <label className="block text-sm font-medium">Amount</label>
                 <input
                   type="number"
-                  className="w-full border dark:bg-white border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
+                  className="w-full border bg-white border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
                   value={balanceForm.amount}
                   onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
                 />
