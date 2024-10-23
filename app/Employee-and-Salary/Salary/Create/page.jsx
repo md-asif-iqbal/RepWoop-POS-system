@@ -110,7 +110,7 @@ export default function EmployeeSalary() {
               Salary Month<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="salaryMonth"
               name="salaryMonth"
               type="date"
@@ -148,7 +148,7 @@ export default function EmployeeSalary() {
               Basic Salary<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="basicSalary"
               name="basicSalary"
               type="number"
@@ -163,7 +163,7 @@ export default function EmployeeSalary() {
               Overtime Rate
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="overtimeRate"
               name="overtimeRate"
               type="number"
@@ -177,7 +177,7 @@ export default function EmployeeSalary() {
               Total Overtime (hr)
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="totalOvertime"
               name="totalOvertime"
               type="number"
@@ -191,7 +191,7 @@ export default function EmployeeSalary() {
               Total Salary
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="totalSalary"
               name="totalSalary"
               type="number"
@@ -209,7 +209,7 @@ export default function EmployeeSalary() {
               Advance Amount
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="advanceAmount"
               name="advanceAmount"
               type="number"
@@ -223,7 +223,7 @@ export default function EmployeeSalary() {
               Pay Amount
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="payAmount"
               name="payAmount"
               type="number"
@@ -242,7 +242,7 @@ export default function EmployeeSalary() {
               Transaction Account
             </label>
             <select
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="transactionAccount"
               name="transactionAccount"
               value={formData.transactionAccount}

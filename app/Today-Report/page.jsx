@@ -212,14 +212,14 @@ export default function TodayReport() {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2"
+              className="border p-2 dark:bg-white"
               value={search1}
               onChange={(e) => setSearch1(e.target.value)}
             />
           </div>
           <div className="mt-4">
             <label>Show </label>
-            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage1, setCurrentPage1)} className="border p-2">
+            <select  value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage1, setCurrentPage1)} className="border p-2 dark:bg-white">
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -305,14 +305,15 @@ export default function TodayReport() {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2"
+              className="border p-2 dark:bg-white"
               value={search2}
               onChange={(e) => setSearch2(e.target.value)}
             />
           </div>
           <div className="mt-4">
             <label>Show </label>
-            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage2, setCurrentPage2)} className="border p-2">
+            <select value={entriesPerPage1}
+             onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage2, setCurrentPage2)} className="border p-2 dark:bg-white">
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -396,14 +397,15 @@ export default function TodayReport() {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2"
+              className="border p-2 dark:bg-white"
               value={search3}
               onChange={(e) => setSearch3(e.target.value)}
             />
           </div>
           <div className="mt-4">
             <label>Show </label>
-            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage3, setCurrentPage3)} className="border p-2">
+            <select value={entriesPerPage1} 
+            onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage3, setCurrentPage3)} className="border p-2 dark:bg-white">
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -487,14 +489,14 @@ export default function TodayReport() {
             <input
               type="text"
               placeholder="Search..."
-              className="border p-2"
+              className="border p-2 dark:bg-white"
               value={search4}
               onChange={(e) => setSearch4(e.target.value)}
             />
           </div>
           <div className="mt-4">
             <label>Show </label>
-            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage4, setCurrentPage4)} className="border p-2">
+            <select value={entriesPerPage1} onChange={(e) => handleEntriesPerPageChange(e, setEntriesPerPage4, setCurrentPage4)} className="border p-2 dark:bg-white">
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>

@@ -87,13 +87,13 @@ export default function ProfitLossReportge() {
         type="month"
         value={startDate}
         onChange={(e) => setStartDate(e.target.value)}
-        className="border p-2 w-full"
+        className="border dark:bg-white p-2 w-full"
       />
       <input
         type="month"
         value={endDate}
         onChange={(e) => setEndDate(e.target.value)}
-        className="border p-2 w-full"
+        className="border dark:bg-white p-2 w-full"
       />
       <button
         onClick={handleFilter}

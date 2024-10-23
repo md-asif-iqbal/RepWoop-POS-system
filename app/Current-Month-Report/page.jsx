@@ -203,7 +203,7 @@ export default function CurrentMonthReport() {
               placeholder="Search..."
               value={search1}
               onChange={(e) => setSearch1(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -287,7 +287,7 @@ export default function CurrentMonthReport() {
               placeholder="Search..."
               value={search2}
               onChange={(e) => setSearch2(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -369,7 +369,7 @@ export default function CurrentMonthReport() {
               placeholder="Search..."
               value={search3}
               onChange={(e) => setSearch3(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -450,7 +450,7 @@ export default function CurrentMonthReport() {
               placeholder="Search..."
               value={search4}
               onChange={(e) => setSearch4(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">

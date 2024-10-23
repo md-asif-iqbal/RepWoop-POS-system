@@ -106,14 +106,14 @@ export default function TopCustomersReport() {
           placeholder="Start Date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border p-2 w-full"
+          className="border p-2 w-full dark:bg-white"
         />
         <input
           type="date"
           placeholder="End Date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="border p-2 w-full"
+          className="border p-2 w-full dark:bg-white"
         />
         <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded w-full md:w-1/4">Filter</button>
         <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded w-full md:w-1/4">Reset</button>

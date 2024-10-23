@@ -341,21 +341,21 @@ export default function Purchase() {
                         value={filter.billNumber}
                         onChange={handleFilterChange}
                         placeholder="Bill Number"
-                        className="p-2 border border-gray-300 rounded"
+                        className="p-2 border dark:bg-white border-gray-300 rounded"
                         />
                         <input
                         type="date"
                         name="startDate"
                         value={filter.startDate}
                         onChange={handleFilterChange}
-                        className="p-2 border border-gray-300 rounded"
+                        className="p-2 border dark:bg-white border-gray-300 rounded"
                         />
                         <input
                         type="date"
                         name="endDate"
                         value={filter.endDate}
                         onChange={handleFilterChange}
-                        className="p-2 border border-gray-300 rounded"
+                        className="p-2 border dark:bg-white border-gray-300 rounded"
                         />
                         <input
                         type="text"
@@ -363,7 +363,7 @@ export default function Purchase() {
                         value={filter.product}
                         onChange={handleFilterChange}
                         placeholder="Product"
-                        className="p-2 border border-gray-300 rounded"
+                        className="p-2 border dark:bg-white border-gray-300 rounded"
                         />
                         <input
                         type="text"
@@ -371,7 +371,7 @@ export default function Purchase() {
                         value={filter.supplier}
                         onChange={handleFilterChange}
                         placeholder="Supplier"
-                        className="p-2 border border-gray-300 rounded"
+                        className="p-2 border dark:bg-white border-gray-300 rounded"
                         />
                         <button
                         className="bg-blue-500 text-white p-2 rounded"

@@ -108,7 +108,7 @@ export default function AddUnits() {
             placeholder="e.g. Kg"
             value={unitName}
             onChange={(e) => setUnitName(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
             required
           />
         </div>
@@ -120,7 +120,7 @@ export default function AddUnits() {
           <select
             value={relatedToUnit}
             onChange={(e) => setRelatedToUnit(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           >
             <option value="">Select Unit</option>
             {initialUnits.map((unit) => (
@@ -137,7 +137,7 @@ export default function AddUnits() {
           <select
             value={operator}
             onChange={(e) => setOperator(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
             required
           >
             <option value="">Select Operator Sign</option>
@@ -154,7 +154,7 @@ export default function AddUnits() {
             placeholder="Enter value"
             value={relatedByValue}
             onChange={(e) => setRelatedByValue(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
             required
           />
         </div>

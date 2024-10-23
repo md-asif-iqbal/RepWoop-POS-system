@@ -173,13 +173,13 @@ export default function SummaryReport() {
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border p-2 w-full mb-2 md:mb-0"
+          className="border p-2 w-full mb-2 md:mb-0 dark:bg-white"
         />
         <input
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="border p-2 w-full mb-2 md:mb-0"
+          className="border p-2 w-full mb-2 md:mb-0 dark:bg-white"
         />
         <button onClick={handleFilter} className="bg-blue-500 text-white p-2 w-full md:w-1/4 mb-2 md:mb-0">Filter</button>
         <button onClick={resetFilter} className="bg-red-500 text-white p-2 w-full md:w-1/4 mb-2 md:mb-0">Reset</button>
@@ -230,7 +230,7 @@ export default function SummaryReport() {
               placeholder="Search..."
               value={search1}
               onChange={(e) => setSearch1(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -313,7 +313,7 @@ export default function SummaryReport() {
               placeholder="Search..."
               value={search2}
               onChange={(e) => setSearch2(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -394,7 +394,7 @@ export default function SummaryReport() {
               placeholder="Search..."
               value={search3}
               onChange={(e) => setSearch3(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">
@@ -475,7 +475,7 @@ export default function SummaryReport() {
               placeholder="Search..."
               value={search4}
               onChange={(e) => setSearch4(e.target.value)}
-              className="border p-2 ml-2"
+              className="border p-2 ml-2 dark:bg-white"
             />
           </div>
           <div className="mt-4">

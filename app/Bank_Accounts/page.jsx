@@ -150,7 +150,7 @@ export default function AccountPage() {
                 <label className="block text-sm font-medium">Amount</label>
                 <input
                   type="number"
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
+                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2 dark:bg-white"
                   value={balanceForm.amount}
                   onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
                 />
@@ -209,7 +209,7 @@ export default function AccountPage() {
                 <label className="block text-sm font-medium">Amount</label>
                 <input
                   type="number"
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
+                  className="w-full border dark:bg-white border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
                   value={balanceForm.amount}
                   onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
                 />

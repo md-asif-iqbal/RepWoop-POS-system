@@ -40,7 +40,7 @@ export default function Roles() {
           placeholder="Role Name"
           value={roleName}
           onChange={(e) => setRoleName(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/2 mb-4"
+          className="border p-2 rounded w-full md:w-1/2 mb-4 dark:bg-white"
         />
         <button
           onClick={handleAddRole}

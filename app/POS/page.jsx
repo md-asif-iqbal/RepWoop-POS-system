@@ -66,22 +66,22 @@ export default function POSManage() {
               <input
                 type="text"
                 placeholder="Scan Barcode"
-                className="border w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border dark:bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="text"
                 placeholder="Start to write product name..."
-                className="border w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border dark:bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {/* Date Picker */}
               <input
                 type="date"
-                className="border w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border dark:bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 defaultValue="2024-09-21"
               />
               {/* Customer Dropdown */}
               <div className='flex w-full gap-5'>
-              <select className="border w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select className="border dark:bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option>Walk-in Customer</option>
                 <option>Registered Customer</option>
               </select>

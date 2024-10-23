@@ -46,7 +46,7 @@ export default function Settings () {
                 type="file"
                 accept="image/*"
                 onChange={handleLogoChange}
-                className="p-2 border"
+                className="p-2 border dark:bg-white"
               />
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function Settings () {
             type="text"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
         <div className="flex-1">
@@ -65,7 +65,7 @@ export default function Settings () {
             type="text"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
         <div className="flex-1">
@@ -74,7 +74,7 @@ export default function Settings () {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
         <div className="w-full">
@@ -83,7 +83,7 @@ export default function Settings () {
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
       </div>
@@ -103,7 +103,7 @@ export default function Settings () {
                 value="Logo"
                 checked={invoiceLogoType === 'Logo'}
                 onChange={(e) => setInvoiceLogoType(e.target.value)}
-                className="mr-2"
+                className="mr-2 dark:bg-white"
               />
               Logo
             </label>
@@ -114,7 +114,7 @@ export default function Settings () {
                 value="Name"
                 checked={invoiceLogoType === 'Name'}
                 onChange={(e) => setInvoiceLogoType(e.target.value)}
-                className="mr-2"
+                className="mr-2 dark:bg-white"
               />
               Name
             </label>
@@ -125,7 +125,7 @@ export default function Settings () {
                 value="Both"
                 checked={invoiceLogoType === 'Both'}
                 onChange={(e) => setInvoiceLogoType(e.target.value)}
-                className="mr-2"
+                className="mr-2 dark:bg-white"
               />
               Both
             </label>
@@ -157,7 +157,7 @@ export default function Settings () {
             value="Single"
             checked={barcodeType === 'Single'}
             onChange={(e) => setBarcodeType(e.target.value)}
-            className="mr-2"
+            className="mr-2 dark:bg-white"
           />
           Single
         </label>
@@ -168,7 +168,7 @@ export default function Settings () {
             value="A4"
             checked={barcodeType === 'A4'}
             onChange={(e) => setBarcodeType(e.target.value)}
-            className="mr-2"
+            className="mr-2 dark:bg-white"
           />
           A4
         </label>
@@ -186,7 +186,7 @@ export default function Settings () {
             type="number"
             value={lowStockQuantity}
             onChange={(e) => setLowStockQuantity(Number(e.target.value))}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
         <div className="flex-1">
@@ -195,7 +195,7 @@ export default function Settings () {
             type="text"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:bg-white"
           />
         </div>
       </div>

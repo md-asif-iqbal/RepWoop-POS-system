@@ -148,7 +148,7 @@ export default function EmployeePayments() {
               Start Date<span className="text-red-500">*</span>
             </label>
             <input
-                className=" block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className=" block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 type="date"
                 value={startDate}
                 onChange={e => setStartDate(e.target.value)}
@@ -160,7 +160,7 @@ export default function EmployeePayments() {
               End Date<span className="text-red-500">*</span>
             </label>
             <input
-                className=" block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className=" block w-full dark:bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 type="date"
                 value={endDate}
                 onChange={e => setEndDate(e.target.value)}

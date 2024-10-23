@@ -171,7 +171,7 @@ export default function CategoryList() {
                             type="file"
                             accept=".csv, .xlsx"
                             onChange={handleFileUpload}
-                            className="mb-4"
+                            className="mb-4 dark:bg-white"
                         />
                         <div className="flex justify-end space-x-4">
                             <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => { /* Submit logic here */ }}>Submit</button>
@@ -197,7 +197,7 @@ export default function CategoryList() {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
+            className="border dark:bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
             />
                 <div className="flex space-x-2">
                     <select onChange={(e) => setFilters({ ...filters, category: e.target.value })} className="border p-2 rounded">
@@ -231,7 +231,7 @@ export default function CategoryList() {
                 <thead>
                     <tr className='bg-emerald-500 text-white'>
                     <th className="border px-4 py-2 ">
-                <input type="checkbox" onChange={handleSelectAll} />
+                <input type="checkbox" onChange={handleSelectAll} className='dark:bg-white' />
               </th>
                         <th className="border px-4 py-2">Category</th>
                         <th className="border px-4 py-2">Category Slug</th>
@@ -249,6 +249,7 @@ export default function CategoryList() {
                                     type="checkbox"
                                     checked={selectedProducts.includes(product.id)}
                                     onChange={(e) => handleSelectProduct(e, product.id)}
+                                    className='dark:bg-white'
                                   />
                                 </td>
                                 <td className=" px-4 py-2">{product.category}</td>

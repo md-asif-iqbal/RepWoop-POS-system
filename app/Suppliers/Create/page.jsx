@@ -63,7 +63,7 @@ export default function SuppliersAdded() {
               Suppliers Name<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white block w-full  bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="Suppliers-name"
               type="text"
               placeholder="Enter Suppliers Name..."
@@ -77,7 +77,7 @@ export default function SuppliersAdded() {
               Email
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="email"
               type="email"
               placeholder="Enter Suppliers Email..."
@@ -93,7 +93,7 @@ export default function SuppliersAdded() {
               Phone<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white  block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="phone"
               type="text"
               placeholder="Enter Suppliers Phone..."
@@ -107,7 +107,7 @@ export default function SuppliersAdded() {
               Address
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="address"
               type="text"
               placeholder="Write Suppliers Address..."
@@ -123,7 +123,7 @@ export default function SuppliersAdded() {
               Opening Receivable
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="opening-receivable"
               type="number"
               placeholder="Enter Opening Receivable..."
@@ -136,7 +136,7 @@ export default function SuppliersAdded() {
               Opening Payable
             </label>
             <input
-              className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none dark:bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="opening-payable"
               type="number"
               placeholder="Enter Opening Payable..."

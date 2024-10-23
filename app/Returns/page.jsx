@@ -187,18 +187,18 @@ const SalesReturnList = () => {
                           </div>
                           <div>
                             <label className="block ">Date</label>
-                            <input type="date" className="w-full border p-2 rounded" />
+                            <input type="date" className="w-full border p-2 rounded dark:bg-white" />
                           </div>
                           <div>
                             <label className="block ">Reference No.</label>
-                            <input type="text" className="w-full border p-2 rounded" />
+                            <input type="text" className="w-full border p-2 rounded dark:bg-white" />
                           </div>
                           <div>
                             <label className="block ">Product Name</label>
                             <input
                               type="text"
                               placeholder="Please type product code and select"
-                              className="w-full border p-2 rounded"
+                              className="w-full border p-2 rounded dark:bg-white"
                             />
                           </div>
                         </div>
@@ -238,7 +238,7 @@ const SalesReturnList = () => {
                               type="number"
                               
                               onChange={handleOrderTaxChange}
-                              className="w-full border p-2 rounded"
+                              className="w-full border p-2 rounded dark:bg-white"
                             />
                           </div>
                           <div>
@@ -247,7 +247,7 @@ const SalesReturnList = () => {
                               type="number"
                               
                               onChange={handleDiscountChange}
-                              className="w-full border p-2 rounded"
+                              className="w-full border p-2 rounded dark:bg-white"
                             />
                           </div>
                           <div>
@@ -256,7 +256,7 @@ const SalesReturnList = () => {
                               type="number"
                               
                               onChange={handleShippingChange}
-                              className="w-full border p-2 rounded"
+                              className="w-full border p-2 rounded dark:bg-white"
                             />
                           </div>
                         </div>
@@ -317,7 +317,7 @@ const SalesReturnList = () => {
       <input
         type="text"
         placeholder="Search"
-        className="border rounded px-4 py-2 w-full dark:text-black"
+        className="border rounded px-4 py-2 w-full dark:text-black dark:bg-white"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -403,7 +403,7 @@ const SalesReturnList = () => {
           <tr key={index} className="border-t border-r border-b border-l">
             {/* Select Checkbox */}
             <td className="p-2 border">
-              <input type="checkbox" value={returnItem.productId} className="p-5" />
+              <input  type="checkbox" value={returnItem.productId} className="p-5 dark:bg-white" />
             </td>
          
             {/* Product Image */}

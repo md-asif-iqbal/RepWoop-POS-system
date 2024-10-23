@@ -128,19 +128,19 @@ export default function LowStockReport() {
                 placeholder="Product Code"
                 value={codeFilter}
                 onChange={(e) => setCodeFilter(e.target.value)}
-                className="border p-2  w-full"
+                className="border  p-2 dark:bg-white w-full"
               />
               <input
                 type="text"
                 placeholder="Product Name"
                 value={nameFilter}
                 onChange={(e) => setNameFilter(e.target.value)}
-                className="border p-2 w-full"
+                className="border dark:bg-white p-2 w-full"
               />
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="border p-2 w-full mb-2 md:mb-0"
+                className="border dark:bg-white p-2 w-full mb-2 md:mb-0"
               >
                 <option value="">Select Category</option>
                 {[...new Set(data.map(item => item.category))].map((category, index) => (

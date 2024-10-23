@@ -145,14 +145,14 @@ export default function EmployeeAndSalary() {
         <input
           type="text"
           placeholder="Name"
-          className="border rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full md:w-2/4"
+          className="border rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full md:w-2/4 dark:bg-white"
           value={filterName}
           onChange={(e) => setFilterName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Mobile Number"
-          className="border rounded px-4 py-2 r mb-2 md:mb-0 md:mr-2 w-full md:w-2/4"
+          className="border rounded px-4 py-2 r mb-2 md:mb-0 md:mr-2 w-full md:w-2/4 dark:bg-white"
           value={filterPhone}
           onChange={(e) => setFilterPhone(e.target.value)}
         />

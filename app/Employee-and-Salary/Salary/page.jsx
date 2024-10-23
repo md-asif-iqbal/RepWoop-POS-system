@@ -177,28 +177,28 @@ export default function Salary() {
         <input
           type="text"
           placeholder="Name"
-          className="border rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
+          className="border dark:bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
           value={filterName}
           onChange={(e) => setFilterName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Mobile Number"
-          className="border rounded px-4 py-2 mb-2 md:mb-0 md:mr-2 w-full "
+          className="border dark:bg-white rounded px-4 py-2 mb-2 md:mb-0 md:mr-2 w-full "
           value={filterPhone}
           onChange={(e) => setFilterPhone(e.target.value)}
         />
         <input
           type="date"
           placeholder="Start Date"
-          className="border rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
+          className="border dark:bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
           type="date"
           placeholder="End Date"
-          className="border rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
+          className="border dark:bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
