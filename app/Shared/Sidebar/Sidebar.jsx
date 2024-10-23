@@ -10,7 +10,7 @@ import { IoBagHandle } from "react-icons/io5";
 import { TbTruckReturn } from "react-icons/tb";
 import { TbShoppingCartDollar } from "react-icons/tb";
 import { FaBoxesPacking, FaPeopleGroup } from "react-icons/fa6";
-import { RiFileDamageFill } from "react-icons/ri";
+import { RiFileDamageFill, RiFileDamageLine } from "react-icons/ri";
 import { GiWeight } from "react-icons/gi";
 import { RiProductHuntFill } from "react-icons/ri";
 import { AiFillProduct } from "react-icons/ai";
@@ -47,7 +47,10 @@ import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDoll
     PackageMinus, UserRoundSearch, ChartNoAxesCombined, Receipt, FileBox, CalendarPlus,
     CalendarFold, Cog, BadgeInfo, DatabaseBackup, UserCheck, Settings, 
     AlignJustify,
-    Building2} from 'lucide-react';
+    Building2,
+    PackageX,
+    FileX,
+    UsersRound} from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { ShoppingBag } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
@@ -278,7 +281,7 @@ export default function Sidebar() {
                           : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
                       }`}>
                           <span>
-                          <RiFileDamageFill size={20} strokeWidth={1}/>
+                          <FileX size={20} strokeWidth={1} />
                           </span> 
                           <div>
                             <p>Damages</p>
@@ -463,7 +466,7 @@ export default function Sidebar() {
                                 : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
                             }`}>
                                 <span>
-                                <PackageCheck size={20} strokeWidth={1} />
+                                <UsersRound size={20} strokeWidth={1} />
                                 </span> 
                                 <div>
                                     <p>Suppliers</p>
