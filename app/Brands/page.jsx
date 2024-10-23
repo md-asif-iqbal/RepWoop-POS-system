@@ -225,7 +225,7 @@ export default function Brands() {
                 <thead>
                     <tr className='bg-emerald-500 text-white'>
                     <th className="border px-4 py-2 ">
-                <input type="checkbox" onChange={handleSelectAll}  className='bg-white'/>
+                <input type="checkbox" onChange={handleSelectAll}  className='bg-gray-100 form-checkbox'/>
               </th>
                         <th className="border px-4 py-2">brand</th>
                         <th className="border px-4 py-2">Logo</th>
