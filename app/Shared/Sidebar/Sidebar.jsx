@@ -102,12 +102,12 @@ export default function Sidebar() {
           <div ref={sidebarRef} // Attach the ref to the sidebar
              id="sidebar"
              className={`sidebar  fixed z-50  lg:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
-             ${isSidebarOpen ? 'w-64 opacity-100 block' : 'w-0 opacity-0 sm:hidden lg:block'}
+             ${isSidebarOpen ? 'w-64 opacity-100 ' : 'w-0 opacity-0 hidden lg:block'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
              style={{ overflowY: 'auto', maxHeight:"100vh" }}
          >
 
-            <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out ${isSidebarOpen ? 'opacity-100 block' : ' sm:hidden lg:block opacity-0 lg:opacity-100'}`}>
+            <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out`}>
                 {/* font*/}
                <Link href="/"> <Image src={logo} width={150} height={300} alt='Repwoop POS Software' className='bg-transparent w-[60%] xl:w-[90%]'/></Link>
                 <div className="text-start ">
