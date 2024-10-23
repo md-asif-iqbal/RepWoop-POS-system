@@ -7,6 +7,7 @@ import { Eye, Filter, View } from 'lucide-react';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { TbEdit } from 'react-icons/tb';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ProductList() {
     const [showModal, setShowModal] = useState(false);
@@ -231,7 +232,9 @@ export default function ProductList() {
       <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
         <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Product List</h2>
         <div className="md:flex space-x-2 space-y-2 md:space-y-0">
+          <Link href="/Products/Create">
           <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
+          </Link>
           <button
                 className="px-4 py-2 bg-blue-500 text-white rounded"
                 onClick={() => setShowModal(true)}

@@ -1,100 +1,383 @@
 'use client'
 import { jsPDF } from 'jspdf';
 import Image from 'next/image';
-import * as XLSX from 'xlsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
-export default function ProductList() {
+export default function ProductCreate() {
+    const pathname = usePathname();
+    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
-    const products = [
-        { id: 1, product: 'Lenovo 3rd Generation', sku: 'PT001', category: 'Laptop', brand: 'Lenovo', price: '12500.00', unit: 'Pc', qty: 100, createdBy: 'Arron' },
-        { id: 2, product: 'Bold V3.2', sku: 'PT002', category: 'Electronics', brand: 'Bolt', price: '1600.00', unit: 'Pc', qty: 140, createdBy: 'Kenneth' },
-        { id: 3, product: 'Nike Jordan', sku: 'PT003', category: 'Shoe', brand: 'Nike', price: '6000.00', unit: 'Pc', qty: 780, createdBy: 'Gooch' },
-        { id: 4, product: 'Apple Series 5 Watch', sku: 'PT004', category: 'Electronics', brand: 'Apple', price: '25000.00', unit: 'Pc', qty: 450, createdBy: 'Nathan' },
-        { id: 5, product: 'Amazon Echo Dot', sku: 'PT005', category: 'Speaker', brand: 'Amazon', price: '1600.00', unit: 'Pc', qty: 477, createdBy: 'Alice' },
-        { id: 6, product: 'Lobar Handy', sku: 'PT006', category: 'Furnitures', brand: 'Woodmart', price: '4521.00', unit: 'Kg', qty: 145, createdBy: 'Robb' },
-        { id: 7, product: 'Red Premium Handy', sku: 'PT007', category: 'Bags', brand: 'Versace', price: '2024.00', unit: 'Kg', qty: 747, createdBy: 'Steven' },
-        { id: 8, product: 'Iphone 14 Pro', sku: 'PT008', category: 'Phone', brand: 'Iphone', price: '1698.00', unit: 'Pc', qty: 897, createdBy: 'Gravely' },
-        { id: 9, product: 'Black Slim 200', sku: 'PT009', category: 'Chairs', brand: 'Bently', price: '6794.00', unit: 'Pc', qty: 741, createdBy: 'Kevin' },
-        { id: 10, product: 'Woodcraft Sandal', sku: 'PT010', category: 'Bags', brand: 'Woodcraft', price: '4547.00', unit: 'Kg', qty: 148, createdBy: 'Grillo' },
-      ];
-    
-      // Function to export as PDF
-      const exportPDF = () => {
-        const doc = new jsPDF();
-        doc.text('Product List', 20, 10);
-        products.forEach((product, index) => {
-          doc.text(`${index + 1}. ${product.product}, SKU: ${product.sku}, Price: $${product.price}`, 20, 20 + index * 10);
-        });
-        doc.save('products.pdf');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedMainUnit, setSelectedMainUnit] = useState('');
+    const [productName, setProductName] = useState('');
+    const [productCode, setProductCode] = useState('');
+    const [subUnit, setSubUnit] = useState('');
+    const [openingStock, setOpeningStock] = useState('');
+    const [salePrice, setSalePrice] = useState('');
+    const [purchaseCost, setPurchaseCost] = useState('');
+    const [productDetails, setProductDetails] = useState('');
+    const [productImage, setProductImage] = useState(null);
+    const [showCategoryModal, setShowCategoryModal] = useState(false);
+    const [showBrandModal, setShowBrandModal] = useState(false);
+    const [newCategory, setNewCategory] = useState('');
+    const [newBrand, setNewBrand] = useState('');
+    const [categories, setCategories] = useState([
+      'Document', 'Electronics', 'Fashion', 'Hardware', 'House', 'Automobile', 'Food & Beverage', 'Furniture', 'Cosmetics'
+    ]);
+    const [brands, setBrands] = useState(['Lenovo', 'Nike', 'Apple', 'Amazon', 'Versace']);
+    const [mainUnits, setUnits] = useState([
+      'pc', 'Dozen', 'gm', 'Kg', 'ml', 'Litre', 'Box', 'Screw Packet', 'Shoes_pair', 'Pound'
+    ]);
+  
+    // Adding new category to the list
+    const handleAddCategory = () => {
+      if (newCategory) {
+        setCategories([...categories, newCategory]);
+        setNewCategory('');
+        setShowCategoryModal(false);
+      }
+    };
+  
+    // Adding new brand to the list
+    const handleAddBrand = () => {
+      if (newBrand) {
+        setBrands([...brands, newBrand]);
+        setNewBrand('');
+        setShowBrandModal(false);
+      }
+    };
+  
+    // Handle form submission
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      // Create a product object
+      const productData = {
+        productName,
+        productCode,
+        selectedCategory,
+        selectedBrand,
+        selectedMainUnit,
+        subUnit,
+        openingStock,
+        salePrice,
+        purchaseCost,
+        productDetails,
+        // productImage,
       };
-    
-      // Function to export as Excel
-      const exportExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(products);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Products');
-        XLSX.writeFile(wb, 'products.xlsx');
-      };
-    
-      // Function to print the page
-      const handlePrint = () => {
-        window.print();
-      };
+  
+      // Log the data to the console
+      console.log('Product Data:', productData);
+  
+      // Simulate data upload
+      alert('Product added successfully! Check the console for details.');
+    };
+  
 
 
   return (
-    <div className='font-nunito text-sm'>
-         <div className="container mx-auto px-4 py-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className=" dark:text-white text-lg ">Product List</h2>
-        <div className="flex space-x-2">
-          <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
-          <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">PDF</button>
-          <button onClick={exportExcel} className="px-4 py-2 bg-yellow-500 text-white rounded">Excel</button>
-          <button onClick={handlePrint} className="px-4 py-2 bg-gray-500 text-white rounded">Print</button>
+    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white'>
+
+    <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
+              {/* Title Section */}
+
+  <div className=" mb-4  shadow-sm rounded-sm ">
+  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Users </h1>
+    <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
+        <Link href="/Products" className= {`${
+                          pathname === '/Products' 
+                          ? ' group text-orange-500  hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                      }`}>
+        Products
+        <span className={spanClass}></span>
+        </Link>
+        <Link href="/Products/Create" className={`${
+                          pathname === '/Products/Create' 
+                          ? ' group text-orange-500  hover:text-orange-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                      }`}>
+        + Add Products
+        <span className={spanClass}></span>
+        </Link>
+        
+    </div>
+  </div>
+
+      <div>
+      <form onSubmit={handleSubmit} className="p-4 bg-white shadow-lg dark:bg-[#202047]">
+      <h1 className="text-2xl mb-4">Add New Product</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mb-4">
+          <label className="block mb-2">
+            Product Name <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Product Name"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2">
+            Product Code <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Product Code"
+            className=" dark:bg-white p-2 border rounded w-full"
+            value={productCode}
+            onChange={(e) => setProductCode(e.target.value)}
+          />
+        </div>
+
+        {/* Category Selection */}
+        <div className=" mb-4">
+          <div className="w-full">
+            <label className="block mb-2">
+              Category <span className="text-red-500">*</span>
+            </label>
+           <div className='md:flex gap-2'>
+           <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className=" dark:bg-white 
+               p-2 border rounded w-full"
+            >
+              <option value="">Search Categories</option>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <button
+            type="button"
+            className="p-2 bg-blue-500 text-white rounded w-full md:w-1/2"
+            onClick={() => setShowCategoryModal(true)}
+          >
+            Add Category
+          </button>
+
+           </div>
+          </div>
+          
+        </div>
+
+        {/* Brand Selection */}
+        <div className=" mb-4">
+          <div className="w-full">
+            <label className="block mb-2">
+              Brand <span className="text-red-500">*</span>
+            </label>
+            <div className='w-full md:flex gap-2'>
+            <select
+              value={selectedBrand}
+              onChange={(e) => setSelectedBrand(e.target.value)}
+              className=" dark:bg-white 
+               p-2 border rounded w-full"
+            >
+              <option value="">Search Brands</option>
+              {brands.map((brand, index) => (
+                <option key={index} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+            <button
+            type="button"
+            className="p-2 bg-blue-500 text-white rounded w-full md:w-1/2"
+            onClick={() => setShowBrandModal(true)}
+          >
+            Add Brand
+          </button>
+          </div>
+          
+            </div>
+        </div>
+
+        {/* Unit Selection */}
+        <div className="mb-4">
+          <label className="block mb-2">
+           Main Unit <span className="text-red-500">*</span>
+          </label>
+          <select
+            value={selectedMainUnit}
+            onChange={(e) => setSelectedMainUnit(e.target.value)}
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+          >
+            <option value="">Select Unit</option>
+            {mainUnits.map((unit, index) => (
+              <option key={index} value={unit}>
+                {unit}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2">
+           Sub Unit <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Main Unit"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            value={subUnit}
+            onChange={(e) => setSubUnit(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2">Opening Stock</label>
+          <input
+            type="number"
+            placeholder="Opening Stock"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            value={openingStock}
+            onChange={(e) => setOpeningStock(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2">
+            Sale Price <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Sale Price"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            value={salePrice}
+            onChange={(e) => setSalePrice(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2">
+            Purchase Cost <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Purchase Cost"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            value={purchaseCost}
+            onChange={(e) => setPurchaseCost(e.target.value)}
+          />
+        </div>
+ 
+        {/* Product Details Textarea */}
+        <div className="mb-4">
+          <label className="block mb-2">
+            Product Details <span className="text-red-500">*</span>
+          </label>
+          <textarea
+            placeholder="Enter product details..."
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            rows="5"
+            value={productDetails}
+            onChange={(e) => setProductDetails(e.target.value)}
+          />
+        </div>
+
+        {/* Product Image */}
+        <div className="mb-4">
+          <label className="block mb-2">Product Image</label>
+          <input
+            type="file"
+            className=" dark:bg-white 
+             p-2 border rounded w-full"
+            onChange={(e) => setProductImage(e.target.files[0])}
+          />
         </div>
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto dark:text-white bg-white shadow-sm  overflow-hidden">
-          <thead>
-            <tr className="bg-emerald-500 ">
-              <th className="px-4 py-2 ">Product</th>
-              <th className="px-4 py-2 ">SKU</th>
-              <th className="px-4 py-2 ">Category</th>
-              <th className="px-4 py-2 ">Brand</th>
-              <th className="px-4 py-2 ">Price</th>
-              <th className="px-4 py-2 ">Unit</th>
-              <th className="px-4 py-2 ">Qty</th>
-              <th className="px-4 py-2 ">Created By</th>
-              <th className="px-4 py-2 ">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id} className="border-t border-gray-200 ">
-                <td className="px-4 py-2 flex items-center">
-                  <Image width={200} height={300} src={`/${product.sku}.png`} alt={product.product} className="w-10 h-10 object-cover rounded mr-2" />
-                  {product.product}
-                </td>
-                <td className="px-4 py-2">{product.sku}</td>
-                <td className="px-4 py-2">{product.category}</td>
-                <td className="px-4 py-2">{product.brand}</td>
-                <td className="px-4 py-2">${product.price}</td>
-                <td className="px-4 py-2">{product.unit}</td>
-                <td className="px-4 py-2">{product.qty}</td>
-                <td className="px-4 py-2">{product.createdBy}</td>
-                <td className="px-4 py-2 flex space-x-2">
-                  <button className="text-blue-500 hover:text-blue-600">View</button>
-                  <button className="text-yellow-500 hover:text-yellow-600">Edit</button>
-                  <button className="text-red-500 hover:text-red-600">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="bg-blue-500 w-full md:w-1/6 justify-items-center flex justify-center text-white px-8 py-2 rounded"
+      >
+        Save
+      </button>
+
+      {/* Modals for adding new category */}
+      {showCategoryModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-0 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg w-1/3">
+            <h2 className="text-lg mb-4">Add Category</h2>
+            <input
+              type="text"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+              placeholder="Category Name"
+              className=" dark:bg-white 
+               p-2 border rounded w-full mb-4"
+            />
+            <button
+              type="button"
+              className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+              onClick={handleAddCategory}
+            >
+              Add Category
+            </button>
+            <button
+              type="button"
+              className="bg-gray-300 px-4 py-2 rounded"
+              onClick={() => setShowCategoryModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modals for adding new brand */}
+      {showBrandModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-0 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg w-1/3">
+            <h2 className="text-lg mb-4">Add Brand</h2>
+            <input
+              type="text"
+              value={newBrand}
+              onChange={(e) => setNewBrand(e.target.value)}
+              placeholder="Brand Name"
+              className=" dark:bg-white 
+               p-2 border rounded w-full mb-4"
+            />
+            <button
+              type="button"
+              className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+              onClick={handleAddBrand}
+            >
+              Add Brand
+            </button>
+            <button
+              type="button"
+              className="bg-gray-300 px-4 py-2 rounded"
+              onClick={() => setShowBrandModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </form>
       </div>
-    </div>
-    </div>
+</div>
+</div>
   )
 }
