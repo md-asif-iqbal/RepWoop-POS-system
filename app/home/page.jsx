@@ -315,8 +315,8 @@ export default function Dashboard() {
     <tbody className="text-sm font-light">
       {products.map((product) => (
         <tr key={product.id} className="border-b border-gray-200">
-          <td className="py-2 border md:flex justify-items-center items-center whitespace-nowrap">
-            <input  type="checkbox" className="mr-2 ml-2 bg-white" />
+          <td className="py-2 md:flex justify-items-center items-center ml-2 whitespace-nowrap">
+           
             <Image
               src={product.image}
               alt={product.name}
