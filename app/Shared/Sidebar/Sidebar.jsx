@@ -46,7 +46,8 @@ import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDoll
     CalendarClock, CalendarDays, FileClock, CalendarCog, FileChartColumnIncreasing,
     PackageMinus, UserRoundSearch, ChartNoAxesCombined, Receipt, FileBox, CalendarPlus,
     CalendarFold, Cog, BadgeInfo, DatabaseBackup, UserCheck, Settings, 
-    AlignJustify} from 'lucide-react';
+    AlignJustify,
+    Building2} from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { ShoppingBag } from 'lucide-react';
 import { BaggageClaim } from 'lucide-react';
@@ -101,7 +102,7 @@ export default function Sidebar() {
                 </div>
           <div ref={sidebarRef} // Attach the ref to the sidebar
              id="sidebar"
-             className={`sidebar  fixed z-50  lg:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-4 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
+             className={`sidebar  fixed z-50  lg:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-2 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
              ${isSidebarOpen ? 'w-64 opacity-100 ' : 'w-0 opacity-0 hidden lg:block'}
              lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
              style={{ overflowY: 'auto', maxHeight:"100vh" }}
@@ -812,9 +813,13 @@ export default function Sidebar() {
                         </div>
 
                         {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-28 md:pb-8'>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white '>
                         <DatabaseBackup size={20} strokeWidth={1} />
                             <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
+                        </div>
+                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-28 md:pb-8'>
+                        <Building2 size={20} strokeWidth={1}/>
+                            <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Repwoop</span>
                         </div>
                     
                 
