@@ -152,7 +152,7 @@ const SalesReturnList = () => {
 
   return (
     <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 font-nunito text-sm">
-        <div className=" container mx-auto mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
+        <div className="p-2 mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-lg dark:text-white ">Sales Return List</h1>
             <button
@@ -166,7 +166,7 @@ const SalesReturnList = () => {
 
             {isOpen && (
                     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-20">
-                      <div className="bg-white  w-full max-w-6xl p-6 relative overflow-y-auto max-h-[90vh]">
+                      <div className="bg-white  w-full max-w-6xl  relative overflow-y-auto max-h-[90vh]">
                         <div className="flex justify-between items-center mb-4">
                           <h2 className=" dark:text-white text-lg ">Add Sales Return</h2>
                           <button
