@@ -90,7 +90,7 @@ export default function LowStockReport() {
         newWindow.document.write(`
           <html>
             <head>
-              <title>Customer Information</title>
+              <title>Low Stock Report</title>
               <style>
                 body { font-family: Arial, sans-serif; }
                 table { border-collapse: collapse; width: 100%; }

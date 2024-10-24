@@ -97,7 +97,7 @@ export default function Payments() {
         newWindow.document.write(`
           <html>
             <head>
-              <title>Print Invoice</title>
+              <title>Payment Invoince</title>
               <style>
                 body { font-family: Arial, sans-serif; }
                 table { border-collapse: collapse; width: 100%; }
@@ -205,7 +205,7 @@ export default function Payments() {
       return (
         <div className="container mx-auto mt-[18%] lg:mt-[5%] px-4 sm:px-6 lg:px-8 text-sm  lg:h-screen mb-5">
           <div className="flex justify-between items-center mb-4">
-            <h2 className=" dark:text-white text-lg  mb-5 mt-5 dark:text-white">Paytem Management</h2>
+            <h2 className=" text-white text-lg  mb-5 mt-5 dark:text-white">Paytem Management</h2>
             <button 
               onClick={handlePrint} 
               className="bg-green-500 text-white rounded px-4 py-2"

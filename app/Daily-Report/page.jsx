@@ -84,7 +84,7 @@ export default function DailyReport() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Customer Information</title>
+          <title>Daily Report Information</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

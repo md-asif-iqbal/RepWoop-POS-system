@@ -113,9 +113,25 @@ export default function ProductList() {
     XLSX.writeFile(wb, 'products.xlsx');
   };
 
-  // Function to print the page
   const handlePrint = () => {
-    window.print();
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Products List</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
   };
 
   // Handle filter changes
@@ -354,7 +370,7 @@ export default function ProductList() {
 
       {/* Product Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto  bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
+        <table id='table-to-print' className="min-w-full table-auto  bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
           <thead>
             <tr className="bg-emerald-500 text-white">
               <th className="px-4 py-2 ">

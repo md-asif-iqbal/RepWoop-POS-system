@@ -72,7 +72,7 @@ export default function EmployeeAndSalary() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Customer Information</title>
+          <title>Employee and Salary Information</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

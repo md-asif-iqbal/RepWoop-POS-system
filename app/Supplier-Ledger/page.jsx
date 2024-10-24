@@ -252,7 +252,7 @@ export default function SupplierLedger() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Top Product List</title>
+          <title>Supplier Ledger Report</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

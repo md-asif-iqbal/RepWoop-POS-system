@@ -69,7 +69,7 @@ export default function EmployeePayments() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Customer Information</title>
+          <title>Employee Payments</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

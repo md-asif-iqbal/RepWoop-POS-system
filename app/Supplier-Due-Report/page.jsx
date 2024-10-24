@@ -103,7 +103,7 @@ export default function SupplierDueReport() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Customer Information</title>
+          <title>Supplier Due Report</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

@@ -63,7 +63,7 @@ export default function ProfitLossReportge() {
         newWindow.document.write(`
           <html>
             <head>
-              <title>Customer Information</title>
+              <title>Profit And Loss Report</title>
               <style>
                 body { font-family: Arial, sans-serif; }
                 table { border-collapse: collapse; width: 100%; }

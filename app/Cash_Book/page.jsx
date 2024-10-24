@@ -60,7 +60,7 @@ export default function CashBook() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Customer Information</title>
+          <title>Cash Book Information</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

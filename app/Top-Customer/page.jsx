@@ -79,7 +79,7 @@ export default function TopCustomersReport() {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Top Customer</title>
+          <title>Top Customer List</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }
