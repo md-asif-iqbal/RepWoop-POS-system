@@ -64,7 +64,7 @@ export default function CustomerAdded() {
               Customer Name<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-white block w-full  text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="customer-name"
               type="text"
               placeholder="Enter Customer Name..."
@@ -78,7 +78,7 @@ export default function CustomerAdded() {
               Email
             </label>
             <input
-              className="appearance-none block bg-white w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block bg-white w-full  text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="email"
               type="email"
               placeholder="Enter Customer Email..."
@@ -94,7 +94,7 @@ export default function CustomerAdded() {
               Phone<span className="text-red-500">*</span>
             </label>
             <input
-              className="appearance-none block w-full bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-white  text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="phone"
               type="text"
               placeholder="Enter Customer Phone..."
@@ -108,7 +108,7 @@ export default function CustomerAdded() {
               Address
             </label>
             <input
-              className="appearance-none block w-full bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-white  text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="address"
               type="text"
               placeholder="Write Customer Address..."
@@ -124,7 +124,7 @@ export default function CustomerAdded() {
               Opening Receivable
             </label>
             <input
-              className="appearance-none block w-full bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-white  text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="opening-receivable"
               type="number"
               placeholder="Enter Opening Receivable..."
@@ -137,7 +137,7 @@ export default function CustomerAdded() {
               Opening Payable
             </label>
             <input
-              className="appearance-none block w-full bg-white bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-white  text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
               id="opening-payable"
               type="number"
               placeholder="Enter Opening Payable..."

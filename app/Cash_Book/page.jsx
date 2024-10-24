@@ -1,7 +1,6 @@
 'use client'
 import React, { useRef } from "react";
-// @ts-ignore
-// import html2pdf from 'html2pdf.js';
+
 
 
 export default function CashBook() {
@@ -55,27 +54,26 @@ export default function CashBook() {
   ];
   const printRef = useRef(); // Create a ref for the print section
 
-    // Function to trigger printing only the balance and table data
-    const handlePrint = () => {
-      const printContents = printRef.current.innerHTML;
-      const originalContents = document.body.innerHTML;
-  
-      document.body.innerHTML = printContents; // Replace the body content with the part we want to print
-      window.print(); // Trigger print dialog
-      // document.body.innerHTML = originalContents; // Restore the original content after printing
-  
-      // window.location.reload(); // Reload to re-render the original content
-      // html2pdf()
-      // .from(element)
-      // .set({
-      //   margin: 1,
-      //   filename: 'cashbook.pdf',
-      //   html2canvas: { scale: 2 },
-      //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-      // })
-      // .save();
-    };
-    
+  const handlePrint = () => {
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Customer Information</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
+  };
   return (
    <div className='dark:bg-[#141432] md:h-screen font-nunito text-sm bg-white p-2'>
     <div className='md:mt-[5%] mt-[20%] shadow-sm items-center'>
@@ -110,7 +108,7 @@ export default function CashBook() {
 
         {/* Transaction Table */}
         <div className="mt-6 ">
-          <table className="min-w-full bg-white dark:bg-[#1a1a38] border border-gray-300  ">
+          <table id="table-to-print" className="min-w-full bg-white dark:bg-[#1a1a38] border border-gray-300  ">
             <thead>
               <tr className="bg-emerald-500  text-white  text-sm">
                 <th className="py-2 px-4 border-b">#</th>

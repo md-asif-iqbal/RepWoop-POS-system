@@ -163,7 +163,7 @@ export default function CustomerLedger () {
     newWindow.document.write(`
       <html>
         <head>
-          <title>Top Product List</title>
+          <title>Customer Ledger List</title>
           <style>
             body { font-family: Arial, sans-serif; }
             table { border-collapse: collapse; width: 100%; }

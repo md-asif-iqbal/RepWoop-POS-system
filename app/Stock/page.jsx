@@ -1,7 +1,6 @@
 'use client'; 
 
 import React, { useState, useRef } from 'react';
-// import html2pdf from 'html2pdf.js';
 import Image from 'next/image';
 
 export default function Stock() {
@@ -298,34 +297,28 @@ export default function Stock() {
     setFilters(resetFilterState);
     setFilteredData(initialData); // Reset the data to the initial state
   };
-  // Function to handle printing and downloading PDF
-  const handlePrint = () => {
-    // const imageHeader = document.querySelector(".image-header");
-    // const imageColumns = document.querySelectorAll(".image-column");
-    
-    // // Hide the image header and columns
-    // if (imageHeader) imageHeader.style.display = "none";
-    // imageColumns.forEach((col) => {
-    //   col.style.display = "none";
-    // });
-    // const printContents = printRef.current.innerHTML;
-    // const originalContents = document.body.innerHTML;
-  
-    // document.body.innerHTML = printContents; // Replace the body content with the part we want to print
-    window.print(); // Trigger print dialog
-    // document.body.innerHTML = originalContents;
+// Print functionality
+const handlePrint = () => {
+  const printContent = document.getElementById("table-to-print").outerHTML;
+  const newWindow = window.open('', '_blank');
+  newWindow.document.write(`
+    <html>
+      <head>
+        <title>Top Product List</title>
+        <style>
+          body { font-family: Arial, sans-serif; }
+          table { border-collapse: collapse; width: 100%; }
+          th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+        </style>
+      </head>
+      <body onload="window.print()">
+        ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+      </body>
+    </html>
+  `);
+  newWindow.document.close();
+};
 
-    // window.location.reload(); // Reload to re-render the original content
-    // html2pdf()
-    // .from(element)
-    // .set({
-    //   margin: 1,
-    //   filename: 'cashbook.pdf',
-    //   html2canvas: { scale: 2 },
-    //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    // })
-    // .save();
-  };
   
   return (
     <div className='font-nunito text-sm'>
@@ -388,7 +381,7 @@ export default function Stock() {
 
       {/* Product Stock Table */}
       <div ref={printRef} className="overflow-auto scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
-  <table className=" w-full table-auto dark:text-white border-collapse bg-white text-sm text-center">
+  <table id='table-to-print' className=" w-full table-auto dark:text-white border-collapse bg-white text-sm text-center">
     <thead className="bg-gray-100">
       <tr className='bg-emerald-500 text-white'>
         <th className=" px-1 py-2">#</th>

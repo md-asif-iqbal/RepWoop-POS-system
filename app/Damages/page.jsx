@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef, useState } from 'react';
-// import html2pdf from 'html2pdf.js';
+
 import { Trash2 } from 'lucide-react';
 export default function Damages() {
     const printRef = useRef();
@@ -51,23 +51,26 @@ export default function Damages() {
     setShowModal(false);
   };
 
-  // Print functionality
+    // Print functionality
   const handlePrint = () => {
-    // const printContents = printRef.current.innerHTML;
-    // const originalContents = document.body.innerHTML;
-    // document.body.innerHTML = `<div style="display: flex; justify-content: center; margin-top: 2%;">${printContents}</div>`;
-        window.print(); // Trigger print dialog
-        // document.body.innerHTML = originalContents;
-        // window.location.reload(); // Reload to re-render the original content
-        // html2pdf()
-        // .from(element)
-        // .set({
-        // margin: 1,
-        // filename: 'cashbook.pdf',
-        // html2canvas: { scale: 2 },
-        // jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-        // })
-        // .save();
+    const printContent = document.getElementById("table-to-print").outerHTML;
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(`
+      <html>
+        <head>
+          <title>Damages List</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+          </style>
+        </head>
+        <body onload="window.print()">
+          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
+        </body>
+      </html>
+    `);
+    newWindow.document.close();
   };
 
   // Filtering logic
@@ -115,7 +118,7 @@ export default function Damages() {
                 <div className="overflow-x-auto">
                 {/* Damages Table */}
                 <div ref={printRef} className="overflow-x-auto">
-                        <table className="min-w-full text-center border-collapse print:block items-center justify-center">
+                        <table id='table-to-print' className="min-w-full text-center border-collapse print:block items-center justify-center">
                         <thead>
                             <tr className='bg-emerald-500 text-white'>
                             <th className="border p-2 print:table-cell">#</th>
