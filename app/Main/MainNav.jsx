@@ -11,7 +11,7 @@ export default function MainNav() {
     };
   return (
     <div>
-         <div className="font-nunito text-sm">
+         <div className="font-inter text-sm">
             {/* Pass toggleSidebar function to Navbar */}
             <Navigation toggleSidebar={toggleSidebar} />
             

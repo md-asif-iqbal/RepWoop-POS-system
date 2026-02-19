@@ -1,325 +1,172 @@
 'use client';
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import Papa from 'papaparse'; // For CSV parsing
 import * as XLSX from 'xlsx';
-import { Eye, Filter, View } from 'lucide-react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
-import { TbEdit } from 'react-icons/tb';
+import { Search, RotateCcw, MoreVertical, Tag, Upload, FileDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
 
 export default function Brands() {
-    const [showModal, setShowModal] = useState(false);
-    const [products, setProducts] = useState([
-        { id: 1, brand: 'Dell', logo: 'dell-logo.png', createdOn: '2023-08-15', status: 'Active' },
-        { id: 2, brand: 'Sony', logo: 'sony-logo.png', createdOn: '2023-08-12', status: 'Inactive' },
-        { id: 3, brand: 'Nike', logo: 'nike-logo.png', createdOn: '2023-09-01', status: 'Active' },
-        { id: 4, brand: 'Samsung', logo: 'samsung-logo.png', createdOn: '2023-08-21', status: 'Inactive' },
-        { id: 5, brand: 'Bose', logo: 'bose-logo.png', createdOn: '2023-08-10', status: 'Active' },
-        { id: 6, brand: 'Ikea', logo: 'ikea-logo.png', createdOn: '2023-08-08', status: 'Inactive' },
-        { id: 7, brand: 'Gucci', logo: 'gucci-logo.png', createdOn: '2023-08-14', status: 'Active' },
-        { id: 8, brand: 'Apple', logo: 'apple-logo.png', createdOn: '2023-09-12', status: 'Inactive' },
-        { id: 9, brand: 'Herman Miller', logo: 'herman-miller-logo.png', createdOn: '2023-07-29', status: 'Active' },
-        { id: 10, brand: 'Louis Vuitton', logo: 'lv-logo.png', createdOn: '2023-08-01', status: 'Inactive' },
-        { id: 11, brand: 'HP', logo: 'hp-logo.png', createdOn: '2023-09-15', status: 'Active' },
-        { id: 12, brand: 'Google', logo: 'google-logo.png', createdOn: '2023-09-10', status: 'Inactive' },
-        { id: 13, brand: 'OnePlus', logo: 'oneplus-logo.png', createdOn: '2023-09-20', status: 'Active' },
-        { id: 14, brand: 'Xiaomi', logo: 'xiaomi-logo.png', createdOn: '2023-09-18', status: 'Inactive' },
-        { id: 15, brand: 'Asus', logo: 'asus-logo.png', createdOn: '2023-08-22', status: 'Active' },
-        { id: 16, brand: 'Beats', logo: 'beats-logo.png', createdOn: '2023-09-03', status: 'Inactive' },
-        { id: 17, brand: 'JBL', logo: 'jbl-logo.png', createdOn: '2023-08-31', status: 'Active' },
-        { id: 18, brand: 'Lenovo', logo: 'lenovo-logo.png', createdOn: '2023-09-06', status: 'Inactive' },
-        { id: 19, brand: 'Acer', logo: 'acer-logo.png', createdOn: '2023-09-09', status: 'Active' },
-        { id: 20, brand: 'Microsoft', logo: 'microsoft-logo.png', createdOn: '2023-09-14', status: 'Inactive' }
-    ]);
-    
-    const [selectedProducts, setSelectedProducts] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filters, setFilters] = useState({ brand: '', createdOn: '', status: '' });
-    const [sortOrder, setSortOrder] = useState('asc');
-    const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 10;
+  const [brands, setBrands] = useState([
+    { id: 1, brand: 'Dell', createdOn: '2023-08-15', status: 'Active' },
+    { id: 2, brand: 'Sony', createdOn: '2023-08-12', status: 'Inactive' },
+    { id: 3, brand: 'Nike', createdOn: '2023-09-01', status: 'Active' },
+    { id: 4, brand: 'Samsung', createdOn: '2023-08-21', status: 'Active' },
+    { id: 5, brand: 'Apple', createdOn: '2023-09-12', status: 'Active' },
+    { id: 6, brand: 'HP', createdOn: '2023-09-15', status: 'Active' },
+    { id: 7, brand: 'Lenovo', createdOn: '2023-09-06', status: 'Inactive' },
+    { id: 8, brand: 'Asus', createdOn: '2023-08-22', status: 'Active' },
+    { id: 9, brand: 'Google', createdOn: '2023-09-10', status: 'Active' },
+    { id: 10, brand: 'Microsoft', createdOn: '2023-09-14', status: 'Active' },
+    { id: 11, brand: 'OnePlus', createdOn: '2023-09-20', status: 'Active' },
+    { id: 12, brand: 'Xiaomi', createdOn: '2023-09-18', status: 'Inactive' },
+  ]);
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [showImport, setShowImport] = useState(false);
+  const perPage = 10;
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        const fileType = file.name.split('.').pop();
+  const filtered = brands.filter(b =>
+    b.brand.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (!statusFilter || b.status === statusFilter)
+  );
 
-        if (fileType === 'csv') {
-            Papa.parse(file, {
-                header: true,
-                complete: (results) => setProducts(results.data),
-                error: (err) => console.error('Error parsing CSV file:', err)
-            });
-        } else if (fileType === 'xlsx') {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const data = new Uint8Array(event.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                const excelData = XLSX.utils.sheet_to_json(worksheet);
-                setProducts(excelData);
-            };
-            reader.readAsArrayBuffer(file);
-        } else {
-            console.error('Unsupported file type');
-        }
-    };
+  const totalPages = Math.ceil(filtered.length / perPage);
+  const current = filtered.slice((currentPage - 1) * perPage, currentPage * perPage);
+  const activeBrands = brands.filter(b => b.status === 'Active').length;
 
-
-    const exportPDF = () => {
-        const doc = new jsPDF();
-        doc.text('Brands List', 20, 10);
-        products.forEach((product, index) => {
-            doc.text(`${index + 1}. ${product.brand}, Created On: ${product.createdOn}, Status: ${product.status}`, 20, 20 + index * 10);
-        });
-        doc.save('Brands.pdf');
-    };
-
-    const exportExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(products);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Products');
-        XLSX.writeFile(wb, 'products.xlsx');
-    };
-
-
-    const filteredProducts = products
-        .filter(product => 
-            (filters.brand === '' || product.brand === filters.brand) &&
-            (filters.createdOn === '' || product.createdOn === filters.createdOn) &&
-            (filters.status === '' || product.status === filters.status) &&
-            product.brand.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .sort((a, b) => sortOrder === 'asc' ? new Date(a.createdOn) - new Date(b.createdOn) : new Date(b.createdOn) - new Date(a.createdOn));
-
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const uniqueCategories = [...new Set(products.map(product => product.brand))];
-    const uniqueCreatedOn = [...new Set(products.map(product => product.createdOn))];
-    const uniqueStatuses = [...new Set(products.map(product => product.status))];
-
-     const [showFilters, setShowFilters] = useState(false);
-      const toggleFilters = () => {
-        setShowFilters(!showFilters);
-      };
-
-      const handleSelectAll = (e) => {
-        if (e.target.checked) {
-          const allProductIds = products.map((product) => product.id);
-          setSelectedProducts(allProductIds);
-        } else {
-          setSelectedProducts([]);
-        }
-      };
-
-        const handleSelectProduct = (e, productId) => {
-          if (e.target.checked) {
-            setSelectedProducts([...selectedProducts, productId]);
-          } else {
-            setSelectedProducts(selectedProducts.filter((id) => id !== productId));
-          }
-        };
-  const [showModal2, setShowModal2] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleOpenModal = () => {
-    console.log("test");
-      setModalVisible(true);
-      setTimeout(() => {
-          setShowModal2(true);
-      }, 0); // Small delay to trigger transition
+  const exportPDF = () => {
+    const doc = new jsPDF();
+    doc.text('Brands List', 20, 10);
+    brands.forEach((b, i) => doc.text(`${i + 1}. ${b.brand} - ${b.status}`, 20, 20 + i * 10));
+    doc.save('Brands.pdf');
   };
 
-  const handleCloseModal = () => {
-      setShowModal2(false);
-      setTimeout(() => {
-          setModalVisible(false);
-      }, 300); // Delay based on transition duration
+  const exportExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(brands);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Brands');
+    XLSX.writeFile(wb, 'brands.xlsx');
   };
 
-
-    return (
-        <div className="text-sm container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito bg-white  dark:bg-[#151530] dark:text-white">
-            {/* Action Buttons */}
-            <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Brands List</h2>
-                <div className="md:flex space-x-2 space-y-2 md:space-y-0">
-                    <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
-                    <button onClick={handleOpenModal} className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
-                    <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">Export PDF</button>
-                    <button onClick={exportExcel} className="px-4 py-2 bg-blue-500 text-white rounded">Export Excel</button>
-                </div>
+  return (
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl text-white shadow-lg"><Tag size={24} /></div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Brands</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{brands.length} brands registered</p>
             </div>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <Link href="/Brands/Create"><Button size="sm" className="gap-1.5">+ Add Brand</Button></Link>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={() => setShowImport(true)}><Upload size={14} />Import</Button>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={exportPDF}><FileDown size={14} />PDF</Button>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={exportExcel}><FileDown size={14} />Excel</Button>
+          </div>
+        </div>
 
-            {/* Modal for Importing Products */}
-            {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
-                    <div className="bg-white  p-6 w-1/2">
-                        <h2 className=" dark:text-white text-lg  mb-4">Import Products</h2>
-                        <input
-                            type="file"
-                            accept=".csv, .xlsx"
-                            onChange={handleFileUpload}
-                            className="mb-4 bg-white"
-                        />
-                        <div className="flex justify-end space-x-4">
-                            <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => { /* Submit logic here */ }}>Submit</button>
-                            <button className="px-4 py-2 bg-red-500 text-white rounded" onClick={handleCloseModal}>Close</button>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0"><CardContent className="p-4"><p className="text-indigo-100 text-xs">Total Brands</p><p className="text-2xl font-bold">{brands.length}</p></CardContent></Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0"><CardContent className="p-4"><p className="text-emerald-100 text-xs">Active</p><p className="text-2xl font-bold">{activeBrands}</p></CardContent></Card>
+          <Card className="bg-gradient-to-br from-rose-500 to-rose-600 text-white border-0"><CardContent className="p-4"><p className="text-rose-100 text-xs">Inactive</p><p className="text-2xl font-bold">{brands.length - activeBrands}</p></CardContent></Card>
+        </div>
+
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-col md:flex-row gap-3 items-end">
+              <div className="flex-1">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Search Brand</label>
+                <div className="relative"><Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search..." className="pl-9 h-9" /></div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Status</label>
+                <select className="h-9 rounded-lg border border-slate-200 dark:border-slate-700 px-3 text-sm bg-white dark:bg-slate-900" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
+                  <option value="">All</option><option value="Active">Active</option><option value="Inactive">Inactive</option>
+                </select>
+              </div>
+              <Button variant="outline" size="sm" className="gap-1.5" onClick={() => { setSearchTerm(''); setStatusFilter(''); setCurrentPage(1); }}><RotateCcw size={14} />Reset</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium w-12">#</th>
+                  <th className="px-3 py-3 text-left font-medium">Brand Name</th>
+                  <th className="px-3 py-3 text-left font-medium">Created On</th>
+                  <th className="px-3 py-3 text-center font-medium">Status</th>
+                  <th className="px-3 py-3 text-center font-medium w-16">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {current.map((b, i) => (
+                  <tr key={b.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3 text-slate-500">{(currentPage - 1) * perPage + i + 1}</td>
+                    <td className="px-3 py-3">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 text-xs font-bold">{b.brand.charAt(0)}</div>
+                        <span className="font-medium text-slate-800 dark:text-white">{b.brand}</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-3 text-slate-500 dark:text-slate-400 text-xs">{b.createdOn}</td>
+                    <td className="px-3 py-3 text-center"><Badge variant={b.status === 'Active' ? 'success' : 'destructive'} className="text-xs">{b.status}</Badge></td>
+                    <td className="px-3 py-3 text-center relative">
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenMenu(openMenu === b.id ? null : b.id)}><MoreVertical size={16} /></Button>
+                      {openMenu === b.id && (
+                        <div className="absolute right-4 top-10 bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-20 w-28">
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs">Edit</button>
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs">Delete</button>
                         </div>
-                    </div>
-                </div>
-            )}
-
-            <div className="flex md:justify-end md:items-end mb-4">
-                  
-                  <div className="flex space-x-2">
-                    <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
-                      {showFilters ? '✕' : <Filter size={20} strokeWidth={2} /> }
-                    </button>
-                  </div>
-                </div>
-                {showFilters && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6 dark:text-black text-gray-500">
-
-            <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 bg-white px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
-            />
-                <div className="flex space-x-2">
-                    <select onChange={(e) => setFilters({ ...filters, brand: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by brand</option>
-                        {uniqueCategories.map((brand, index) => (
-                            <option key={index} value={brand}>{brand}</option>
-                        ))}
-                    </select>
-                    <select onChange={(e) => setFilters({ ...filters, createdOn: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Created On</option>
-                        {uniqueCreatedOn.map((date, index) => (
-                            <option key={index} value={date}>{date}</option>
-                        ))}
-                    </select>
-                    <select onChange={(e) => setFilters({ ...filters, status: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Status</option>
-                        {uniqueStatuses.map((status, index) => (
-                            <option key={index} value={status}>{status}</option>
-                        ))}
-                    </select>
-                </div>
-           
-        </div>
-      )}
-
-            {/* Search and Filter */}
-            
-
-            {/* Product Table */}
-            <table className="min-w-full bg-white dark:bg-[#1c1c3c] dark:text-white border border-gray-300 font-nunito text-gray-500">
-                <thead>
-                    <tr className='bg-emerald-500 text-white'>
-                    <th className="border px-4 py-2 ">
-                <input type="checkbox" onChange={handleSelectAll}  className='bg-gray-100 form-checkbox'/>
-              </th>
-                        <th className="border px-4 py-2">brand</th>
-                        <th className="border px-4 py-2">Logo</th>
-                        <th className="border px-4 py-2">Created On</th>
-                        <th className="border px-4 py-2">Status</th>
-                        <th className="border px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentProducts.length > 0 ? (
-                        currentProducts.map((product, index) => (
-                            <tr key={index} className="border-b text-center">
-                                <td className="px-4 py-2  border">
-                                  <input
-                                  className='bg-white'
-                                    type="checkbox"
-                                    checked={selectedProducts.includes(product.id)}
-                                    onChange={(e) => handleSelectProduct(e, product.id)}
-                                  />
-                                </td>
-                                <td className=" px-4 py-2">{product.brand}</td>
-                                <td className=" px-4 py-2 border">{product.logo}</td>
-                                <td className=" px-4 py-2">{product.createdOn}</td>
-                                <td className=" px-4 py-2 border"><span className={`px-2 py-1 text-xs  rounded-full ${
-                                                product.status === "Active"
-                                                  ? "bg-green-100 text-green-700"
-                                                  : product.status === "Inactive"
-                                                  ? "bg-red-100 text-red-700"
-                                                  : "bg-yellow-100 text-yellow-700"
-                                              }`}>{product.status}</span></td>
-                                <td className=" px-4 py-2  flex space-x-2 items-center justify-center gap-5">
-                                    
-                                <button className="p-2  border transform text-center text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
-                                  <TbEdit size={16}/>
-                                </button>
-                                <button onClick={handleOpenModal} className="p-2 text-center  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
-                                  <RiDeleteBin5Line size={16}/>
-                                </button>
-                                {modalVisible && (
-                                  <div
-                                        className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
-                                    >
-                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className=" dark:text-white text-lg  mb-4">Are you sure?</h2>
-                                            <p className=" dark:text-white mb-6">You wont be able to revert this!</p>
-
-                                            {/* Show details */}
-                                            <div className="mb-6">
-                                                <p><strong>Item ID:</strong> {product.brand}</p>
-                                                <p><strong>Item Name:</strong> {product.id}</p>
-                                            </div>
-
-                                            {/* Buttons */}
-                                            <div className="flex justify-center">
-                                                <button
-                                                    onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
-                                                >
-                                                    Yes, delete it!
-                                                </button>
-                                                <button
-                                                    onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                      </div>
-                                  )}
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="6" className="border text-center py-4">No products found</td>
-                        </tr>
-                    )}
-                </tbody>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
-
-            {/* Pagination */}
-            <div className="lg:flex justify-center items-center gap-5 mt-4">
-        {[...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()].map((number) => (
-          <button
-            key={number + 1}
-            onClick={() => paginate(number + 1)}
-            className={`px-3 py-2 mx-1 border rounded ${currentPage === number + 1 ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
-          >
-            {number + 1}
-          </button>
-        ))}
-         <div >Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} entries</div>
+          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between p-4 border-t border-slate-100 dark:border-slate-800">
+              <p className="text-xs text-slate-500">Showing {(currentPage - 1) * perPage + 1}-{Math.min(currentPage * perPage, filtered.length)} of {filtered.length}</p>
+              <div className="flex gap-1">
+                <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === 1} onClick={() => setCurrentPage(p => p - 1)}><ChevronLeft size={16} /></Button>
+                {Array.from({ length: totalPages }, (_, i) => <Button key={i} variant={currentPage === i + 1 ? 'default' : 'outline'} size="icon" className="h-8 w-8 text-xs" onClick={() => setCurrentPage(i + 1)}>{i + 1}</Button>)}
+                <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => p + 1)}><ChevronRight size={16} /></Button>
+              </div>
             </div>
-        </div>
-    );
+          )}
+        </Card>
+
+        {showImport && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-md">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4">Import Brands</h3>
+                <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-lg p-6 text-center mb-4">
+                  <Upload size={32} className="mx-auto text-slate-400 mb-2" />
+                  <p className="text-sm text-slate-500">Drag & drop CSV/XLSX file here</p>
+                  <input type="file" accept=".csv,.xlsx" className="mt-3 text-sm" />
+                </div>
+                <div className="flex justify-end gap-2">
+                  <Button>Submit</Button>
+                  <Button variant="outline" onClick={() => setShowImport(false)}>Close</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

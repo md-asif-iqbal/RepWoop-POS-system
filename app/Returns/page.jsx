@@ -1,466 +1,173 @@
 "use client"
+import React, { useState } from 'react';
+import { RotateCcw, Search, Plus, Pencil, Trash2, MoreVertical, X } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
 
-
-import Image from "next/image";
-import React, { useState } from "react";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { TbEdit } from "react-icons/tb";
-import { CiSearch } from "react-icons/ci";
-import { BadgePlus } from "lucide-react";
 const SalesReturnList = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCustomer, setSelectedCustomer] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedPaymentStatus, setSelectedPaymentStatus] = useState("");
-  const [sortBy, setSortBy] = useState("date");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCustomer, setSelectedCustomer] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedPaymentStatus, setSelectedPaymentStatus] = useState('');
+  const [openAction, setOpenAction] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const salesReturns = [
-    {
-      productName: "Macbook Pro",
-      date: "19 Nov 2022",
-      customer: "Thomas",
-      status: "Received",
-      grandTotal: 550,
-      paid: 120,
-      due: 550,
-      paymentStatus: "Paid",
-    },
-    {
-      productName: "Orange",
-      date: "19 Nov 2022",
-      customer: "Benjamin",
-      status: "Pending",
-      grandTotal: 550,
-      paid: 120,
-      due: 550,
-      paymentStatus: "Unpaid",
-    },
-    {
-      productName: "Pineapple",
-      date: "19 Nov 2022",
-      customer: "James",
-      status: "Pending",
-      grandTotal: 210,
-      paid: 120,
-      due: 210,
-      paymentStatus: "Unpaid",
-    },
-    {
-      productName: "Strawberry",
-      date: "19 Nov 2022",
-      customer: "Bruklin",
-      status: "Received",
-      grandTotal: 210,
-      paid: 120,
-      due: 210,
-      paymentStatus: "Paid",
-    },
-    {
-      productName: "Strawberry",
-      date: "19 Nov 2022",
-      customer: "Bruklin",
-      status: "Received",
-      grandTotal: 210,
-      paid: 120,
-      due: 210,
-      paymentStatus: "Paid",
-    },
-    {
-      productName: "Macbook Pro",
-      date: "19 Nov 2022",
-      customer: "Best Power Tools",
-      status: "Received",
-      grandTotal: 210,
-      paid: 120,
-      due: 210,
-      paymentStatus: "Paid",
-    },
-    {
-      productName: "Avocat",
-      date: "19 Nov 2022",
-      customer: "Beverly",
-      status: "Pending",
-      grandTotal: 210,
-      paid: 120,
-      due: 210,
-      paymentStatus: "Unpaid",
-    },
-    {
-      productName: "Apple Earpods",
-      date: "19 Nov 2022",
-      customer: "Apex Computers",
-      status: "Ordered",
-      grandTotal: 1000,
-      paid: 500,
-      due: 1000,
-      paymentStatus: "Partial",
-    },
+    { id: 1, productName: 'Macbook Pro', date: '19 Nov 2022', customer: 'Thomas', status: 'Received', grandTotal: 550, paid: 120, due: 430, paymentStatus: 'Paid' },
+    { id: 2, productName: 'Orange', date: '19 Nov 2022', customer: 'Benjamin', status: 'Pending', grandTotal: 550, paid: 120, due: 430, paymentStatus: 'Unpaid' },
+    { id: 3, productName: 'Pineapple', date: '19 Nov 2022', customer: 'James', status: 'Pending', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Unpaid' },
+    { id: 4, productName: 'Strawberry', date: '19 Nov 2022', customer: 'Bruklin', status: 'Received', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Paid' },
+    { id: 5, productName: 'Macbook Pro', date: '19 Nov 2022', customer: 'Best Power Tools', status: 'Received', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Paid' },
+    { id: 6, productName: 'Avocat', date: '19 Nov 2022', customer: 'Beverly', status: 'Pending', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Unpaid' },
+    { id: 7, productName: 'Apple Earpods', date: '19 Nov 2022', customer: 'Apex Computers', status: 'Ordered', grandTotal: 1000, paid: 500, due: 500, paymentStatus: 'Partial' },
   ];
-    const uniqueCustomers = [...new Set(salesReturns.map((item) => item.customer))];
-    const uniqueStatuses = [...new Set(salesReturns.map((item) => item.status))];
-    const uniquePaymentStatuses = [...new Set(salesReturns.map((item) => item.paymentStatus))];
 
-  // Filter logic
-  const filteredSalesReturns = salesReturns.filter((returnItem) => {
-    return (
-      returnItem.productName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedCustomer === "" || returnItem.customer === selectedCustomer) &&
-      (selectedStatus === "" || returnItem.status === selectedStatus) &&
-      (selectedPaymentStatus === "" || returnItem.paymentStatus === selectedPaymentStatus)
-    );
-  });
-  // model add new return item
-  const [isOpen, setIsOpen] = useState(false);
-  
-  // State to store input values and totals
-  const [orderTax, setOrderTax] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [shipping, setShipping] = useState(0);
-  const [subtotal, setSubtotal] = useState(20); // Example subtotal from the table
-  const [grandTotal, setGrandTotal] = useState(0);
+  const uniqueCustomers = [...new Set(salesReturns.map(i => i.customer))];
+  const uniqueStatuses = [...new Set(salesReturns.map(i => i.status))];
+  const totalReturns = salesReturns.reduce((s, r) => s + r.grandTotal, 0);
+  const totalPaid = salesReturns.reduce((s, r) => s + r.paid, 0);
+  const totalDue = salesReturns.reduce((s, r) => s + r.due, 0);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  // Function to calculate the grand total
-  const calculateGrandTotal = () => {
-    const taxAmount = (subtotal * orderTax) / 100;
-    const total = subtotal + taxAmount - discount + shipping;
-    setGrandTotal(total);
-  };
-
-  // Handlers to update the values and recalculate the grand total
-  const handleOrderTaxChange = (e) => {
-    setOrderTax(Number(e.target.value));
-    calculateGrandTotal();
-  };
-
-  const handleDiscountChange = (e) => {
-    setDiscount(Number(e.target.value));
-    calculateGrandTotal();
-  };
-
-  const handleShippingChange = (e) => {
-    setShipping(Number(e.target.value));
-    calculateGrandTotal();
-  };
+  const filteredSalesReturns = salesReturns.filter(r =>
+    r.productName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (selectedCustomer === '' || r.customer === selectedCustomer) &&
+    (selectedStatus === '' || r.status === selectedStatus) &&
+    (selectedPaymentStatus === '' || r.paymentStatus === selectedPaymentStatus)
+  );
 
   return (
-    <div className="bg-white dark:bg-[#141432] text-gray-900 dark:text-gray-100 font-nunito text-sm">
-        <div className="p-2 mt-[20%] md:mt-[5%]  scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent">
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="text-lg dark:text-white ">Sales Return List</h1>
-            <button
-              onClick={openModal}
-              className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
-            >
-              Add New Sales Return
-            </button>
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg"><RotateCcw size={24} /></div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Sales Returns</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{salesReturns.length} return records</p>
+            </div>
+          </div>
+          <Button className="gap-1.5" size="sm" onClick={() => setIsOpen(true)}><Plus size={15} />Add Return</Button>
         </div>
-          {/* Modal */}
 
-            {isOpen && (
-                    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-20">
-                      <div className="bg-white  w-full max-w-6xl  relative overflow-y-auto max-h-[90vh]">
-                        <div className="flex justify-between items-center mb-4">
-                          <h2 className=" dark:text-white text-lg ">Add Sales Return</h2>
-                          <button
-                            onClick={closeModal}
-                            className="text-red-600 hover:bg-rose-600 rounded-full p-2 px-3 items-center hover:text-white  text-sm"
-                          >
-                            ✕
-                          </button>
-                        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0"><CardContent className="p-4"><p className="text-indigo-100 text-xs">Total Returns</p><p className="text-2xl font-bold">{salesReturns.length}</p></CardContent></Card>
+          <Card className="bg-gradient-to-br from-amber-500 to-amber-600 text-white border-0"><CardContent className="p-4"><p className="text-amber-100 text-xs">Grand Total</p><p className="text-2xl font-bold">${totalReturns.toLocaleString()}</p></CardContent></Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0"><CardContent className="p-4"><p className="text-emerald-100 text-xs">Total Paid</p><p className="text-2xl font-bold">${totalPaid.toLocaleString()}</p></CardContent></Card>
+          <Card className="bg-gradient-to-br from-rose-500 to-rose-600 text-white border-0"><CardContent className="p-4"><p className="text-rose-100 text-xs">Total Due</p><p className="text-2xl font-bold">${totalDue.toLocaleString()}</p></CardContent></Card>
+        </div>
 
-                        {/* Modal Form */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                          <div>
-                            <label className="block ">Customer Name</label>
-                            <select className="w-full border p-2 rounded">
-                              <option>Choose Customer</option>
-                            </select>
-                          </div>
-                          <div>
-                            <label className="block ">Date</label>
-                            <input type="date" className="w-full border p-2 rounded bg-white" />
-                          </div>
-                          <div>
-                            <label className="block ">Reference No.</label>
-                            <input type="text" className="w-full border p-2 rounded bg-white" />
-                          </div>
-                          <div>
-                            <label className="block ">Product Name</label>
-                            <input
-                              type="text"
-                              placeholder="Please type product code and select"
-                              className="w-full border p-2 rounded bg-white"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Responsive Table */}
-                        <div className="overflow-x-auto mb-6">
-                          <table className="min-w-full  border-collapse">
-                            <thead>
-                              <tr>
-                                <th className="border p-2">Product Name</th>
-                                <th className="border p-2">Net Unit Price($)</th>
-                                <th className="border p-2">Stock</th>
-                                <th className="border p-2">QTY</th>
-                                <th className="border p-2">Discount($)</th>
-                                <th className="border p-2">Tax %</th>
-                                <th className="border p-2">Subtotal($)</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td className="border p-2">Example Product</td>
-                                <td className="border p-2">$10.00</td>
-                                <td className="border p-2">20</td>
-                                <td className="border p-2">2</td>
-                                <td className="border p-2">$0.00</td>
-                                <td className="border p-2">5%</td>
-                                <td className="border p-2">${subtotal}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                          <div>
-                            <label className="block ">Order Tax (%)</label>
-                            <input
-                              type="number"
-                              
-                              onChange={handleOrderTaxChange}
-                              className="w-full border p-2 rounded bg-white"
-                            />
-                          </div>
-                          <div>
-                            <label className="block ">Discount ($)</label>
-                            <input
-                              type="number"
-                              
-                              onChange={handleDiscountChange}
-                              className="w-full border p-2 rounded bg-white"
-                            />
-                          </div>
-                          <div>
-                            <label className="block ">Shipping ($)</label>
-                            <input
-                              type="number"
-                              
-                              onChange={handleShippingChange}
-                              className="w-full border p-2 rounded bg-white"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="flex justify-between items-center mb-6">
-                          <div>
-                            <label className="block ">Status</label>
-                            <select className="w-full border p-2 rounded">
-                              <option>Choose</option>
-                            </select>
-                          </div>
-                          <div className="text-right">
-                            <h3 className=" text-lg">
-                              Grand Total: ${grandTotal.toFixed(2)}
-                            </h3>
-                          </div>
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="flex justify-end">
-                          <button
-                            onClick={closeModal}
-                            className="bg-gray-300 px-4 py-2 mr-2 rounded hover:bg-gray-400"
-                          >
-                            Cancel
-                          </button>
-                          <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                            Submit
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {/* Search, Filters, and Sort Section */}
-  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
-    {/* Search Bar */}
-    <div className="relative">
-      <input
-        type="text"
-        placeholder="Search"
-        className="border rounded px-4 py-2 w-full dark:text-black bg-white"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500">
-      <CiSearch size={20}/>
-      </button>
-    </div>
-    {/* Customer Filter */}
-    <select
-      className="border rounded px-4 py-2 w-full dark:text-black"
-      value={selectedCustomer}
-      onChange={(e) => setSelectedCustomer(e.target.value)}
-    >
-      <option value="">Choose Customer</option>
-      {/* <!-- Add customer options here --> */}
-      {uniqueCustomers.map((customer, index) => (
-        <option key={index} value={customer}>
-          {customer}
-        </option>
-      ))}
-    </select>
-    {/* Status Filter */}
-    <select
-      className="border rounded px-4 py-2 w-full dark:text-black"
-      value={selectedStatus}
-      onChange={(e) => setSelectedStatus(e.target.value)}
-    >
-      <option value="">Choose Status</option>
-      {uniqueStatuses.map((status, index) => (
-          <option key={index} value={status}>
-            {status}
-          </option>
-        ))}
-    </select>
-    {/* Payment Status Filter */}
-    <select
-      className="border rounded px-4 py-2 w-full dark:text-black"
-      value={selectedPaymentStatus}
-      onChange={(e) => setSelectedPaymentStatus(e.target.value)}
-    >
-      <option value="">Choose Payment Status</option>
-      {uniquePaymentStatuses.map((paymentStatus, index) => (
-          <option key={index} value={paymentStatus}>
-            {paymentStatus}
-          </option>
-        ))}
-    </select>
-  </div>
-
-  {/* Sort by Date */}
-  <div className="flex justify-end mb-4">
-    <select
-      className="border rounded px-4 py-2 dark:text-black"
-      value={sortBy}
-      onChange={(e) => setSortBy(e.target.value)}
-    >
-      <option value="date">Sort by Date</option>
-      {/* <!-- Additional sorting options --> */}
-    </select>
-  </div>
-
-  {/* Sales Return Table */}
-  <div className="overflow-x-auto dark:bg-[#141432]">
-    <table className="w-full bg-white dark:bg-[#29294e] border rounded-md shadow-sm text-center border-collapse">
-      <thead className="">
-        <tr className="bg-emerald-500 text-white ">
-        <th className="p-2 ">Product</th>
-    
-          <th className="p-2  ">Product Image</th>
-          <th className="p-2 ">Product Name</th>
-          <th className="p-2 ">Date</th>
-          <th className="p-2 ">Customer</th>
-          <th className="p-2 ">Status</th>
-          <th className="p-2 ">Grand Total ($)</th>
-          <th className="p-2 ">Paid ($)</th>
-          <th className="p-2 ">Due ($)</th>
-          <th className="p-2 ">Payment Status</th>
-          <th className="p-2 ">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredSalesReturns.map((returnItem, index) => (
-          <tr key={index} className="border-t border-r border-b border-l">
-            {/* Select Checkbox */}
-            <td className="p-2 border">
-              <input  type="checkbox" value={returnItem.productId} className="p-5 bg-white" />
-            </td>
-         
-            {/* Product Image */}
-            <td className="p-2 border">
-              <Image src={returnItem.productImage} alt={returnItem.productName} className="w-12 h-12 rounded-full"/>
-            </td>
-            <td className="p-2 border">{returnItem.productName}</td>
-            <td className="p-2 border">{returnItem.date}</td>
-            <td className="p-2 border">{returnItem.customer}</td>
-            <td className="p-2 border">
-              <span
-                className={`px-2 py-1 text-xs  rounded-full ${
-                  returnItem.status === "Received"
-                    ? "bg-green-100 text-green-700 "
-                    : returnItem.status === "Pending"
-                    ? "bg-red-100 text-red-700"
-                    : "bg-yellow-100 text-yellow-700"
-                }`}
-              >
-                {returnItem.status}
-              </span>
-            </td>
-            <td className="p-2 border">{returnItem.grandTotal}</td>
-            <td className="p-2 border">{returnItem.paid}</td>
-            <td className="p-2 border">{returnItem.due}</td>
-            <td className="p-2 border">
-              <span
-                className={`px-2 py-1 text-xs  rounded-full ${
-                  returnItem.paymentStatus === "Paid"
-                    ? "bg-green-100 text-green-700"
-                    : returnItem.paymentStatus === "Unpaid"
-                    ? "bg-red-100 text-red-700"
-                    : "bg-yellow-100 text-yellow-700"
-                }`}
-              >
-                {returnItem.paymentStatus}
-              </span>
-            </td>
-            <td className="p-2 flex space-x-2">
-              <div className="flex item-center justify-center gap-5">
-                <button className="p-1  border-2 transform text-blue-600 hover:text-blue-500 hover:scale-110">
-                  <TbEdit size={16}/>
-                </button>
-                <button className="p-1  transform text-red-600 hover:text-red-500 hover:scale-110 border-2">
-                  <RiDeleteBin5Line size={16}/>
-                </button>
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[160px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Search</label>
+                <div className="relative"><Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search product..." className="pl-9 h-9" /></div>
               </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-    </div>
-    </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Customer</label>
+                <select value={selectedCustomer} onChange={(e) => setSelectedCustomer(e.target.value)} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueCustomers.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Status</label>
+                <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueStatuses.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Payment</label>
+                <select value={selectedPaymentStatus} onChange={(e) => setSelectedPaymentStatus(e.target.value)} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  <option value="Paid">Paid</option>
+                  <option value="Unpaid">Unpaid</option>
+                  <option value="Partial">Partial</option>
+                </select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium">Product</th>
+                  <th className="px-3 py-3 text-left font-medium">Date</th>
+                  <th className="px-3 py-3 text-left font-medium">Customer</th>
+                  <th className="px-3 py-3 text-center font-medium">Status</th>
+                  <th className="px-3 py-3 text-right font-medium">Total</th>
+                  <th className="px-3 py-3 text-right font-medium">Paid</th>
+                  <th className="px-3 py-3 text-right font-medium">Due</th>
+                  <th className="px-3 py-3 text-center font-medium">Payment</th>
+                  <th className="px-3 py-3 text-center font-medium w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredSalesReturns.map((r) => (
+                  <tr key={r.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3 font-medium text-slate-800 dark:text-white">{r.productName}</td>
+                    <td className="px-3 py-3 text-slate-500 dark:text-slate-400 text-xs">{r.date}</td>
+                    <td className="px-3 py-3 text-slate-600 dark:text-slate-300">{r.customer}</td>
+                    <td className="px-3 py-3 text-center">
+                      <Badge variant={r.status === 'Received' ? 'success' : r.status === 'Pending' ? 'warning' : 'info'} className="text-xs">{r.status}</Badge>
+                    </td>
+                    <td className="px-3 py-3 text-right font-semibold text-slate-800 dark:text-white">${r.grandTotal}</td>
+                    <td className="px-3 py-3 text-right text-emerald-600">${r.paid}</td>
+                    <td className="px-3 py-3 text-right text-rose-500">${r.due}</td>
+                    <td className="px-3 py-3 text-center">
+                      <Badge variant={r.paymentStatus === 'Paid' ? 'success' : r.paymentStatus === 'Unpaid' ? 'destructive' : 'warning'} className="text-xs">{r.paymentStatus}</Badge>
+                    </td>
+                    <td className="px-3 py-3 text-center">
+                      <div className="relative">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === r.id ? null : r.id)}><MoreVertical size={16} /></Button>
+                        {openAction === r.id && (
+                          <div className="absolute right-0 top-full mt-1 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
 
+        {/* Add Return Modal */}
+        {isOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle>Add Sales Return</CardTitle>
+                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}><X size={16} /></Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div><label className="block text-xs font-medium text-slate-500 mb-1">Customer</label><select className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm"><option>Choose Customer</option></select></div>
+                  <div><label className="block text-xs font-medium text-slate-500 mb-1">Date</label><Input type="date" className="h-10" /></div>
+                  <div><label className="block text-xs font-medium text-slate-500 mb-1">Reference No.</label><Input placeholder="REF-001" className="h-10" /></div>
+                  <div><label className="block text-xs font-medium text-slate-500 mb-1">Product</label><Input placeholder="Type product code..." className="h-10" /></div>
+                </div>
+                <div className="flex justify-end gap-2">
+                  <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
+                  <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

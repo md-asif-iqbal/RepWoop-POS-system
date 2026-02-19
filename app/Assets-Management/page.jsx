@@ -2,162 +2,93 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Input } from '@/app/components/ui/input';
+import { Badge } from '@/app/components/ui/badge';
+import { Building2, Search, RotateCcw, Printer, MoreVertical, Plus, TrendingUp, Package } from 'lucide-react';
 
 export default function Assets() {
-    const pathname = usePathname();
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
+  const pathname = usePathname();
+  const tabs = [
+    { label: 'Assets', href: '/Assets-Management' },
+    { label: '+ Add Asset', href: '/Assets-Management/Create' },
+  ];
 
-    const initialAssets = [
-        { id: 1, name: 'test', purchasePrice: 12.0, forcedSalePrice: 22.0, quantity: 12, note: 'No Note' },
-        // Add more asset data as needed
-      ];
-    
-      const [assets, setAssets] = useState(initialAssets);
-      const [assetNameFilter, setAssetNameFilter] = useState('');
-    
-      // Filter the assets based on the name
-      const handleFilter = () => {
-        const filteredAssets = initialAssets.filter((asset) =>
-          asset.name.toLowerCase().includes(assetNameFilter.toLowerCase())
-        );
-        setAssets(filteredAssets);
-      };
-    
-      // Reset the filter
-      const handleReset = () => {
-        setAssetNameFilter('');
-        setAssets(initialAssets);
-      };
-    
-      // Print functionality
-      const handlePrint = () => {
-        const printContent = document.getElementById("table-to-print").outerHTML;
-        const newWindow = window.open('', '_blank');
-        newWindow.document.write(`
-          <html>
-            <head>
-              <title>Assets Information</title>
-              <style>
-                body { font-family: Arial, sans-serif; }
-                table { border-collapse: collapse; width: 100%; }
-                th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-              </style>
-            </head>
-            <body onload="window.print()">
-              ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
-            </body>
-          </html>
-        `);
-        newWindow.document.close();
-      };
-    
-      // Calculate total purchase and forced sale price
-      const totalPurchasePrice = assets.reduce((sum, asset) => sum + asset.purchasePrice, 0);
-      const totalForcedSalePrice = assets.reduce((sum, asset) => sum + asset.forcedSalePrice, 0);
-    
+  const initialAssets = [
+    { id: 1, name: 'Office Computer', purchasePrice: 45000, forcedSalePrice: 30000, quantity: 5, note: 'Dell Inspiron 15' },
+    { id: 2, name: 'Printer', purchasePrice: 12000, forcedSalePrice: 8000, quantity: 2, note: 'HP LaserJet Pro' },
+    { id: 3, name: 'Air Conditioner', purchasePrice: 55000, forcedSalePrice: 35000, quantity: 3, note: 'Samsung 1.5 Ton' },
+    { id: 4, name: 'Office Desk', purchasePrice: 8000, forcedSalePrice: 5000, quantity: 8, note: 'Wooden with drawers' },
+    { id: 5, name: 'CCTV Camera', purchasePrice: 25000, forcedSalePrice: 15000, quantity: 4, note: 'Hikvision 4 Channel' },
+    { id: 6, name: 'Cash Register', purchasePrice: 18000, forcedSalePrice: 12000, quantity: 2, note: 'Electronic POS Terminal' },
+    { id: 7, name: 'Generator', purchasePrice: 85000, forcedSalePrice: 55000, quantity: 1, note: 'Honda 5KVA' },
+    { id: 8, name: 'Display Shelf', purchasePrice: 15000, forcedSalePrice: 9000, quantity: 6, note: 'Glass showcase' },
+  ];
+
+  const [assets, setAssets] = useState(initialAssets);
+  const [assetNameFilter, setAssetNameFilter] = useState('');
+  const [openAction, setOpenAction] = useState(null);
+
+  const handleFilter = () => { setAssets(initialAssets.filter(a => a.name.toLowerCase().includes(assetNameFilter.toLowerCase()))); };
+  const handleReset = () => { setAssetNameFilter(''); setAssets(initialAssets); };
+
+  const handlePrint = () => {
+    const el = document.getElementById("table-to-print"); if (!el) return;
+    const w = window.open('', '_blank');
+    w.document.write(`<html><head><title>Assets</title><style>body{font-family:sans-serif}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#4f46e5;color:#fff}</style></head><body onload="window.print()">${el.outerHTML}</body></html>`);
+    w.document.close();
+  };
+
+  const totalPurchase = assets.reduce((s, a) => s + a.purchasePrice * a.quantity, 0);
+  const totalSale = assets.reduce((s, a) => s + a.forcedSalePrice * a.quantity, 0);
+  const totalQty = assets.reduce((s, a) => s + a.quantity, 0);
+
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white md:h-screen'>
-
-    <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
-              {/* Title Section */}
-
-  <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Assets </h1>
-    <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
-        <Link href="/Assets-Management" className= {`${
-                          pathname === '/Assets-Management' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Assets
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Assets-Management/Create" className={`${
-                          pathname === '/Assets-Management/Create' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + Add Assets
-        <span className={spanClass}></span>
-        </Link>
-        
-    </div>
-  </div>
-  <div className="container mx-auto mt-2 md:mt-10">
-
-      {/* Filter Section */}
-      <div className="mb-4 md:flex md:space-x-4">
-        <input
-          type="text"
-          placeholder="Name"
-          value={assetNameFilter}
-          onChange={(e) => setAssetNameFilter(e.target.value)}
-          className="border p-2 w-full md:w-1/4 bg-white"
-        />
-        <button onClick={handleFilter} className="bg-green-500 text-white px-8 py-2">
-          Filter
-        </button>
-        <button onClick={handleReset} className="bg-blue-500 text-white px-8 py-2">
-          Reset
-        </button>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg"><Building2 className="h-6 w-6 text-white" /></div>
+          <div><h1 className="text-2xl font-bold text-gray-900">Asset Management</h1><p className="text-sm text-gray-500">Track and manage your business assets</p></div>
+        </div>
+        <Link href="/Assets-Management/Create"><Button><Plus className="h-4 w-4 mr-2" />Add Asset</Button></Link>
       </div>
-
-      {/* Assets Table */}
-      <div className="overflow-x-auto">
-        <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse">
-          <thead>
-            <tr className="bg-emerald-500 text-white">
-              <th className="border px-4 py-2">No</th>
-              <th className="border px-4 py-2">Asset Name</th>
-              <th className="border px-4 py-2">Purchase Price</th>
-              <th className="border px-4 py-2">Forced Sale Price</th>
-              <th className="border px-4 py-2">Quantity</th>
-              <th className="border px-4 py-2">Note</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {assets.map((asset, index) => (
-              <tr key={asset.id} className="text-center">
-                <td className="border px-4 py-2">{index + 1}</td>
-                <td className="border px-4 py-2">{asset.name}</td>
-                <td className="border px-4 py-2">{asset.purchasePrice.toFixed(2)} TK</td>
-                <td className="border px-4 py-2">{asset.forcedSalePrice.toFixed(2)} TK</td>
-                <td className="border px-4 py-2">{asset.quantity}</td>
-                <td className="border px-4 py-2">{asset.note}</td>
-                <td className="border px-4 py-2">
-                  <div className="inline-flex space-x-2">
-                    <button className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700">
-                      Edit
-                    </button>
-                    <button className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">
-                      Delete
-                    </button>
-                  </div>
-                </td>
+      <Card><CardContent className="p-1"><div className="flex flex-wrap gap-1">{tabs.map(tab => (<Link key={tab.href} href={tab.href}><Button variant={pathname === tab.href ? 'default' : 'ghost'} size="sm" className="text-xs">{tab.label}</Button></Link>))}</div></CardContent></Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 border-0"><CardContent className="p-4 text-white"><div className="flex items-center justify-between"><div><p className="text-sm opacity-80">Total Purchase Value</p><p className="text-2xl font-bold">৳{totalPurchase.toLocaleString()}</p></div><TrendingUp className="h-8 w-8 opacity-50" /></div></CardContent></Card>
+        <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 border-0"><CardContent className="p-4 text-white"><div className="flex items-center justify-between"><div><p className="text-sm opacity-80">Total Sale Value</p><p className="text-2xl font-bold">৳{totalSale.toLocaleString()}</p></div><TrendingUp className="h-8 w-8 opacity-50" /></div></CardContent></Card>
+        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 border-0"><CardContent className="p-4 text-white"><div className="flex items-center justify-between"><div><p className="text-sm opacity-80">Total Items</p><p className="text-2xl font-bold">{totalQty}</p></div><Package className="h-8 w-8 opacity-50" /></div></CardContent></Card>
+      </div>
+      <Card><CardContent className="p-4"><div className="flex flex-col md:flex-row gap-3">
+        <div className="relative flex-1"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /><Input placeholder="Search asset name..." className="pl-9" value={assetNameFilter} onChange={e => setAssetNameFilter(e.target.value)} /></div>
+        <Button onClick={handleFilter}><Search className="h-4 w-4 mr-1" />Filter</Button>
+        <Button variant="outline" onClick={handleReset}><RotateCcw className="h-4 w-4 mr-1" />Reset</Button>
+        <Button variant="outline" onClick={handlePrint}><Printer className="h-4 w-4 mr-1" />Print</Button>
+      </div></CardContent></Card>
+      <Card><CardContent className="p-0"><div className="overflow-x-auto">
+        <table id="table-to-print" className="w-full text-sm">
+          <thead><tr className="bg-gradient-to-r from-indigo-600 to-indigo-700">{['#','Asset Name','Purchase Price','Sale Price','Qty','Note','Action'].map(h=>(<th key={h} className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">{h}</th>))}</tr></thead>
+          <tbody className="divide-y divide-gray-100">
+            {assets.map((asset, idx) => (
+              <tr key={asset.id} className="hover:bg-gray-50/80 transition-colors">
+                <td className="px-4 py-3 text-gray-500">{idx + 1}</td>
+                <td className="px-4 py-3 font-medium text-gray-900">{asset.name}</td>
+                <td className="px-4 py-3 text-gray-600">৳{asset.purchasePrice.toLocaleString()}</td>
+                <td className="px-4 py-3 text-gray-600">৳{asset.forcedSalePrice.toLocaleString()}</td>
+                <td className="px-4 py-3"><Badge variant="info">{asset.quantity}</Badge></td>
+                <td className="px-4 py-3 text-gray-500 text-xs">{asset.note}</td>
+                <td className="px-4 py-3"><div className="relative"><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === asset.id ? null : asset.id)}><MoreVertical className="h-4 w-4" /></Button>{openAction === asset.id && (<div className="absolute right-0 mt-1 w-32 bg-white border rounded-lg shadow-lg z-10 py-1">{['Edit','Delete'].map(a=>(<button key={a} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50" onClick={()=>setOpenAction(null)}>{a}</button>))}</div>)}</div></td>
               </tr>
             ))}
-            {/* Totals Row */}
-            <tr className="">
-              <td className="border px-4 py-2 text-right" colSpan="2">
-                Total
-              </td>
-              <td className="border px-4 py-2">{totalPurchasePrice.toFixed(2)} TK</td>
-              <td className="border px-4 py-2">{totalForcedSalePrice.toFixed(2)} TK</td>
-              <td className="border px-4 py-2" colSpan="3"></td>
+            <tr className="bg-gray-50 font-semibold">
+              <td className="px-4 py-3" colSpan={2}>Total</td>
+              <td className="px-4 py-3 text-indigo-600">৳{assets.reduce((s,a)=>s+a.purchasePrice,0).toLocaleString()}</td>
+              <td className="px-4 py-3 text-emerald-600">৳{assets.reduce((s,a)=>s+a.forcedSalePrice,0).toLocaleString()}</td>
+              <td className="px-4 py-3" colSpan={3}></td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      {/* Print Button */}
-      <div className="flex justify-end mt-4">
-        <button onClick={handlePrint} className="bg-emerald-500 text-white px-8 py-2 rounded hover:bg-teal-700">
-          Print
-        </button>
-      </div>
+      </div></CardContent></Card>
     </div>
-</div>
-</div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export default function RolesAndPermission() {
 
   const pathname = usePathname();
-  const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
+  const spanClass = " block h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
 
 
   const permissionsData = [
@@ -354,16 +354,16 @@ export default function RolesAndPermission() {
 <div className=' sm:md:flex items-start justify-start mt-5 gap-10 w-full'>
         <Link href="/Roles-And-Permissions" className= {`${
                           pathname === '/Users' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                          ? ' group text-indigo-600 dark:text-indigo-400  hover:text-indigo-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-indigo-500 '
                       }`}>
         Roles
         <span className={spanClass}></span>
         </Link>
         <Link href="/Roles-And-Permissions/Permissions" className={`${
                           pathname === '/Roles-And-Permissions/Permissions' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                          ? ' group text-indigo-600 dark:text-indigo-400  hover:text-indigo-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-indigo-500 '
                       }`}>
         + Permissions
         <span className={spanClass}></span>

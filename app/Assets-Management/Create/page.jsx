@@ -2,148 +2,48 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Input } from '@/app/components/ui/input';
+import { Building2, Package, DollarSign, Hash, FileText, Save } from 'lucide-react';
 
 export default function CreateAssets() {
-    const pathname = usePathname();
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-    const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [purchasePrice, setPurchasePrice] = useState('');
-    const [forcedSalePrice, setForcedSalePrice] = useState('');
-    const [note, setNote] = useState('');
-  
-    // Handle form submission
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const newAsset = {
-        id: Date.now(),
-        name,
-        quantity: parseInt(quantity),
-        purchasePrice: parseFloat(purchasePrice),
-        forcedSalePrice: parseFloat(forcedSalePrice),
-        note,
-      };
-    //   onAddAsset(newAsset);
-    console.log(newAsset);
-  
-      // Clear form fields
-      setName('');
-      setQuantity('');
-      setPurchasePrice('');
-      setForcedSalePrice('');
-      setNote('');
-    };
+  const pathname = usePathname();
+  const tabs = [
+    { label: 'Assets', href: '/Assets-Management' },
+    { label: '+ Add Asset', href: '/Assets-Management/Create' },
+  ];
+  const [name, setName] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [purchasePrice, setPurchasePrice] = useState('');
+  const [forcedSalePrice, setForcedSalePrice] = useState('');
+  const [note, setNote] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({ id: Date.now(), name, quantity: parseInt(quantity), purchasePrice: parseFloat(purchasePrice), forcedSalePrice: parseFloat(forcedSalePrice), note });
+    setName(''); setQuantity(''); setPurchasePrice(''); setForcedSalePrice(''); setNote('');
+  };
+
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white md:h-screen'>
-
-    <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
-              {/* Title Section */}
-
-  <div className=" mb-4  shadow-sm rounded-sm ">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Add Assets </h1>
-    <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
-        <Link href="/Assets-Management" className= {`${
-                          pathname === '/Assets-Management' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Assets
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Assets-Management/Create" className={`${
-                          pathname === '/Assets-Management/Create' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + Add Assets
-        <span className={spanClass}></span>
-        </Link>
-        
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg"><Building2 className="h-6 w-6 text-white" /></div>
+        <div><h1 className="text-2xl font-bold text-gray-900">Add New Asset</h1><p className="text-sm text-gray-500">Register a new business asset</p></div>
+      </div>
+      <Card><CardContent className="p-1"><div className="flex flex-wrap gap-1">{tabs.map(tab => (<Link key={tab.href} href={tab.href}><Button variant={pathname === tab.href ? 'default' : 'ghost'} size="sm" className="text-xs">{tab.label}</Button></Link>))}</div></CardContent></Card>
+      <Card><CardContent className="p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><Package className="h-4 w-4 text-indigo-500" />Asset Name <span className="text-red-500">*</span></label><Input placeholder="Enter asset name" value={name} onChange={e => setName(e.target.value)} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><Hash className="h-4 w-4 text-indigo-500" />Quantity <span className="text-red-500">*</span></label><Input type="number" placeholder="Enter quantity" value={quantity} onChange={e => setQuantity(e.target.value)} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-emerald-500" />Purchase Price <span className="text-red-500">*</span></label><Input type="number" step="0.01" placeholder="৳ 0.00" value={purchasePrice} onChange={e => setPurchasePrice(e.target.value)} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-orange-500" />Forced Sale Price <span className="text-red-500">*</span></label><Input type="number" step="0.01" placeholder="৳ 0.00" value={forcedSalePrice} onChange={e => setForcedSalePrice(e.target.value)} required /></div>
+          </div>
+          <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><FileText className="h-4 w-4 text-gray-500" />Note</label><textarea value={note} onChange={e => setNote(e.target.value)} className="flex w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 min-h-[100px]" placeholder="Enter any additional notes..." rows={4} /></div>
+          <div className="flex justify-end"><Button type="submit" className="px-8"><Save className="h-4 w-4 mr-2" />Save Asset</Button></div>
+        </form>
+      </CardContent></Card>
     </div>
-  </div>
-
-  <div className="container mx-auto px-4 py-8">
-      <h2 className=" dark:text-white text-lg  mb-4">Add Assets</h2>
-
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Asset Name */}
-        <div>
-          <label className="block text-sm mb-2">Name</label>
-          <input
-            type="text"
-            placeholder="Enter Asset Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border rounded bg-white"
-            required
-          />
-        </div>
-
-        {/* Quantity */}
-        <div>
-          <label className="block text-sm mb-2">Quantity</label>
-          <input
-            type="number"
-            placeholder="Enter Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            className="w-full p-2 border rounded bg-white"
-            required
-          />
-        </div>
-
-        {/* Purchase Price */}
-        <div>
-          <label className="block text-sm mb-2">Purchase Price</label>
-          <input
-            type="number"
-            step="0.01"
-            placeholder="Enter Purchase Price"
-            value={purchasePrice}
-            onChange={(e) => setPurchasePrice(e.target.value)}
-            className="w-full p-2 border rounded bg-white"
-            required
-          />
-        </div>
-
-        {/* Forced Sale Price */}
-        <div>
-          <label className="block text-sm mb-2">Forced Sale Price</label>
-          <input
-            type="number"
-            step="0.01"
-            placeholder="Enter Forced Sale Price"
-            value={forcedSalePrice}
-            onChange={(e) => setForcedSalePrice(e.target.value)}
-            className="w-full p-2 border rounded bg-white"
-            required
-          />
-        </div>
-
-        {/* Note */}
-        <div className="md:col-span-2">
-          <label className="block text-sm mb-2">Note</label>
-          <textarea
-            placeholder="Enter any additional notes"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            className="w-full p-2 border rounded"
-            rows="4"
-          />
-        </div>
-
-        {/* Add Asset Button */}
-        <div className="md:col-span-2 flex justify-end">
-          <button
-            type="submit"
-            className="bg-emerald-500 text-white px-4 py-2 rounded hover:bg-teal-700"
-          >
-            Add Asset
-          </button>
-        </div>
-      </form>
-    </div>
-</div>
-</div>
-  )
+  );
 }

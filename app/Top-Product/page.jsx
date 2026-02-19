@@ -1,5 +1,22 @@
-"use client"
-import React, { useState } from 'react'
+"use client";
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import { Input } from "../components/ui/input";
+import {
+  Package,
+  TrendingUp,
+  Calendar,
+  Printer,
+  RotateCcw,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  BarChart3,
+  Award,
+  Hash,
+} from "lucide-react";
 
 export default function TopProductsReport() {
 
@@ -145,70 +162,197 @@ export default function TopProductsReport() {
 
 
   return (
-    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-      <h1 className="text-lg dark:text-white  mb-4">Top Products</h1>
-
-      <div className="md:flex flex-wrap justify-between items-center mb-4">
-            <div className="md:flex md:space-x-2 w-full md:w-full">
-        {/* Date filtering */}
-        <input
-          type="date"
-          placeholder="Start Date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          className="border p-2 w-full bg-white"
-        />
-        <input
-          type="date"
-          placeholder="End Date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          className="border p-2 w-full bg-white"
-        />
-        <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded w-full md:w-1/4">Filter</button>
-        <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded w-full md:w-1/4">Reset</button>
+    <div className="space-y-6 p-4 md:p-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl text-white shadow-lg">
+            <BarChart3 className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Top Selling Products</h1>
+            <p className="text-sm text-gray-500">
+              Report from {startDate || "01/10/2024"} to {endDate || "31/10/2024"}
+            </p>
+          </div>
+        </div>
+        <Button onClick={handlePrint} className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700">
+          <Printer className="h-4 w-4 mr-2" />
+          Print Report
+        </Button>
       </div>
+
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="border-0 shadow-md bg-gradient-to-br from-emerald-50 to-teal-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Total Products</p>
+                <p className="text-2xl font-bold text-emerald-700">{filteredData.length}</p>
+              </div>
+              <div className="p-3 bg-emerald-100 rounded-xl">
+                <Package className="h-6 w-6 text-emerald-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-md bg-gradient-to-br from-blue-50 to-indigo-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Top Product</p>
+                <p className="text-xl font-bold text-blue-700 truncate max-w-[180px]">{filteredData[0]?.name || "—"}</p>
+              </div>
+              <div className="p-3 bg-blue-100 rounded-xl">
+                <Award className="h-6 w-6 text-blue-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-md bg-gradient-to-br from-purple-50 to-indigo-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Active Products</p>
+                <p className="text-2xl font-bold text-purple-700">
+                  {filteredData.filter(p => !p.totalQuantity.startsWith("0")).length}
+                </p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-xl">
+                <TrendingUp className="h-6 w-6 text-purple-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
-      <div className='flex items-center justify-end'>
-            <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded w-full md:w-1/12 mb-2">Print</button>
-         </div>
 
-      <h2 className=" dark:text-white text-lg  mb-4 text-center">Top Selling Products</h2>
-      <p className=" dark:text-white text-center mb-4">Report From {startDate || '01/10/2024'} to {endDate || '31/10/2024'}</p>
+      {/* Filter Card */}
+      <Card className="border-0 shadow-md">
+        <CardContent className="p-4">
+          <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex-1">
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="pl-10"
+                  placeholder="Start Date"
+                />
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="pl-10"
+                  placeholder="End Date"
+                />
+              </div>
+            </div>
+            <Button onClick={filterData} className="bg-indigo-600 hover:bg-indigo-700">
+              <Search className="h-4 w-4 mr-2" />
+              Filter
+            </Button>
+            <Button onClick={resetFilter} variant="outline">
+              <RotateCcw className="h-4 w-4 mr-2" />
+              Reset
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
-      <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse border">
-        <thead>
-          <tr className='bg-emerald-500 text-white'>
-            <th className="border p-2">SL</th>
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Code</th>
-            <th className="border p-2">Total Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentData.map((item) => (
-            <tr key={item.id}>
-              <td className="border p-2">{item.id}</td>
-              <td className="border p-2">{item.name}</td>
-              <td className="border p-2">{item.code}</td>
-              <td className="border p-2">{item.totalQuantity}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* Table */}
+      <Card className="border-0 shadow-lg overflow-hidden">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table id="table-to-print" className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                  <th className="px-4 py-3 text-left font-semibold">Rank</th>
+                  <th className="px-4 py-3 text-left font-semibold">Product</th>
+                  <th className="px-4 py-3 text-left font-semibold">Code</th>
+                  <th className="px-4 py-3 text-left font-semibold">Total Quantity</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {currentData.map((item, index) => {
+                  const rank = indexOfFirstItem + index + 1;
+                  return (
+                    <tr key={item.id} className="hover:bg-gray-50/80 transition-colors">
+                      <td className="px-4 py-3">
+                        {rank <= 3 ? (
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm ${
+                            rank === 1 ? "bg-gradient-to-br from-yellow-400 to-amber-500" :
+                            rank === 2 ? "bg-gradient-to-br from-gray-300 to-gray-400" :
+                            "bg-gradient-to-br from-orange-400 to-amber-600"
+                          }`}>
+                            {rank}
+                          </div>
+                        ) : (
+                          <span className="font-medium text-gray-500 ml-2">{rank}</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                            <Package className="h-4 w-4 text-indigo-600" />
+                          </div>
+                          <span className="font-semibold text-gray-900">{item.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <Badge variant="outline" className="font-mono text-xs">
+                          {item.code || "N/A"}
+                        </Badge>
+                      </td>
+                      <td className="px-4 py-3">
+                        <Badge variant={rank <= 5 ? "success" : rank <= 20 ? "info" : "secondary"}>
+                          {item.totalQuantity}
+                        </Badge>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => handlePageChange(i + 1)}
-            className={`px-4 py-2 ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-500">
+            Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} products
+          </p>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => (
+              <Button
+                key={i}
+                variant={currentPage === i + 1 ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(i + 1)}
+                className={currentPage === i + 1 ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+              >
+                {i + 1}
+              </Button>
+            ))}
+            {totalPages > 5 && <span className="text-gray-400">...</span>}
+            <Button variant="outline" size="sm" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }

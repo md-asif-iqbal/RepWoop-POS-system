@@ -1,291 +1,101 @@
 "use client"
 
-import Link from 'next/link'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Input } from '@/app/components/ui/input';
+import { Badge } from '@/app/components/ui/badge';
+import { DollarSign, Search, RotateCcw, Printer, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Salary() {
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-    const pathname = usePathname();
-
-    // Sample employee data with 15 entries
-  const employeesData = [
-    { id: 1, date: '01 Oct, 2024', name: 'Sanower', email: 'sanower@gmail.com', phone: '01789898989', address: 'msadbnsjhf', overtime: '0.00 TK', advance: '9000.00 TK', totalReceivable: '0.00 TK', paid: '3000.00 TK', due: '-3000.00 TK' },
-    { id: 2, date: '01 Sep, 2024', name: 'Md Shamsuzzaman', email: 'shamsuzzaman@gmail.com', phone: '01828686154', address: 'Dhaka', overtime: '0.00 TK', advance: '0.00 TK', totalReceivable: '18000.00 TK', paid: '18000.00 TK', due: '0.00 TK' },
-    { id: 3, date: '15 Aug, 2024', name: 'Jane Doe', email: 'jane@example.com', phone: '01923456789', address: 'Sylhet', overtime: '300.00 TK', advance: '5000.00 TK', totalReceivable: '1500.00 TK', paid: '7000.00 TK', due: '2000.00 TK' },
-    { id: 4, date: '10 Jul, 2024', name: 'John Smith', email: 'john@example.com', phone: '01812345678', address: 'Chattogram', overtime: '200.00 TK', advance: '0.00 TK', totalReceivable: '1000.00 TK', paid: '5000.00 TK', due: '5000.00 TK' },
-    { id: 5, date: '05 Jul, 2024', name: 'Chris Hemsworth', email: 'chris@example.com', phone: '01756789012', address: 'Dhaka', overtime: '400.00 TK', advance: '2000.00 TK', totalReceivable: '500.00 TK', paid: '3000.00 TK', due: '500.00 TK' },
-    { id: 6, date: '01 Jun, 2024', name: 'Robert Downey', email: 'robert@example.com', phone: '01712345678', address: 'Rajshahi', overtime: '0.00 TK', advance: '0.00 TK', totalReceivable: '1000.00 TK', paid: '1000.00 TK', due: '0.00 TK' },
-    { id: 7, date: '25 May, 2024', name: 'Scarlett Johansson', email: 'scarlett@example.com', phone: '01698765432', address: 'Barisal', overtime: '500.00 TK', advance: '0.00 TK', totalReceivable: '2000.00 TK', paid: '1000.00 TK', due: '1000.00 TK' },
-    { id: 8, date: '15 May, 2024', name: 'Mark Ruffalo', email: 'mark@example.com', phone: '01587654321', address: 'Khulna', overtime: '200.00 TK', advance: '0.00 TK', totalReceivable: '1500.00 TK', paid: '1500.00 TK', due: '0.00 TK' },
-    { id: 9, date: '10 Apr, 2024', name: 'Tom Hanks', email: 'tom@example.com', phone: '01987654321', address: 'Dhaka', overtime: '300.00 TK', advance: '1000.00 TK', totalReceivable: '1000.00 TK', paid: '2000.00 TK', due: '0.00 TK' },
-    { id: 10, date: '01 Apr, 2024', name: 'Chris Evans', email: 'evans@example.com', phone: '01812345678', address: 'Gazipur', overtime: '0.00 TK', advance: '3000.00 TK', totalReceivable: '0.00 TK', paid: '5000.00 TK', due: '-2000.00 TK' },
-    { id: 11, date: '25 Mar, 2024', name: 'Jeremy Renner', email: 'jeremy@example.com', phone: '01598765432', address: 'Narayanganj', overtime: '100.00 TK', advance: '0.00 TK', totalReceivable: '800.00 TK', paid: '5000.00 TK', due: '300.00 TK' },
-    { id: 12, date: '15 Mar, 2024', name: 'Gal Gadot', email: 'gal@example.com', phone: '01787654321', address: 'Comilla', overtime: '0.00 TK', advance: '0.00 TK', totalReceivable: '0.00 TK', paid: '3000.00 TK', due: '0.00 TK' },
-    { id: 13, date: '01 Mar, 2024', name: 'Brie Larson', email: 'brie@example.com', phone: '01876543210', address: 'Dhaka', overtime: '200.00 TK', advance: '1000.00 TK', totalReceivable: '1000.00 TK', paid: '5000.00 TK', due: '0.00 TK' },
-    { id: 14, date: '15 Feb, 2024', name: 'Paul Rudd', email: 'paul@example.com', phone: '01976543210', address: 'Rajshahi', overtime: '150.00 TK', advance: '0.00 TK', totalReceivable: '1200.00 TK', paid: '2000.00 TK', due: '300.00 TK' },
-    { id: 15, date: '01 Feb, 2024', name: 'Tom Holland', email: 'holland@example.com', phone: '01576543210', address: 'Dhaka', overtime: '300.00 TK', advance: '2000.00 TK', totalReceivable: '0.00 TK', paid: '4000.00 TK', due: '1000.00 TK' },
+  const pathname = usePathname();
+  const tabs = [
+    { label: 'Employees', href: '/Employee-and-Salary' },
+    { label: '+ New Employee', href: '/Employee-and-Salary/New-Employee' },
+    { label: 'Salary List', href: '/Employee-and-Salary/Salary' },
+    { label: '+ New Salary', href: '/Employee-and-Salary/Salary/Create' },
+    { label: 'Payments', href: '/Employee-and-Salary/Payments' },
   ];
 
-  // State for filters and filtered data
+  const employeesData = [
+    { id: 1, date: '2024-10-01', name: 'Sanower Hossain', email: 'sanower@gmail.com', phone: '01789898989', overtime: 0, advance: 9000, totalReceivable: 0, paid: 3000, due: -3000 },
+    { id: 2, date: '2024-09-01', name: 'Md Shamsuzzaman', email: 'shams@gmail.com', phone: '01828686154', overtime: 0, advance: 0, totalReceivable: 18000, paid: 18000, due: 0 },
+    { id: 3, date: '2024-08-15', name: 'Rafiq Ahmed', email: 'rafiq@example.com', phone: '01923456789', overtime: 300, advance: 5000, totalReceivable: 1500, paid: 7000, due: 2000 },
+    { id: 4, date: '2024-07-10', name: 'Kamal Hossain', email: 'kamal@example.com', phone: '01812345678', overtime: 200, advance: 0, totalReceivable: 1000, paid: 5000, due: 5000 },
+    { id: 5, date: '2024-07-05', name: 'Sakib Hasan', email: 'sakib@example.com', phone: '01756789012', overtime: 400, advance: 2000, totalReceivable: 500, paid: 3000, due: 500 },
+    { id: 6, date: '2024-06-01', name: 'Tanvir Rahman', email: 'tanvir@example.com', phone: '01712345678', overtime: 0, advance: 0, totalReceivable: 1000, paid: 1000, due: 0 },
+    { id: 7, date: '2024-05-25', name: 'Nusrat Jahan', email: 'nusrat@example.com', phone: '01698765432', overtime: 500, advance: 0, totalReceivable: 2000, paid: 1000, due: 1000 },
+    { id: 8, date: '2024-05-15', name: 'Fahim Islam', email: 'fahim@example.com', phone: '01587654321', overtime: 200, advance: 0, totalReceivable: 1500, paid: 1500, due: 0 },
+  ];
+
   const [filterName, setFilterName] = useState('');
-  const [filterPhone, setFilterPhone] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [filteredEmployees, setFilteredEmployees] = useState(employeesData);
-    // Pagination states
-    const [currentPage, setCurrentPage] = useState(1);
-    const employeesPerPage = 15;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [openAction, setOpenAction] = useState(null);
+  const perPage = 10;
 
-  // Handle filtering
   const handleFilter = () => {
     let filtered = employeesData;
-
-    // Filter by Name
-    if (filterName) {
-      filtered = filtered.filter((employee) =>
-        employee.name.toLowerCase().includes(filterName.toLowerCase())
-      );
-    }
-
-    // Filter by Phone
-    if (filterPhone) {
-      filtered = filtered.filter((employee) =>
-        employee.phone.includes(filterPhone)
-      );
-    }
-
-    // Filter by Date Range
-    if (startDate) {
-      filtered = filtered.filter((employee) => {
-        const employeeDate = new Date(employee.date);
-        return employeeDate >= new Date(startDate);
-      });
-    }
-
-    if (endDate) {
-      filtered = filtered.filter((employee) => {
-        const employeeDate = new Date(employee.date);
-        return employeeDate <= new Date(endDate);
-      });
-    }
-
-    setFilteredEmployees(filtered);
-    setCurrentPage(1); // Reset to page 1 after filtering
+    if (filterName) filtered = filtered.filter(e => e.name.toLowerCase().includes(filterName.toLowerCase()));
+    if (startDate) filtered = filtered.filter(e => new Date(e.date) >= new Date(startDate));
+    if (endDate) filtered = filtered.filter(e => new Date(e.date) <= new Date(endDate));
+    setFilteredEmployees(filtered); setCurrentPage(1);
   };
-
-  // Reset filters
-  const handleReset = () => {
-    setFilterName('');
-    setFilterPhone('');
-    setStartDate('');
-    setEndDate('');
-    setFilteredEmployees(employeesData); // Reset to all data
-    setCurrentPage(1); // Reset to page 1 after reset
-  };
-
-
-  // Calculate the range of employees to display for the current page
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  // Total pages
-  const totalPages = Math.ceil(filteredEmployees.length / employeesPerPage);
-
+  const handleReset = () => { setFilterName(''); setStartDate(''); setEndDate(''); setFilteredEmployees(employeesData); setCurrentPage(1); };
 
   const handlePrint = () => {
-    const printContent = document.getElementById("table-to-print").outerHTML;
-    const newWindow = window.open('', '_blank');
-    newWindow.document.write(`
-      <html>
-        <head>
-          <title>Employee Salary List</title>
-          <style>
-            body { font-family: Arial, sans-serif; }
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-          </style>
-        </head>
-        <body onload="window.print()">
-          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
-        </body>
-      </html>
-    `);
-    newWindow.document.close();
+    const el = document.getElementById("table-to-print"); if (!el) return;
+    const w = window.open('', '_blank');
+    w.document.write(`<html><head><title>Salary</title><style>body{font-family:sans-serif}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#4f46e5;color:#fff}</style></head><body onload="window.print()">${el.outerHTML}</body></html>`);
+    w.document.close();
   };
 
+  const indexOfLast = currentPage * perPage;
+  const indexOfFirst = indexOfLast - perPage;
+  const currentItems = filteredEmployees.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredEmployees.length / perPage);
+  const avatarColors = ['bg-indigo-500', 'bg-purple-500', 'bg-pink-500', 'bg-blue-500', 'bg-emerald-500'];
+
   return (
-    <div>
-        <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
-
-<div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
-          {/* Title Section */}
-
-<div className=" mb-4  shadow-sm ">
-<h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee Salary</h1>
-<div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
-    <Link href="/Employee-and-Salary" className= {`${
-                      pathname === '/Employee-and-Salary' 
-                      ? ' group text-orange-500  hover:text-orange-500' 
-                      : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                  }`}>
-    Employees
-    <span className={spanClass}></span>
-    </Link>
-    <Link href="/Employee-and-Salary/New-Employee" className={`${
-                      pathname === '/Employee-and-Salary/New-Employee' 
-                      ? ' group text-orange-500  hover:text-orange-500' 
-                      : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                  }`}>
-    + New Employee
-    <span className={spanClass}></span>
-    </Link>
-    <Link href="/Employee-and-Salary/Salary" className= {`${
-                      pathname === '/Employee-and-Salary/Salary' 
-                      ? ' group text-orange-500  hover:text-orange-500' 
-                      : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                  }`}>
-    Employees Salary
-    <span className={spanClass}></span>
-    </Link>
-    <Link href="/Employee-and-Salary/Salary/Create" className= {`${
-                      pathname === '/Employee-and-Salary/Salary/Create' 
-                      ? ' group text-orange-500  hover:text-orange-500' 
-                      : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                  }`}>
-    + New Employee Salary
-    <span className={spanClass}></span>
-    </Link>
-    <Link href="/Employee-and-Salary/Payments" className= {`${
-                      pathname === '/Employee-and-Salary/Payments' 
-                      ? ' group text-orange-500  hover:text-orange-500' 
-                      : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                  }`}>
-    Payment List
-    <span className={spanClass}></span>
-    </Link>
-</div>
-</div>
-
-
-    <div className="w-full p-4">
-      {/* Filter Section */}
-      <div className="md:flex justify-between items-center mb-4">
-        <input
-          type="text"
-          placeholder="Name"
-          className="border bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
-          value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Mobile Number"
-          className="border bg-white rounded px-4 py-2 mb-2 md:mb-0 md:mr-2 w-full "
-          value={filterPhone}
-          onChange={(e) => setFilterPhone(e.target.value)}
-        />
-        <input
-          type="date"
-          placeholder="Start Date"
-          className="border bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          placeholder="End Date"
-          className="border bg-white rounded px-4 py-2  mb-2 md:mb-0 md:mr-2 w-full "
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-        <button
-          className="bg-emerald-500 text-white rounded px-8 py-2 mb-2 md:mb-0 md:mr-2"
-          onClick={handleFilter}
-        >
-          Filter
-        </button>
-        <button
-          className="bg-blue-500 text-white rounded px-8 py-2 mb-2 md:mb-0"
-          onClick={handleReset}
-        >
-          Reset
-        </button>
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg"><DollarSign className="h-6 w-6 text-white" /></div>
+        <div><h1 className="text-2xl font-bold text-gray-900">Employee Salary</h1><p className="text-sm text-gray-500">View and manage salary records</p></div>
       </div>
-
-      {/* Employee Salary Table */}
-      <div className="overflow-auto">
-        {/* Print Button */}
-      <div className="flex justify-between mt-4 mb-4">
-        <h1 className='text-md '>Employees Salary</h1>
-        <button
-          className="bg-emerald-500 text-white rounded px-8 py-2 border"
-          onClick={() => handlePrint()}
-        >
-          Print
-        </button>
-      </div>
-        <table id="table-to-print" className="table-auto dark:text-white w-full border-collapse border dark:text-white">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 border">SL</th>
-              <th className="px-4 py-2 border">Date</th>
-              <th className="px-4 py-2 border">Name</th>
-              <th className="px-4 py-2 border">Email</th>
-              <th className="px-4 py-2 border">Phone</th>
-              <th className="px-4 py-2 border">Address</th>
-              <th className="px-4 py-2 border">Overtime</th>
-              <th className="px-4 py-2 border">Advance</th>
-              <th className="px-4 py-2 border">Total Receivable</th>
-              <th className="px-4 py-2 border">Paid</th>
-              <th className="px-4 py-2 border">Due</th>
-              <th className="px-4 py-2 border">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredEmployees.map((employee, index) => (
-              <tr key={employee.id} className="text-center border-t">
-                <td className="px-4 py-2 border">{index + 1}</td>
-                <td className="px-4 py-2 border">{employee.date}</td>
-                <td className="px-4 py-2 border">{employee.name}</td>
-                <td className="px-4 py-2 border">{employee.email}</td>
-                <td className="px-4 py-2 border">{employee.phone}</td>
-                <td className="px-4 py-2 border">{employee.address}</td>
-                <td className="px-4 py-2 border">{employee.overtime}</td>
-                <td className="px-4 py-2 border">{employee.advance}</td>
-                <td className="px-4 py-2 border">{employee.totalReceivable}</td>
-                <td className="px-4 py-2 border">{employee.paid}</td>
-                <td className="px-4 py-2 border">{employee.due}</td>
-                <td className="px-4 py-2 border">
-                  <button className="bg-emerald-500 text-white rounded px-2 py-1">
-                    Actions
-                  </button>
-                </td>
+      <Card><CardContent className="p-1"><div className="flex flex-wrap gap-1">{tabs.map(tab => (<Link key={tab.href} href={tab.href}><Button variant={pathname === tab.href ? 'default' : 'ghost'} size="sm" className="text-xs">{tab.label}</Button></Link>))}</div></CardContent></Card>
+      <Card><CardContent className="p-4"><div className="flex flex-col md:flex-row gap-3">
+        <div className="relative flex-1"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" /><Input placeholder="Search by name..." className="pl-9" value={filterName} onChange={e => setFilterName(e.target.value)} /></div>
+        <Input type="date" className="md:w-40" value={startDate} onChange={e => setStartDate(e.target.value)} />
+        <Input type="date" className="md:w-40" value={endDate} onChange={e => setEndDate(e.target.value)} />
+        <Button onClick={handleFilter}><Search className="h-4 w-4 mr-1" />Filter</Button>
+        <Button variant="outline" onClick={handleReset}><RotateCcw className="h-4 w-4 mr-1" />Reset</Button>
+        <Button variant="outline" onClick={handlePrint}><Printer className="h-4 w-4 mr-1" />Print</Button>
+      </div></CardContent></Card>
+      <Card><CardContent className="p-0"><div className="overflow-x-auto">
+        <table id="table-to-print" className="w-full text-sm">
+          <thead><tr className="bg-gradient-to-r from-indigo-600 to-indigo-700">{['#','Employee','Date','Overtime','Advance','Receivable','Paid','Due','Action'].map(h=>(<th key={h} className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">{h}</th>))}</tr></thead>
+          <tbody className="divide-y divide-gray-100">
+            {currentItems.map((emp, idx) => (
+              <tr key={emp.id} className="hover:bg-gray-50/80 transition-colors">
+                <td className="px-4 py-3 text-gray-500">{indexOfFirst + idx + 1}</td>
+                <td className="px-4 py-3"><div className="flex items-center gap-3"><div className={`w-8 h-8 rounded-full ${avatarColors[idx % avatarColors.length]} flex items-center justify-center text-white font-bold text-xs`}>{emp.name.charAt(0)}</div><div><p className="font-medium text-gray-900">{emp.name}</p><p className="text-xs text-gray-500">{emp.email}</p></div></div></td>
+                <td className="px-4 py-3 text-gray-600">{emp.date}</td>
+                <td className="px-4 py-3 text-gray-600">৳{emp.overtime.toLocaleString()}</td>
+                <td className="px-4 py-3 text-gray-600">৳{emp.advance.toLocaleString()}</td>
+                <td className="px-4 py-3 text-gray-600">৳{emp.totalReceivable.toLocaleString()}</td>
+                <td className="px-4 py-3 text-emerald-600 font-medium">৳{emp.paid.toLocaleString()}</td>
+                <td className="px-4 py-3"><Badge variant={emp.due > 0 ? 'destructive' : emp.due < 0 ? 'warning' : 'success'}>৳{emp.due.toLocaleString()}</Badge></td>
+                <td className="px-4 py-3"><div className="relative"><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === emp.id ? null : emp.id)}><MoreVertical className="h-4 w-4" /></Button>{openAction === emp.id && (<div className="absolute right-0 mt-1 w-32 bg-white border rounded-lg shadow-lg z-10 py-1">{['View','Edit','Delete'].map(a=>(<button key={a} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50" onClick={()=>setOpenAction(null)}>{a}</button>))}</div>)}</div></td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-
-      
+      </div></CardContent></Card>
+      {totalPages > 1 && (<div className="flex items-center justify-between"><p className="text-sm text-gray-500">Page {currentPage} of {totalPages}</p><div className="flex items-center gap-1"><Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage===1} onClick={()=>setCurrentPage(p=>p-1)}><ChevronLeft className="h-4 w-4"/></Button>{Array.from({length:totalPages},(_,i)=>(<Button key={i} variant={currentPage===i+1?'default':'outline'} size="sm" className="h-8 w-8 p-0" onClick={()=>setCurrentPage(i+1)}>{i+1}</Button>))}<Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage===totalPages} onClick={()=>setCurrentPage(p=>p+1)}><ChevronRight className="h-4 w-4"/></Button></div></div>)}
     </div>
-    <div className="flex justify-center mt-4">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => paginate(index + 1)}
-            className={`mx-1 px-3 py-1 rounded ${currentPage === index + 1 ? 'bg-emerald-500 text-white' : 'bg-gray-300'}`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-
-</div>
-</div>
-    </div>
-  )
+  );
 }

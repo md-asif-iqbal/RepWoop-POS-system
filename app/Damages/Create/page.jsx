@@ -57,7 +57,7 @@ export default function AddProduct() {
         });
       };
   return (
-    <div className='h-screen font-nunito text-sm'>
+    <div className='h-screen font-inter text-sm'>
          <div className="container mx-auto p-4 md:mt-[5%] mt-[20%] overflow-y-auto">
       <h1 className="text-lg dark:text-white  mb-4">Add Damage</h1>
 

@@ -1,277 +1,64 @@
 "use client"
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Input } from '@/app/components/ui/input';
+import { DollarSign, Calendar, User, Clock, CreditCard, Save } from 'lucide-react';
 
 export default function EmployeeSalary() {
-     const pathname = usePathname();
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-    const [formData, setFormData] = useState({
-        salaryMonth: new Date().toISOString().split('T')[0], // Set today's date as the default
-        employee: '',
-        basicSalary: '',
-        overtimeRate: '',
-        totalOvertime: '',
-        totalSalary: '',
-        advanceAmount: '0',
-        payAmount: '',
-        transactionAccount: 'CASH',
-      });
-    
-      const transactionAccounts = [
-        'CASH',
-        'IBBL',
-        'Nagud',
-        'Bkash',
-        'Shobuj',
-        'City Bank',
-        'aa',
-        '1347908644477', // Example data from dropdown
-      ];
-    
-      const employees = [
-        { id: 1, name: 'John Doe' },
-        { id: 2, name: 'Jane Smith' },
-        { id: 3, name: 'Robert Downey' },
-        // Add more employees as needed
-      ];
-    
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form Data Submitted:', formData);
-        // Add your submit logic here (e.g., sending data to an API)
-      };
+  const pathname = usePathname();
+  const tabs = [
+    { label: 'Employees', href: '/Employee-and-Salary' },
+    { label: '+ New Employee', href: '/Employee-and-Salary/New-Employee' },
+    { label: 'Salary List', href: '/Employee-and-Salary/Salary' },
+    { label: '+ New Salary', href: '/Employee-and-Salary/Salary/Create' },
+    { label: 'Payments', href: '/Employee-and-Salary/Payments' },
+  ];
+
+  const [formData, setFormData] = useState({
+    salaryMonth: new Date().toISOString().split('T')[0],
+    employee: '', basicSalary: '', overtimeRate: '', totalOvertime: '', totalSalary: '', advanceAmount: '0', payAmount: '', transactionAccount: 'CASH',
+  });
+
+  const transactionAccounts = ['CASH', 'IBBL', 'Nagud', 'Bkash', 'Shobuj', 'City Bank'];
+  const employees = [
+    { id: 1, name: 'Sanower Hossain' }, { id: 2, name: 'Md Shamsuzzaman' }, { id: 3, name: 'Rafiq Ahmed' },
+    { id: 4, name: 'Kamal Hossain' }, { id: 5, name: 'Sakib Hasan' },
+  ];
+
+  const handleInputChange = (e) => { const { name, value } = e.target; setFormData(prev => ({ ...prev, [name]: value })); };
+  const handleSubmit = (e) => { e.preventDefault(); console.log('Salary Submitted:', formData); };
+
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
-
-    <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
-              {/* Title Section */}
-
-  <div className=" mb-4  shadow-sm ">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">Employee Salary added</h1>
-    <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
-        <Link href="/Employee-and-Salary" className= {`${
-                          pathname === '/Employee-and-Salary' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Employees
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/New-Employee" className={`${
-                          pathname === '/Employee-and-Salary/New-Employee' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + New Employee
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Salary" className= {`${
-                          pathname === '/Employee-and-Salary/Salary' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Employees Salary
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Salary/Create" className= {`${
-                          pathname === '/Employee-and-Salary/Salary/Create' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + New Employee Salary
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Payments" className= {`${
-                          pathname === '/Employee-and-Salary/Payments' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Payment List
-        <span className={spanClass}></span>
-        </Link>
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg"><DollarSign className="h-6 w-6 text-white" /></div>
+        <div><h1 className="text-2xl font-bold text-gray-900">Add Employee Salary</h1><p className="text-sm text-gray-500">Create a new salary entry for an employee</p></div>
+      </div>
+      <Card><CardContent className="p-1"><div className="flex flex-wrap gap-1">{tabs.map(tab => (<Link key={tab.href} href={tab.href}><Button variant={pathname === tab.href ? 'default' : 'ghost'} size="sm" className="text-xs">{tab.label}</Button></Link>))}</div></CardContent></Card>
+      <Card><CardContent className="p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><Calendar className="h-4 w-4 text-indigo-500" />Salary Month <span className="text-red-500">*</span></label><Input type="date" name="salaryMonth" value={formData.salaryMonth} onChange={handleInputChange} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><User className="h-4 w-4 text-indigo-500" />Employee <span className="text-red-500">*</span></label><select name="employee" value={formData.employee} onChange={handleInputChange} required className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white focus:outline-none focus:ring-2 focus:ring-indigo-500"><option value="">Select Employee</option>{employees.map(e => <option key={e.id} value={e.name}>{e.name}</option>)}</select></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-emerald-500" />Basic Salary <span className="text-red-500">*</span></label><Input type="number" name="basicSalary" placeholder="৳ 0.00" value={formData.basicSalary} onChange={handleInputChange} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><Clock className="h-4 w-4 text-orange-500" />Overtime Rate</label><Input type="number" name="overtimeRate" placeholder="৳ / hr" value={formData.overtimeRate} onChange={handleInputChange} /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><Clock className="h-4 w-4 text-orange-500" />Total Overtime (hr)</label><Input type="number" name="totalOvertime" placeholder="Hours" value={formData.totalOvertime} onChange={handleInputChange} /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-indigo-500" />Total Salary</label><Input type="number" name="totalSalary" placeholder="৳ 0.00" value={formData.totalSalary} onChange={handleInputChange} /></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-amber-500" />Advance Amount</label><Input type="number" name="advanceAmount" placeholder="৳ 0.00" value={formData.advanceAmount} onChange={handleInputChange} /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><DollarSign className="h-4 w-4 text-emerald-500" />Pay Amount <span className="text-red-500">*</span></label><Input type="number" name="payAmount" placeholder="৳ 0.00" value={formData.payAmount} onChange={handleInputChange} required /></div>
+            <div className="space-y-2"><label className="text-sm font-medium text-gray-700 flex items-center gap-2"><CreditCard className="h-4 w-4 text-blue-500" />Transaction Account</label><select name="transactionAccount" value={formData.transactionAccount} onChange={handleInputChange} className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white focus:outline-none focus:ring-2 focus:ring-indigo-500">{transactionAccounts.map(a => <option key={a} value={a}>{a}</option>)}</select></div>
+          </div>
+          <div className="flex justify-end"><Button type="submit" className="px-8"><Save className="h-4 w-4 mr-2" />Save Salary</Button></div>
+        </form>
+      </CardContent></Card>
     </div>
-  </div>
-  <div className="w-full  mx-auto p-4">
-      <h2 className=" dark:text-white text-lg  mb-4">Employee Salary</h2>
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-        {/* Salary Month and Employee */}
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="salaryMonth">
-              Salary Month<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="salaryMonth"
-              name="salaryMonth"
-              type="date"
-              value={formData.salaryMonth}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="employee">
-              Employee<span className="text-red-500">*</span>
-            </label>
-            <select
-              className="appearance-none block w-full text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="employee"
-              name="employee"
-              value={formData.employee}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">Select Employee</option>
-              {employees.map((employee) => (
-                <option key={employee.id} value={employee.name}>
-                  {employee.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Basic Salary, Overtime Rate, Total Overtime, Total Salary */}
-        <div className="flex -mx-3 mb-6">
-          <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="basicSalary">
-              Basic Salary<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="basicSalary"
-              name="basicSalary"
-              type="number"
-              placeholder="Enter Basic Salary"
-              value={formData.basicSalary}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="overtimeRate">
-              Overtime Rate
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="overtimeRate"
-              name="overtimeRate"
-              type="number"
-              placeholder="Overtime Rate"
-              value={formData.overtimeRate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="totalOvertime">
-              Total Overtime (hr)
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="totalOvertime"
-              name="totalOvertime"
-              type="number"
-              placeholder="Total Overtime (hr)"
-              value={formData.totalOvertime}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="w-full md:w-1/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="totalSalary">
-              Total Salary
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="totalSalary"
-              name="totalSalary"
-              type="number"
-              placeholder="Total Salary"
-              value={formData.totalSalary}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        {/* Advance Amount and Pay Amount */}
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="advanceAmount">
-              Advance Amount
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="advanceAmount"
-              name="advanceAmount"
-              type="number"
-              placeholder="Enter Advance Amount"
-              value={formData.advanceAmount}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="payAmount">
-              Pay Amount
-            </label>
-            <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="payAmount"
-              name="payAmount"
-              type="number"
-              placeholder="Enter Pay Amount"
-              value={formData.payAmount}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-
-        {/* Transaction Account */}
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-2/4 px-3">
-            <label className="block  tracking-wide text-gray-700 text-xs  mb-2" htmlFor="transactionAccount">
-              Transaction Account
-            </label>
-            <select
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="transactionAccount"
-              name="transactionAccount"
-              value={formData.transactionAccount}
-              onChange={handleInputChange}
-            >
-              {transactionAccounts.map((account, index) => (
-                <option key={index} value={account}>
-                  {account}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Save Button */}
-        <div className="flex items-center justify-center">
-          <button
-            className="bg-emerald-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </div>
-
-
- 
-</div>
-</div>
-  )
+  );
 }

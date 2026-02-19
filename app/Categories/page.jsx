@@ -1,331 +1,301 @@
 'use client';
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import Papa from 'papaparse'; // For CSV parsing
+import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
-import { Eye, Filter, View } from 'lucide-react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
-import { TbEdit } from 'react-icons/tb';
+import { Pencil, Trash2, Plus, Download, FileSpreadsheet, Upload, X, Search, LayoutGrid, MoreVertical, ChevronLeft, ChevronRight, FolderOpen } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+
+const categoryImages = {
+  'Laptop': 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=50&h=50&fit=crop',
+  'Electronics': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=50&h=50&fit=crop',
+  'Shoe': 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=50&h=50&fit=crop',
+  'Speaker': 'https://images.unsplash.com/photo-1543512214-318228f5a78c?w=50&h=50&fit=crop',
+  'Furniture': 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=50&h=50&fit=crop',
+  'Bags': 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop',
+  'Phone': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=50&h=50&fit=crop',
+  'Chairs': 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=50&h=50&fit=crop',
+  'Headphones': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=50&h=50&fit=crop',
+};
 
 export default function CategoryList() {
-    const [showModal, setShowModal] = useState(false);
-    const [products, setProducts] = useState([
-        { id: 1, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-15', status: 'Active' },
-        { id: 2, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-12', status: 'Inactive' },
-        { id: 3, category: 'Shoe', categorySlug: 'shoe', createdOn: '2023-09-01', status: 'Active' },
-        { id: 4, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-21', status: 'Inactive' },
-        { id: 5, category: 'Speaker', categorySlug: 'speaker', createdOn: '2023-08-10', status: 'Active' },
-        { id: 6, category: 'Furniture', categorySlug: 'furniture', createdOn: '2023-08-08', status: 'Inactive' },
-        { id: 7, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-14', status: 'Active' },
-        { id: 8, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-12', status: 'Inactive' },
-        { id: 9, category: 'Chairs', categorySlug: 'chairs', createdOn: '2023-07-29', status: 'Active' },
-        { id: 10, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-01', status: 'Inactive' },
-        { id: 11, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-15', status: 'Active' },
-        { id: 12, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-10', status: 'Inactive' },
-        { id: 13, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-20', status: 'Active' },
-        { id: 14, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-18', status: 'Inactive' },
-        { id: 15, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-22', status: 'Active' },
-        { id: 16, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-09-03', status: 'Inactive' },
-        { id: 17, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-08-31', status: 'Active' },
-        { id: 18, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-06', status: 'Inactive' },
-        { id: 19, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-09', status: 'Active' },
-        { id: 20, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-14', status: 'Inactive' }
-    ]);
-    
-    const [selectedProducts, setSelectedProducts] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filters, setFilters] = useState({ category: '', createdOn: '', status: '' });
-    const [sortOrder, setSortOrder] = useState('asc');
-    const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 10;
+  const [showModal, setShowModal] = useState(false);
+  const [products, setProducts] = useState([
+    { id: 1, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-15', status: 'Active' },
+    { id: 2, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-12', status: 'Inactive' },
+    { id: 3, category: 'Shoe', categorySlug: 'shoe', createdOn: '2023-09-01', status: 'Active' },
+    { id: 4, category: 'Electronics', categorySlug: 'electronics', createdOn: '2023-08-21', status: 'Inactive' },
+    { id: 5, category: 'Speaker', categorySlug: 'speaker', createdOn: '2023-08-10', status: 'Active' },
+    { id: 6, category: 'Furniture', categorySlug: 'furniture', createdOn: '2023-08-08', status: 'Inactive' },
+    { id: 7, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-14', status: 'Active' },
+    { id: 8, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-12', status: 'Inactive' },
+    { id: 9, category: 'Chairs', categorySlug: 'chairs', createdOn: '2023-07-29', status: 'Active' },
+    { id: 10, category: 'Bags', categorySlug: 'bags', createdOn: '2023-08-01', status: 'Inactive' },
+    { id: 11, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-15', status: 'Active' },
+    { id: 12, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-10', status: 'Inactive' },
+    { id: 13, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-20', status: 'Active' },
+    { id: 14, category: 'Phone', categorySlug: 'phone', createdOn: '2023-09-18', status: 'Inactive' },
+    { id: 15, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-08-22', status: 'Active' },
+    { id: 16, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-09-03', status: 'Inactive' },
+    { id: 17, category: 'Headphones', categorySlug: 'headphones', createdOn: '2023-08-31', status: 'Active' },
+    { id: 18, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-06', status: 'Inactive' },
+    { id: 19, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-09', status: 'Active' },
+    { id: 20, category: 'Laptop', categorySlug: 'laptop', createdOn: '2023-09-14', status: 'Inactive' }
+  ]);
 
-    // Modal handlers
-    // const handleOpenModal = () => setShowModal(true);
-    // const handleCloseModal = () => setShowModal(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({ category: '', status: '' });
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [openAction, setOpenAction] = useState(null);
+  const productsPerPage = 10;
 
-    // File upload handler
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        const fileType = file.name.split('.').pop();
-
-        if (fileType === 'csv') {
-            Papa.parse(file, {
-                header: true,
-                complete: (results) => setProducts(results.data),
-                error: (err) => console.error('Error parsing CSV file:', err)
-            });
-        } else if (fileType === 'xlsx') {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const data = new Uint8Array(event.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                const excelData = XLSX.utils.sheet_to_json(worksheet);
-                setProducts(excelData);
-            };
-            reader.readAsArrayBuffer(file);
-        } else {
-            console.error('Unsupported file type');
-        }
-    };
-
-    // Export functions
-    const exportPDF = () => {
-        const doc = new jsPDF();
-        doc.text('Category List', 20, 10);
-        products.forEach((product, index) => {
-            doc.text(`${index + 1}. ${product.category}, Created On: ${product.createdOn}, Status: ${product.status}`, 20, 20 + index * 10);
-        });
-        doc.save('products.pdf');
-    };
-
-    const exportExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(products);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'Products');
-        XLSX.writeFile(wb, 'products.xlsx');
-    };
-
-    // Filtering and sorting
-    const filteredProducts = products
-        .filter(product => 
-            (filters.category === '' || product.category === filters.category) &&
-            (filters.createdOn === '' || product.createdOn === filters.createdOn) &&
-            (filters.status === '' || product.status === filters.status) &&
-            product.category.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .sort((a, b) => sortOrder === 'asc' ? new Date(a.createdOn) - new Date(b.createdOn) : new Date(b.createdOn) - new Date(a.createdOn));
-
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-    // Handle pagination
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    // Unique filter values
-    const uniqueCategories = [...new Set(products.map(product => product.category))];
-    const uniqueCreatedOn = [...new Set(products.map(product => product.createdOn))];
-    const uniqueStatuses = [...new Set(products.map(product => product.status))];
-     // Toggle Filters
-     const [showFilters, setShowFilters] = useState(false);
-      const toggleFilters = () => {
-        setShowFilters(!showFilters);
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    const fileType = file.name.split('.').pop();
+    if (fileType === 'csv') {
+      Papa.parse(file, { header: true, complete: (results) => setProducts(results.data) });
+    } else if (fileType === 'xlsx') {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        setProducts(XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]));
       };
-      // Function to handle select all products
-      const handleSelectAll = (e) => {
-        if (e.target.checked) {
-          const allProductIds = products.map((product) => product.id);
-          setSelectedProducts(allProductIds);
-        } else {
-          setSelectedProducts([]);
-        }
-      };
-        // Function to handle individual product selection
-        const handleSelectProduct = (e, productId) => {
-          if (e.target.checked) {
-            setSelectedProducts([...selectedProducts, productId]);
-          } else {
-            setSelectedProducts(selectedProducts.filter((id) => id !== productId));
-          }
-        };
-  const [showModal2, setShowModal2] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleOpenModal = () => {
-    console.log("test");
-      setModalVisible(true);
-      setTimeout(() => {
-          setShowModal2(true);
-      }, 0); // Small delay to trigger transition
+      reader.readAsArrayBuffer(file);
+    }
   };
 
-  const handleCloseModal = () => {
-      setShowModal2(false);
-      setTimeout(() => {
-          setModalVisible(false);
-      }, 300); // Delay based on transition duration
+  const exportPDF = () => {
+    const doc = new jsPDF();
+    doc.text('Category List', 20, 10);
+    products.forEach((p, i) => doc.text(`${i + 1}. ${p.category}, Created: ${p.createdOn}, Status: ${p.status}`, 20, 20 + i * 10));
+    doc.save('categories.pdf');
   };
 
+  const exportExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(products);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Categories');
+    XLSX.writeFile(wb, 'categories.xlsx');
+  };
 
-    return (
-        <div className=" font-nunito text-sm container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] bg-white  dark:bg-[#151530] dark:text-white">
-            {/* Action Buttons */}
-            <div className="md:flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Category list</h2>
-                <div className="md:flex space-x-2 space-y-2 md:space-y-0">
-                    <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
-                    <button onClick={handleOpenModal} className="px-4 py-2 bg-blue-500 text-white rounded">Import Product</button>
-                    <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">Export PDF</button>
-                    <button onClick={exportExcel} className="px-4 py-2 bg-blue-500 text-white rounded">Export Excel</button>
-                </div>
+  const filteredProducts = products
+    .filter(p => (filters.category === '' || p.category === filters.category) && (filters.status === '' || p.status === filters.status) && p.category.toLowerCase().includes(searchTerm.toLowerCase()))
+    .sort((a, b) => sortOrder === 'asc' ? new Date(a.createdOn) - new Date(b.createdOn) : new Date(b.createdOn) - new Date(a.createdOn));
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const uniqueCategories = [...new Set(products.map(p => p.category))];
+  const activeCount = products.filter(p => p.status === 'Active').length;
+  const inactiveCount = products.filter(p => p.status === 'Inactive').length;
+
+  const handleSelectAll = (e) => setSelectedProducts(e.target.checked ? products.map(p => p.id) : []);
+  const handleSelectProduct = (e, id) => setSelectedProducts(e.target.checked ? [...selectedProducts, id] : selectedProducts.filter(i => i !== id));
+
+  return (
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+              <LayoutGrid size={24} />
             </div>
-
-            {/* Modal for Importing Products */}
-            {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ">
-                    <div className="bg-white  p-6 w-1/2">
-                        <h2 className=" dark:text-white text-lg  mb-4">Import Products</h2>
-                        <input
-                            type="file"
-                            accept=".csv, .xlsx"
-                            onChange={handleFileUpload}
-                            className="mb-4 bg-white"
-                        />
-                        <div className="flex justify-end space-x-4">
-                            <button className="px-4 py-2 bg-green-500 text-white rounded" onClick={() => { /* Submit logic here */ }}>Submit</button>
-                            <button className="px-4 py-2 bg-red-500 text-white rounded" onClick={handleCloseModal}>Close</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            <div className="flex md:justify-end md:items-end mb-4">
-                  
-                  <div className="flex space-x-2">
-                    <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
-                      {showFilters ? '✕' : <Filter size={20} strokeWidth={2} /> }
-                    </button>
-                  </div>
-                </div>
-                {showFilters && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6 dark:text-black text-gray-500">
-
-            <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
-            />
-                <div className="flex space-x-2">
-                    <select onChange={(e) => setFilters({ ...filters, category: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Category</option>
-                        {uniqueCategories.map((category, index) => (
-                            <option key={index} value={category}>{category}</option>
-                        ))}
-                    </select>
-                    <select onChange={(e) => setFilters({ ...filters, createdOn: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Created On</option>
-                        {uniqueCreatedOn.map((date, index) => (
-                            <option key={index} value={date}>{date}</option>
-                        ))}
-                    </select>
-                    <select onChange={(e) => setFilters({ ...filters, status: e.target.value })} className="border p-2 rounded">
-                        <option value="">Filter by Status</option>
-                        {uniqueStatuses.map((status, index) => (
-                            <option key={index} value={status}>{status}</option>
-                        ))}
-                    </select>
-                </div>
-           
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Categories</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{uniqueCategories.length} unique categories</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/Categories/Create">
+              <Button className="gap-1.5" size="sm"><Plus size={15} />Add Category</Button>
+            </Link>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={() => setShowModal(true)}><Upload size={15} />Import</Button>
+            <Button variant="destructive" size="sm" className="gap-1.5" onClick={exportPDF}><Download size={15} />PDF</Button>
+            <Button variant="warning" size="sm" className="gap-1.5" onClick={exportExcel}><FileSpreadsheet size={15} />Excel</Button>
+          </div>
         </div>
-      )}
 
-            {/* Search and Filter */}
-            
+        {/* Summary Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-indigo-100 text-xs">Total Entries</p>
+              <p className="text-2xl font-bold">{products.length}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-emerald-100 text-xs">Active</p>
+              <p className="text-2xl font-bold">{activeCount}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-rose-500 to-rose-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-rose-100 text-xs">Inactive</p>
+              <p className="text-2xl font-bold">{inactiveCount}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-purple-100 text-xs">Unique Categories</p>
+              <p className="text-2xl font-bold">{uniqueCategories.length}</p>
+            </CardContent>
+          </Card>
+        </div>
 
-            {/* Product Table */}
-            <table className="min-w-full bg-white dark:bg-[#1c1c3c] dark:text-white border border-gray-300 font-nunito text-gray-500">
-                <thead>
-                    <tr className='bg-emerald-500 text-white'>
-                    <th className="border px-4 py-2 ">
-                <input type="checkbox" onChange={handleSelectAll} className='bg-white' />
-              </th>
-                        <th className="border px-4 py-2">Category</th>
-                        <th className="border px-4 py-2">Category Slug</th>
-                        <th className="border px-4 py-2">Created On</th>
-                        <th className="border px-4 py-2">Status</th>
-                        <th className="border px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentProducts.length > 0 ? (
-                        currentProducts.map((product, index) => (
-                            <tr key={index} className="border-b text-center">
-                                <td className="px-4 py-2  border">
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedProducts.includes(product.id)}
-                                    onChange={(e) => handleSelectProduct(e, product.id)}
-                                    className='bg-white'
-                                  />
-                                </td>
-                                <td className=" px-4 py-2">{product.category}</td>
-                                <td className=" px-4 py-2 border">{product.categorySlug}</td>
-                                <td className=" px-4 py-2">{product.createdOn}</td>
-                                <td className=" px-4 py-2 border"><span className={`px-2 py-1 text-xs  rounded-full ${
-                                                product.status === "Active"
-                                                  ? "bg-green-100 text-green-700"
-                                                  : product.status === "Inactive"
-                                                  ? "bg-red-100 text-red-700"
-                                                  : "bg-yellow-100 text-yellow-700"
-                                              }`}>{product.status}</span></td>
-                                <td className=" px-4 py-2  flex space-x-2 items-center justify-center gap-5">
-                                    
-                                <button className="p-2  border transform text-center text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
-                                  <TbEdit size={16}/>
-                                </button>
-                                <button onClick={handleOpenModal} className="p-2 text-center  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
-                                  <RiDeleteBin5Line size={16}/>
-                                </button>
-                                {modalVisible && (
-                                  <div
-                                        className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
-                                    >
-                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className=" dark:text-white text-lg  mb-4">Are you sure?</h2>
-                                            <p className=" dark:text-white mb-6">You wont be able to revert this!</p>
+        {/* Filters */}
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[180px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Search</label>
+                <div className="relative">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search categories..." className="pl-9 h-9" />
+                </div>
+              </div>
+              <div className="min-w-[140px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Category</label>
+                <select onChange={(e) => setFilters({ ...filters, category: e.target.value })} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueCategories.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Status</label>
+                <select onChange={(e) => setFilters({ ...filters, status: e.target.value })} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Sort Date</label>
+                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="asc">Oldest</option>
+                  <option value="desc">Newest</option>
+                </select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-                                            {/* Show details */}
-                                            <div className="mb-6">
-                                                <p><strong>Item ID:</strong> {product.category}</p>
-                                                <p><strong>Item Name:</strong> {product.id}</p>
-                                            </div>
-
-                                            {/* Buttons */}
-                                            <div className="flex justify-center">
-                                                <button
-                                                    onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
-                                                >
-                                                    Yes, delete it!
-                                                </button>
-                                                <button
-                                                    onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                                      </div>
-                                  )}
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="6" className="border text-center py-4">No products found</td>
-                        </tr>
-                    )}
-                </tbody>
+        {/* Table */}
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium w-10">
+                    <input type="checkbox" onChange={handleSelectAll} className="rounded" />
+                  </th>
+                  <th className="px-3 py-3 text-left font-medium">Category</th>
+                  <th className="px-3 py-3 text-left font-medium">Slug</th>
+                  <th className="px-3 py-3 text-left font-medium">Created On</th>
+                  <th className="px-3 py-3 text-center font-medium">Status</th>
+                  <th className="px-3 py-3 text-center font-medium w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentProducts.length > 0 ? currentProducts.map((item) => (
+                  <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3">
+                      <input type="checkbox" checked={selectedProducts.includes(item.id)} onChange={(e) => handleSelectProduct(e, item.id)} className="rounded" />
+                    </td>
+                    <td className="px-3 py-3">
+                      <div className="flex items-center gap-3">
+                        <Image src={categoryImages[item.category] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=50&h=50&fit=crop'} alt={item.category} width={36} height={36} className="w-9 h-9 rounded-lg object-cover" />
+                        <span className="font-medium text-slate-800 dark:text-white">{item.category}</span>
+                      </div>
+                    </td>
+                    <td className="px-3 py-3 font-mono text-xs text-indigo-600 dark:text-indigo-400">{item.categorySlug}</td>
+                    <td className="px-3 py-3 text-slate-500 dark:text-slate-400 text-xs">{item.createdOn}</td>
+                    <td className="px-3 py-3 text-center">
+                      <Badge variant={item.status === 'Active' ? 'success' : 'destructive'} className="text-xs">{item.status}</Badge>
+                    </td>
+                    <td className="px-3 py-3 text-center">
+                      <div className="relative">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === item.id ? null : item.id)}>
+                          <MoreVertical size={16} />
+                        </Button>
+                        {openAction === item.id && (
+                          <div className="absolute right-0 top-full mt-1 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                )) : (
+                  <tr>
+                    <td colSpan={6} className="text-center py-12 text-slate-400">
+                      <FolderOpen size={40} className="mx-auto mb-2 opacity-50" />
+                      <p>No categories found</p>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
             </table>
+          </div>
+        </Card>
 
-            {/* Pagination */}
-            <div className="lg:flex justify-center items-center gap-5 mt-4">
-        {[...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()].map((number) => (
-          <button
-            key={number + 1}
-            onClick={() => paginate(number + 1)}
-            className={`px-3 py-2 mx-1 border rounded ${currentPage === number + 1 ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
-          >
-            {number + 1}
-          </button>
-        ))}
-         <div >Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} entries</div>
-            </div>
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-4">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length}
+          </p>
+          <div className="flex items-center gap-1">
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+              <ChevronLeft size={16} />
+            </Button>
+            {[...Array(totalPages).keys()].map(n => (
+              <Button key={n + 1} variant={currentPage === n + 1 ? 'default' : 'outline'} size="sm" className="h-8 w-8 p-0" onClick={() => setCurrentPage(n + 1)}>
+                {n + 1}
+              </Button>
+            ))}
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+              <ChevronRight size={16} />
+            </Button>
+          </div>
         </div>
-    );
+
+        {/* Import Modal */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-md">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-2"><Upload size={18} />Import Categories</CardTitle>
+                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShowModal(false)}><X size={16} /></Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-8 text-center">
+                  <Upload size={32} className="mx-auto text-slate-400 mb-3" />
+                  <p className="text-sm text-slate-500 mb-2">Upload CSV or Excel file</p>
+                  <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="text-sm" />
+                </div>
+                <div className="flex justify-end gap-2 mt-4">
+                  <Button variant="outline" onClick={() => setShowModal(false)}>Cancel</Button>
+                  <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

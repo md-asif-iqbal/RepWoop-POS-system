@@ -1,5 +1,23 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import { Input } from "../components/ui/input";
+import {
+  LayoutGrid,
+  DollarSign,
+  Calendar,
+  Printer,
+  RotateCcw,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  TrendingUp,
+  TrendingDown,
+  ShoppingBag,
+  Tag,
+} from "lucide-react";
 
 export default function CategorySalesPurchasesReport() {
     
@@ -110,100 +128,212 @@ export default function CategorySalesPurchasesReport() {
     newWindow.document.close();
   };
   return (
-    <div className="container mx-auto px-4 py-8 md:mt-[5%] mt-[15%] text-sm">
-    <h1 className="text-lg dark:text-white   mb-4">Category-wise Sales and Purchases Report</h1>
+    <div className="space-y-6 p-4 md:p-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl text-white shadow-lg">
+            <LayoutGrid className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Category-wise Report</h1>
+            <p className="text-sm text-gray-500">Sales & purchases breakdown by category</p>
+          </div>
+        </div>
+        <Button onClick={handlePrint} className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700">
+          <Printer className="h-4 w-4 mr-2" />
+          Print Report
+        </Button>
+      </div>
 
-    <div className="md:flex flex-wrap justify-between items-center mb-4 mt-5">
-            <div className="md:flex md:space-x-2 w-full md:w-full">
-      {/* Category and Brand filtering */}
-      <select
-        value={categoryFilter}
-        onChange={(e) => setCategoryFilter(e.target.value)}
-        className="border p-2 w-full md:w-full"
-      >
-        <option value="">Select Category</option>
-        {[...new Set(data.map(item => item.category))].map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card className="border-0 shadow-md bg-gradient-to-br from-blue-50 to-indigo-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Categories</p>
+                <p className="text-2xl font-bold text-blue-700">{[...new Set(filteredData.map(i => i.category))].length}</p>
+              </div>
+              <div className="p-3 bg-blue-100 rounded-xl">
+                <LayoutGrid className="h-6 w-6 text-blue-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-md bg-gradient-to-br from-green-50 to-emerald-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Total Sales Qty</p>
+                <p className="text-2xl font-bold text-green-700">
+                  {filteredData.reduce((sum, i) => sum + i.totalSalesQty, 0).toLocaleString()}
+                </p>
+              </div>
+              <div className="p-3 bg-green-100 rounded-xl">
+                <TrendingUp className="h-6 w-6 text-green-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-md bg-gradient-to-br from-orange-50 to-amber-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Total Purchase Qty</p>
+                <p className="text-2xl font-bold text-orange-700">
+                  {filteredData.reduce((sum, i) => sum + i.totalPurchaseQty, 0).toLocaleString()}
+                </p>
+              </div>
+              <div className="p-3 bg-orange-100 rounded-xl">
+                <ShoppingBag className="h-6 w-6 text-orange-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="border-0 shadow-md bg-gradient-to-br from-purple-50 to-indigo-50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Brands</p>
+                <p className="text-2xl font-bold text-purple-700">{[...new Set(filteredData.map(i => i.brand))].length}</p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-xl">
+                <Tag className="h-6 w-6 text-purple-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
-      <select
-        value={brandFilter}
-        onChange={(e) => setBrandFilter(e.target.value)}
-        className="border p-2 w-full md:w-full"
-      >
-        <option value="">Select Brand</option>
-        {[...new Set(data.map(item => item.brand))].map((brand, index) => (
-          <option key={index} value={brand}>
-            {brand}
-          </option>
-        ))}
-      </select>
+      {/* Filter Card */}
+      <Card className="border-0 shadow-md">
+        <CardContent className="p-4">
+          <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex-1">
+              <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="w-full h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">All Categories</option>
+                {[...new Set(data.map(item => item.category))].map((category, index) => (
+                  <option key={index} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1">
+              <select
+                value={brandFilter}
+                onChange={(e) => setBrandFilter(e.target.value)}
+                className="w-full h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">All Brands</option>
+                {[...new Set(data.map(item => item.brand))].map((brand, index) => (
+                  <option key={index} value={brand}>{brand}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1">
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="pl-10" />
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="pl-10" />
+              </div>
+            </div>
+            <Button onClick={filterData} className="bg-indigo-600 hover:bg-indigo-700">
+              <Search className="h-4 w-4 mr-2" />
+              Filter
+            </Button>
+            <Button onClick={resetFilter} variant="outline">
+              <RotateCcw className="h-4 w-4 mr-2" />
+              Reset
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
-      <input
-        type="date"
-        placeholder="Start Date"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-        className="border p-2 w-full bg-white"
-      />
-      <input
-        type="date"
-        placeholder="End Date"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-        className="border p-2 w-full bg-white"
-      />
-      <button onClick={filterData} className="bg-blue-500 text-white px-4 py-2 rounded w-full md:w-1/4">Filter</button>
-      <button onClick={resetFilter} className="bg-gray-500 text-white px-4 py-2 rounded w-full md:w-1/4">Reset</button>
-      
+      {/* Table */}
+      <Card className="border-0 shadow-lg overflow-hidden">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table id="table-to-print" className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                  <th className="px-4 py-3 text-left font-semibold">SL</th>
+                  <th className="px-4 py-3 text-left font-semibold">Category</th>
+                  <th className="px-4 py-3 text-right font-semibold">Sales Qty</th>
+                  <th className="px-4 py-3 text-right font-semibold">Purchase Qty</th>
+                  <th className="px-4 py-3 text-right font-semibold">Sales Amount</th>
+                  <th className="px-4 py-3 text-right font-semibold">Purchase Amount</th>
+                  <th className="px-4 py-3 text-right font-semibold">Profit</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {currentData.map((item, index) => (
+                  <tr key={item.id} className="hover:bg-gray-50/80 transition-colors">
+                    <td className="px-4 py-3 font-medium text-gray-500">{indexOfFirstItem + index + 1}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-100 to-purple-100 flex items-center justify-center">
+                          <LayoutGrid className="h-4 w-4 text-violet-600" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">{item.category}</p>
+                          <p className="text-xs text-gray-400">{item.brand}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-right text-gray-700">{item.totalSalesQty.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{item.totalPurchaseQty.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right font-medium text-green-700">{item.totalSalesAmount}</td>
+                    <td className="px-4 py-3 text-right font-medium text-blue-700">{item.totalPurchaseAmount}</td>
+                    <td className="px-4 py-3 text-right">
+                      <Badge variant={item.profit.includes("-") ? "destructive" : parseInt(item.profit) === 0 ? "secondary" : "success"}>
+                        {item.profit.includes("-") ? <TrendingDown className="h-3 w-3 mr-1 inline" /> : <TrendingUp className="h-3 w-3 mr-1 inline" />}
+                        {item.profit}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-500">
+            Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} records
+          </p>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => (
+              <Button
+                key={i}
+                variant={currentPage === i + 1 ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(i + 1)}
+                className={currentPage === i + 1 ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+              >
+                {i + 1}
+              </Button>
+            ))}
+            <Button variant="outline" size="sm" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
-    </div>
-      <div className='flex items-center justify-end'>
-            <button onClick={handlePrint} className="bg-green-500 text-white px-4 py-2 rounded w-full md:w-1/12 mb-2">Print</button>
-         </div>
-    <table id='table-to-print' className="table-auto dark:text-white w-full border-collapse border">
-      <thead>
-        <tr className='bg-emerald-500 text-white'>
-          <th className="border p-2">SL</th>
-          <th className="border p-2">Category Name</th>
-          <th className="border p-2">Total Sales Quantity</th>
-          <th className="border p-2">Total Purchase Quantity</th>
-          <th className="border p-2">Total Sales Amount</th>
-          <th className="border p-2">Total Purchase Amount</th>
-          <th className="border p-2">Profit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentData.map((item) => (
-          <tr key={item.id}>
-            <td className="border p-2">{item.id}</td>
-            <td className="border p-2">{item.category}</td>
-            <td className="border p-2">{item.totalSalesQty}</td>
-            <td className="border p-2">{item.totalPurchaseQty}</td>
-            <td className="border p-2">{item.totalSalesAmount}</td>
-            <td className="border p-2">{item.totalPurchaseAmount}</td>
-            <td className="border p-2">{item.profit}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-
-    {/* Pagination */}
-    <div className="flex justify-center mt-4 space-x-2">
-      {Array.from({ length: totalPages }, (_, i) => (
-        <button
-          key={i}
-          onClick={() => handlePageChange(i + 1)}
-          className={`px-4 py-2 ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
-        >
-          {i + 1}
-        </button>
-      ))}
-    </div>
-  </div>
-
-  )
+  );
 }

@@ -1,842 +1,224 @@
 'use client'
 
 import Link from 'next/link'
-import React, { Children, useEffect, useRef, useState } from 'react'
-import { IoHome } from "react-icons/io5";
-import { MdPerson3 } from "react-icons/md";
-import { GiBank, GiCash } from "react-icons/gi";
-import { FaCartArrowDown } from "react-icons/fa";
-import { IoBagHandle } from "react-icons/io5";
-import { TbTruckReturn } from "react-icons/tb";
-import { TbShoppingCartDollar } from "react-icons/tb";
-import { FaBoxesPacking, FaPeopleGroup } from "react-icons/fa6";
-import { RiFileDamageFill, RiFileDamageLine } from "react-icons/ri";
-import { GiWeight } from "react-icons/gi";
-import { RiProductHuntFill } from "react-icons/ri";
-import { AiFillProduct } from "react-icons/ai";
-import { GiExpense } from "react-icons/gi";
-import { TbBrandSupernova } from "react-icons/tb";
-import { GiWallet } from "react-icons/gi";
-import { FaSms } from "react-icons/fa";
-import { FaPeopleCarry } from "react-icons/fa";
-import { IoIosPeople } from "react-icons/io";
-import { MdManageAccounts } from "react-icons/md";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { Ri24HoursLine } from "react-icons/ri";
-import { IoCalendarNumberSharp } from "react-icons/io5";
-import { TbReport } from "react-icons/tb";
-import { RiCalendarScheduleFill } from "react-icons/ri";
-import { TbReportMoney } from "react-icons/tb";
-import { BiSolidReport } from "react-icons/bi";
-import { PiBoxArrowDownBold } from "react-icons/pi";
-import { FaBoxTissue } from "react-icons/fa6";
-import { GiProgression } from "react-icons/gi";
-import { MdOutlineSettings } from "react-icons/md";
-import { BiErrorAlt } from "react-icons/bi";
-import { FaUserCog } from "react-icons/fa";
-import { SiNginxproxymanager } from "react-icons/si";
-import { MdBackup } from "react-icons/md";
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image';
 import logo from '../../../assets/logo.png'
 import { usePathname } from 'next/navigation';
 
+import {
+  Component, UserRound, Landmark, Banknote, Wallet, BadgeDollarSign,
+  LayoutDashboard, MailPlus, Users, UserCog, ChartColumn,
+  CalendarClock, CalendarDays, FileClock, CalendarCog, FileChartColumnIncreasing,
+  PackageMinus, UserRoundSearch, ChartNoAxesCombined, Receipt, FileBox, CalendarPlus,
+  CalendarFold, Settings, AlignJustify, Building2, FileX, UsersRound,
+  BadgeInfo, DatabaseBackup, UserCheck, Cog, ShoppingCart, ShoppingBag,
+  RotateCcwSquare, BaggageClaim, Boxes, Weight, Package, Ribbon
+} from 'lucide-react';
 
-import { Component,UserRound,Landmark,Banknote, Wallet, SmartphoneNfc, BadgeDollarSign, 
-    LayoutList, LayoutDashboard, MailPlus, Users, PackageCheck, UserCog, ChartColumn,
-    CalendarClock, CalendarDays, FileClock, CalendarCog, FileChartColumnIncreasing,
-    PackageMinus, UserRoundSearch, ChartNoAxesCombined, Receipt, FileBox, CalendarPlus,
-    CalendarFold, Cog, BadgeInfo, DatabaseBackup, UserCheck, Settings, 
-    AlignJustify,
-    Building2,
-    PackageX,
-    FileX,
-    UsersRound} from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
-import { ShoppingBag } from 'lucide-react';
-import { BaggageClaim } from 'lucide-react';
-import { Truck } from 'lucide-react';
-import { RotateCcwSquare } from 'lucide-react';
-import { Boxes } from 'lucide-react';
-import { Weight } from 'lucide-react';
-import { Package } from 'lucide-react';
-import { Ribbon } from 'lucide-react';
-
+// Sidebar navigation data structure
+const sidebarSections = [
+  {
+    title: null,
+    items: [
+      { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+      { href: '/Owners', label: 'Owners', icon: UserRound },
+      { href: '/Bank_Accounts', label: 'Bank Accounts', icon: Landmark },
+      { href: '/Cash_Book', label: 'Cash Book', icon: Banknote },
+    ]
+  },
+  {
+    title: 'Sales & Purchase',
+    items: [
+      { href: '/POS', label: 'POS', icon: ShoppingCart },
+      { href: '/Sales', label: 'Sales', icon: ShoppingBag },
+      { href: '/Returns', label: 'Returns', icon: RotateCcwSquare },
+      { href: '/Purchase', label: 'Purchase', icon: BaggageClaim },
+      { href: '/Stock', label: 'Stock', icon: Boxes },
+      { href: '/Damages', label: 'Damages', icon: FileX },
+    ]
+  },
+  {
+    title: 'Product Information',
+    items: [
+      { href: '/Units', label: 'Units', icon: Weight },
+      { href: '/Products', label: 'Products', icon: Package },
+      { href: '/Categories', label: 'Categories', icon: Component },
+      { href: '/Brands', label: 'Brands', icon: Ribbon },
+    ]
+  },
+  {
+    title: 'Expenses & Payments',
+    items: [
+      { href: '/Expenses', label: 'Expenses', icon: Wallet },
+      { href: '/Payments', label: 'Payments', icon: BadgeDollarSign },
+    ]
+  },
+  {
+    title: 'Promotions',
+    items: [
+      { href: '/Promotional-SMS', label: 'Promotional SMS', icon: MailPlus },
+    ]
+  },
+  {
+    title: 'Peoples',
+    items: [
+      { href: '/Customers', label: 'Customers', icon: Users },
+      { href: '/Suppliers', label: 'Suppliers', icon: UsersRound },
+      { href: '/Employee-and-Salary', label: 'Employee & Salary', icon: UserCog },
+    ]
+  },
+  {
+    title: 'Reports',
+    items: [
+      { href: '/Profit-Loss-Report', label: 'Profit & Loss', icon: ChartColumn },
+      { href: '/Today-Report', label: 'Today Report', icon: CalendarDays },
+      { href: '/Current-Month-Report', label: 'Monthly Report', icon: CalendarClock },
+      { href: '/Summary-Report', label: 'Summary Report', icon: FileClock },
+      { href: '/Daily-Report', label: 'Daily Report', icon: CalendarCog },
+      { href: '/Customer-Due-Report', label: 'Customer Due', icon: FileChartColumnIncreasing },
+      { href: '/Supplier-Due-Report', label: 'Supplier Due', icon: FileChartColumnIncreasing },
+      { href: '/Low-Stock-Report', label: 'Low Stock', icon: PackageMinus },
+      { href: '/Top-Customer', label: 'Top Customers', icon: UserRoundSearch },
+      { href: '/Top-Product', label: 'Top Products', icon: ChartNoAxesCombined },
+      { href: '/Category-Wise-Report', label: 'Category Report', icon: FileBox },
+      { href: '/Purchase-Report', label: 'Purchase Report', icon: Receipt },
+      { href: '/Customer-Ledger', label: 'Customer Ledger', icon: CalendarPlus },
+      { href: '/Supplier-Ledger', label: 'Supplier Ledger', icon: CalendarFold },
+    ]
+  },
+  {
+    title: 'Settings',
+    items: [
+      { href: '/Settings', label: 'Settings', icon: Settings },
+      { href: '/Roles-And-Permissions', label: 'Roles & Permissions', icon: BadgeInfo },
+      { href: '/Users', label: 'Users', icon: UserCheck },
+      { href: '/Assets-Management', label: 'Asset Management', icon: Cog },
+    ]
+  },
+];
 
 export default function Sidebar() {
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
+  const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sidebarRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
-    const pathname = usePathname();
-
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
-    const sidebarRef = useRef(null); // Ref for the sidebar
-    const toggleButtonRef = useRef(null); // Ref for the toggle button (optional)
-  
-  // Function to toggle sidebar visibility
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+    setIsSidebarOpen((prev) => !prev);
   };
 
-  // Close sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if sidebarRef and toggleButtonRef are defined and not null before checking .contains()
       if (
-        sidebarRef.current && // Ensure sidebarRef is not null
-        !sidebarRef.current.contains(event.target) && // Click is outside sidebar
-        toggleButtonRef.current && // Ensure toggleButtonRef is not null
-        !toggleButtonRef.current.contains(event.target) // Click is outside the toggle button
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
       ) {
-        setIsSidebarOpen(false); // Close the sidebar
+        setIsSidebarOpen(false);
       }
     };
 
-    // Add event listener to detect outside clicks
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      // Clean up the event listener
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   return (
-    <div className='font-nunito text-sm z-50'>
-        <div className="dropdown lg:hidden items-center">
-                <div  ref={toggleButtonRef} tabIndex={0} role="button" className="btn btn-ghost sm:block lg:hidden dark:text-white " onClick={toggleSidebar}>
-                <AlignJustify size={20} strokeWidth={2} className='' />
-                </div>
-               
-                </div>
-          <div ref={sidebarRef} // Attach the ref to the sidebar
-             id="sidebar"
-             className={`sidebar  fixed z-50  lg:static  bg-white dark:bg-[#141432] scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent p-2 space-y-3   md:h-screen   transition-all duration-700 ease-in-out 
-             ${isSidebarOpen ? 'w-64 opacity-100 ' : 'w-0 opacity-0 hidden lg:block'}
-             lg:w-64 lg:opacity-100`} // Always show on large screens (lg+)
-             style={{ overflowY: 'auto', maxHeight:"100vh" }}
-         >
-
-            <div className={`space-y-4 text-[14px] transition-opacity  border-r-2 duration-600 ease-in-out`}>
-                {/* font*/}
-               <Link href="/"> <Image src={logo} width={150} height={300} alt='Repwoop POS Software' className='bg-transparent w-[60%] xl:w-[90%]'/></Link>
-                <div className="text-start ">
-                    <ul className="pt-2 space-y-4 text-gray-600 dark:text-white ">
-                        <li>
-                        
-                        <Link href="/"  className=
-                        {`${
-                          pathname === '/' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span><LayoutDashboard size={20}  strokeWidth={1} /></span> 
-                          <div>
-                          <p>Dashboard</p>
-                          <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                        
-                        <Link href="/Owners"  className=
-                        {`${
-                          pathname === '/Owners' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span><UserRound size={20} strokeWidth={1}/></span> 
-                          <div>
-                          <p>Owners</p>
-                          <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-
-                        <li >
-                        <Link href="/Bank_Accounts" className=
-                        {`${
-                          pathname === '/Bank_Accounts' 
-                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                        }`}>
-                            <span><Landmark size={20} strokeWidth={1}/></span> 
-                            <div>
-                            <p>Bank Accounts</p>
-                            <span className={spanClass}></span>
-                            </div>
-                        </Link>
-                        </li>
-                        <li>
-                        
-                        <Link href="/Cash_Book" className=
-                        {`${
-                          pathname === '/Cash_Book' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                            <Banknote size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                          <p>Cash Book</p>
-                          <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        
-                    </ul>
-                </div>
-                {/* Sales & Purchase */}
-                <div className="">
-                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
-                    Sales & Purchase 
-                    </span>
-                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li>
-                        
-                        <Link href="/POS" className=
-                        {`${
-                          pathname === '/POS' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <ShoppingCart size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>POS</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                        
-                        <Link href="/Sales" 
-                        className=
-                        {`${
-                          pathname === '/Sales' 
-                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <ShoppingBag size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Sales</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                      
-                        <Link href="/Returns" className=
-                        {`${
-                          pathname === '/Returns' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <RotateCcwSquare size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Returns</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                        <Link href="/Purchase" className=
-                        {`${
-                          pathname === '/Purchase' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <BaggageClaim size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Purchase</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                        
-                        <Link href="/Stock" className=
-                        {`${
-                          pathname === '/Stock' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Boxes size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Stock</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                        <li>
-                        
-                        <Link href="/Damages" className=
-                        {`${
-                          pathname === '/Damages' 
-                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <FileX size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                            <p>Damages</p>
-                            <span className={spanClass}></span>
-                          </div>
-                        </Link>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Product Information */}
-                <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
-                    Product Information 
-                    </span>
-                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li>
-                        
-                            <Link href="/Units" className=
-                        {`${
-                          pathname === '/Units' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Weight size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Units</p>
-                            <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Products" className=
-                        {`${
-                          pathname === '/Products' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Package size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Products</p>
-                            <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Categories" className=
-                        {`${
-                          pathname === '/Categories' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Component size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                            <p>Categories</p>
-                            <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Brands" className=
-                        {`${
-                          pathname === '/Brands' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Ribbon size={20} strokeWidth={1}/>
-                          </span> 
-                          <div>
-                            <p>Brands</p>
-                            <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                    </ul>
-
-                </div>
-
-                {/* Expenses & Payments */}
-                <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
-                    Expenses & Payments 
-                    </span>
-                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
-                        <li>
-                            
-                            <Link href="/Expenses" className=
-                        {`${
-                          pathname === '/Expenses' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <Wallet size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                            <p>Expenses</p>
-                            <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/Payments" className=
-                                {`${
-                                pathname === '/Payments' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <BadgeDollarSign size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Payments</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                {/* Promotion */}
-                <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white">
-                    Promotions
-                    </span>
-                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white">
-                        <li>
-                        
-                            <Link href="/Promotional-SMS" className=
-                        {`${
-                          pathname === '/Promotional-SMS' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <MailPlus size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                              <p>Promotional SMS</p>
-                              <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    {/* Peoples */}
-                    <span className="uppercase text-sm text-gray-500 dark:text-white ">
-                    Peoples 
-                    </span>
-                    <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                        <li>
-                            <Link href="/Customers" className=
-                                {`${
-                                pathname === '/Customers' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <Users size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Customers</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/Suppliers" className=
-                                {`${
-                                pathname === '/Suppliers' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <UsersRound size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Suppliers</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/Employee-and-Salary" className=
-                                {`${
-                                pathname === '/Employee-and-Salary' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <UserCog size={20}  strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Employee And Salary</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Reports */}
-                <div>
-                    <span className="uppercase text-sm text-gray-500 dark:text-white ">Reports</span>
-                    <ul className="pt-2 space-y-4  text-gray-500 dark:text-white ">
-                        <li>
-                            <Link href="/Profit-Loss-Report" className=
-                        {`${
-                          pathname === '/Profit-Loss-Report' 
-                            ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                            : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                        }`}>
-                            <span>
-                            <ChartColumn size={20} strokeWidth={1} />
-                            </span> 
-                            <div>
-                                <p>Profit Loss Report</p>
-                                <span className={spanClass}></span>
-                            </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                        
-                            <Link href="/Today-Report" className=
-                        {`${
-                          pathname === '/Today-Report' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <CalendarDays size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                              <p>Today Report</p>
-                              <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Current-Month-Report" className=
-                                {`${
-                                pathname === '/Current-Month-Report' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                }`}>
-                                    <span>
-                                    <CalendarClock size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Current Month Report</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Summary-Report" className=
-                                {`${
-                                pathname === '/Summary-Report' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <FileClock size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Summary Report</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Daily-Report" className=
-                                {`${
-                                pathname === '/Daily-Report' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <CalendarCog size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Daily Report</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Customer-Due-Report" className=
-                                {`${
-                                pathname === '/Customer-Due-Report' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <TbReportMoney size={22} strokeWidth={1}/>
-                                </span> 
-                                <div>
-                                    <p>Customer Due Report</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Supplier-Due-Report" className=
-                        {`${
-                          pathname === '/Supplier-Due-Report' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <FileChartColumnIncreasing size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                              <p>Supplier Due Report</p>
-                              <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-                        
-                        <li>
-                        
-                            <Link href="/Low-Stock-Report" className=
-                                {`${
-                                pathname === '/Low-Stock-Report' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <PackageMinus size={20}  strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Low Stock Report</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Top-Customer" className=
-                                {`${
-                                pathname === '/Top-Customer' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <UserRoundSearch size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Top Customer</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                        
-                            <Link href="/Top-Product" className=
-                        {`${
-                          pathname === '/Top-Product' 
-                          ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                      }`}>
-                          <span>
-                          <ChartNoAxesCombined size={20} strokeWidth={1} />
-                          </span> 
-                          <div>
-                              <p>Top Product</p>
-                              <span className={spanClass}></span>
-                          </div>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/Category-Wise-Report" className=
-                                {`${
-                                pathname === '/Category-Wise-Report' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                            }`}>
-                                <span>
-                                <FileBox size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Category Wise Report</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/Purchase-Report" className=
-                                {`${
-                                pathname === '/Purchase-Report' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                }`}>
-                                    <span>
-                                        <Receipt size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Purchase Report</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                            </Link>
-                        </li>
-                        <li>
-                        
-                            <Link href="/Customer-Ledger" className=
-                                {`${
-                                pathname === '/Customer-Ledger' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                }`}>
-                                <span>
-                                <CalendarPlus size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Customer Ledger</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/Supplier-Ledger" className=
-                                {`${
-                                pathname === '/Supplier-Ledger' 
-                                ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                }`}>
-                                <span>
-                                <CalendarFold size={20} strokeWidth={1} />
-                                </span> 
-                                <div>
-                                    <p>Supplier Ledger</p>
-                                    <span className={spanClass}></span>
-                                </div>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                 {/* Settings & Customize */}
-                 <div>
-                            <span className="uppercase text-sm text-gray-500 dark:text-white ">
-                                Settings & Customize 
-                            </span>
-                            <ul className="pt-2 space-y-4 text-gray-500 dark:text-white ">
-                            <li>
-                            
-                                <Link href="/Settings" className=
-                                    {`${
-                                    pathname === '/Settings' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                    }`}>
-                                    <span>
-                                    <Settings size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Settings</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/Roles-And-Permissions" className=
-                                    {`${
-                                    pathname === '/Roles-And-Permissions' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                    }`}>
-                                    <span>
-                                    <BadgeInfo size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Roles And Permissions</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li>
-                            
-                                <Link href="/Users" className=
-                                    {`${
-                                    pathname === '/Users' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                    }`}>
-                                    <span>
-                                    <UserCheck size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Users</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li>
-                            
-                            
-                                <Link href="/Assets-Management" className=
-                                    {`${
-                                    pathname === '/Assets-Management' 
-                                    ? ' group text-orange-500 flex items-center gap-3 hover:text-orange-500' 
-                                    : 'group text-gray-500 dark:text-white hover:text-orange-500 flex items-center gap-3'
-                                    }`}>
-                                    <span>
-                                    <Cog size={20} strokeWidth={1} />
-                                    </span> 
-                                    <div>
-                                        <p>Assets Management</p>
-                                        <span className={spanClass}></span>
-                                    </div>
-                                </Link>
-                            </li>
-                            </ul>
-                        </div>
-
-                        {/* Backup */}
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white '>
-                        <DatabaseBackup size={20} strokeWidth={1} />
-                            <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Backup</span>
-                        </div>
-                        <div className='flex items-center gap-3 hover:text-orange-500  text-gray-500 dark:text-white pb-28 md:pb-8'>
-                        <Building2 size={20} strokeWidth={1}/>
-                            <span className="uppercase text-sm text-gray-500 dark:text-white hover:text-orange-500">Repwoop</span>
-                        </div>
-                    
-                
-            </div>
+    <div className="font-inter text-sm z-50">
+      {/* Mobile Toggle */}
+      <div className="dropdown lg:hidden items-center">
+        <div
+          ref={toggleButtonRef}
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost sm:block lg:hidden dark:text-white"
+          onClick={toggleSidebar}
+        >
+          <AlignJustify size={20} strokeWidth={2} />
         </div>
-        {/* <Outlet */}
-        {/* <div className="flex-1 p-2 text-md "> */}
-                {/* <Dashboard/> */}
-        {/* </div> */}
+      </div>
+
+      {/* Sidebar Content */}
+      <div
+        ref={sidebarRef}
+        className={`sidebar fixed z-50 lg:static bg-white dark:bg-slate-900 
+          scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent 
+          p-3 space-y-1 md:h-screen transition-all duration-300 ease-in-out
+          ${isSidebarOpen ? 'w-64 opacity-100' : 'w-0 opacity-0 hidden lg:block'}
+          lg:w-64 lg:opacity-100`}
+        style={{ overflowY: 'auto', maxHeight: '100vh' }}
+      >
+        <div className="space-y-5 text-[13px] transition-opacity duration-300">
+          {/* Logo */}
+          <Link href="/" className="block px-2 py-3">
+            <Image 
+              src={logo} 
+              width={150} 
+              height={300} 
+              alt="Repwoop POS Software" 
+              className="bg-transparent w-[55%] xl:w-[80%]"
+            />
+          </Link>
+
+          {/* Navigation Sections */}
+          {sidebarSections.map((section, sectionIdx) => (
+            <div key={sectionIdx}>
+              {section.title && (
+                <p className="section-title px-3 pt-2">
+                  {section.title}
+                </p>
+              )}
+              <ul className="space-y-0.5">
+                {section.items.map((item) => {
+                  const isActive = pathname === item.href;
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group ${
+                          isActive
+                            ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-medium'
+                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                        }`}
+                      >
+                        <Icon
+                          size={18}
+                          strokeWidth={isActive ? 2 : 1.5}
+                          className={isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'}
+                        />
+                        <span>{item.label}</span>
+                        {isActive && (
+                          <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+                        )}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+
+          {/* Bottom Links */}
+          <div className="space-y-0.5 pb-8">
+            <Link
+              href="#"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
+            >
+              <DatabaseBackup size={18} strokeWidth={1.5} className="text-slate-400 dark:text-slate-500" />
+              <span>Backup</span>
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
+            >
+              <Building2 size={18} strokeWidth={1.5} className="text-slate-400 dark:text-slate-500" />
+              <span>Repwoop</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

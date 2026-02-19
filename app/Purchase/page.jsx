@@ -1,511 +1,183 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { GrUserSettings } from 'react-icons/gr';
-import { TbEdit, TbInvoice } from 'react-icons/tb';
-import { IoTvOutline } from "react-icons/io5";
-import { MdOutlineDeleteSweep, MdOutlinePayments } from 'react-icons/md';
-import { FaPrint } from "react-icons/fa";
-import { PDFDocument,StandardFonts, rgb } from 'pdf-lib';
-import logo from "../../assets/logo.png"
+import { ShoppingCart, Eye, Pencil, Trash2, Plus, Search, MoreVertical, CreditCard, FileText, ChevronLeft, ChevronRight, RotateCcw, Filter } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+
 export default function Purchase() {
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-    const [isDropdownOpen, setIsDropdownOpen] = useState(null);
-    const [selectedPurchase, setSelectedPurchase] = useState(null);
+  const [openAction, setOpenAction] = useState(null);
+  const [filter, setFilter] = useState({ billNumber: '', startDate: '', endDate: '', product: '', supplier: '' });
+  const [currentPage, setCurrentPage] = useState(1);
+  const perPage = 10;
 
-    const [filter, setFilter] = useState({
-      billNumber: "",
-      startDate: "",
-      endDate: "",
-      product: "",
-      supplier: ""
-    });
-    
-      const purchasesData = [
-        {
-          billNo: 1,
-          supplier: "Ayman Computer",
-          purchaseDate: "22 Sep, 2024",
-          items: "Laptop Computer | 000002",
-          payable: "1,000,000.00 TK",
-          paid: "0.00 TK",
-          due: "1,000,000.00 TK",
-        },
-        {
-          billNo: 2,
-          supplier: "Computer City",
-          purchaseDate: "22 Sep, 2024",
-          items: "Tenda F3 Router | 0000014",
-          payable: "15,000.00 TK",
-          paid: "15,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 3,
-          supplier: "Ayman Computer",
-          purchaseDate: "22 Sep, 2024",
-          items: "Tenda F3 Router | 0000014",
-          payable: "13,000.00 TK",
-          paid: "12,000.00 TK",
-          due: "1,000.00 TK",
-        },
-        {
-          billNo: 4,
-          supplier: "Afko Khan",
-          purchaseDate: "22 Sep, 2024",
-          items: "Tenda F3 Router | 0000013",
-          payable: "500.00 TK",
-          paid: "500.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 5,
-          supplier: "Riptith Hasan",
-          purchaseDate: "22 Sep, 2024",
-          items: "T-shirt Polo | 000001",
-          payable: "40,000.00 TK",
-          paid: "40,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 6,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Gaming Laptop | 000001",
-          payable: "1,450,000.00 TK",
-          paid: "1,450,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 7,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Dell Machine | 000001",
-          payable: "2,750,000.00 TK",
-          paid: "2,750,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 8,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Bijar For Men | 000001",
-          payable: "250,000.00 TK",
-          paid: "250,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 9,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Door Expert | 000001",
-          payable: "1,395,400.00 TK",
-          paid: "1,394,500.00 TK",
-          due: "900.00 TK",
-        },
-        {
-          billNo: 10,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Air Conditioner | 000001",
-          payable: "9,135,000.00 TK",
-          paid: "9,135,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 11,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Frieze | 000001",
-          payable: "420,000.00 TK",
-          paid: "420,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 12,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Ladies Shirt | 000005",
-          payable: "70,000.00 TK",
-          paid: "70,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 13,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "T-shirt | 000004",
-          payable: "120,000.00 TK",
-          paid: "120,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 14,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Desktop Computer | 000001",
-          payable: "375,000.00 TK",
-          paid: "37,500.00 TK",
-          due: "337,500.00 TK",
-        },
-        {
-          billNo: 15,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Laptop Computer | 000002",
-          payable: "7,200,000.00 TK",
-          paid: "7,200,000.00 TK",
-          due: "0.00 TK",
-        },
-        {
-          billNo: 16,
-          supplier: "Default Supplier",
-          purchaseDate: "19 Sep, 2024",
-          items: "Mobile Phone | 000001",
-          payable: "415,000.00 TK",
-          paid: "415,000.00 TK",
-          due: "0.00 TK",
-        }
-      ];
-      const [purchases, setPurchases] = useState(purchasesData);
+  const purchasesData = [
+    { billNo: 1, supplier: 'Ayman Computer', purchaseDate: '22 Sep, 2024', items: 'Laptop Computer', payable: 1000000, paid: 0, due: 1000000 },
+    { billNo: 2, supplier: 'Computer City', purchaseDate: '22 Sep, 2024', items: 'Tenda F3 Router', payable: 15000, paid: 15000, due: 0 },
+    { billNo: 3, supplier: 'Ayman Computer', purchaseDate: '22 Sep, 2024', items: 'Tenda F3 Router', payable: 13000, paid: 12000, due: 1000 },
+    { billNo: 4, supplier: 'Afko Khan', purchaseDate: '22 Sep, 2024', items: 'Tenda F3 Router', payable: 500, paid: 500, due: 0 },
+    { billNo: 5, supplier: 'Riptith Hasan', purchaseDate: '22 Sep, 2024', items: 'T-shirt Polo', payable: 40000, paid: 40000, due: 0 },
+    { billNo: 6, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Gaming Laptop', payable: 1450000, paid: 1450000, due: 0 },
+    { billNo: 7, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Dell Machine', payable: 2750000, paid: 2750000, due: 0 },
+    { billNo: 8, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Bijar For Men', payable: 250000, paid: 250000, due: 0 },
+    { billNo: 9, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Door Expert', payable: 1395400, paid: 1394500, due: 900 },
+    { billNo: 10, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Air Conditioner', payable: 9135000, paid: 9135000, due: 0 },
+    { billNo: 11, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Frieze', payable: 420000, paid: 420000, due: 0 },
+    { billNo: 12, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Ladies Shirt', payable: 70000, paid: 70000, due: 0 },
+    { billNo: 13, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'T-shirt', payable: 120000, paid: 120000, due: 0 },
+    { billNo: 14, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Desktop Computer', payable: 375000, paid: 37500, due: 337500 },
+    { billNo: 15, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Laptop Computer', payable: 7200000, paid: 7200000, due: 0 },
+    { billNo: 16, supplier: 'Default Supplier', purchaseDate: '19 Sep, 2024', items: 'Mobile Phone', payable: 415000, paid: 415000, due: 0 },
+  ];
 
-// `whats new..........
+  const [purchases, setPurchases] = useState(purchasesData);
 
-      // Handle filtering changes
-      const handleFilterChange = (e) => {
-        setFilter({ ...filter, [e.target.name]: e.target.value });
-      };
-    
-      // Function to reset filters
-      const resetFilters = () => {
-        setFilter({
-          billNumber: "",
-          startDate: "",
-          endDate: "",
-          product: "",
-          supplier: ""
-        });
-        setPurchases(purchasesData); // Reset the filtered purchases to the original data
-      };
-      const generateInvoice = async (purchase) => {
-        // Create a new PDFDocument with A4 size
-        const pdfDoc = await PDFDocument.create();
-        const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
+  const handleFilterChange = (e) => setFilter({ ...filter, [e.target.name]: e.target.value });
 
-        // Load the standard Helvetica font
-        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const resetFilters = () => {
+    setFilter({ billNumber: '', startDate: '', endDate: '', product: '', supplier: '' });
+    setPurchases(purchasesData);
+  };
 
-        // Add Repwoop logo and company name at the top
-        const fetchImage = async (imageUrl) => {
-        const res = await fetch(imageUrl);
-        return res.arrayBuffer();
-        };
+  const applyFilters = () => {
+    let filtered = purchasesData;
+    if (filter.billNumber) filtered = filtered.filter(p => p.billNo.toString().includes(filter.billNumber));
+    if (filter.product) filtered = filtered.filter(p => p.items.toLowerCase().includes(filter.product.toLowerCase()));
+    if (filter.supplier) filtered = filtered.filter(p => p.supplier.toLowerCase().includes(filter.supplier.toLowerCase()));
+    setPurchases(filtered);
+    setCurrentPage(1);
+  };
 
-        const logoBytes = await fetchImage(logo.src); // Fetch the image from the imported logo
-        const logoImage = await pdfDoc.embedPng(logoBytes); // Embed as PNG
-        const logoDims = logoImage.scale(0.3); // Scale the logo to fit
+  const totalPayable = purchases.reduce((s, p) => s + p.payable, 0);
+  const totalPaid = purchases.reduce((s, p) => s + p.paid, 0);
+  const totalDue = purchases.reduce((s, p) => s + p.due, 0);
+  const totalPages = Math.ceil(purchases.length / perPage);
+  const startIdx = (currentPage - 1) * perPage;
+  const currentPurchases = purchases.slice(startIdx, startIdx + perPage);
 
-        // Draw the logo on the top
-        page.drawImage(logoImage, { x: 50, y: 750, width: logoDims.width, height: logoDims.height });
-        
-        // Company name directly below the logo
-        page.drawText("Repwoop Company", { x: 50, y: 720, size: 18, font: helveticaFont, color: rgb(0, 0, 0) });
-
-        // Company details below the logo and name
-        page.drawText("Address: Holding 53 (1st floor), Sahajatpur, Gulshan, Dhaka 1219", { x: 50, y: 700, size: 12, font: helveticaFont });
-        page.drawText("Phone: 01779724380", { x: 50, y: 685, size: 12, font: helveticaFont });
-        page.drawText("Email: info@repwoop.com", { x: 50, y: 670, size: 12, font: helveticaFont });
-
-        // Add invoice header information
-        page.drawText(`Invoice No: ${purchase.billNo}`, { x: 400, y: 750, size: 12, font: helveticaFont });
-        page.drawText(`Date: ${purchase.purchaseDate}`, { x: 400, y: 735, size: 12, font: helveticaFont });
-
-        // Invoice table - header
-        page.drawText(`#`, { x: 50, y: 620, size: 10, font: helveticaFont });
-        page.drawText(`Details`, { x: 80, y: 620, size: 10, font: helveticaFont });
-        page.drawText(`Qty`, { x: 300, y: 620, size: 10, font: helveticaFont });
-        page.drawText(`Price`, { x: 350, y: 620, size: 10, font: helveticaFont });
-        page.drawText(`Net.A`, { x: 450, y: 620, size: 10, font: helveticaFont });
-
-        // Draw lines for table
-        page.drawLine({ start: { x: 50, y: 610 }, end: { x: 540, y: 610 }, thickness: 0.5, color: rgb(0, 0, 0) }); // Line under header
-
-        // Table Row for each item (just 1 for demo purposes)
-        page.drawText(`1`, { x: 50, y: 590, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.items}`, { x: 80, y: 590, size: 10, font: helveticaFont });
-        page.drawText(`1 pc`, { x: 300, y: 590, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.payable}`, { x: 350, y: 590, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.payable}`, { x: 450, y: 590, size: 10, font: helveticaFont });
-
-        // Draw line after row
-        page.drawLine({ start: { x: 50, y: 580 }, end: { x: 540, y: 580 }, thickness: 0.5, color: rgb(0, 0, 0) });
-
-        // Summary section (Grand Total, Paid, Due)
-        page.drawText(`Grand Total:`, { x: 350, y: 540, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.payable}`, { x: 450, y: 540, size: 10, font: helveticaFont });
-
-        page.drawText(`Paid:`, { x: 350, y: 520, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.paid}`, { x: 450, y: 520, size: 10, font: helveticaFont });
-
-        page.drawText(`Due:`, { x: 350, y: 500, size: 10, font: helveticaFont });
-        page.drawText(`${purchase.due}`, { x: 450, y: 500, size: 10, font: helveticaFont });
-
-        // Draw a final line
-        page.drawLine({ start: { x: 50, y: 490 }, end: { x: 540, y: 490 }, thickness: 0.5, color: rgb(0, 0, 0) });
-
-        // Add Note
-        page.drawText(`Note: Thank you for your business!`, { x: 50, y: 470, size: 10, font: helveticaFont });
-
-        // Serialize the PDF to bytes (Uint8Array)
-        const pdfBytes = await pdfDoc.save();
-
-        // Create a Blob from the bytes and open it in a new window to print
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const blobUrl = URL.createObjectURL(blob);
-
-        // Open a new window/tab with the PDF content
-        const newTab = window.open(blobUrl);
-        newTab.onload = () => {
-        newTab.focus(); // Focus on the new tab
-        newTab.print(); // Automatically trigger the print dialog
-        };
-    };
-    
-      // Function to apply filters
-      const applyFilters = () => {
-        let filteredPurchases = purchasesData;
-    
-        if (filter.billNumber) {
-          filteredPurchases = filteredPurchases.filter((purchase) =>
-            purchase.billNo.toString().includes(filter.billNumber)
-          );
-        }
-    
-        if (filter.startDate) {
-          filteredPurchases = filteredPurchases.filter(
-            (purchase) => purchase.purchaseDate >= filter.startDate
-          );
-        }
-    
-        if (filter.endDate) {
-          filteredPurchases = filteredPurchases.filter(
-            (purchase) => purchase.purchaseDate <= filter.endDate
-          );
-        }
-    
-        if (filter.product) {
-          filteredPurchases = filteredPurchases.filter((purchase) =>
-            purchase.items.toLowerCase().includes(filter.product.toLowerCase())
-          );
-        }
-    
-        if (filter.supplier) {
-          filteredPurchases = filteredPurchases.filter((purchase) =>
-            purchase.supplier.toLowerCase().includes(filter.supplier.toLowerCase())
-          );
-        }
-    
-        setPurchases(filteredPurchases);
-      };
-    
-      const toggleDropdown = (index) => {
-        setIsDropdownOpen(isDropdownOpen === index ? null : index); // Toggle the dropdown
-      };
-
-      
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
-        <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
-      {/* Title Section */}
-  
-      <div className=" mb-4  shadow-sm ">
-      <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Purchase</h1>
-        <div className='flex items-start justify-start mx-5 py-5 gap-10'>
-            <Link href="/Purchase" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
-            Purchase
-            <span className={spanClass}></span>
-            </Link>
-            <Link href="/Purchase/Create" className="group text-gray-500 dark:text-white text-md hover:text-orange-500">
-            + Add Purchase
-            <span className={spanClass}></span>
-            </Link>
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+              <ShoppingCart size={24} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Purchase</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{purchases.length} purchase records</p>
+            </div>
+          </div>
+          <Link href="/Purchase/Create"><Button className="gap-1.5" size="sm"><Plus size={15} />Add Purchase</Button></Link>
+        </div>
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0">
+            <CardContent className="p-4"><p className="text-indigo-100 text-xs">Total Purchases</p><p className="text-2xl font-bold">{purchases.length}</p></CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0">
+            <CardContent className="p-4"><p className="text-emerald-100 text-xs">Total Payable</p><p className="text-2xl font-bold">৳{(totalPayable / 1000000).toFixed(1)}M</p></CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white border-0">
+            <CardContent className="p-4"><p className="text-blue-100 text-xs">Total Paid</p><p className="text-2xl font-bold">৳{(totalPaid / 1000000).toFixed(1)}M</p></CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-rose-500 to-rose-600 text-white border-0">
+            <CardContent className="p-4"><p className="text-rose-100 text-xs">Total Due</p><p className="text-2xl font-bold">৳{(totalDue / 1000).toFixed(0)}K</p></CardContent>
+          </Card>
+        </div>
+
+        {/* Filters */}
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Bill No</label>
+                <Input name="billNumber" value={filter.billNumber} onChange={handleFilterChange} placeholder="Bill #" className="h-9" />
+              </div>
+              <div className="flex-1 min-w-[140px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Product</label>
+                <div className="relative">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Input name="product" value={filter.product} onChange={handleFilterChange} placeholder="Search product..." className="pl-9 h-9" />
+                </div>
+              </div>
+              <div className="flex-1 min-w-[140px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Supplier</label>
+                <Input name="supplier" value={filter.supplier} onChange={handleFilterChange} placeholder="Supplier name..." className="h-9" />
+              </div>
+              <Button size="sm" className="gap-1.5" onClick={applyFilters}><Filter size={14} />Filter</Button>
+              <Button variant="outline" size="sm" className="gap-1.5" onClick={resetFilters}><RotateCcw size={14} />Reset</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Table */}
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium">Bill #</th>
+                  <th className="px-3 py-3 text-left font-medium">Supplier</th>
+                  <th className="px-3 py-3 text-left font-medium">Date</th>
+                  <th className="px-3 py-3 text-left font-medium">Items</th>
+                  <th className="px-3 py-3 text-right font-medium">Payable</th>
+                  <th className="px-3 py-3 text-right font-medium">Paid</th>
+                  <th className="px-3 py-3 text-right font-medium">Due</th>
+                  <th className="px-3 py-3 text-center font-medium w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentPurchases.map((p) => (
+                  <tr key={p.billNo} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3 font-mono text-xs text-indigo-600 dark:text-indigo-400">#{p.billNo}</td>
+                    <td className="px-3 py-3 font-medium text-slate-800 dark:text-white">{p.supplier}</td>
+                    <td className="px-3 py-3 text-slate-500 dark:text-slate-400 text-xs">{p.purchaseDate}</td>
+                    <td className="px-3 py-3 text-slate-600 dark:text-slate-300">{p.items}</td>
+                    <td className="px-3 py-3 text-right font-semibold text-slate-800 dark:text-white">৳{p.payable.toLocaleString()}</td>
+                    <td className="px-3 py-3 text-right text-emerald-600 dark:text-emerald-400">৳{p.paid.toLocaleString()}</td>
+                    <td className="px-3 py-3 text-right">
+                      <Badge variant={p.due === 0 ? 'success' : 'destructive'} className="text-xs">৳{p.due.toLocaleString()}</Badge>
+                    </td>
+                    <td className="px-3 py-3 text-center">
+                      <div className="relative">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === p.billNo ? null : p.billNo)}>
+                          <MoreVertical size={16} />
+                        </Button>
+                        {openAction === p.billNo && (
+                          <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><FileText size={14} />Invoice</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-emerald-600"><CreditCard size={14} />Payment</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-4">
+          <p className="text-sm text-slate-500 dark:text-slate-400">Showing {startIdx + 1} to {Math.min(startIdx + perPage, purchases.length)} of {purchases.length}</p>
+          <div className="flex items-center gap-1">
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}><ChevronLeft size={16} /></Button>
+            {[...Array(totalPages).keys()].map(n => (
+              <Button key={n + 1} variant={currentPage === n + 1 ? 'default' : 'outline'} size="sm" className="h-8 w-8 p-0" onClick={() => setCurrentPage(n + 1)}>{n + 1}</Button>
+            ))}
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}><ChevronRight size={16} /></Button>
+          </div>
         </div>
       </div>
-              {/* here is another section */}
-              <div className="p-2">
-      {/* Filter Section */}
-                    <div className="mb-4 grid grid-cols-1 md:grid-cols-5 gap-4">
-                        <input
-                        type="text"
-                        name="billNumber"
-                        value={filter.billNumber}
-                        onChange={handleFilterChange}
-                        placeholder="Bill Number"
-                        className="p-2 border bg-white border-gray-300 rounded"
-                        />
-                        <input
-                        type="date"
-                        name="startDate"
-                        value={filter.startDate}
-                        onChange={handleFilterChange}
-                        className="p-2 border bg-white border-gray-300 rounded"
-                        />
-                        <input
-                        type="date"
-                        name="endDate"
-                        value={filter.endDate}
-                        onChange={handleFilterChange}
-                        className="p-2 border bg-white border-gray-300 rounded"
-                        />
-                        <input
-                        type="text"
-                        name="product"
-                        value={filter.product}
-                        onChange={handleFilterChange}
-                        placeholder="Product"
-                        className="p-2 border bg-white border-gray-300 rounded"
-                        />
-                        <input
-                        type="text"
-                        name="supplier"
-                        value={filter.supplier}
-                        onChange={handleFilterChange}
-                        placeholder="Supplier"
-                        className="p-2 border bg-white border-gray-300 rounded"
-                        />
-                        <button
-                        className="bg-blue-500 text-white p-2 rounded"
-                        onClick={applyFilters}
-                        >
-                        Filter
-                        </button>
-                        <button
-                        className="bg-gray-500 text-white p-2 rounded"
-                        onClick={resetFilters}
-                        >
-                        Reset
-                        </button>
-                    </div>
-
-                    {/* Table Section */}
-                    <div className="overflow-x-auto dark:bg-[#212144] dark:text-white border rounded ">
-                        <table className="min-w-full table-auto dark:text-white border-collapse border border-gray-300 text-center">
-                        <thead>
-                            <tr className="bg-emerald-500 text-stone-50">
-                            <th className="p-2  border border-gray-300">Bill No</th>
-                            <th className="p-2  border border-gray-300">Supplier</th>
-                            <th className="p-2  border border-gray-300">Purchase Date</th>
-                            <th className="p-2  border border-gray-300">Items</th>
-                            <th className="p-2  border border-gray-300">Payable</th>
-                            <th className="p-2  border border-gray-300">Paid</th>
-                            <th className="p-2  border border-gray-300">Due</th>
-                            <th className="p-2  ">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {purchases.map((purchase, index) => (
-                            <tr key={purchase.billNo} className="border-b">
-                                <td className="p-2 border border-gray-300">{purchase.billNo}</td>
-                                <td className="p-2 border border-gray-300">{purchase.supplier}</td>
-                                <td className="p-2 border border-gray-300">{purchase.purchaseDate}</td>
-                                <td className="p-2 border border-gray-300">{purchase.items}</td>
-                                <td className="p-2 border border-gray-300">{purchase.payable}</td>
-                                <td className="p-2 border border-gray-300">{purchase.paid}</td>
-                                <td className="p-2 border border-gray-300">{purchase.due}</td>
-                                <td className="p-2 relative ">
-                                <button
-                                    className="bg-emerald-500 text-white p-2 rounded flex items-center"
-                                    onClick={() => toggleDropdown(index)}
-                                >
-                                    <span>Manage</span>
-                                    <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="ml-2 h-5 w-5"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clipRule="evenodd"
-                                    />
-                                    </svg>
-                                </button>
-                                {isDropdownOpen === index && (
-                                    <div className="absolute transition-transform duration-700 right-0 mt-2 w-48 bg-white shadow-sm rounded-md overflow-hidden z-20">
-                                    <ul className="py-1">
-                                        <li>
-                                        <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700  flex items-center"
-                                            onClick={() => generateInvoice(purchase)}
-                                        >
-                                            <span className="mr-2">
-                                            <FaPrint size={16} className='text-teal-500'/>
-                                            </span>
-                                            Invoice
-                                        </button>
-                                        </li>
-                                        <li>
-                                        <button
-                                            className="w-full px-4 hover:scale-110 py-2 text-sm  text-gray-700  flex items-center"
-                                            onClick={() => alert('Show Action')}
-                                        >
-                                            <span className="mr-2 ">
-                                            <IoTvOutline size={16} className='text-blue-500'/>
-                                            </span>
-                                            Show
-                                        </button>
-                                        </li>
-                                        <li>
-                                        <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700  flex items-center"
-                                            onClick={() => alert('Edit Action')}
-                                        >
-                                            <span className="mr-2 ">
-                                           
-                                            <TbEdit size={16} className='text-blue-500'/>
-                                            
-                                            </span>
-                                            Edit
-                                        </button>
-                                        </li>
-                                        <li>
-                                        <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-gray-700  flex items-center"
-                                            onClick={() => alert('Add Payment Action')}
-                                        >
-                                            <span className="mr-2">
-                                            <MdOutlinePayments size={16} className='text-teal-500'/>
-                                            </span>
-                                            Add Payment
-                                        </button>
-                                        </li>
-                                        <li>
-                                        <button
-                                            className="w-full px-4 py-2 hover:scale-110 text-sm  text-red-600 hover:bg-red-100 flex items-center"
-                                            onClick={() => alert('Delete Action')}
-                                        >
-                                            <span className="mr-2">
-                                            <MdOutlineDeleteSweep size={16}/>
-                                            </span>
-                                            Delete
-                                        </button>
-                                        </li>
-                                    </ul>
-                                    </div>
-                                )}
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody>
-                        </table>
-                    </div>
-
-
-                 
-                    </div>
-
-        </div>
     </div>
-  )
+  );
 }

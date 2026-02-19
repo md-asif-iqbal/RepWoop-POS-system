@@ -1,465 +1,326 @@
 'use client'
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import Papa from "papaparse"; // For CSV parsing
+import Papa from "papaparse";
 import * as XLSX from 'xlsx';
-import { Eye, Filter, View } from 'lucide-react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
-import { TbEdit } from 'react-icons/tb';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+import { Eye, Filter, Trash2, Pencil, Download, FileSpreadsheet, Printer, Plus, Upload, X, Search, DollarSign, TrendingUp, TrendingDown, ReceiptText, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function ExpenseList() {
-    const [showModal, setShowModal] = useState(false);
-    const [product, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [product, setProducts] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState({
-    category: '',
-    status: '',
-    price: ''
-  });
-  const [sortOrder, setSortOrder] = useState(''); // State for sorting by price
-  const [dateSortOrder, setDateSortOrder] = useState(''); // State for sorting by date
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const [productsPerPage] = useState(10); // Products per page
+  const [filters, setFilters] = useState({ category: '', status: '' });
+  const [sortOrder, setSortOrder] = useState('');
+  const [dateSortOrder, setDateSortOrder] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10);
+  const [openAction, setOpenAction] = useState(null);
 
   const products = [
-    { reference: 'PROD-001', category: 'Laptop', date: '2023-08-15', status: 'Active', amount: 1200, description: 'High-performance laptop for work and gaming.' },
-    { reference: 'PROD-002', category: 'Electronics', date: '2023-08-12', status: 'Inactive', amount: 400, description: 'Compact and powerful electronics gadget.' },
-    { reference: 'PROD-003', category: 'Shoe', date: '2023-09-01', status: 'Active', amount: 100, description: 'Comfortable running shoes with great durability.' },
-    { reference: 'PROD-004', category: 'Electronics', date: '2023-08-21', status: 'Inactive', amount: 550, description: 'Smart home device with voice control.' },
-    { reference: 'PROD-005', category: 'Speaker', date: '2023-08-10', status: 'Active', amount: 200, description: 'Portable Bluetooth speaker with powerful bass.' },
-    { reference: 'PROD-006', category: 'Furniture', date: '2023-08-08', status: 'Inactive', amount: 750, description: 'Modern office chair with ergonomic design.' },
-    { reference: 'PROD-007', category: 'Bags', date: '2023-08-14', status: 'Active', amount: 80, description: 'Stylish and durable leather backpack.' },
-    { reference: 'PROD-008', category: 'Phone', date: '2023-09-12', status: 'Inactive', amount: 900, description: 'Latest smartphone with high-end camera.' },
-    { reference: 'PROD-009', category: 'Chairs', date: '2023-07-29', status: 'Active', amount: 300, description: 'Comfortable dining chairs set of 4.' },
-    { reference: 'PROD-010', category: 'Bags', date: '2023-08-01', status: 'Inactive', amount: 60, description: 'Compact crossbody bag perfect for travel.' },
-    { reference: 'PROD-011', category: 'Laptop', date: '2023-09-15', status: 'Active', amount: 1500, description: 'Ultra-thin laptop for business use.' },
-    { reference: 'PROD-012', category: 'Phone', date: '2023-09-10', status: 'Inactive', amount: 800, description: 'Affordable smartphone with long battery life.' },
-    { reference: 'PROD-013', category: 'Phone', date: '2023-09-20', status: 'Active', amount: 950, description: 'Flagship smartphone with top-tier performance.' },
-    { reference: 'PROD-014', category: 'Phone', date: '2023-09-18', status: 'Inactive', amount: 850, description: 'Mid-range smartphone with great value.' },
-    { reference: 'PROD-015', category: 'Laptop', date: '2023-08-22', status: 'Active', amount: 1350, description: 'Gaming laptop with high-end graphics card.' },
-    { reference: 'PROD-016', category: 'Headphones', date: '2023-09-03', status: 'Inactive', amount: 250, description: 'Noise-cancelling wireless headphones.' },
-    { reference: 'PROD-017', category: 'Headphones', date: '2023-08-31', status: 'Active', amount: 300, description: 'Over-ear studio headphones with rich sound.' },
-    { reference: 'PROD-018', category: 'Laptop', date: '2023-09-06', status: 'Inactive', amount: 1400, description: 'Convertible 2-in-1 laptop with touchscreen.' },
-    { reference: 'PROD-019', category: 'Laptop', date: '2023-09-09', status: 'Active', amount: 1250, description: 'Laptop designed for creative professionals.' },
-    { reference: 'PROD-020', category: 'Laptop', date: '2023-09-14', status: 'Inactive', amount: 1100, description: 'Budget-friendly laptop for students.' }
+    { reference: 'EXP-001', category: 'Office Supplies', date: '2023-08-15', status: 'Active', amount: 1200, description: 'Office stationery and supplies' },
+    { reference: 'EXP-002', category: 'Utilities', date: '2023-08-12', status: 'Inactive', amount: 400, description: 'Monthly electricity bill' },
+    { reference: 'EXP-003', category: 'Travel', date: '2023-09-01', status: 'Active', amount: 100, description: 'Business travel expenses' },
+    { reference: 'EXP-004', category: 'Maintenance', date: '2023-08-21', status: 'Inactive', amount: 550, description: 'Equipment maintenance cost' },
+    { reference: 'EXP-005', category: 'Marketing', date: '2023-08-10', status: 'Active', amount: 200, description: 'Social media advertising' },
+    { reference: 'EXP-006', category: 'Rent', date: '2023-08-08', status: 'Active', amount: 750, description: 'Monthly office rent' },
+    { reference: 'EXP-007', category: 'Insurance', date: '2023-08-14', status: 'Active', amount: 80, description: 'Business insurance premium' },
+    { reference: 'EXP-008', category: 'Software', date: '2023-09-12', status: 'Inactive', amount: 900, description: 'SaaS subscription renewal' },
+    { reference: 'EXP-009', category: 'Salary', date: '2023-07-29', status: 'Active', amount: 300, description: 'Overtime payments' },
+    { reference: 'EXP-010', category: 'Transport', date: '2023-08-01', status: 'Inactive', amount: 60, description: 'Delivery logistics costs' },
+    { reference: 'EXP-011', category: 'Office Supplies', date: '2023-09-15', status: 'Active', amount: 1500, description: 'New office furniture' },
+    { reference: 'EXP-012', category: 'Utilities', date: '2023-09-10', status: 'Inactive', amount: 800, description: 'Internet and phone bills' },
+    { reference: 'EXP-013', category: 'Marketing', date: '2023-09-20', status: 'Active', amount: 950, description: 'Google Ads campaign' },
+    { reference: 'EXP-014', category: 'Travel', date: '2023-09-18', status: 'Inactive', amount: 850, description: 'Conference attendance' },
+    { reference: 'EXP-015', category: 'Maintenance', date: '2023-08-22', status: 'Active', amount: 1350, description: 'AC repair and servicing' },
   ];
-  const [showModal2, setShowModal2] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOpenModal = () => {
-    console.log("test");
-      setModalVisible(true);
-      setTimeout(() => {
-          setShowModal2(true);
-      }, 0); // Small delay to trigger transition
-  };
-
-  const handleCloseModal = () => {
-      setShowModal2(false);
-      setTimeout(() => {
-          setModalVisible(false);
-      }, 300); // Delay based on transition duration
-  };
-
-
-
-
-
-
-  // Function to handle select all products
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      const allProductIds = products.map((product) => product.id);
-      setSelectedProducts(allProductIds);
+      setSelectedProducts(products.map((_, i) => i));
     } else {
       setSelectedProducts([]);
     }
   };
 
-  // Function to handle individual product selection
-  const handleSelectProduct = (e, productId) => {
+  const handleSelectProduct = (e, idx) => {
     if (e.target.checked) {
-      setSelectedProducts([...selectedProducts, productId]);
+      setSelectedProducts([...selectedProducts, idx]);
     } else {
-      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+      setSelectedProducts(selectedProducts.filter((id) => id !== idx));
     }
   };
 
-  // Toggle Filters
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  // Function to export as PDF
   const exportPDF = () => {
     const doc = new jsPDF();
-    doc.text('Product List', 20, 10);
-    products.forEach((product, index) => {
-      doc.text(`${index + 1}. ${product.product}, SKU: ${product.sku}, Price: $${product.price}`, 20, 20 + index * 10);
+    doc.text('Expense List', 20, 10);
+    products.forEach((p, i) => {
+      doc.text(`${i + 1}. ${p.reference} - ${p.category}: $${p.amount}`, 20, 20 + i * 10);
     });
-    doc.save('products.pdf');
+    doc.save('expenses.pdf');
   };
 
-  // Function to export as Excel
   const exportExcel = () => {
     const ws = XLSX.utils.json_to_sheet(products);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Products');
-    XLSX.writeFile(wb, 'products.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, 'Expenses');
+    XLSX.writeFile(wb, 'expenses.xlsx');
   };
 
   const handlePrint = () => {
     const printContent = document.getElementById("table-to-print").outerHTML;
     const newWindow = window.open('', '_blank');
-    newWindow.document.write(`
-      <html>
-        <head>
-          <title>Expenses List</title>
-          <style>
-            body { font-family: Arial, sans-serif; }
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-          </style>
-        </head>
-        <body onload="window.print()">
-          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
-        </body>
-      </html>
-    `);
+    newWindow.document.write(`<html><head><title>Expenses</title><style>body{font-family:Arial,sans-serif}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;text-align:left}th{background:#6366f1;color:white}</style></head><body onload="window.print()">${printContent}</body></html>`);
     newWindow.document.close();
   };
 
-  // Handle filter changes
-  const handleFilterChange = (e) => {
-    setFilters({
-      ...filters,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleFilterChange = (e) => setFilters({ ...filters, [e.target.name]: e.target.value });
+  const handlePriceSort = (e) => setSortOrder(e.target.value);
+  const handleDateSort = (e) => setDateSortOrder(e.target.value);
 
-  // Handle price sort change
-  const handlePriceSort = (e) => {
-    setSortOrder(e.target.value); // Set the sort order
-  };
-
-  // Handle date sort change
-  const handleDateSort = (e) => {
-    setDateSortOrder(e.target.value); // Set the date sort order
-  };
-
-  // Pagination logic: get current products based on the page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Handle changing pages
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const uniqueCategories = [...new Set(products.map((p) => p.category))];
+  const uniqueStatuses = [...new Set(products.map((p) => p.status))];
 
-  // Filter and sort the products based on the selected filters and sorting
-const filteredProducts = products
-.filter((product) =>
-  product.category.toLowerCase().includes(searchTerm.toLowerCase()) || product.reference.toLowerCase().includes(searchTerm.toLowerCase()) &&
-  (filters.category === '' || product.category === filters.category) &&
-  (filters.status === '' || product.status === filters.status)
-)
-.sort((a, b) => {
-  if (sortOrder === 'Low to High') {
-    return a.amount - b.amount; // Ascending order by amount
-  } else if (sortOrder === 'High to Low') {
-    return b.amount - a.amount; // Descending order by amount
-  } else if (dateSortOrder === 'Oldest First') {
-    return new Date(a.date) - new Date(b.date); // Ascending date
-  } else if (dateSortOrder === 'Newest First') {
-    return new Date(b.date) - new Date(a.date); // Descending date
-  } else {
-    return 0; // No sorting if not selected
-  }
-});
+  const filteredProducts = products
+    .filter((p) =>
+      (p.category.toLowerCase().includes(searchTerm.toLowerCase()) || p.reference.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (filters.category === '' || p.category === filters.category) &&
+      (filters.status === '' || p.status === filters.status)
+    )
+    .sort((a, b) => {
+      if (sortOrder === 'Low to High') return a.amount - b.amount;
+      if (sortOrder === 'High to Low') return b.amount - a.amount;
+      if (dateSortOrder === 'Oldest First') return new Date(a.date) - new Date(b.date);
+      if (dateSortOrder === 'Newest First') return new Date(b.date) - new Date(a.date);
+      return 0;
+    });
 
-// Get unique values for filters
-const uniqueCategories = [...new Set(products.map((product) => product.category))];
-const uniqueStatuses = [...new Set(products.map((product) => product.status))];
+  const totalExpenses = products.reduce((sum, p) => sum + p.amount, 0);
+  const activeExpenses = products.filter(p => p.status === 'Active').reduce((sum, p) => sum + p.amount, 0);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     const fileType = file.name.split('.').pop();
-
     if (fileType === 'csv') {
-      // Handle CSV file
-      Papa.parse(file, {
-        header: true,
-        complete: (results) => {
-          console.log("CSV data: ", results.data);
-          setProducts(results.data); // Process CSV data
-        },
-        error: (err) => {
-          console.error("Error parsing CSV file:", err);
-        }
-      });
+      Papa.parse(file, { header: true, complete: (results) => setProducts(results.data) });
     } else if (fileType === 'xlsx') {
-      // Handle Excel file
       const reader = new FileReader();
       reader.onload = (event) => {
         const data = new Uint8Array(event.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const excelData = XLSX.utils.sheet_to_json(worksheet);
-        console.log("Excel data: ", excelData);
-        setProducts(excelData); // Process Excel data
+        const excelData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+        setProducts(excelData);
       };
       reader.readAsArrayBuffer(file);
-    } else {
-      console.error("Unsupported file type");
     }
   };
-
-  // Optional: Submit data to your server for processing
-  const submitProducts = async () => {
-    try {
-      const response = await fetch("/api/import-products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(products),
-      });
-      const result = await response.json();
-      console.log("Server response:", result);
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
-  };
-//   const handleDelete = (id) => {
-//     setSelectedProducts(products.filter((product) => product.id !== id));
-//     setShowModal2(false);
-//   };
 
   return (
-    <div className=' font-nunito text-sm'>
-        <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
-      {/* Action Buttons */}
-      <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
-        <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Expenses</h2>
-        <div className="md:flex space-x-2 space-y-2 md:space-y-0">
-          <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
-          <button
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={() => setShowModal(true)}
-            >
-                Import Product
-            </button>
-             {/* Modal */}
-                {showModal && (
-                    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white  p-6 w-1/2">
-                        <h2 className=" dark:text-white text-lg  mb-4">Import Products</h2>
-                        <input
-                        type="file"
-                        accept=".csv, .xlsx"
-                        onChange={handleFileUpload}
-                        className="mb-4 bg-white"
-                        />
-                        <div className="flex justify-end space-x-4">
-                        <button
-                            className="px-4 py-2 bg-green-500 text-white rounded"
-                            onClick={submitProducts}
-                        >
-                            Submit
-                        </button>
-                        <button
-                            className="px-4 py-2 bg-red-500 text-white rounded"
-                            onClick={() => setShowModal(false)}
-                        >
-                            Close
-                        </button>
-                        </div>
-                    </div>
-                    </div>
-                )}
-          <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">PDF</button>
-          <button onClick={exportExcel} className="px-4 py-2 bg-yellow-500 text-white rounded">Excel</button>
-          <button onClick={handlePrint} className="px-4 py-2 bg-gray-500 text-white rounded">Print</button>
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+              <ReceiptText size={24} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Expenses</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Track all business expenses</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="success" className="gap-1.5" size="sm"><Plus size={15} />Add Expense</Button>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={() => setShowModal(true)}><Upload size={15} />Import</Button>
+            <Button variant="destructive" size="sm" className="gap-1.5" onClick={exportPDF}><Download size={15} />PDF</Button>
+            <Button variant="warning" size="sm" className="gap-1.5" onClick={exportExcel}><FileSpreadsheet size={15} />Excel</Button>
+            <Button variant="secondary" size="sm" className="gap-1.5" onClick={handlePrint}><Printer size={15} />Print</Button>
+          </div>
         </div>
-      </div>
 
-      {/* Search and Filter Section */}
-      <div className="flex md:justify-end md:items-end mb-4">
-       
-        <div className="flex space-x-2">
-          <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
-            {showFilters ? '✕' : <Filter size={20} strokeWidth={2} /> }
-          </button>
-          {/* <select className="border border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
-            <option value="">Sort by Price</option>
-            <option value="Low to High">Low to High</option>
-            <option value="High to Low">High to Low</option>
-          </select> */}
-          <select className="border border-gray-300 px-4 py-2 rounded" onChange={handleDateSort}>
-            <option value="">Sort by Date</option>
-            <option value="Newest First">Newest First</option>
-            <option value="Oldest First">Oldest First</option>
-          </select>
+        {/* Summary Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-indigo-100 text-xs">Total Expenses</p>
+              <p className="text-2xl font-bold">${totalExpenses.toLocaleString()}</p>
+              <p className="text-xs text-indigo-200 mt-1">{products.length} records</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-emerald-100 text-xs">Active</p>
+              <p className="text-2xl font-bold">${activeExpenses.toLocaleString()}</p>
+              <p className="text-xs text-emerald-200 mt-1">{products.filter(p => p.status === 'Active').length} active</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-amber-500 to-amber-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-amber-100 text-xs">This Month</p>
+              <p className="text-2xl font-bold">${products.filter(p => p.date.startsWith('2023-09')).reduce((s, p) => s + p.amount, 0).toLocaleString()}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-purple-100 text-xs">Categories</p>
+              <p className="text-2xl font-bold">{uniqueCategories.length}</p>
+              <p className="text-xs text-purple-200 mt-1">expense types</p>
+            </CardContent>
+          </Card>
         </div>
-      </div>
 
-      {/* Filters - Toggle Visibility */}
-      {showFilters && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+        {/* Filters */}
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[180px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Search</label>
+                <div className="relative">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search expenses..." className="pl-9 h-9" />
+                </div>
+              </div>
+              <div className="min-w-[140px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Category</label>
+                <select name="category" value={filters.category} onChange={handleFilterChange} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueCategories.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Status</label>
+                <select name="status" value={filters.status} onChange={handleFilterChange} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueStatuses.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Sort by</label>
+                <select onChange={handleDateSort} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">Default</option>
+                  <option value="Newest First">Newest</option>
+                  <option value="Oldest First">Oldest</option>
+                </select>
+              </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Amount</label>
+                <select onChange={handlePriceSort} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">Default</option>
+                  <option value="Low to High">Low → High</option>
+                  <option value="High to Low">High → Low</option>
+                </select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-          <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
-        />
-          <select
-            name="category"
-            className="border bg-white border-gray-300 px-4 py-2 rounded"
-            value={filters.category}
-            onChange={handleFilterChange}
-          >
-            <option value="">Choose Category</option>
-            {uniqueCategories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <select
-                name="status"  // Ensure this matches the filter state key
-                className="border bg-white border-gray-300 px-4 py-2 rounded"
-                value={filters.status}
-                onChange={handleFilterChange}
-                >
-                <option value="">All Status</option>
-                {uniqueStatuses.map((status) => (
-                    <option key={status} value={status}>
-                    {status}
-                    </option>
+        {/* Table */}
+        <Card>
+          <div className="overflow-x-auto">
+            <table id="table-to-print" className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-4 py-3 text-left font-medium w-10">
+                    <input type="checkbox" onChange={handleSelectAll} className="rounded" />
+                  </th>
+                  <th className="px-4 py-3 text-left font-medium">Reference</th>
+                  <th className="px-4 py-3 text-left font-medium">Category</th>
+                  <th className="px-4 py-3 text-left font-medium">Date</th>
+                  <th className="px-4 py-3 text-center font-medium">Status</th>
+                  <th className="px-4 py-3 text-right font-medium">Amount</th>
+                  <th className="px-4 py-3 text-left font-medium">Description</th>
+                  <th className="px-4 py-3 text-center font-medium w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p, idx) => (
+                  <tr key={p.reference} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-4 py-3">
+                      <input type="checkbox" checked={selectedProducts.includes(idx)} onChange={(e) => handleSelectProduct(e, idx)} className="rounded" />
+                    </td>
+                    <td className="px-4 py-3 font-mono text-indigo-600 dark:text-indigo-400 font-medium">{p.reference}</td>
+                    <td className="px-4 py-3"><Badge variant="outline" className="text-xs">{p.category}</Badge></td>
+                    <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{p.date}</td>
+                    <td className="px-4 py-3 text-center">
+                      <Badge variant={p.status === 'Active' ? 'success' : 'secondary'} className="text-xs">{p.status}</Badge>
+                    </td>
+                    <td className="px-4 py-3 text-right font-semibold text-slate-800 dark:text-white">${p.amount.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400 max-w-[200px] truncate">{p.description}</td>
+                    <td className="px-4 py-3 text-center">
+                      <div className="relative">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === p.reference ? null : p.reference)}>
+                          <MoreVertical size={16} />
+                        </Button>
+                        {openAction === p.reference && (
+                          <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
                 ))}
-            </select>
-          <select className="border bg-white border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
-            <option value="">Sort by Price</option>
-            <option value="Low to High">Low to High</option>
-            <option value="High to Low">High to Low</option>
-          </select>
-        </div>
-      )}
+              </tbody>
+            </table>
+          </div>
+        </Card>
 
-      {/* Product Table */}
-      <div className="overflow-x-auto">
-        <table id='table-to-print' className="min-w-full table-auto text-white bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm overflow-hidden">
-          <thead>
-            <tr className="bg-emerald-500 text-white">
-              <th className="px-4 py-2 ">
-                <input className='bg-white' type="checkbox" onChange={handleSelectAll} />
-              </th>
-              <th className="px-4 py-2 ">Category Name</th>
-              <th className="px-4 py-2 ">Reference</th>
-              <th className="px-4 py-2 ">Date</th>
-              <th className="px-4 py-2 ">Status</th>
-              <th className="px-4 py-2 ">Amount</th>
-              <th className="px-4 py-2 ">Description</th>
-              <th className="px-4 py-2 ">Action</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
-                
-              <tr key={product.id} className="border-t border-gray-200 ">
-                <td className="px-4 py-2 ">
-                  <input className='bg-white'
-                    type="checkbox"
-                    checked={selectedProducts.includes(product.id)}
-                    onChange={(e) => handleSelectProduct(e, product.id)}
-                  />
-                </td>
-                
-                <td className="px-4 py-2 ">{product.category}</td>
-                <td className="px-4 py-2">{product.reference}</td>
-                <td className="px-4 py-2">{product.date}</td>
-                <td className="px-4 py-2">
-                <span className={`px-2 py-1 text-xs  rounded-full ${
-                                                product.status === "Active"
-                                                  ? "bg-green-100 text-green-700"
-                                                  : product.status === "Inactive"
-                                                  ? "bg-red-100 text-red-700"
-                                                  : "bg-yellow-100 text-yellow-700"
-                                              }`}>{product.status}</span>
-                </td>
-                <td className="px-4 py-2">${product.amount.toFixed(2)}</td>
-                
-                <td className="px-4 py-2">  {product.description.split('. ').slice(0, 2).join('. ') + (product.description.split('. ').length > 2 ? '.' : '')}</td>
-                
-                <td className="px-4 py-2 flex space-x-2">
-                  <button className="border  p-2 transform hover:scale-110 hover:bg-[#092C4C] hover:text-white"><Eye size={16} strokeWidth={1.5} /></button>
-                  <button className="p-2  border transform text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
-                  <TbEdit size={16}/>
-                </button>
-                <button onClick={handleOpenModal} className="p-2  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
-                  <RiDeleteBin5Line size={16}/>
-                </button>
-                    {/* Modal */}
-                    {modalVisible && (
-                        <div
-                                        className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
-                                    >
-                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className=" dark:text-white text-lg  mb-4">Are you sure?</h2>
-                                            <p className=" dark:text-white mb-6">You wont be able to revert this!</p>
-
-                                            {/* Show details */}
-                                            <div className="mb-6">
-                                                <p><strong>Item ID:</strong> {product.product}</p>
-                                                <p><strong>Item Name:</strong> {product.qty}</p>
-                                            </div>
-
-                                            {/* Buttons */}
-                                            <div className="flex justify-center">
-                                                <button
-                                                    onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
-                                                >
-                                                    Yes, delete it!
-                                                </button>
-                                                <button
-                                                    onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                        </div>
-                    )}
-
-                </td>
-              </tr>
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-4">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length}
+          </p>
+          <div className="flex items-center gap-1">
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+              <ChevronLeft size={16} />
+            </Button>
+            {[...Array(totalPages).keys()].map((n) => (
+              <Button key={n + 1} variant={currentPage === n + 1 ? 'default' : 'outline'} size="sm" className="h-8 w-8 p-0" onClick={() => setCurrentPage(n + 1)}>
+                {n + 1}
+              </Button>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination */}
-      <div className="lg:flex justify-center items-center gap-5 mt-4">
-        {[...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()].map((number) => (
-          <button
-            key={number + 1}
-            onClick={() => paginate(number + 1)}
-            className={`px-3 py-2 mx-1 border rounded ${currentPage === number + 1 ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
-          >
-            {number + 1}
-          </button>
-        ))}
-         <div >Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} entries</div>
-      </div>
-     
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+              <ChevronRight size={16} />
+            </Button>
+          </div>
         </div>
+
+        {/* Import Modal */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-md">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-2"><Upload size={18} />Import Expenses</CardTitle>
+                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShowModal(false)}><X size={16} /></Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-8 text-center">
+                  <Upload size={32} className="mx-auto text-slate-400 mb-3" />
+                  <p className="text-sm text-slate-500 mb-2">Upload CSV or Excel file</p>
+                  <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="text-sm" />
+                </div>
+                <div className="flex justify-end gap-2 mt-4">
+                  <Button variant="outline" onClick={() => setShowModal(false)}>Cancel</Button>
+                  <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,8 +1,32 @@
 "use client"
 import React, { useState } from 'react'
+import Image from 'next/image'
+import { Search, RotateCcw, Plus, Minus, Trash2, ShoppingCart, CreditCard, X, User, Phone, Mail, MapPin } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card'
+import { Badge } from '@/app/components/ui/badge'
+import { Button } from '@/app/components/ui/button'
+import { Input } from '@/app/components/ui/input'
 
 export default function POSManage() {
-   
+    const productImages = {
+      1: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=200&h=200&fit=crop",
+      2: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=200&h=200&fit=crop",
+      3: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=200&h=200&fit=crop",
+      4: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=200&h=200&fit=crop",
+      5: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=200&h=200&fit=crop",
+      6: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=200&h=200&fit=crop",
+      7: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200&h=200&fit=crop",
+      8: "https://images.unsplash.com/photo-1434389677669-e08b4cda3a21?w=200&h=200&fit=crop",
+      9: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200&h=200&fit=crop",
+      10: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&h=200&fit=crop",
+      11: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=200&h=200&fit=crop",
+      12: "https://images.unsplash.com/photo-1615669169014-913554be0dae?w=200&h=200&fit=crop",
+      13: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=200&h=200&fit=crop",
+      14: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&h=200&fit=crop",
+      15: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=200&h=200&fit=crop",
+      16: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=200&h=200&fit=crop",
+    };
+
     const products = [
       { id: 1, name: "Air Conditioner", price: 96000, stock: 96, category: "House" },
       { id: 2, name: "Blazer For Men", price: 3000, stock: 98, category: "Fashion" },
@@ -22,282 +46,193 @@ export default function POSManage() {
       { id: 16, name: "Television", price: 45000, stock: 80, category: "House" },
     ];
 
-     // State for the filtered products, search term, and selected category
+  const categories = [...new Set(products.map(p => p.category))];
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [cart, setCart] = useState([]);
 
-  // Function to filter products by category
   const filterByCategory = (category) => {
-    setSelectedCategory(category);
-    const filtered = products.filter((product) => product.category === category);
-    setFilteredProducts(filtered);
-  };
-
-  // Function to handle search term
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-    const searchFilteredProducts = products.filter((product) => {
-      return product.name.toLowerCase().includes(event.target.value.toLowerCase());
-    });
-
-    // If a category is selected, further filter by category
-    if (selectedCategory) {
-      setFilteredProducts(
-        searchFilteredProducts.filter((product) => product.category === selectedCategory)
-      );
+    if (selectedCategory === category) {
+      setSelectedCategory("");
+      setFilteredProducts(products);
     } else {
-      setFilteredProducts(searchFilteredProducts);
+      setSelectedCategory(category);
+      setFilteredProducts(products.filter((p) => p.category === category));
     }
   };
 
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    let filtered = products.filter((p) => p.name.toLowerCase().includes(term.toLowerCase()));
+    if (selectedCategory) filtered = filtered.filter((p) => p.category === selectedCategory);
+    setFilteredProducts(filtered);
+  };
 
-    return (
-        <div className='bg-white dark:bg-[#141432] dark:text-white font-nunito text-sm'>
-            <div className=" mt-[5%] ">
-        {/* POS Manage Header */}
-        <h1 className="text-lg dark:text-white  mb-6 ">POS Manage</h1>
-  
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Section: Input and Payment */}
-          <div className="p-2 bg-white dark:bg-[#202047]  shadow-sm w-full">
-            <div className="flex flex-col gap-4 dark:text-black items-center w-full">
-              {/* Scan Barcode & Product Name Input */}
-              <input
-                type="text"
-                placeholder="Scan Barcode"
-                className="border bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="text"
-                placeholder="Start to write product name..."
-                className="border bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              {/* Date Picker */}
-              <input
-                type="date"
-                className="border bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                defaultValue="2024-09-21"
-              />
-              {/* Customer Dropdown */}
-              <div className='flex w-full gap-5'>
-              <select className="border bg-white w-full border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>Walk-in Customer</option>
-                <option>Registered Customer</option>
-              </select>
-              {/* Add Button */}
-              <button className="bg-emerald-500 text-white w-[50%] px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none"
-              onClick={()=>document.getElementById('my_modal_3').showModal()}>
-                Add
-              </button>
-              </div>
-            </div>
-            {/* model are here----- */}
+  const addToCart = (product) => {
+    const exists = cart.find((item) => item.id === product.id);
+    if (exists) {
+      setCart(cart.map((item) => item.id === product.id ? { ...item, qty: item.qty + 1 } : item));
+    } else {
+      setCart([...cart, { ...product, qty: 1 }]);
+    }
+  };
+
+  const updateQty = (id, delta) => {
+    setCart(cart.map((item) => item.id === id ? { ...item, qty: Math.max(1, item.qty + delta) } : item));
+  };
+
+  const removeFromCart = (id) => setCart(cart.filter((item) => item.id !== id));
+  const cartTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+  return (
+    <div className='dark:text-white font-inter text-sm'>
+      <div className="p-4 lg:p-6 mt-14 lg:mt-0">
+        <h1 className="text-xl font-bold text-slate-800 dark:text-white mb-5 flex items-center gap-2">
+          <ShoppingCart size={22} className="text-indigo-500" />
+          POS Terminal
+        </h1>
+
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
+          {/* Left - Cart Panel */}
+          <div className="xl:col-span-2 space-y-4">
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Cart & Billing</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Input placeholder="Scan Barcode or Enter Code" />
+                <Input type="date" defaultValue="2024-09-21" />
+                <div className="flex gap-2">
+                  <select className="select-base flex-1">
+                    <option>Walk-in Customer</option>
+                    <option>Registered Customer</option>
+                  </select>
+                  <Button onClick={() => document.getElementById('my_modal_3').showModal()} size="sm" className="px-4">
+                    <Plus size={16} className="mr-1" /> New
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Add Customer Dialog */}
             <dialog id="my_modal_3" className="modal">
-                <div className="modal-box max-w-2xl">
-                    <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 dark:text-black">✕</button>
-                    </form>
-                    <div className=" bg-opacity-50 w-full dark:text-black">
-                        <div className=" p-6">
-                            {/* Header */}
-                            <div className="flex justify-between items-center mb-4">
-                            <h2 className=" dark:text-white text-md ">Add Customer</h2>
-                            </div>
-
-                            {/* Form */}
-                            <form>
-                            {/* Name Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Name</label>
-                                <input
-                                type="text"
-                                placeholder="Name"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                />
-                            </div>
-
-                            {/* Email Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Email</label>
-                                <input
-                                type="email"
-                                placeholder="Email"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                />
-                            </div>
-
-                            {/* Address Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Address</label>
-                                <textarea
-                                placeholder="Address"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                rows="3"
-                                />
-                            </div>
-
-                            {/* Phone Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Phone</label>
-                                <input
-                                type="tel"
-                                placeholder="Phone"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                />
-                            </div>
-
-                            {/* Opening Receivable Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Opening Receivable</label>
-                                <input
-                                type="number"
-                                placeholder="Opening Receivable"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                />
-                            </div>
-
-                            {/* Opening Payable Field */}
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2">Opening Payable</label>
-                                <input
-                                type="number"
-                                placeholder="Opening Payable"
-                                className="w-full border border-teal-500 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                                />
-                            </div>
-
-                            {/* Buttons */}
-                            <div className="flex justify-between items-center">
-                                {/* Add Customer Button */}
-                                <button className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
-                                Add Customer
-                                </button>
-
-                                {/* Close Button */}
-                                <button className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">
-                                Close
-                                </button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </dialog>
-  
-            {/* Cart Table */}
-            <div className="mt-6">
-              <table className="w-full border-collapse border border-gray-300 ">
-                <thead>
-                  <tr className="bg-emerald-500 text-white">
-                    <th className="border border-gray-300 p-2">Name</th>
-                    <th className="border border-gray-300 p-2">Quantity</th>
-                    <th className="border border-gray-300 p-2">Price</th>
-                    <th className="border border-gray-300 p-2">Sub T</th>
-                    <th className="border border-gray-300 p-2">Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-300 p-2 text-center" colSpan="3">
-                      hi.....
-                    </td>
-                    <td className="border border-gray-300 p-2 text-center" colSpan="2">
-                      Total: 0 Tk
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-  
-            {/* Payment Button */}
-            <div className="mt-4">
-              <button className="bg-green-500 text-white w-full py-2 rounded-md hover:bg-green-600">
-                Payment
-              </button>
-            </div>
-          </div>
-  
-          {/* Right Section: Product Category and List */}
-          <div className="bg-white dark:bg-[#202047] p-2  shadow-sm">
-          <h1 className='text-md  mb-2'>Product List</h1>
-            {/* Search Bar and Filtering */}
-            <div className="md:flex items-center mb-4">
-                {/* Search Input and Button */}
-                <div className="flex w-full">
-                    <input
-                    type="text"
-                    placeholder="Search products..."
-                    className="border dark:text-black border-teal-500 w-[100%] rounded-l-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    />
-                    <button
-                    className="bg-green-500 text-white md:px-10 py-2 rounded-r-md hover:bg-green-600 focus:outline-none"
-                    onClick={() => { /* Implement search logic here if needed */ }}
-                    >
-                    Search
-                    </button>
-                </div>
-
-                {/* Reset Button */}
-                <button
-                    className="lg:ml-2 bg-blue-500 text-white px-8 mt-2 md:mt-0 md:px-10  py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-                    onClick={() => {
-                      setFilteredProducts(products); // Reset filteredProducts to the full list
-                      setSearchTerm(""); // Clear the search term
-                      setSelectedCategory(""); // Clear the selected category
-                    }}
-                >
-                    Reset
-                </button>
-            </div>
-
-
-  
-            {/* Categories */}
-            <h1 className='text-md  mb-2'>Categories</h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
-              <button  onClick={() => filterByCategory('Document')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
-                Document
-              </button>
-              <button onClick={() => filterByCategory('Electronics')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
-                Electronics
-              </button>
-              <button onClick={() => filterByCategory('Fashion')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
-                Fashion
-              </button>
-              <button onClick={() => filterByCategory('Hardware')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
-                Hardware
-              </button>
-              <button onClick={() => filterByCategory('House')} className="bg-emerald-500 text-white px-4 py-2 rounded-md">
-                House
-              </button>
-            </div>
-  
-            {/* Product List */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts?.slice(0, 10).map((product) => (
-                <div key={product.id} className="border border-gray-300 p-2 rounded-md">
-                  <div className="bg-gray-200 h-24 flex justify-center items-center rounded-md">
-                    <span>No Image</span>
+              <div className="modal-box max-w-lg bg-white dark:bg-slate-800 rounded-2xl">
+                <form method="dialog">
+                  <button className="absolute right-4 top-4 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
+                    <X size={18} />
+                  </button>
+                </form>
+                <h2 className="text-lg font-semibold mb-5 flex items-center gap-2"><User size={18} className="text-indigo-500" /> Add Customer</h2>
+                <div className="space-y-3">
+                  <div className="relative"><User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input className="pl-10" placeholder="Name" /></div>
+                  <div className="relative"><Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input className="pl-10" placeholder="Email" /></div>
+                  <div className="relative"><MapPin size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input className="pl-10" placeholder="Address" /></div>
+                  <div className="relative"><Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" /><Input className="pl-10" placeholder="Phone" /></div>
+                  <Input placeholder="Opening Receivable" type="number" />
+                  <Input placeholder="Opening Payable" type="number" />
+                  <div className="flex gap-3 pt-2">
+                    <Button variant="success" className="flex-1">Add Customer</Button>
+                    <Button variant="outline" className="flex-1">Close</Button>
                   </div>
-                  <p className=" dark:text-white mt-2 ">{product.name} - 0000{product.id}</p>
-                  <p>{product.price.toFixed(2)} Tk</p>
-                  <p>Stock: {product.stock} pc</p>
                 </div>
+              </div>
+            </dialog>
+
+            {/* Cart Items */}
+            <Card>
+              <CardContent className="p-0">
+                {cart.length === 0 ? (
+                  <div className="p-10 text-center">
+                    <ShoppingCart size={40} className="mx-auto text-slate-300 dark:text-slate-600 mb-3" />
+                    <p className="text-slate-400 dark:text-slate-500 text-sm">Cart is empty</p>
+                    <p className="text-slate-400 dark:text-slate-500 text-xs mt-1">Click products to add them here</p>
+                  </div>
+                ) : (
+                  <div className="divide-y divide-slate-100 dark:divide-slate-700">
+                    {cart.map((item) => (
+                      <div key={item.id} className="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                        <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 flex-shrink-0">
+                          <Image src={productImages[item.id]} alt={item.name} width={40} height={40} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate">{item.name}</p>
+                          <p className="text-xs text-slate-500">{item.price.toLocaleString()} Tk</p>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <button onClick={() => updateQty(item.id, -1)} className="w-7 h-7 rounded-md bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"><Minus size={14} /></button>
+                          <span className="w-8 text-center text-sm font-semibold">{item.qty}</span>
+                          <button onClick={() => updateQty(item.id, 1)} className="w-7 h-7 rounded-md bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"><Plus size={14} /></button>
+                        </div>
+                        <span className="text-sm font-semibold w-20 text-right">{(item.price * item.qty).toLocaleString()} Tk</span>
+                        <button onClick={() => removeFromCart(item.id)} className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"><Trash2 size={14} /></button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {cart.length > 0 && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-sm text-slate-500">Total ({cart.reduce((s, i) => s + i.qty, 0)} items)</span>
+                      <span className="text-xl font-bold text-slate-800 dark:text-white">{cartTotal.toLocaleString()} Tk</span>
+                    </div>
+                    <Button className="w-full" size="lg">
+                      <CreditCard size={18} className="mr-2" /> Complete Payment
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Right - Products */}
+          <div className="xl:col-span-3 space-y-4">
+            <Card>
+              <CardContent className="p-4 space-y-4">
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <Input placeholder="Search products..." className="pl-10" value={searchTerm} onChange={handleSearch} />
+                  </div>
+                  <Button variant="outline" onClick={() => { setFilteredProducts(products); setSearchTerm(""); setSelectedCategory(""); }}>
+                    <RotateCcw size={16} />
+                  </Button>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((cat) => (
+                    <button key={cat} onClick={() => filterByCategory(cat)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${selectedCategory === cat ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'}`}>
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {filteredProducts.slice(0, 12).map((product) => (
+                <Card key={product.id} className="cursor-pointer hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500/50 transition-all group" onClick={() => addToCart(product)}>
+                  <CardContent className="p-3">
+                    <div className="relative aspect-square rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3">
+                      <Image src={productImages[product.id]} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <Badge variant="info" className="absolute top-1.5 right-1.5 text-[10px]">{product.stock} pcs</Badge>
+                    </div>
+                    <p className="text-sm font-medium text-slate-800 dark:text-white truncate">{product.name}</p>
+                    <div className="flex items-center justify-between mt-1.5">
+                      <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{product.price.toLocaleString()} Tk</span>
+                      <div className="w-7 h-7 rounded-full bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Plus size={14} className="text-indigo-600 dark:text-indigo-400" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-  
-            {/* Pagination */}
-            <div className="flex justify-center mt-4">
-              <button className="px-4 py-2 mx-2 bg-gray-200 rounded-md hover:bg-gray-300">1</button>
-              <button className="px-4 py-2 mx-2 bg-gray-200 rounded-md hover:bg-gray-300">2</button>
-            </div>
           </div>
         </div>
-            </div>
-        </div>
-    );
-  };
+      </div>
+    </div>
+  );
+};

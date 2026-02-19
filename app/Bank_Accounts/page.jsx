@@ -1,259 +1,146 @@
 "use client"
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { Landmark, Plus, ArrowUpDown, History, X } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
 
 export default function AccountPage() {
   const [accounts, setAccounts] = useState([
-    { id: 1, name: 'PlayBoy', openingBalance: 0, currentBalance: 120000000 },
-    { id: 2, name: 'PlayGirl', openingBalance: 1000000, currentBalance: 100000 },
+    { id: 1, name: 'Business Account', openingBalance: 500000, currentBalance: 1200000 },
+    { id: 2, name: 'Savings Account', openingBalance: 100000, currentBalance: 350000 },
+    { id: 3, name: 'Petty Cash', openingBalance: 0, currentBalance: 75000 },
   ]);
 
-  const [showAddBalanceModal, setShowAddBalanceModal] = useState(false);
-  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
-  const [showTransferModal, setShowTransferModal] = useState(false);
-  const [selectedAccount, setSelectedAccount] = useState(null); // Store selected account
-  const [balanceForm, setBalanceForm] = useState({ amount: '', note: '', owner: '' });
+  const [newName, setNewName] = useState('');
+  const [newBalance, setNewBalance] = useState('');
+  const [modal, setModal] = useState({ type: null, account: null });
+  const [form, setForm] = useState({ amount: '', note: '', fromAccount: '' });
 
-  const handleAddBalance = () => {
-    const updatedAccounts = accounts.map(account => {
-      if (account.id === selectedAccount.id) {
-        return {
-          ...account,
-          currentBalance: account.currentBalance + parseFloat(balanceForm.amount),
-        };
-      }
-      return account;
-    });
-
-    setAccounts(updatedAccounts);
-    setShowAddBalanceModal(false); // Close modal
-    setBalanceForm({ amount: '', note: '', owner: '' }); // Reset form
+  const handleAddAccount = () => {
+    if (!newName) return;
+    setAccounts([...accounts, { id: Date.now(), name: newName, openingBalance: Number(newBalance) || 0, currentBalance: Number(newBalance) || 0 }]);
+    setNewName(''); setNewBalance('');
   };
 
-  
-
-  const handleTransferBalance = () => {
-    const fromAccount = accounts.find(account => account.name === balanceForm.owner);
-    const updatedAccounts = accounts.map(account => {
-      if (account.id === selectedAccount.id) {
-        return {
-          ...account,
-          currentBalance: account.currentBalance + parseFloat(balanceForm.amount),
-        };
-      }
-      if (account.id === fromAccount.id) {
-        return {
-          ...account,
-          currentBalance: account.currentBalance - parseFloat(balanceForm.amount),
-        };
-      }
-      return account;
-    });
-
-    setAccounts(updatedAccounts);
-    setShowTransferModal(false); // Close modal
-    setBalanceForm({ amount: '', note: '', owner: '' }); // Reset form
+  const handleAction = () => {
+    const amt = parseFloat(form.amount);
+    if (!amt || !modal.account) return;
+    if (modal.type === 'add') {
+      setAccounts(accounts.map(a => a.id === modal.account.id ? { ...a, currentBalance: a.currentBalance + amt } : a));
+    } else if (modal.type === 'transfer') {
+      const from = accounts.find(a => a.name === form.fromAccount);
+      if (!from) return;
+      setAccounts(accounts.map(a => {
+        if (a.id === modal.account.id) return { ...a, currentBalance: a.currentBalance + amt };
+        if (a.id === from.id) return { ...a, currentBalance: a.currentBalance - amt };
+        return a;
+      }));
+    }
+    setModal({ type: null, account: null }); setForm({ amount: '', note: '', fromAccount: '' });
   };
 
-    
+  const totalBalance = accounts.reduce((s, a) => s + a.currentBalance, 0);
+
   return (
-    <div className='dark:bg-[#141432] h-full font-nunito text-sm bg-white p-2'>
-        <div className="  py-8  mt-[25%] md:mt-[5%]">
-      {/* New Account Section */}
-      <div className="p-0 shadow-sm rounded-md  ">
-        <h2 className=" dark:text-white text-lg  mb-4">New Account</h2>
-        <div className="lg:flex md:space-x-4 space-y-3 md:space-y-0">
-          <input
-            type="text"
-            placeholder="Enter Account Name"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white w-full"
-          />
-          <input
-            type="number"
-            placeholder="Opening Balance"
-            className="border border-gray-300 rounded px-4 py-2 flex-1 bg-white w-full"
-          />
-          <button
-            className="bg-emerald-500 text-white px-8 py-2 rounded "
-            onClick={() => alert("Account Added")}
-          >
-            Save
-          </button>
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2.5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl text-white shadow-lg"><Landmark size={24} /></div>
+          <div>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Bank Accounts</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{accounts.length} accounts · Total ৳{totalBalance.toLocaleString()}</p>
+          </div>
         </div>
+
+        <Card className="mb-6">
+          <CardHeader className="pb-3"><CardTitle className="text-base">Add New Account</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex flex-col md:flex-row gap-3">
+              <Input placeholder="Account Name" value={newName} onChange={(e) => setNewName(e.target.value)} className="flex-1" />
+              <Input type="number" placeholder="Opening Balance" value={newBalance} onChange={(e) => setNewBalance(e.target.value)} className="flex-1" />
+              <Button onClick={handleAddAccount} className="gap-1.5"><Plus size={16} />Save</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {accounts.map(a => (
+            <Card key={a.id} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-5">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <p className="font-semibold text-slate-800 dark:text-white text-base">{a.name}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">Opening: ৳{a.openingBalance.toLocaleString()}</p>
+                  </div>
+                  <Badge variant={a.currentBalance > 100000 ? 'success' : 'warning'}>Active</Badge>
+                </div>
+                <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">৳{a.currentBalance.toLocaleString()}</p>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline" className="flex-1 gap-1 text-xs" onClick={() => setModal({ type: 'add', account: a })}><Plus size={13} />Add</Button>
+                  <Button size="sm" variant="outline" className="flex-1 gap-1 text-xs" onClick={() => setModal({ type: 'transfer', account: a })}><ArrowUpDown size={13} />Transfer</Button>
+                  <Link href="/Bank_Accounts/History"><Button size="sm" className="flex-1 gap-1 text-xs"><History size={13} />History</Button></Link>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium w-12">#</th>
+                  <th className="px-3 py-3 text-left font-medium">Account Name</th>
+                  <th className="px-3 py-3 text-right font-medium">Opening Balance</th>
+                  <th className="px-3 py-3 text-right font-medium">Current Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {accounts.map((a, i) => (
+                  <tr key={a.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3 text-slate-500">{i + 1}</td>
+                    <td className="px-3 py-3 font-medium text-slate-800 dark:text-white">{a.name}</td>
+                    <td className="px-3 py-3 text-right text-slate-500">৳{a.openingBalance.toLocaleString()}</td>
+                    <td className="px-3 py-3 text-right font-semibold text-indigo-600 dark:text-indigo-400">৳{a.currentBalance.toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        {/* Modal */}
+        {modal.type && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-md">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-base">{modal.type === 'add' ? 'Add Balance' : 'Transfer'} — {modal.account?.name}</CardTitle>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setModal({ type: null, account: null })}><X size={16} /></Button>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div><label className="block text-xs font-medium text-slate-500 mb-1">Amount</label><Input type="number" value={form.amount} onChange={e => setForm({ ...form, amount: e.target.value })} placeholder="Enter amount" /></div>
+                <div><label className="block text-xs font-medium text-slate-500 mb-1">Note</label><Input value={form.note} onChange={e => setForm({ ...form, note: e.target.value })} placeholder="Optional note" /></div>
+                {modal.type === 'transfer' && (
+                  <div><label className="block text-xs font-medium text-slate-500 mb-1">From Account</label>
+                    <select className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-700 px-3 text-sm bg-white dark:bg-slate-900" value={form.fromAccount} onChange={e => setForm({ ...form, fromAccount: e.target.value })}>
+                      <option value="">Select Account</option>
+                      {accounts.filter(a => a.id !== modal.account?.id).map(a => <option key={a.id} value={a.name}>{a.name}</option>)}
+                    </select>
+                  </div>
+                )}
+                <div className="flex justify-end gap-2 pt-2">
+                  <Button onClick={handleAction}>{modal.type === 'add' ? 'Add Balance' : 'Transfer'}</Button>
+                  <Button variant="outline" onClick={() => setModal({ type: null, account: null })}>Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
-
-      {/* Accounts Table */}
-      <div className="overflow-x-auto shadow-sm dark:bg-[#1a1a3d] w-full mt-5">
-  <h2 className="  text-lg mb-4 dark:text-white">Accounts</h2>
-  <table className="min-w-full w-full border-collapse">
-    <thead>
-      <tr className="bg-emerald-500 text-white">
-        <th className="py-2 px-2 md:px-4 border">#</th>
-        <th className="py-2 px-2 md:px-4 border">Name</th>
-        <th className="py-2 px-2 md:px-4 border">Opening Balance</th>
-        <th className="py-2 px-2 md:px-4 border">Current Balance</th>
-        <th className="py-2 px-2 md:px-4 border">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {accounts.map((account) => (
-        <tr key={account.id} className="text-center dark:text-white">
-          <td className="py-2 px-2 md:px-4 border">{account.id}</td>
-          <td className="py-2 px-2 md:px-4 border">{account.name}</td>
-          <td className="py-2 px-2 md:px-4 border">Tk.{account.openingBalance.toFixed(2)}</td>
-          <td className="py-2 px-2 md:px-4 border">Tk.{account.currentBalance.toFixed(2)}</td>
-          <td className="py-2 px-2 md:px-4 border grid grid-cols-1 gap-5 md:grid-cols-3">
-            <button
-              className="border-b-2 border-teal-500 hover:bg-emerald-500 hover:text-white dark:text-white px-0 py-1 md:px-4 md:py-2 rounded"
-              onClick={() => {
-                setSelectedAccount(account);
-                setShowAddBalanceModal(true);
-              }}
-            >
-              Add Balance
-            </button>
-
-            <button
-              className="border-b-2 border-teal-500 hover:bg-emerald-500 hover:text-white dark:text-white px-0 py-1 md:px-4 md:py-2 rounded"
-              onClick={() => {
-                setSelectedAccount(account);
-                setShowTransferModal(true);
-              }}
-            >
-              Transfer
-            </button>
-
-            <button
-              className="bg-emerald-500 text-white px-0 py-1 md:px-4 md:py-2 rounded"
-              onClick={() => alert("History clicked")}
-            >
-              History
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-        {/* Modal for Adding Balance */}
-        {showAddBalanceModal && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-4 md:p-8 shadow-sm w-full max-w-xs md:max-w-md lg:max-w-lg mx-2">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className=" dark:text-white text-md md:text-lg">Add Balance to {selectedAccount?.name}</h2>
-                <button className="text-gray-500 text-lg" onClick={() => setShowAddBalanceModal(false)}>
-                  &times;
-                </button>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Amount</label>
-                <input
-                  type="number"
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2 bg-white"
-                  value={balanceForm.amount}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Note</label>
-                <textarea
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
-                  rows="3"
-                  value={balanceForm.note}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, note: e.target.value })}
-                ></textarea>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Owner</label>
-                <select
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
-                  value={balanceForm.owner}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, owner: e.target.value })}
-                >
-                  <option value="">Select Owner</option>
-                  {accounts.map((account) => (
-                    <option key={account.id} value={account.name}>
-                      {account.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="flex justify-end space-x-4">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleAddBalance}>
-                  Add Balance
-                </button>
-                <button className="bg-gray-300 px-4 py-2 rounded" onClick={() => setShowAddBalanceModal(false)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Modal for Transferring Balance */}
-        {showTransferModal && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-4 md:p-8 shadow-sm w-full max-w-xs md:max-w-md lg:max-w-lg mx-2">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className=" dark:text-white text-md md:text-lg">Transfer Balance to {selectedAccount?.name}</h2>
-                <button className="text-gray-500 text-lg" onClick={() => setShowTransferModal(false)}>
-                  &times;
-                </button>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Amount</label>
-                <input
-                  type="number"
-                  className="w-full border bg-white border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
-                  value={balanceForm.amount}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, amount: e.target.value })}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Note</label>
-                <textarea
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
-                  rows="3"
-                  value={balanceForm.note}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, note: e.target.value })}
-                ></textarea>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-sm font-medium">From Account</label>
-                <select
-                  className="w-full border border-gray-300 rounded px-2 py-1 md:px-4 md:py-2"
-                  value={balanceForm.owner}
-                  onChange={(e) => setBalanceForm({ ...balanceForm, owner: e.target.value })}
-                >
-                  <option value="">Select Account</option>
-                  {accounts.map((account) => (
-                    <option key={account.id} value={account.name}>
-                      {account.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="flex justify-end space-x-4">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleTransferBalance}>
-                  Transfer
-                </button>
-                <button className="bg-gray-300 px-4 py-2 rounded" onClick={() => setShowTransferModal(false)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
     </div>
-    </div>
-
   );
 }

@@ -1,30 +1,51 @@
 'use client'
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import Papa from "papaparse"; // For CSV parsing
+import Papa from "papaparse";
 import * as XLSX from 'xlsx';
-import { Eye, Filter, View } from 'lucide-react';
-import { RiDeleteBin5Line } from 'react-icons/ri';
-import { TbEdit } from 'react-icons/tb';
+import { Eye, Filter, Trash2, Pencil, Plus, Download, FileSpreadsheet, Printer, Upload, X, Search, Package, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Input } from '@/app/components/ui/input';
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+
+const productImages = {
+  'Lenovo 3rd Generation': 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=60&h=60&fit=crop',
+  'Bold V3.2': 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=60&h=60&fit=crop',
+  'Nike Jordan': 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=60&h=60&fit=crop',
+  'Apple Series 5 Watch': 'https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=60&h=60&fit=crop',
+  'Amazon Echo Dot': 'https://images.unsplash.com/photo-1543512214-318228f5a78c?w=60&h=60&fit=crop',
+  'Lobar Handy': 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=60&h=60&fit=crop',
+  'Red Premium Handy': 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=60&h=60&fit=crop',
+  'Iphone 14 Pro': 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=60&h=60&fit=crop',
+  'Black Slim 200': 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=60&h=60&fit=crop',
+  'Woodcraft Sandal': 'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=60&h=60&fit=crop',
+  'MacBook Air M1': 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=60&h=60&fit=crop',
+  'Samsung Galaxy S22': 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=60&h=60&fit=crop',
+  'Google Pixel 6': 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=60&h=60&fit=crop',
+  'OnePlus 9 Pro': 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=60&h=60&fit=crop',
+  'Dell XPS 13': 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=60&h=60&fit=crop',
+  'Sony WH-1000XM4': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=60&h=60&fit=crop',
+  'Bose QuietComfort 35': 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=60&h=60&fit=crop',
+  'Asus ROG Zephyrus': 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=60&h=60&fit=crop',
+  'HP Spectre x360': 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=60&h=60&fit=crop',
+  'Acer Predator Helios': 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=60&h=60&fit=crop',
+};
 
 export default function ProductList() {
-    const [showModal, setShowModal] = useState(false);
-    const [product, setProducts] = useState([]);
-  const [showFilters, setShowFilters] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [product, setProducts] = useState([]);
+  const [showFilters, setShowFilters] = useState(true);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filters, setFilters] = useState({
-    product: '',
-    category: '',
-    brand: '',
-    price: ''
-  });
-  const [sortOrder, setSortOrder] = useState(''); // State for sorting by price
-  const [dateSortOrder, setDateSortOrder] = useState(''); // State for sorting by date
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const [productsPerPage] = useState(10); // Products per page
+  const [filters, setFilters] = useState({ category: '', brand: '' });
+  const [sortOrder, setSortOrder] = useState('');
+  const [dateSortOrder, setDateSortOrder] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10);
+  const [openAction, setOpenAction] = useState(null);
 
   const products = [
     { id: 1, product: 'Lenovo 3rd Generation', sku: 'PT001', category: 'Laptop', brand: 'Lenovo', price: 12500.00, createdDate: '2023-08-15', unit: 'Pc', qty: 100, createdBy: 'Arron' },
@@ -48,64 +69,22 @@ export default function ProductList() {
     { id: 19, product: 'HP Spectre x360', sku: 'PT019', category: 'Laptop', brand: 'HP', price: 1350.00, createdDate: '2023-09-09', unit: 'Pc', qty: 85, createdBy: 'Ethan' },
     { id: 20, product: 'Acer Predator Helios', sku: 'PT020', category: 'Laptop', brand: 'Acer', price: 1499.99, createdDate: '2023-09-14', unit: 'Pc', qty: 95, createdBy: 'Zoe' },
   ];
-  const [showModal2, setShowModal2] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOpenModal = () => {
-    console.log("test");
-      setModalVisible(true);
-      setTimeout(() => {
-          setShowModal2(true);
-      }, 0); // Small delay to trigger transition
-  };
-
-  const handleCloseModal = () => {
-      setShowModal2(false);
-      setTimeout(() => {
-          setModalVisible(false);
-      }, 300); // Delay based on transition duration
-  };
-
-
-
-
-
-
-  // Function to handle select all products
   const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      const allProductIds = products.map((product) => product.id);
-      setSelectedProducts(allProductIds);
-    } else {
-      setSelectedProducts([]);
-    }
+    setSelectedProducts(e.target.checked ? products.map(p => p.id) : []);
   };
 
-  // Function to handle individual product selection
   const handleSelectProduct = (e, productId) => {
-    if (e.target.checked) {
-      setSelectedProducts([...selectedProducts, productId]);
-    } else {
-      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
-    }
+    setSelectedProducts(e.target.checked ? [...selectedProducts, productId] : selectedProducts.filter(id => id !== productId));
   };
 
-  // Toggle Filters
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  // Function to export as PDF
   const exportPDF = () => {
     const doc = new jsPDF();
     doc.text('Product List', 20, 10);
-    products.forEach((product, index) => {
-      doc.text(`${index + 1}. ${product.product}, SKU: ${product.sku}, Price: $${product.price}`, 20, 20 + index * 10);
-    });
+    products.forEach((p, i) => doc.text(`${i + 1}. ${p.product}, SKU: ${p.sku}, Price: $${p.price}`, 20, 20 + i * 10));
     doc.save('products.pdf');
   };
 
-  // Function to export as Excel
   const exportExcel = () => {
     const ws = XLSX.utils.json_to_sheet(products);
     const wb = XLSX.utils.book_new();
@@ -116,370 +95,254 @@ export default function ProductList() {
   const handlePrint = () => {
     const printContent = document.getElementById("table-to-print").outerHTML;
     const newWindow = window.open('', '_blank');
-    newWindow.document.write(`
-      <html>
-        <head>
-          <title>Products List</title>
-          <style>
-            body { font-family: Arial, sans-serif; }
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-          </style>
-        </head>
-        <body onload="window.print()">
-          ${printContent.replace(/<th>Actions<\/th>.*?<\/tr>/, '')} <!-- Remove the Actions column -->
-        </body>
-      </html>
-    `);
+    newWindow.document.write(`<html><head><title>Products</title><style>body{font-family:Arial,sans-serif}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;text-align:left}th{background:#6366f1;color:white}</style></head><body onload="window.print()">${printContent}</body></html>`);
     newWindow.document.close();
   };
 
-  // Handle filter changes
-  const handleFilterChange = (e) => {
-    setFilters({
-      ...filters,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleFilterChange = (e) => setFilters({ ...filters, [e.target.name]: e.target.value });
+  const handlePriceSort = (e) => setSortOrder(e.target.value);
+  const handleDateSort = (e) => setDateSortOrder(e.target.value);
 
-  // Handle price sort change
-  const handlePriceSort = (e) => {
-    setSortOrder(e.target.value); // Set the sort order
-  };
-
-  // Handle date sort change
-  const handleDateSort = (e) => {
-    setDateSortOrder(e.target.value); // Set the date sort order
-  };
-
-  // Pagination logic: get current products based on the page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Handle changing pages
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Filter and sort the products based on the selected filters and sorting
   const filteredProducts = products
-    .filter((product) =>
-      product.product.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filters.product === '' || product.product === filters.product) &&
-      (filters.category === '' || product.category === filters.category) &&
-      (filters.brand === '' || product.brand === filters.brand)
-    )
+    .filter(p => p.product.toLowerCase().includes(searchTerm.toLowerCase()) && (filters.category === '' || p.category === filters.category) && (filters.brand === '' || p.brand === filters.brand))
     .sort((a, b) => {
-      if (sortOrder === 'Low to High') {
-        return a.price - b.price; // Ascending order
-      } else if (sortOrder === 'High to Low') {
-        return b.price - a.price; // Descending order
-      } else if (dateSortOrder === 'Oldest First') {
-        return new Date(a.createdDate) - new Date(b.createdDate); // Ascending date
-      } else if (dateSortOrder === 'Newest First') {
-        return new Date(b.createdDate) - new Date(a.createdDate); // Descending date
-      } else {
-        return 0; // No sorting if not selected
-      }
+      if (sortOrder === 'Low to High') return a.price - b.price;
+      if (sortOrder === 'High to Low') return b.price - a.price;
+      if (dateSortOrder === 'Oldest First') return new Date(a.createdDate) - new Date(b.createdDate);
+      if (dateSortOrder === 'Newest First') return new Date(b.createdDate) - new Date(a.createdDate);
+      return 0;
     });
 
-  // Get unique values for filters
-  const uniqueProducts = [...new Set(products.map((product) => product.product))];
-  const uniqueCategories = [...new Set(products.map((product) => product.category))];
-  const uniqueBrands = [...new Set(products.map((product) => product.brand))];
+  const uniqueCategories = [...new Set(products.map(p => p.category))];
+  const uniqueBrands = [...new Set(products.map(p => p.brand))];
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const totalValue = products.reduce((sum, p) => sum + p.price * p.qty, 0);
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     const fileType = file.name.split('.').pop();
-
     if (fileType === 'csv') {
-      // Handle CSV file
-      Papa.parse(file, {
-        header: true,
-        complete: (results) => {
-          console.log("CSV data: ", results.data);
-          setProducts(results.data); // Process CSV data
-        },
-        error: (err) => {
-          console.error("Error parsing CSV file:", err);
-        }
-      });
+      Papa.parse(file, { header: true, complete: (results) => setProducts(results.data) });
     } else if (fileType === 'xlsx') {
-      // Handle Excel file
       const reader = new FileReader();
       reader.onload = (event) => {
         const data = new Uint8Array(event.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const excelData = XLSX.utils.sheet_to_json(worksheet);
-        console.log("Excel data: ", excelData);
-        setProducts(excelData); // Process Excel data
+        setProducts(XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]));
       };
       reader.readAsArrayBuffer(file);
-    } else {
-      console.error("Unsupported file type");
     }
   };
-
-  // Optional: Submit data to your server for processing
-  const submitProducts = async () => {
-    try {
-      const response = await fetch("/api/import-products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(products),
-      });
-      const result = await response.json();
-      console.log("Server response:", result);
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
-  };
-//   const handleDelete = (id) => {
-//     setSelectedProducts(products.filter((product) => product.id !== id));
-//     setShowModal2(false);
-//   };
 
   return (
-    <div className='font-nunito text-sm'>
-        <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%] font-nunito text-sm">
-      {/* Action Buttons */}
-      <div className="md:flex mflex-col md:flex-row justify-between items-center mb-4">
-        <h2 className=" dark:text-white text-lg  mb-2 md:mb-0">Product List</h2>
-        <div className="md:flex space-x-2 space-y-2 md:space-y-0">
-          <Link href="/Products/Create">
-          <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Product</button>
-          </Link>
-          <button
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={() => setShowModal(true)}
-            >
-                Import Product
-            </button>
-             {/* Modal */}
-                {showModal && (
-                    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white  p-6 w-1/2">
-                        <h2 className=" dark:text-white text-lg  mb-4">Import Products</h2>
-                        <input
-                        type="file"
-                        accept=".csv, .xlsx"
-                        onChange={handleFileUpload}
-                        className="mb-4 bg-white"
-                        />
-                        <div className="flex justify-end space-x-4">
-                        <button
-                            className="px-4 py-2 bg-green-500 text-white rounded"
-                            onClick={submitProducts}
-                        >
-                            Submit
-                        </button>
-                        <button
-                            className="px-4 py-2 bg-red-500 text-white rounded"
-                            onClick={() => setShowModal(false)}
-                        >
-                            Close
-                        </button>
+    <div className="font-inter text-sm">
+      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+              <Package size={24} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Products</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{products.length} products in inventory</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/Products/Create">
+              <Button className="gap-1.5" size="sm"><Plus size={15} />Add Product</Button>
+            </Link>
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={() => setShowModal(true)}><Upload size={15} />Import</Button>
+            <Button variant="destructive" size="sm" className="gap-1.5" onClick={exportPDF}><Download size={15} />PDF</Button>
+            <Button variant="warning" size="sm" className="gap-1.5" onClick={exportExcel}><FileSpreadsheet size={15} />Excel</Button>
+            <Button variant="secondary" size="sm" className="gap-1.5" onClick={handlePrint}><Printer size={15} />Print</Button>
+          </div>
+        </div>
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-indigo-100 text-xs">Total Products</p>
+              <p className="text-2xl font-bold">{products.length}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-emerald-100 text-xs">Total Value</p>
+              <p className="text-2xl font-bold">৳{(totalValue / 1000000).toFixed(1)}M</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-amber-500 to-amber-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-amber-100 text-xs">Categories</p>
+              <p className="text-2xl font-bold">{uniqueCategories.length}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0">
+            <CardContent className="p-4">
+              <p className="text-purple-100 text-xs">Brands</p>
+              <p className="text-2xl font-bold">{uniqueBrands.length}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Filters */}
+        <Card className="mb-6">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap gap-3 items-end">
+              <div className="flex-1 min-w-[180px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Search</label>
+                <div className="relative">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search products..." className="pl-9 h-9" />
+                </div>
+              </div>
+              <div className="min-w-[140px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Category</label>
+                <select name="category" value={filters.category} onChange={handleFilterChange} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueCategories.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[120px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Brand</label>
+                <select name="brand" value={filters.brand} onChange={handleFilterChange} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">All</option>
+                  {uniqueBrands.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
+              </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Price</label>
+                <select onChange={handlePriceSort} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">Default</option>
+                  <option value="Low to High">Low → High</option>
+                  <option value="High to Low">High → Low</option>
+                </select>
+              </div>
+              <div className="min-w-[130px]">
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Date</label>
+                <select onChange={handleDateSort} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300">
+                  <option value="">Default</option>
+                  <option value="Newest First">Newest</option>
+                  <option value="Oldest First">Oldest</option>
+                </select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Table */}
+        <Card>
+          <div className="overflow-x-auto">
+            <table id="table-to-print" className="w-full text-sm">
+              <thead>
+                <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+                  <th className="px-3 py-3 text-left font-medium w-10">
+                    <input type="checkbox" onChange={handleSelectAll} className="rounded" />
+                  </th>
+                  <th className="px-3 py-3 text-left font-medium">Product</th>
+                  <th className="px-3 py-3 text-left font-medium">SKU</th>
+                  <th className="px-3 py-3 text-left font-medium">Category</th>
+                  <th className="px-3 py-3 text-left font-medium">Brand</th>
+                  <th className="px-3 py-3 text-right font-medium">Price</th>
+                  <th className="px-3 py-3 text-center font-medium">Qty</th>
+                  <th className="px-3 py-3 text-left font-medium">Date</th>
+                  <th className="px-3 py-3 text-center font-medium w-20">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
+                  <tr key={p.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="px-3 py-3">
+                      <input type="checkbox" checked={selectedProducts.includes(p.id)} onChange={(e) => handleSelectProduct(e, p.id)} className="rounded" />
+                    </td>
+                    <td className="px-3 py-3">
+                      <div className="flex items-center gap-3">
+                        <Image src={productImages[p.product] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=60&h=60&fit=crop'} alt={p.product} width={40} height={40} className="w-10 h-10 rounded-lg object-cover" />
+                        <div>
+                          <p className="font-medium text-slate-800 dark:text-white">{p.product}</p>
+                          <p className="text-xs text-slate-400">by {p.createdBy}</p>
                         </div>
-                    </div>
-                    </div>
-                )}
-          <button onClick={exportPDF} className="px-4 py-2 bg-red-500 text-white rounded">PDF</button>
-          <button onClick={exportExcel} className="px-4 py-2 bg-yellow-500 text-white rounded">Excel</button>
-          <button onClick={handlePrint} className="px-4 py-2 bg-gray-500 text-white rounded">Print</button>
-        </div>
-      </div>
+                      </div>
+                    </td>
+                    <td className="px-3 py-3 font-mono text-xs text-indigo-600 dark:text-indigo-400">{p.sku}</td>
+                    <td className="px-3 py-3"><Badge variant="outline" className="text-xs">{p.category}</Badge></td>
+                    <td className="px-3 py-3 text-slate-600 dark:text-slate-300">{p.brand}</td>
+                    <td className="px-3 py-3 text-right font-semibold text-slate-800 dark:text-white">${p.price.toFixed(2)}</td>
+                    <td className="px-3 py-3 text-center">
+                      <Badge variant={p.qty > 200 ? 'success' : p.qty > 100 ? 'info' : 'warning'} className="text-xs">{p.qty} {p.unit}</Badge>
+                    </td>
+                    <td className="px-3 py-3 text-slate-500 dark:text-slate-400 text-xs">{p.createdDate}</td>
+                    <td className="px-3 py-3 text-center">
+                      <div className="relative">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === p.id ? null : p.id)}>
+                          <MoreVertical size={16} />
+                        </Button>
+                        {openAction === p.id && (
+                          <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
 
-      {/* Search and Filter Section */}
-      <div className="flex md:justify-end md:items-end mb-4">
-       
-        <div className="flex space-x-2">
-          <button onClick={toggleFilters} className="bg-red-500 text-white px-4 py-2 rounded">
-            {showFilters ? '✕' : <Filter size={20} strokeWidth={2} /> }
-          </button>
-          {/* <select className="border border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
-            <option value="">Sort by Price</option>
-            <option value="Low to High">Low to High</option>
-            <option value="High to Low">High to Low</option>
-          </select> */}
-          <select className="border border-gray-300 px-4 py-2 rounded" onChange={handleDateSort}>
-            <option value="">Sort by Date</option>
-            <option value="Newest First">Newest First</option>
-            <option value="Oldest First">Oldest First</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Filters - Toggle Visibility */}
-      {showFilters && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-          {/* <select
-            name="product"
-            className="border border-gray-300 px-4 py-2 rounded"
-            value={filters.product}
-            onChange={handleFilterChange}
-          >
-            <option value="">Choose Product</option>
-            {uniqueProducts.map((product) => (
-              <option key={product} value={product}>
-                {product}
-              </option>
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-4">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length}
+          </p>
+          <div className="flex items-center gap-1">
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+              <ChevronLeft size={16} />
+            </Button>
+            {[...Array(totalPages).keys()].map(n => (
+              <Button key={n + 1} variant={currentPage === n + 1 ? 'default' : 'outline'} size="sm" className="h-8 w-8 p-0" onClick={() => setCurrentPage(n + 1)}>
+                {n + 1}
+              </Button>
             ))}
-          </select> */}
-          <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border bg-white border-gray-300 px-4 py-2 rounded focus:outline-none mb-2 md:mb-0"
-        />
-          <select
-            name="category"
-            className="border border-gray-300 px-4 py-2 rounded"
-            value={filters.category}
-            onChange={handleFilterChange}
-          >
-            <option value="">Choose Category</option>
-            {uniqueCategories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <select
-            name="brand"
-            className="border border-gray-300 px-4 py-2 rounded"
-            value={filters.brand}
-            onChange={handleFilterChange}
-          >
-            <option value="">All Brand</option>
-            {uniqueBrands.map((brand) => (
-              <option key={brand} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-          <select className="border border-gray-300 px-4 py-2 rounded" onChange={handlePriceSort}>
-            <option value="">Sort by Price</option>
-            <option value="Low to High">Low to High</option>
-            <option value="High to Low">High to Low</option>
-          </select>
+            <Button variant="outline" size="icon" className="h-8 w-8" disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+              <ChevronRight size={16} />
+            </Button>
+          </div>
         </div>
-      )}
 
-      {/* Product Table */}
-      <div className="overflow-x-auto">
-        <table id='table-to-print' className="min-w-full table-auto  bg-white dark:bg-[#1c1c3c] dark:text-white shadow-sm  overflow-hidden">
-          <thead>
-            <tr className="bg-emerald-500 text-white">
-              <th className="px-4 py-2 ">
-                <input className='bg-white' type="checkbox" onChange={handleSelectAll} />
-              </th>
-              <th className="px-4 py-2 ">Product</th>
-              <th className="px-4 py-2 ">SKU</th>
-              <th className="px-4 py-2 ">Category</th>
-              <th className="px-4 py-2 ">Brand</th>
-              <th className="px-4 py-2 ">Price</th>
-              <th className="px-4 py-2 ">Unit</th>
-              <th className="px-4 py-2 ">Quantity</th>
-              <th className="px-4 py-2 ">Created Date</th>
-              <th className="px-4 py-2 ">Created By</th>
-              <th className="px-4 py-2 ">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((product) => (
-              <tr key={product.id} className="border-t border-gray-200 ">
-                <td className="px-4 py-2 ">
-                  <input
-                  className='bg-white'
-                    type="checkbox"
-                    checked={selectedProducts.includes(product.id)}
-                    onChange={(e) => handleSelectProduct(e, product.id)}
-                  />
-                </td>
-                <td className="px-4 py-2 flex items-center">
-                  <Image 
-                  width={200} height={300}
-                    src={`/${product.sku}.png`}
-                    alt={product.product}
-                    className="w-10 h-10 object-cover rounded mr-2"
-                  />
-                  {product.product}
-                </td>
-                <td className="px-4 py-2 ">{product.sku}</td>
-                <td className="px-4 py-2">{product.category}</td>
-                <td className="px-4 py-2">{product.brand}</td>
-                <td className="px-4 py-2">${product.price.toFixed(2)}</td>
-                <td className="px-4 py-2">{product.unit}</td>
-                <td className="px-4 py-2">{product.qty}</td>
-                <td className="px-4 py-2">{product.createdDate}</td>
-                <td className="px-4 py-2">{product.createdBy}</td>
-                <td className="px-4 py-2 flex space-x-2">
-                  <button className="border  p-2 transform hover:scale-110 hover:bg-[#092C4C] hover:text-white"><Eye size={16} strokeWidth={1.5} /></button>
-                  <button className="p-2  border transform text-blue-600 hover:bg-[#288EC7] hover:text-white hover:scale-110">
-                  <TbEdit size={16}/>
-                </button>
-                <button onClick={handleOpenModal} className="p-2  transform text-red-500 hover:bg-red-500 hover:text-white hover:scale-110 border">
-                  <RiDeleteBin5Line size={16}/>
-                </button>
-                    {/* Modal */}
-                    {modalVisible && (
-                        <div
-                                        className={`fixed inset-0 flex items-center border justify-center bg-opacity-50 transition-all duration-700 ease-in-out ${showModal2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'} `}
-                                    >
-                                        <div className="bg-white w-[20%] border text-center  p-10 transition-all duration-300 ease-in-out">
-                                            <h2 className=" dark:text-white text-lg  mb-4">Are you sure?</h2>
-                                            <p className=" dark:text-white mb-6">You wont be able to revert this!</p>
-
-                                            {/* Show details */}
-                                            <div className="mb-6">
-                                                <p><strong>Item ID:</strong> {product.product}</p>
-                                                <p><strong>Item Name:</strong> {product.qty}</p>
-                                            </div>
-
-                                            {/* Buttons */}
-                                            <div className="flex justify-center">
-                                                <button
-                                                    onClick={() => handleDelete(product.id)}
-                                                    className="bg-orange-500 hover:bg-orange-600 text-white  py-2 px-4 rounded mr-2"
-                                                >
-                                                    Yes, delete it!
-                                                </button>
-                                                <button
-                                                    onClick={handleCloseModal}
-                                                    className="bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded"
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-                        </div>
-                    )}
-
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Import Modal */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50">
+            <Card className="w-full max-w-md">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center gap-2"><Upload size={18} />Import Products</CardTitle>
+                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShowModal(false)}><X size={16} /></Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-8 text-center">
+                  <Upload size={32} className="mx-auto text-slate-400 mb-3" />
+                  <p className="text-sm text-slate-500 mb-2">Upload CSV or Excel file</p>
+                  <input type="file" accept=".csv,.xlsx" onChange={handleFileUpload} className="text-sm" />
+                </div>
+                <div className="flex justify-end gap-2 mt-4">
+                  <Button variant="outline" onClick={() => setShowModal(false)}>Cancel</Button>
+                  <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
-
-      {/* Pagination */}
-      <div className="lg:flex justify-center items-center gap-5 mt-4">
-        {[...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()].map((number) => (
-          <button
-            key={number + 1}
-            onClick={() => paginate(number + 1)}
-            className={`px-3 py-2 mx-1 border rounded ${currentPage === number + 1 ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
-          >
-            {number + 1}
-          </button>
-        ))}
-         <div >Showing {indexOfFirstProduct + 1} to {Math.min(indexOfLastProduct, filteredProducts.length)} of {filteredProducts.length} entries</div>
-      </div>
-     
-        </div>
     </div>
   );
 }

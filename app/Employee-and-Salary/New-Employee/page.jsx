@@ -2,224 +2,116 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Input } from '@/app/components/ui/input';
+import { Users, UserPlus, Calendar, Mail, Phone, DollarSign, MapPin, Clock, Save } from 'lucide-react';
 
-export default function NewEmployeeForm () {
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
-    const pathname = usePathname();
+export default function NewEmployeeForm() {
+  const pathname = usePathname();
 
-    const [formData, setFormData] = useState({
-        joiningDate: "",
-        name: "",
-        email: "",
-        phone: "",
-        salary: "",
-        overtimeRate: "0", // Default to 0 as per the form instruction
-        address: ""
-      });
-    
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value
-        }));
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form Data Submitted:", formData);
-        // logic to save or send the data, e.g., sending it to an API
-      };
+  const tabs = [
+    { label: 'Employees', href: '/Employee-and-Salary' },
+    { label: '+ New Employee', href: '/Employee-and-Salary/New-Employee' },
+    { label: 'Salary List', href: '/Employee-and-Salary/Salary' },
+    { label: '+ New Salary', href: '/Employee-and-Salary/Salary/Create' },
+    { label: 'Payments', href: '/Employee-and-Salary/Payments' },
+  ];
+
+  const [formData, setFormData] = useState({
+    joiningDate: '', name: '', email: '', phone: '', salary: '', overtimeRate: '0', address: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+  };
+
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm'>
+    <div className="space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
+          <UserPlus className="h-6 w-6 text-white" />
+        </div>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">New Employee</h1>
+          <p className="text-sm text-gray-500">Add a new employee to the system</p>
+        </div>
+      </div>
 
-    <div className="p-0  mt-[25%] lg:mt-[5%]  w-full">
-              {/* Title Section */}
+      <Card>
+        <CardContent className="p-1">
+          <div className="flex flex-wrap gap-1">
+            {tabs.map(tab => (
+              <Link key={tab.href} href={tab.href}>
+                <Button variant={pathname === tab.href ? 'default' : 'ghost'} size="sm" className="text-xs">{tab.label}</Button>
+              </Link>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
-  <div className=" mb-4  shadow-sm ">
-  <h1 className="text-lg text-gray-500 dark:text-white mx-5 ">New Employee</h1>
-    <div className=' lg:flex items-start justify-start mx-5 py-5 gap-10 '>
-        <Link href="/Employee-and-Salary" className= {`${
-                          pathname === '/Employee-and-Salary' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Employees
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/New-Employee" className={`${
-                          pathname === '/Employee-and-Salary/New-Employee' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + New Employee
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Salary" className= {`${
-                          pathname === '/Employee-and-Salary/Salary' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Employees Salary
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Salary/Create" className= {`${
-                          pathname === '/Employee-and-Salary/Salary/Create' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        + New Employee Salary
-        <span className={spanClass}></span>
-        </Link>
-        <Link href="/Employee-and-Salary/Payments" className= {`${
-                          pathname === '/Employee-and-Salary/Payments' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
-                      }`}>
-        Payment List
-        <span className={spanClass}></span>
-        </Link>
+      <Card>
+        <CardContent className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Calendar className="inline h-4 w-4 mr-1 text-indigo-500" /> Joining Date <span className="text-red-500">*</span>
+                </label>
+                <Input type="date" name="joiningDate" value={formData.joiningDate} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Users className="inline h-4 w-4 mr-1 text-indigo-500" /> Name <span className="text-red-500">*</span>
+                </label>
+                <Input name="name" placeholder="Enter employee name..." value={formData.name} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Mail className="inline h-4 w-4 mr-1 text-indigo-500" /> Email
+                </label>
+                <Input type="email" name="email" placeholder="Enter email..." value={formData.email} onChange={handleInputChange} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Phone className="inline h-4 w-4 mr-1 text-indigo-500" /> Phone <span className="text-red-500">*</span>
+                </label>
+                <Input name="phone" placeholder="Enter phone..." value={formData.phone} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <DollarSign className="inline h-4 w-4 mr-1 text-indigo-500" /> Salary <span className="text-red-500">*</span>
+                </label>
+                <Input type="number" name="salary" placeholder="Enter salary..." value={formData.salary} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Clock className="inline h-4 w-4 mr-1 text-indigo-500" /> Overtime Rate <span className="text-red-500">*</span>
+                </label>
+                <Input type="number" name="overtimeRate" placeholder="0 if not applicable" value={formData.overtimeRate} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <MapPin className="inline h-4 w-4 mr-1 text-indigo-500" /> Address
+              </label>
+              <textarea name="address" className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" rows="3" placeholder="Write address..." value={formData.address} onChange={handleInputChange} />
+            </div>
+            <div className="flex justify-center">
+              <Button type="submit" className="px-10">
+                <Save className="h-4 w-4 mr-2" /> Save Employee
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
     </div>
-  </div>
-  <div className="w-full  mx-auto p-4 dark:bg-[#1b1b3b]">
-      <h2 className=" dark:text-white text-lg  mb-4 dark:text-white">New Employee</h2>
-      <form className="bg-white dark:bg-[#1b1b3b] shadow-sm  rounded px-8 pt-6 pb-8 mb-4 dark:text-white" onSubmit={handleSubmit}>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          {/* Joining Date */}
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="joiningDate">
-              Joining Date<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="joiningDate"
-              name="joiningDate"
-              type="date"
-              value={formData.joiningDate}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          {/* Name */}
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="name">
-              Name<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Enter Employee Name..."
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-6">
-          {/* Email */}
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter Employee Email..."
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          {/* Phone */}
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="phone">
-              Phone<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="phone"
-              name="phone"
-              type="text"
-              placeholder="Enter Employee Phone..."
-              value={formData.phone}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-6">
-          {/* Salary */}
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="salary">
-              Salary<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="salary"
-              name="salary"
-              type="number"
-              placeholder="Enter Employee Salary..."
-              value={formData.salary}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          {/* Overtime Rate */}
-          <div className="w-full md:w-1/2 px-3">
-            <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="overtimeRate">
-              Overtime Rate<span className="text-red-500">*</span>
-            </label>
-            <input
-              className="appearance-none bg-white block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-              id="overtimeRate"
-              name="overtimeRate"
-              type="number"
-              placeholder="Must be written as 0 if not applicable"
-              value={formData.overtimeRate}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-        </div>
-
-        {/* Address */}
-        <div className="w-full px-3 mb-6">
-          <label className="block  tracking-wide text-gray-700 dark:text-white text-xs  mb-2" htmlFor="address">
-            Address
-          </label>
-          <textarea
-            className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-            id="address"
-            name="address"
-            placeholder="Write Address"
-            value={formData.address}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        {/* Save Button */}
-        <div className="flex items-center justify-center">
-          <button
-            className="bg-emerald-500 hover:bg-teal-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </div>
-  
- 
-</div>
-</div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function NewUsers() {
     const pathname = usePathname();
-    const spanClass = " block h-0.5 bg-gradient-to-r from-pink-500 to-orange-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
+    const spanClass = " block h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ export default function NewUsers() {
   };
 
   return (
-    <div className='bg-white dark:bg-[#141432] font-nunito text-sm dark:text-white'>
+    <div className='bg-white dark:bg-slate-900 font-inter text-sm dark:text-white'>
 
     <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
               {/* Title Section */}
@@ -43,16 +43,16 @@ export default function NewUsers() {
     <div className=' sm:md:flex items-start justify-start mx-5 py-5 gap-10 '>
         <Link href="/Users" className= {`${
                           pathname === '/Users' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                          ? ' group text-indigo-600 dark:text-indigo-400  hover:text-indigo-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-indigo-500 '
                       }`}>
         Users
         <span className={spanClass}></span>
         </Link>
         <Link href="/Users/Create" className={`${
                           pathname === '/Users/Create' 
-                          ? ' group text-orange-500  hover:text-orange-500' 
-                          : 'group text-gray-500 dark:text-white hover:text-orange-500 '
+                          ? ' group text-indigo-600 dark:text-indigo-400  hover:text-indigo-500' 
+                          : 'group text-gray-500 dark:text-white hover:text-indigo-500 '
                       }`}>
         + New Users
         <span className={spanClass}></span>

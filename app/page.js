@@ -1,14 +1,11 @@
 "use client"
 
 import Dashboard from "./home/page";
-import Footer from "./Shared/Footer/Footer";
-
 
 export default function Home() {
   return (
-    <div className="bg-white dark:bg-[#141432] overflow-auto">
-     <Dashboard/>
-
+    <div className="bg-slate-50 dark:bg-slate-900 overflow-auto min-h-screen">
+      <Dashboard />
     </div>
   );
 }
