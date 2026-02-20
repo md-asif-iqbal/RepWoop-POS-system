@@ -20,7 +20,7 @@ export default function Login() {
                 <div className="absolute top-1/2 left-1/3 w-20 h-20 rounded-full bg-white/10" />
               </div>
               <div className="relative z-10">
-                <h2 className="text-white text-xl font-bold">Repwoop <span className="text-indigo-200">POS</span></h2>
+                <h2 className="text-white text-xl font-bold">SoftLanding <span className="text-indigo-200">POS</span></h2>
               </div>
               <div className="relative z-10 text-white space-y-6">
                 <h2 className="text-3xl font-bold leading-tight">Manage your business smarter.</h2>
@@ -78,7 +78,7 @@ export default function Login() {
 
                 <div className="flex items-center justify-between text-xs">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" className="rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500" />
+                    <input type="checkbox" className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                     <span className="text-slate-500 dark:text-slate-400">Remember me</span>
                   </label>
                   <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Forgot Password?</a>

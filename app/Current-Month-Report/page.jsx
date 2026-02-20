@@ -249,7 +249,7 @@ export default function CurrentMonthReport() {
 
   return (
     <div className="bg-gray-50/30 min-h-screen">
-      <div className="p-4 sm:p-6 mt-[25%] sm:mt-[5%] w-full max-w-[1400px] mx-auto space-y-6">
+      <div className="p-4 sm:p-6 w-full max-w-[1400px] mx-auto space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg shadow-indigo-200">

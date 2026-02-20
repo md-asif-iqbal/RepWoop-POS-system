@@ -348,7 +348,7 @@ export default function RolesAndPermission() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 text-sm mt-[5%]">
+    <div className="container mx-auto px-4 py-8 text-sm">
       
       <h2 className='text-lg'>Role Permissions</h2>
 <div className=' sm:md:flex items-start justify-start mt-5 gap-10 w-full'>
@@ -380,7 +380,7 @@ export default function RolesAndPermission() {
             type="checkbox"
             checked={selectAll}
             onChange={toggleSelectAllPermissions}
-            className='bg-white'
+            className='h-5 w-5 rounded-full accent-indigo-600 cursor-pointer bg-white'
           />
           Select All Permissions
         </label>
@@ -395,7 +395,7 @@ export default function RolesAndPermission() {
           <div>
             <label className='flex justify-between items-center mb-4 gap-2'>
               <input
-                className="form-checkbox bg-white"
+                className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer bg-white"
                 type="checkbox"
                 onChange={() => toggleSelectAllInSection(section.section)}
                 checked={section.permissions.every(perm => selectedPermissions[section.section]?.[perm])}
@@ -409,7 +409,7 @@ export default function RolesAndPermission() {
               <li key={i}>
                 <label className='flex items-center mb-4 gap-2 '>
                   <input
-                  className='bg-white'
+                  className='h-5 w-5 rounded-full accent-indigo-600 cursor-pointer bg-white'
                     type="checkbox"
                     checked={selectedPermissions[section.section]?.[permission] || false}
                     onChange={() => togglePermission(section.section, permission)}

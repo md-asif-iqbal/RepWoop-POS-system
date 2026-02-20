@@ -35,7 +35,7 @@ export default function NewUsers() {
   return (
     <div className='bg-white dark:bg-slate-900 font-inter text-sm dark:text-white'>
 
-    <div className="p-0  mt-[25%] sm:mt-[5%]  w-full">
+    <div className="p-0   w-full">
               {/* Title Section */}
 
   <div className=" mb-4  shadow-sm rounded-sm ">

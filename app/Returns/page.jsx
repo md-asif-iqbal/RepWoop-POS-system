@@ -13,8 +13,10 @@ const SalesReturnList = () => {
   const [selectedPaymentStatus, setSelectedPaymentStatus] = useState('');
   const [openAction, setOpenAction] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
 
-  const salesReturns = [
+  const initialReturns = [
     { id: 1, productName: 'Macbook Pro', date: '19 Nov 2022', customer: 'Thomas', status: 'Received', grandTotal: 550, paid: 120, due: 430, paymentStatus: 'Paid' },
     { id: 2, productName: 'Orange', date: '19 Nov 2022', customer: 'Benjamin', status: 'Pending', grandTotal: 550, paid: 120, due: 430, paymentStatus: 'Unpaid' },
     { id: 3, productName: 'Pineapple', date: '19 Nov 2022', customer: 'James', status: 'Pending', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Unpaid' },
@@ -23,6 +25,10 @@ const SalesReturnList = () => {
     { id: 6, productName: 'Avocat', date: '19 Nov 2022', customer: 'Beverly', status: 'Pending', grandTotal: 210, paid: 120, due: 90, paymentStatus: 'Unpaid' },
     { id: 7, productName: 'Apple Earpods', date: '19 Nov 2022', customer: 'Apex Computers', status: 'Ordered', grandTotal: 1000, paid: 500, due: 500, paymentStatus: 'Partial' },
   ];
+  const [salesReturns, setSalesReturns] = useState(initialReturns);
+
+  const handleDelete = (id) => { setSalesReturns(salesReturns.filter(r => r.id !== id)); setDeleteModal(null); };
+  const handleSaveEdit = () => { setSalesReturns(salesReturns.map(r => r.id === editModal.id ? editModal : r)); setEditModal(null); };
 
   const uniqueCustomers = [...new Set(salesReturns.map(i => i.customer))];
   const uniqueStatuses = [...new Set(salesReturns.map(i => i.status))];
@@ -39,7 +45,7 @@ const SalesReturnList = () => {
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg"><RotateCcw size={24} /></div>
@@ -128,8 +134,8 @@ const SalesReturnList = () => {
                         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === r.id ? null : r.id)}><MoreVertical size={16} /></Button>
                         {openAction === r.id && (
                           <div className="absolute right-0 top-full mt-1 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600" onClick={() => { setEditModal({...r}); setOpenAction(null); }}><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500" onClick={() => { setDeleteModal(r); setOpenAction(null); }}><Trash2 size={14} />Delete</button>
                           </div>
                         )}
                       </div>
@@ -161,6 +167,61 @@ const SalesReturnList = () => {
                 <div className="flex justify-end gap-2">
                   <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
                   <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Edit Modal */}
+        {editModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+            <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-lg">Edit Return</CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Product Name</label><Input value={editModal.productName} onChange={e => setEditModal({...editModal, productName: e.target.value})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Customer</label><Input value={editModal.customer} onChange={e => setEditModal({...editModal, customer: e.target.value})} /></div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="text-xs font-medium text-slate-600 mb-1 block">Status</label>
+                    <select className="w-full border border-slate-200 rounded-md px-3 py-2 text-sm" value={editModal.status} onChange={e => setEditModal({...editModal, status: e.target.value})}>
+                      <option>Received</option><option>Pending</option><option>Ordered</option>
+                    </select>
+                  </div>
+                  <div><label className="text-xs font-medium text-slate-600 mb-1 block">Payment</label>
+                    <select className="w-full border border-slate-200 rounded-md px-3 py-2 text-sm" value={editModal.paymentStatus} onChange={e => setEditModal({...editModal, paymentStatus: e.target.value})}>
+                      <option>Paid</option><option>Unpaid</option><option>Partial</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="text-xs font-medium text-slate-600 mb-1 block">Paid ($)</label><Input type="number" value={editModal.paid} onChange={e => setEditModal({...editModal, paid: Number(e.target.value), due: editModal.grandTotal - Number(e.target.value)})} /></div>
+                  <div><label className="text-xs font-medium text-slate-600 mb-1 block">Grand Total ($)</label><Input type="number" value={editModal.grandTotal} onChange={e => setEditModal({...editModal, grandTotal: Number(e.target.value)})} /></div>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                  <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Delete Modal */}
+        {deleteModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+            <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-lg text-red-600">Delete Return</CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">Delete return for <strong>{deleteModal.productName}</strong>? This action cannot be undone.</p>
+                <div className="flex gap-2">
+                  <Button variant="destructive" onClick={() => handleDelete(deleteModal.id)} className="flex-1">Delete</Button>
+                  <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
                 </div>
               </CardContent>
             </Card>

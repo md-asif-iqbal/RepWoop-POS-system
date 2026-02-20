@@ -39,7 +39,7 @@ export default function SuppliersAdded() {
   return (
     <div className='bg-white dark:bg-slate-900 font-inter text-sm md:h-screen'>
 
-        <div className="p-0  mt-[25%] lg:mt-[5%]  w-full dark:text-white">
+        <div className="p-0   w-full dark:text-white">
         {/* Title Section */}
       <div className=" mb-4  shadow-sm ">
       <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Suppliers </h1>

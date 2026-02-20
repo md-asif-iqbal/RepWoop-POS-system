@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { ShoppingCart, Eye, Pencil, Trash2, Plus, Search, MoreVertical, CreditCard, FileText, ChevronLeft, ChevronRight, RotateCcw, Filter } from 'lucide-react';
+import { ShoppingCart, Eye, Pencil, Trash2, Plus, Search, MoreVertical, CreditCard, FileText, ChevronLeft, ChevronRight, RotateCcw, Filter, X } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Input } from '@/app/components/ui/input';
 import { Button } from '@/app/components/ui/button';
@@ -9,6 +9,11 @@ import { Badge } from '@/app/components/ui/badge';
 
 export default function Purchase() {
   const [openAction, setOpenAction] = useState(null);
+  const [viewModal, setViewModal] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [paymentModal, setPaymentModal] = useState(null);
+  const [paymentAmount, setPaymentAmount] = useState('');
   const [filter, setFilter] = useState({ billNumber: '', startDate: '', endDate: '', product: '', supplier: '' });
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 10;
@@ -57,9 +62,18 @@ export default function Purchase() {
   const startIdx = (currentPage - 1) * perPage;
   const currentPurchases = purchases.slice(startIdx, startIdx + perPage);
 
+  const handleDelete = (billNo) => { setPurchases(purchases.filter(p => p.billNo !== billNo)); setDeleteModal(null); };
+  const handleSaveEdit = () => { setPurchases(purchases.map(p => p.billNo === editModal.billNo ? editModal : p)); setEditModal(null); };
+  const handleAddPayment = () => {
+    const amt = Number(paymentAmount);
+    if (!amt) return;
+    setPurchases(purchases.map(p => p.billNo === paymentModal.billNo ? {...p, paid: p.paid + amt, due: Math.max(0, p.due - amt)} : p));
+    setPaymentModal(null); setPaymentAmount('');
+  };
+
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
@@ -150,11 +164,11 @@ export default function Purchase() {
                         </Button>
                         {openAction === p.billNo && (
                           <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><FileText size={14} />Invoice</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-emerald-600"><CreditCard size={14} />Payment</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300" onClick={() => { window.print(); setOpenAction(null); }}><FileText size={14} />Invoice</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300" onClick={() => { setViewModal(p); setOpenAction(null); }}><Eye size={14} />View</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600" onClick={() => { setEditModal({...p}); setOpenAction(null); }}><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-emerald-600" onClick={() => { setPaymentModal(p); setPaymentAmount(''); setOpenAction(null); }}><CreditCard size={14} />Payment</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500" onClick={() => { setDeleteModal(p); setOpenAction(null); }}><Trash2 size={14} />Delete</button>
                           </div>
                         )}
                       </div>
@@ -178,6 +192,91 @@ export default function Purchase() {
           </div>
         </div>
       </div>
+
+      {/* View Modal */}
+      {viewModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setViewModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Purchase #{viewModal.billNo}</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setViewModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <div className="grid grid-cols-2 gap-2">
+                <div><span className="text-slate-500 text-xs">Supplier</span><p className="font-medium">{viewModal.supplier}</p></div>
+                <div><span className="text-slate-500 text-xs">Date</span><p className="font-medium">{viewModal.purchaseDate}</p></div>
+                <div><span className="text-slate-500 text-xs">Items</span><p className="font-medium">{viewModal.items}</p></div>
+                <div><span className="text-slate-500 text-xs">Status</span><p>{viewModal.due === 0 ? <Badge variant="success">Paid</Badge> : <Badge variant="destructive">Due</Badge>}</p></div>
+                <div><span className="text-slate-500 text-xs">Payable</span><p className="font-semibold text-slate-800">৳{viewModal.payable.toLocaleString()}</p></div>
+                <div><span className="text-slate-500 text-xs">Paid</span><p className="font-semibold text-emerald-600">৳{viewModal.paid.toLocaleString()}</p></div>
+                <div><span className="text-slate-500 text-xs">Due</span><p className="font-semibold text-rose-500">৳{viewModal.due.toLocaleString()}</p></div>
+              </div>
+              <Button variant="outline" onClick={() => setViewModal(null)} className="w-full mt-2">Close</Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Edit Purchase #{editModal.billNo}</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Supplier</label><Input value={editModal.supplier} onChange={e => setEditModal({...editModal, supplier: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Items</label><Input value={editModal.items} onChange={e => setEditModal({...editModal, items: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Payable (৳)</label><Input type="number" value={editModal.payable} onChange={e => setEditModal({...editModal, payable: Number(e.target.value)})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Paid (৳)</label><Input type="number" value={editModal.paid} onChange={e => setEditModal({...editModal, paid: Number(e.target.value), due: editModal.payable - Number(e.target.value)})} /></div>
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Payment Modal */}
+      {paymentModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setPaymentModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Add Payment</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setPaymentModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-slate-600">Due: <strong className="text-rose-500">৳{paymentModal.due.toLocaleString()}</strong></p>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Amount (৳)</label><Input type="number" placeholder="Enter amount" value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
+              <div className="flex gap-2">
+                <Button onClick={handleAddPayment} className="flex-1">Add Payment</Button>
+                <Button variant="outline" onClick={() => setPaymentModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Delete Modal */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg text-red-600">Delete Purchase</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-600 mb-4">Delete purchase <strong>#{deleteModal.billNo}</strong> from <strong>{deleteModal.supplier}</strong>? This cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" onClick={() => handleDelete(deleteModal.billNo)} className="flex-1">Delete</Button>
+                <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

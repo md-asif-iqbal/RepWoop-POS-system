@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
-import { CreditCard, Search, RotateCcw, Printer, FileText, ChevronLeft, ChevronRight, MoreVertical } from 'lucide-react';
-import { Card, CardContent } from '@/app/components/ui/card';
+import { CreditCard, Search, RotateCcw, Printer, FileText, ChevronLeft, ChevronRight, MoreVertical, X, Trash2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Input } from '@/app/components/ui/input';
 import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
@@ -28,8 +28,12 @@ export default function Payments() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [openMenu, setOpenMenu] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [payments, setPayments] = useState(data);
 
-  const filteredData = data.filter(item => {
+  const handleDelete = (id) => { setPayments(payments.filter(p => p.id !== id)); setDeleteModal(null); };
+
+  const filteredData = payments.filter(item => {
     const matchName = !nameFilter || item.customer === nameFilter || item.supplier === nameFilter;
     const itemDate = new Date(item.date);
     const matchDate = (!startDate || itemDate >= new Date(startDate)) && (!endDate || itemDate <= new Date(endDate));
@@ -53,7 +57,7 @@ export default function Payments() {
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl text-white shadow-lg"><CreditCard size={24} /></div>
@@ -124,8 +128,8 @@ export default function Payments() {
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenMenu(openMenu === item.id ? null : item.id)}><MoreVertical size={16} /></Button>
                       {openMenu === item.id && (
                         <div className="absolute right-4 top-10 bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-20 w-28">
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs flex items-center gap-1.5"><FileText size={12} />Invoice</button>
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs">Delete</button>
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs flex items-center gap-1.5" onClick={() => { handlePrint(); setOpenMenu(null); }}><FileText size={12} />Invoice</button>
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs flex items-center gap-1.5" onClick={() => { setDeleteModal(item); setOpenMenu(null); }}><Trash2 size={12} />Delete</button>
                         </div>
                       )}
                     </td>
@@ -148,6 +152,25 @@ export default function Payments() {
           )}
         </Card>
       </div>
+
+      {/* Delete Modal */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg text-red-600">Delete Payment</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-600 mb-4">Delete payment of <strong>৳{deleteModal.amount.toLocaleString()}</strong> for <strong>{deleteModal.customer || deleteModal.supplier}</strong>? This cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" onClick={() => handleDelete(deleteModal.id)} className="flex-1">Delete</Button>
+                <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

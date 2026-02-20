@@ -28,7 +28,7 @@ export default function CreateOwner() {
       };
   return (
     <div className="bg-white dark:bg-slate-900 font-inter text-sm">
-        <div className=" shadow-sm  mt-[25%] lg:mt-[5%] ">
+        <div className=" shadow-sm  ">
       <h1 className="text-lg dark:text-white  text-gray-500 mx-5 ">Owners</h1>
         <div className='flex items-start justify-start mx-5 py-5 gap-10'>
             <Link href="/Owners" className="group text-gray-500 dark:text-white text-md hover:text-indigo-500">

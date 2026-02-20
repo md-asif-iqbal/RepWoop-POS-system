@@ -46,6 +46,9 @@ export default function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
   const [openAction, setOpenAction] = useState(null);
+  const [viewModal, setViewModal] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
 
   const products = [
     { id: 1, product: 'Lenovo 3rd Generation', sku: 'PT001', category: 'Laptop', brand: 'Lenovo', price: 12500.00, createdDate: '2023-08-15', unit: 'Pc', qty: 100, createdBy: 'Arron' },
@@ -137,9 +140,19 @@ export default function ProductList() {
     }
   };
 
+  const handleDeleteProduct = (id) => {
+    setDeleteModal(null);
+    setOpenAction(null);
+  };
+
+  const handleSaveEdit = () => {
+    setEditModal(null);
+    setOpenAction(null);
+  };
+
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
@@ -242,7 +255,7 @@ export default function ProductList() {
               <thead>
                 <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
                   <th className="px-3 py-3 text-left font-medium w-10">
-                    <input type="checkbox" onChange={handleSelectAll} className="rounded" />
+                    <input type="checkbox" onChange={handleSelectAll} className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                   </th>
                   <th className="px-3 py-3 text-left font-medium">Product</th>
                   <th className="px-3 py-3 text-left font-medium">SKU</th>
@@ -258,7 +271,7 @@ export default function ProductList() {
                 {filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
                   <tr key={p.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
                     <td className="px-3 py-3">
-                      <input type="checkbox" checked={selectedProducts.includes(p.id)} onChange={(e) => handleSelectProduct(e, p.id)} className="rounded" />
+                      <input type="checkbox" checked={selectedProducts.includes(p.id)} onChange={(e) => handleSelectProduct(e, p.id)} className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                     </td>
                     <td className="px-3 py-3">
                       <div className="flex items-center gap-3">
@@ -284,9 +297,9 @@ export default function ProductList() {
                         </Button>
                         {openAction === p.id && (
                           <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                            <button onClick={() => { setViewModal(p); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
+                            <button onClick={() => { setEditModal({ ...p }); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button onClick={() => { setDeleteModal(p); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
                           </div>
                         )}
                       </div>
@@ -337,6 +350,61 @@ export default function ProductList() {
                 <div className="flex justify-end gap-2 mt-4">
                   <Button variant="outline" onClick={() => setShowModal(false)}>Cancel</Button>
                   <Button>Submit</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* VIEW MODAL */}
+        {viewModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="w-full max-w-md">
+              <CardHeader><div className="flex items-center justify-between"><CardTitle>Product Details</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setViewModal(null)}><X size={16} /></Button></div></CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+                  <img src={productImages[viewModal.product] || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop'} alt={viewModal.product} className="w-16 h-16 rounded-lg object-cover" />
+                  <div><p className="font-semibold text-lg text-slate-800 dark:text-white">{viewModal.product}</p><p className="text-xs text-slate-500">SKU: {viewModal.sku}</p></div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {[['Category', viewModal.category], ['Brand', viewModal.brand], ['Price', `$${viewModal.price}`], ['Qty', `${viewModal.qty} ${viewModal.unit}`], ['Created', viewModal.createdDate], ['By', viewModal.createdBy]].map(([k,v]) => (
+                    <div key={k} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-3"><p className="text-xs text-slate-500">{k}</p><p className="font-semibold text-slate-800 dark:text-white">{v}</p></div>
+                  ))}
+                </div>
+                <Button className="w-full" onClick={() => setViewModal(null)}>Close</Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* EDIT MODAL */}
+        {editModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="w-full max-w-md">
+              <CardHeader><div className="flex items-center justify-between"><CardTitle>Edit Product</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setEditModal(null)}><X size={16} /></Button></div></CardHeader>
+              <CardContent className="space-y-3">
+                {[['product','Product Name'],['sku','SKU'],['category','Category'],['brand','Brand'],['price','Price'],['qty','Quantity']].map(([field, label]) => (
+                  <div key={field}><label className="text-xs font-medium text-slate-500 mb-1 block">{label}</label><Input value={String(editModal[field])} onChange={e => setEditModal({ ...editModal, [field]: e.target.value })} /></div>
+                ))}
+                <div className="flex gap-2 pt-2">
+                  <Button className="flex-1" onClick={handleSaveEdit}>Save Changes</Button>
+                  <Button variant="outline" className="flex-1" onClick={() => setEditModal(null)}>Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* DELETE MODAL */}
+        {deleteModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="w-full max-w-sm">
+              <CardHeader><div className="flex items-center justify-between"><CardTitle className="text-red-500">Delete Product</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setDeleteModal(null)}><X size={16} /></Button></div></CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-slate-600 dark:text-slate-300">Delete <strong>{deleteModal.product}</strong>? This cannot be undone.</p>
+                <div className="flex gap-2">
+                  <Button variant="destructive" className="flex-1" onClick={() => handleDeleteProduct(deleteModal.id)}>Yes, Delete</Button>
+                  <Button variant="outline" className="flex-1" onClick={() => setDeleteModal(null)}>Cancel</Button>
                 </div>
               </CardContent>
             </Card>

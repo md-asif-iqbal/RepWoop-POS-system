@@ -1,10 +1,11 @@
 "use client"
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Ruler, ChevronLeft, ChevronRight, MoreVertical } from 'lucide-react';
-import { Card, CardContent } from '@/app/components/ui/card';
+import { Ruler, ChevronLeft, ChevronRight, MoreVertical, X, Pencil, Trash2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
+import { Input } from '@/app/components/ui/input';
 
 export default function Units() {
   const units = [
@@ -25,16 +26,28 @@ export default function Units() {
     { id: 15, name: 'Sq Meter', relatedTo: 'Meter', relatedSign: '*', relatedBy: '100', result: 'Sq Meter = 1 Meter × 100' },
   ];
 
+  const [unitList, setUnitList] = useState(units);
   const [currentPage, setCurrentPage] = useState(1);
   const [openMenu, setOpenMenu] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
   const perPage = 10;
-  const totalPages = Math.ceil(units.length / perPage);
-  const currentData = units.slice((currentPage - 1) * perPage, currentPage * perPage);
-  const baseUnits = units.filter(u => u.relatedTo === '-').length;
+  const totalPages = Math.ceil(unitList.length / perPage);
+  const currentData = unitList.slice((currentPage - 1) * perPage, currentPage * perPage);
+  const baseUnits = unitList.filter(u => u.relatedTo === '-').length;
+
+  const handleDelete = (id) => {
+    setUnitList(unitList.filter(u => u.id !== id));
+    setDeleteModal(null);
+  };
+  const handleSaveEdit = () => {
+    setUnitList(unitList.map(u => u.id === editModal.id ? editModal : u));
+    setEditModal(null);
+  };
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl text-white shadow-lg"><Ruler size={24} /></div>
@@ -79,8 +92,8 @@ export default function Units() {
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenMenu(openMenu === unit.id ? null : unit.id)}><MoreVertical size={16} /></Button>
                       {openMenu === unit.id && (
                         <div className="absolute right-4 top-10 bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-20 w-28">
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs">Edit</button>
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs">Delete</button>
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs flex items-center gap-1" onClick={() => { setEditModal({...unit}); setOpenMenu(null); }}><Pencil size={12}/>Edit</button>
+                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs flex items-center gap-1" onClick={() => { setDeleteModal(unit); setOpenMenu(null); }}><Trash2 size={12}/>Delete</button>
                         </div>
                       )}
                     </td>
@@ -101,6 +114,49 @@ export default function Units() {
           )}
         </Card>
       </div>
+
+      {/* Edit Modal */}
+      {editModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Edit Unit</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Unit Name</label><Input value={editModal.name} onChange={e => setEditModal({...editModal, name: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Related To</label><Input value={editModal.relatedTo} onChange={e => setEditModal({...editModal, relatedTo: e.target.value})} /></div>
+              <div className="grid grid-cols-2 gap-3">
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Sign</label><Input value={editModal.relatedSign} onChange={e => setEditModal({...editModal, relatedSign: e.target.value})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Factor</label><Input value={editModal.relatedBy} onChange={e => setEditModal({...editModal, relatedBy: e.target.value})} /></div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Delete Modal */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg text-red-600">Delete Unit</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-600 mb-4">Are you sure you want to delete <strong>{deleteModal.name}</strong>? This action cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" onClick={() => handleDelete(deleteModal.id)} className="flex-1">Delete</Button>
+                <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

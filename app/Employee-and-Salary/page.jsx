@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/ca
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Badge } from '@/app/components/ui/badge';
-import { Users, UserPlus, DollarSign, Clock, Search, RotateCcw, Printer, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, UserPlus, DollarSign, Clock, Search, RotateCcw, Printer, MoreVertical, ChevronLeft, ChevronRight, X, Pencil, Trash2, Eye } from 'lucide-react';
 
 export default function EmployeeAndSalary() {
   const pathname = usePathname();
@@ -35,10 +35,17 @@ export default function EmployeeAndSalary() {
 
   const [filterName, setFilterName] = useState('');
   const [filterPhone, setFilterPhone] = useState('');
+  const [employees, setEmployees] = useState(employeesData);
   const [filteredEmployees, setFilteredEmployees] = useState(employeesData);
   const [currentPage, setCurrentPage] = useState(1);
   const [openAction, setOpenAction] = useState(null);
+  const [viewModal, setViewModal] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
   const employeesPerPage = 10;
+
+  const handleDeleteEmp = (id) => { const updated = employees.filter(e => e.id !== id); setEmployees(updated); setFilteredEmployees(updated); setDeleteModal(null); };
+  const handleSaveEdit = () => { const updated = employees.map(e => e.id === editModal.id ? editModal : e); setEmployees(updated); setFilteredEmployees(updated); setEditModal(null); };
 
   const indexOfLast = currentPage * employeesPerPage;
   const indexOfFirst = indexOfLast - employeesPerPage;
@@ -181,9 +188,10 @@ export default function EmployeeAndSalary() {
                         </Button>
                         {openAction === emp.id && (
                           <div className="absolute right-0 mt-1 w-36 bg-white border rounded-lg shadow-lg z-10 py-1">
-                            {['View', 'Edit', 'Salary', 'Delete'].map(a => (
-                              <button key={a} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50" onClick={() => setOpenAction(null)}>{a}</button>
-                            ))}
+                              <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-slate-700" onClick={() => { setViewModal(emp); setOpenAction(null); }}><Eye size={14}/>View</button>
+                              <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-blue-600" onClick={() => { setEditModal({...emp}); setOpenAction(null); }}><Pencil size={14}/>Edit</button>
+                              <Link href="/Employee-and-Salary/Salary/Create"><button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-emerald-600" onClick={() => setOpenAction(null)}><DollarSign size={14}/>Salary</button></Link>
+                              <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-red-500" onClick={() => { setDeleteModal(emp); setOpenAction(null); }}><Trash2 size={14}/>Delete</button>
                           </div>
                         )}
                       </div>
@@ -211,6 +219,78 @@ export default function EmployeeAndSalary() {
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
+        </div>
+      )}
+
+      {/* View Modal */}
+      {viewModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setViewModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Employee Details</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setViewModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white text-lg font-bold">{viewModal.name.charAt(0)}</div>
+                <div><p className="font-semibold text-lg">{viewModal.name}</p><p className="text-slate-500">{viewModal.email}</p></div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div><span className="text-slate-500 text-xs">Phone</span><p>{viewModal.phone}</p></div>
+                <div><span className="text-slate-500 text-xs">Joining Date</span><p>{viewModal.joiningDate}</p></div>
+                <div><span className="text-slate-500 text-xs">Address</span><p>{viewModal.address}</p></div>
+                <div><span className="text-slate-500 text-xs">Salary</span><p className="font-semibold">৳{viewModal.salary.toLocaleString()}</p></div>
+                <div><span className="text-slate-500 text-xs">Total Paid</span><p className="text-emerald-600 font-medium">৳{viewModal.totalPaid.toLocaleString()}</p></div>
+                <div><span className="text-slate-500 text-xs">Due</span><p className={viewModal.totalDue > 0 ? 'text-red-500 font-medium' : 'text-emerald-600 font-medium'}>৳{viewModal.totalDue.toLocaleString()}</p></div>
+              </div>
+              <Button variant="outline" onClick={() => setViewModal(null)} className="w-full mt-2">Close</Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Edit Employee</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Name</label><Input value={editModal.name} onChange={e => setEditModal({...editModal, name: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Email</label><Input value={editModal.email} onChange={e => setEditModal({...editModal, email: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Phone</label><Input value={editModal.phone} onChange={e => setEditModal({...editModal, phone: e.target.value})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Address</label><Input value={editModal.address} onChange={e => setEditModal({...editModal, address: e.target.value})} /></div>
+              <div className="grid grid-cols-2 gap-3">
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Salary (৳)</label><Input type="number" value={editModal.salary} onChange={e => setEditModal({...editModal, salary: Number(e.target.value)})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Overtime Rate</label><Input type="number" value={editModal.overtimeRate} onChange={e => setEditModal({...editModal, overtimeRate: Number(e.target.value)})} /></div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Delete Modal */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg text-red-600">Delete Employee</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-600 mb-4">Delete employee <strong>{deleteModal.name}</strong>? This cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" onClick={() => handleDeleteEmp(deleteModal.id)} className="flex-1">Delete</Button>
+                <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
     </div>

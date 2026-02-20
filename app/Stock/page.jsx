@@ -92,7 +92,7 @@ export default function Stock() {
 
   return (
     <div className="font-inter text-sm">
-      <div className="p-4 max-w-full mx-auto mt-[5%]">
+      <div className="p-4 max-w-full mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">

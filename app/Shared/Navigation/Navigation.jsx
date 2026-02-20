@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
-import { Moon, SunMedium, Search, Bell } from 'lucide-react';
-import Sidebar from '../Sidebar/Sidebar';
+import { Moon, SunMedium, Bell, Rocket } from 'lucide-react';
+import { MobileMenuButton } from '../Sidebar/MobileNav';
 
 export default function Navigation() {
   const [theme, setTheme] = useState(null);
@@ -47,27 +47,37 @@ export default function Navigation() {
     { href: '/Sales', label: 'Sales' },
     { href: '/Stock', label: 'Stock' },
     { href: '/Products', label: 'Products' },
+    { href: '/Purchase', label: 'Purchase' },
+    { href: '/Customers', label: 'Customers' },
+    { href: '/Suppliers', label: 'Suppliers' },
+    { href: '/Reports', label: 'Reports' },
   ];
 
   return (
-    <div className="w-full lg:w-[86%] fixed top-0 z-50 font-inter text-sm">
+    <div className="w-full fixed top-0 z-[55] font-inter text-sm lg:left-64 lg:w-[calc(100%-256px)]">
       <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Left - Mobile sidebar + Brand */}
-          <div className="flex items-center gap-3">
-            <span className="min-[769px]:hidden"><Sidebar /></span>
-            <h1 className="text-slate-700 dark:text-white font-semibold text-base hidden sm:block">
-              Repwoop <span className="text-indigo-600 dark:text-indigo-400">POS</span>
-            </h1>
+          {/* Left - Mobile hamburger + Brand */}
+          <div className="flex items-center gap-2">
+            <MobileMenuButton />
+            {/* Mobile logo - only visible on mobile (< lg) */}
+            <Link href="/" className="flex items-center gap-2 lg:hidden">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                <Rocket size={15} className="text-white -rotate-45" />
+              </div>
+              <span className="text-slate-700 dark:text-white font-bold text-sm">
+                Soft<span className="text-indigo-600 dark:text-indigo-400">Landing</span>
+              </span>
+            </Link>
           </div>
 
           {/* Center - Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5 overflow-x-auto">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   pathname === link.href
                     ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -78,8 +88,8 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Right - Actions */}
-          <div className="flex items-center gap-3">
+          {/* Right - Actions (always visible) */}
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             {/* Theme Toggle */}
             <button
               onClick={handleToggle}

@@ -1,9 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { usePathname } from 'next/navigation';
-
 import {
   Component, UserRound, Landmark, Banknote, Wallet, BadgeDollarSign,
   LayoutDashboard, MailPlus, Users, UserCog, ChartColumn,
@@ -13,8 +12,8 @@ import {
   BadgeInfo, DatabaseBackup, UserCheck, Cog, ShoppingCart, ShoppingBag,
   RotateCcwSquare, BaggageClaim, Boxes, Weight, Package, Ribbon, X, Rocket
 } from 'lucide-react';
+import { useSidebar } from './SidebarContext';
 
-// Sidebar navigation data structure
 const sidebarSections = [
   {
     title: null,
@@ -96,128 +95,74 @@ const sidebarSections = [
   },
 ];
 
-// Text-based Logo Component
-function SoftLandingLogo({ collapsed = false }) {
+/** Hamburger button — place this in the nav bar */
+export function MobileMenuButton() {
+  const { open } = useSidebar();
   return (
-    <Link href="/" className="flex items-center gap-2.5 px-2 py-3 group">
-      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/40 transition-shadow shrink-0">
-        <Rocket size={18} className="text-white -rotate-45" />
-      </div>
-      {!collapsed && (
-        <div className="flex flex-col">
-          <span className="text-[15px] font-bold text-slate-800 dark:text-white leading-tight tracking-tight">
-            Soft<span className="text-indigo-600 dark:text-indigo-400">Landing</span>
-          </span>
-          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-            POS System
-          </span>
-        </div>
-      )}
-    </Link>
+    <button
+      onClick={open}
+      className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 text-slate-600 dark:text-slate-300 transition-all duration-200 active:scale-95"
+      aria-label="Open menu"
+    >
+      <Menu size={20} strokeWidth={2} />
+    </button>
   );
 }
 
-export default function Sidebar() {
+/** Drawer + backdrop — place this at body root, outside any stacking context */
+export default function MobileDrawer() {
+  const { isOpen, close } = useSidebar();
   const pathname = usePathname();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const sidebarRef = useRef(null);
-  const toggleButtonRef = useRef(null);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
-  // Close sidebar on route change (mobile)
-  useEffect(() => {
-    setIsSidebarOpen(false);
-  }, [pathname]);
-
-  // Close on outside click
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target) &&
-        toggleButtonRef.current &&
-        !toggleButtonRef.current.contains(event.target)
-      ) {
-        setIsSidebarOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Close on Escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') setIsSidebarOpen(false);
-    };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, []);
 
   return (
-    <div className="font-inter text-sm h-full">
-      {/* Mobile Hamburger Toggle Button */}
-      <div className="lg:hidden flex items-center">
-        <button
-          ref={toggleButtonRef}
-          className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all duration-200 active:scale-95"
-          onClick={toggleSidebar}
-          aria-label="Toggle sidebar"
-        >
-          <Menu size={20} strokeWidth={2} />
-        </button>
-      </div>
-
-      {/* Mobile Overlay Backdrop */}
-      <div 
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] lg:hidden transition-opacity duration-300 ${
-          isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={closeSidebar} 
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={close}
+        aria-hidden="true"
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden transition-opacity duration-300
+          ${isOpen ? 'opacity-100 pointer-events-auto z-[200]' : 'opacity-0 pointer-events-none -z-10'}`}
       />
 
-      {/* Sidebar Panel */}
+      {/* Sidebar Drawer */}
       <div
-        ref={sidebarRef}
-        className={`fixed top-0 left-0 z-[70] lg:static lg:z-auto bg-white dark:bg-slate-900
-          lg:h-full
-          border-r border-slate-200 dark:border-slate-800 lg:border-r-0
-          w-[280px] lg:w-64
-          transition-transform duration-300 ease-in-out
-          ${isSidebarOpen ? 'translate-x-0 h-full overflow-hidden' : '-translate-x-full lg:translate-x-0'}`}
+        className={`fixed top-0 left-0 h-full w-[280px] bg-white dark:bg-slate-900
+          border-r border-slate-200 dark:border-slate-800 lg:hidden
+          transition-transform duration-300 ease-in-out z-[300]
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
-        {/* Scrollable Inner Content */}
         <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent">
-          <div className="p-3 space-y-4 text-[13px]">
-            
-            {/* Logo + Close Button Row */}
+          <div className="p-3 space-y-4 text-[13px] font-inter">
+
+            {/* Logo + close */}
             <div className="flex items-center justify-between">
-              <SoftLandingLogo />
-              {/* Mobile Close Button */}
+              <Link href="/" onClick={close} className="flex items-center gap-2.5 px-2 py-3 group">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 shrink-0">
+                  <Rocket size={18} className="text-white -rotate-45" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[15px] font-bold text-slate-800 dark:text-white leading-tight tracking-tight">
+                    Soft<span className="text-indigo-600 dark:text-indigo-400">Landing</span>
+                  </span>
+                  <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                    POS System
+                  </span>
+                </div>
+              </Link>
               <button
-                onClick={closeSidebar}
-                className="lg:hidden p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition-all duration-200 mr-1"
-                aria-label="Close sidebar"
+                onClick={close}
+                className="p-2 mr-1 rounded-xl hover:bg-red-50 dark:hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition-all duration-200"
+                aria-label="Close menu"
               >
                 <X size={20} strokeWidth={2} />
               </button>
             </div>
 
-            {/* Navigation Sections */}
+            {/* Nav sections */}
             {sidebarSections.map((section, sectionIdx) => (
               <div key={sectionIdx}>
                 {section.title && (
-                  <p className="section-title px-3 pt-2">
-                    {section.title}
-                  </p>
+                  <p className="section-title px-3 pt-2">{section.title}</p>
                 )}
                 <ul className="space-y-0.5">
                   {section.items.map((item) => {
@@ -227,7 +172,7 @@ export default function Sidebar() {
                       <li key={item.href}>
                         <Link
                           href={item.href}
-                          onClick={closeSidebar}
+                          onClick={close}
                           className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group ${
                             isActive
                               ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-medium'
@@ -237,11 +182,13 @@ export default function Sidebar() {
                           <Icon
                             size={18}
                             strokeWidth={isActive ? 2 : 1.5}
-                            className={isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'}
+                            className={isActive
+                              ? 'text-indigo-600 dark:text-indigo-400'
+                              : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'}
                           />
                           <span>{item.label}</span>
                           {isActive && (
-                            <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+                            <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400" />
                           )}
                         </Link>
                       </li>
@@ -251,19 +198,13 @@ export default function Sidebar() {
               </div>
             ))}
 
-            {/* Bottom Links */}
+            {/* Bottom links */}
             <div className="space-y-0.5 pb-8">
-              <Link
-                href="#"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
-              >
+              <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                 <DatabaseBackup size={18} strokeWidth={1.5} className="text-slate-400 dark:text-slate-500" />
                 <span>Backup</span>
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
-              >
+              <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                 <Building2 size={18} strokeWidth={1.5} className="text-slate-400 dark:text-slate-500" />
                 <span>SoftLanding</span>
               </Link>
@@ -272,6 +213,6 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

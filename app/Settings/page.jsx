@@ -9,9 +9,9 @@ import { Separator } from '@/app/components/ui/separator';
 import { Settings as SettingsIcon, Building2, FileText, Barcode, SlidersHorizontal, Upload, Save, Phone, Mail, MapPin, DollarSign, AlertTriangle, Palette, Receipt } from 'lucide-react';
 
 export default function Settings() {
-  const [companyName, setCompanyName] = useState('Repwoop company');
+  const [companyName, setCompanyName] = useState('SoftLanding company');
   const [phone, setPhone] = useState('017150000000');
-  const [email, setEmail] = useState('repwoop@info.com');
+  const [email, setEmail] = useState('softlanding@info.com');
   const [address, setAddress] = useState('Sahajatpur, Gulshan, Dhaka');
   const [invoiceLogoType, setInvoiceLogoType] = useState('Logo');
   const [invoiceDesign, setInvoiceDesign] = useState('Pos Printer');
@@ -33,7 +33,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-[25%] sm:mt-[5%] font-inter text-sm max-w-5xl">
+    <div className="container mx-auto px-4 py-8 font-inter text-sm max-w-5xl">
       {/* Page Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">

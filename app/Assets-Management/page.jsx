@@ -29,6 +29,11 @@ export default function Assets() {
   const [assets, setAssets] = useState(initialAssets);
   const [assetNameFilter, setAssetNameFilter] = useState('');
   const [openAction, setOpenAction] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+
+  const handleDeleteAsset = (id) => { setAssets(assets.filter(a => a.id !== id)); setDeleteModal(null); };
+  const handleSaveEdit = () => { setAssets(assets.map(a => a.id === editModal.id ? editModal : a)); setEditModal(null); };
 
   const handleFilter = () => { setAssets(initialAssets.filter(a => a.name.toLowerCase().includes(assetNameFilter.toLowerCase()))); };
   const handleReset = () => { setAssetNameFilter(''); setAssets(initialAssets); };
@@ -77,7 +82,7 @@ export default function Assets() {
                 <td className="px-4 py-3 text-gray-600">৳{asset.forcedSalePrice.toLocaleString()}</td>
                 <td className="px-4 py-3"><Badge variant="info">{asset.quantity}</Badge></td>
                 <td className="px-4 py-3 text-gray-500 text-xs">{asset.note}</td>
-                <td className="px-4 py-3"><div className="relative"><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === asset.id ? null : asset.id)}><MoreVertical className="h-4 w-4" /></Button>{openAction === asset.id && (<div className="absolute right-0 mt-1 w-32 bg-white border rounded-lg shadow-lg z-10 py-1">{['Edit','Delete'].map(a=>(<button key={a} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50" onClick={()=>setOpenAction(null)}>{a}</button>))}</div>)}</div></td>
+                <td className="px-4 py-3"><div className="relative"><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === asset.id ? null : asset.id)}><MoreVertical className="h-4 w-4" /></Button>{openAction === asset.id && (<div className="absolute right-0 mt-1 w-32 bg-white border rounded-lg shadow-lg z-10 py-1"><button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-blue-600" onClick={() => { setEditModal({...asset}); setOpenAction(null); }}><Pencil size={13}/>Edit</button><button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 text-red-500" onClick={() => { setDeleteModal(asset); setOpenAction(null); }}><Trash2 size={13}/>Delete</button></div>)}</div></td>
               </tr>
             ))}
             <tr className="bg-gray-50 font-semibold">
@@ -89,6 +94,50 @@ export default function Assets() {
           </tbody>
         </table>
       </div></CardContent></Card>
+
+      {/* Edit Modal */}
+      {editModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+          <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg">Edit Asset</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Asset Name</label><Input value={editModal.name} onChange={e => setEditModal({...editModal, name: e.target.value})} /></div>
+              <div className="grid grid-cols-2 gap-3">
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Purchase Price (৳)</label><Input type="number" value={editModal.purchasePrice} onChange={e => setEditModal({...editModal, purchasePrice: Number(e.target.value)})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Sale Price (৳)</label><Input type="number" value={editModal.forcedSalePrice} onChange={e => setEditModal({...editModal, forcedSalePrice: Number(e.target.value)})} /></div>
+              </div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Quantity</label><Input type="number" value={editModal.quantity} onChange={e => setEditModal({...editModal, quantity: Number(e.target.value)})} /></div>
+              <div><label className="text-xs font-medium text-slate-600 mb-1 block">Note</label><Input value={editModal.note} onChange={e => setEditModal({...editModal, note: e.target.value})} /></div>
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Delete Modal */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+          <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-lg text-red-600">Delete Asset</CardTitle>
+              <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-600 mb-4">Delete asset <strong>{deleteModal.name}</strong>? This cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" onClick={() => handleDeleteAsset(deleteModal.id)} className="flex-1">Delete</Button>
+                <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

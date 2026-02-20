@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { Truck, Search, Plus, Printer, MoreVertical, Eye, Pencil, Trash2, CreditCard, ChevronLeft, ChevronRight, RotateCcw } from 'lucide-react';
+import { Truck, Search, Plus, Printer, MoreVertical, Eye, Pencil, Trash2, CreditCard, ChevronLeft, ChevronRight, RotateCcw, X, Phone, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/app/components/ui/card';
 import { Input } from '@/app/components/ui/input';
 import { Button } from '@/app/components/ui/button';
@@ -27,6 +27,12 @@ export default function SupplierList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [openAction, setOpenAction] = useState(null);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
+  const [viewModal, setViewModal] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [paymentModal, setPaymentModal] = useState(null);
+  const [paymentAmount, setPaymentAmount] = useState('');
+  const [suppliers, setSuppliers] = useState(suppliersData);
   const perPage = 10;
 
   const handleFilter = () => {
@@ -37,6 +43,18 @@ export default function SupplierList() {
 
   const resetFilter = () => { setFilterName(''); setFilterPhone(''); setFilteredSuppliers(suppliersData); };
 
+  const handleDelete = (id) => {
+    const updated = suppliersData.filter(s => s.id !== id);
+    setFilteredSuppliers(updated);
+    setDeleteModal(null);
+    setOpenAction(null);
+  };
+
+  const handleSaveEdit = () => {
+    setEditModal(null);
+    setOpenAction(null);
+  };
+
   const totalPayable = filteredSuppliers.reduce((s, p) => s + p.payable, 0);
   const totalPaid = filteredSuppliers.reduce((s, p) => s + p.paid, 0);
   const totalDue = filteredSuppliers.reduce((s, p) => s + p.totalDue, 0);
@@ -46,7 +64,7 @@ export default function SupplierList() {
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg"><Truck size={24} /></div>
@@ -117,10 +135,10 @@ export default function SupplierList() {
                         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenAction(openAction === s.id ? null : s.id)}><MoreVertical size={16} /></Button>
                         {openAction === s.id && (
                           <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-emerald-600"><CreditCard size={14} />Payment</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                            <button onClick={() => { setViewModal(s); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-slate-700 dark:text-slate-300"><Eye size={14} />View</button>
+                            <button onClick={() => { setEditModal({ ...s }); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
+                            <button onClick={() => { setPaymentModal(s); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-emerald-600"><CreditCard size={14} />Payment</button>
+                            <button onClick={() => { setDeleteModal(s); setOpenAction(null); }} className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
                           </div>
                         )}
                       </div>
@@ -141,6 +159,80 @@ export default function SupplierList() {
           </div>
         </div>
       </div>
+
+      {/* VIEW MODAL */}
+      {viewModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader><div className="flex items-center justify-between"><CardTitle>Supplier Details</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setViewModal(null)}><X size={16} /></Button></div></CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">{viewModal.name.charAt(0)}</div>
+                <div><p className="font-semibold text-lg text-slate-800 dark:text-white">{viewModal.name}</p><p className="text-xs text-slate-500">{viewModal.email}</p></div>
+              </div>
+              <div className="flex items-center gap-2 text-sm"><Phone size={14} className="text-slate-400" />{viewModal.phone}</div>
+              <div className="flex items-center gap-2 text-sm"><MapPin size={14} className="text-slate-400" />{viewModal.address}</div>
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                {[['Payable', `৳${viewModal.payable.toLocaleString()}`], ['Paid', `৳${viewModal.paid.toLocaleString()}`], ['Purchase Due', `৳${viewModal.purchaseDue.toLocaleString()}`], ['Total Due', `৳${viewModal.totalDue.toLocaleString()}`]].map(([k,v]) => (
+                  <div key={k} className="bg-slate-50 dark:bg-slate-800 rounded-lg p-3"><p className="text-xs text-slate-500">{k}</p><p className="font-semibold text-slate-800 dark:text-white">{v}</p></div>
+                ))}
+              </div>
+              <Button className="w-full" onClick={() => setViewModal(null)}>Close</Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* EDIT MODAL */}
+      {editModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader><div className="flex items-center justify-between"><CardTitle>Edit Supplier</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setEditModal(null)}><X size={16} /></Button></div></CardHeader>
+            <CardContent className="space-y-3">
+              {[['name','Name'],['email','Email'],['phone','Phone'],['address','Address']].map(([field, label]) => (
+                <div key={field}><label className="text-xs font-medium text-slate-500 mb-1 block">{label}</label><Input value={editModal[field]} onChange={e => setEditModal({ ...editModal, [field]: e.target.value })} /></div>
+              ))}
+              <div className="flex gap-2 pt-2">
+                <Button className="flex-1" onClick={handleSaveEdit}>Save Changes</Button>
+                <Button variant="outline" className="flex-1" onClick={() => setEditModal(null)}>Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* PAYMENT MODAL */}
+      {paymentModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-sm">
+            <CardHeader><div className="flex items-center justify-between"><CardTitle>Add Payment — {paymentModal.name}</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setPaymentModal(null)}><X size={16} /></Button></div></CardHeader>
+            <CardContent className="space-y-3">
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-3 text-sm"><p><span className="text-slate-500">Total Due: </span><span className="font-semibold text-red-500">৳{paymentModal.totalDue.toLocaleString()}</span></p></div>
+              <div><label className="text-xs font-medium text-slate-500 mb-1 block">Payment Amount (Tk)</label><Input type="number" placeholder="Enter amount..." value={paymentAmount} onChange={e => setPaymentAmount(e.target.value)} /></div>
+              <div className="flex gap-2">
+                <Button className="flex-1" onClick={() => { setPaymentModal(null); setPaymentAmount(''); }}><CreditCard size={14} className="mr-1" />Add Payment</Button>
+                <Button variant="outline" className="flex-1" onClick={() => { setPaymentModal(null); setPaymentAmount(''); }}>Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* DELETE MODAL */}
+      {deleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-sm">
+            <CardHeader><div className="flex items-center justify-between"><CardTitle className="text-red-500">Delete Supplier</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setDeleteModal(null)}><X size={16} /></Button></div></CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-slate-600 dark:text-slate-300">Delete supplier <strong>{deleteModal.name}</strong>? This cannot be undone.</p>
+              <div className="flex gap-2">
+                <Button variant="destructive" className="flex-1" onClick={() => handleDelete(deleteModal.id)}>Yes, Delete</Button>
+                <Button variant="outline" className="flex-1" onClick={() => setDeleteModal(null)}>Cancel</Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import * as XLSX from 'xlsx';
-import { Search, RotateCcw, MoreVertical, Tag, Upload, FileDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, RotateCcw, MoreVertical, Tag, Upload, FileDown, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Link from 'next/link';
-import { Card, CardContent } from '@/app/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Input } from '@/app/components/ui/input';
 import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
@@ -30,7 +30,19 @@ export default function Brands() {
   const [currentPage, setCurrentPage] = useState(1);
   const [openMenu, setOpenMenu] = useState(null);
   const [showImport, setShowImport] = useState(false);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
   const perPage = 10;
+
+  const handleDelete = (id) => {
+    setBrands(brands.filter(b => b.id !== id));
+    setDeleteModal(null);
+  };
+
+  const handleSaveEdit = () => {
+    setBrands(brands.map(b => b.id === editModal.id ? editModal : b));
+    setEditModal(null);
+  };
 
   const filtered = brands.filter(b =>
     b.brand.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -57,7 +69,7 @@ export default function Brands() {
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl text-white shadow-lg"><Tag size={24} /></div>
@@ -126,8 +138,8 @@ export default function Brands() {
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setOpenMenu(openMenu === b.id ? null : b.id)}><MoreVertical size={16} /></Button>
                       {openMenu === b.id && (
                         <div className="absolute right-4 top-10 bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-20 w-28">
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs">Edit</button>
-                          <button className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs">Delete</button>
+                          <button onClick={() => { setEditModal({ ...b }); setOpenMenu(null); }} className="w-full text-left px-3 py-1.5 hover:bg-indigo-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs">Edit</button>
+                          <button onClick={() => { setDeleteModal(b); setOpenMenu(null); }} className="w-full text-left px-3 py-1.5 hover:bg-red-50 dark:hover:bg-slate-800 text-red-500 text-xs">Delete</button>
                         </div>
                       )}
                     </td>
@@ -161,6 +173,43 @@ export default function Brands() {
                 <div className="flex justify-end gap-2">
                   <Button>Submit</Button>
                   <Button variant="outline" onClick={() => setShowImport(false)}>Close</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* EDIT MODAL */}
+        {editModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="w-full max-w-sm">
+              <CardHeader><div className="flex items-center justify-between"><CardTitle>Edit Brand</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setEditModal(null)}><X size={16} /></Button></div></CardHeader>
+              <CardContent className="space-y-3">
+                <div><label className="text-xs font-medium text-slate-500 mb-1 block">Brand Name</label><Input value={editModal.brand} onChange={e => setEditModal({ ...editModal, brand: e.target.value })} /></div>
+                <div><label className="text-xs font-medium text-slate-500 mb-1 block">Status</label>
+                  <select value={editModal.status} onChange={e => setEditModal({ ...editModal, status: e.target.value })} className="w-full h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="Active">Active</option><option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button className="flex-1" onClick={handleSaveEdit}>Save</Button>
+                  <Button variant="outline" className="flex-1" onClick={() => setEditModal(null)}>Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* DELETE MODAL */}
+        {deleteModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="w-full max-w-sm">
+              <CardHeader><div className="flex items-center justify-between"><CardTitle className="text-red-500">Delete Brand</CardTitle><Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setDeleteModal(null)}><X size={16} /></Button></div></CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-slate-600 dark:text-slate-300">Delete brand <strong>{deleteModal.brand}</strong>? This cannot be undone.</p>
+                <div className="flex gap-2">
+                  <Button variant="destructive" className="flex-1" onClick={() => handleDelete(deleteModal.id)}>Yes, Delete</Button>
+                  <Button variant="outline" className="flex-1" onClick={() => setDeleteModal(null)}>Cancel</Button>
                 </div>
               </CardContent>
             </Card>

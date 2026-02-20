@@ -54,7 +54,12 @@ export default function CategoryList() {
   const [sortOrder, setSortOrder] = useState('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const [openAction, setOpenAction] = useState(null);
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
   const productsPerPage = 10;
+
+  const handleDeleteCat = (id) => { setProducts(products.filter(p => p.id !== id)); setDeleteModal(null); };
+  const handleSaveEdit = () => { setProducts(products.map(p => p.id === editModal.id ? editModal : p)); setEditModal(null); };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -104,7 +109,7 @@ export default function CategoryList() {
 
   return (
     <div className="font-inter text-sm">
-      <div className="container mx-auto px-4 py-6 md:mt-[5%] mt-[20%]">
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-3">
@@ -198,7 +203,7 @@ export default function CategoryList() {
               <thead>
                 <tr className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
                   <th className="px-3 py-3 text-left font-medium w-10">
-                    <input type="checkbox" onChange={handleSelectAll} className="rounded" />
+                    <input type="checkbox" onChange={handleSelectAll} className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                   </th>
                   <th className="px-3 py-3 text-left font-medium">Category</th>
                   <th className="px-3 py-3 text-left font-medium">Slug</th>
@@ -211,7 +216,7 @@ export default function CategoryList() {
                 {currentProducts.length > 0 ? currentProducts.map((item) => (
                   <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-slate-800/50 transition-colors">
                     <td className="px-3 py-3">
-                      <input type="checkbox" checked={selectedProducts.includes(item.id)} onChange={(e) => handleSelectProduct(e, item.id)} className="rounded" />
+                      <input type="checkbox" checked={selectedProducts.includes(item.id)} onChange={(e) => handleSelectProduct(e, item.id)} className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                     </td>
                     <td className="px-3 py-3">
                       <div className="flex items-center gap-3">
@@ -231,8 +236,8 @@ export default function CategoryList() {
                         </Button>
                         {openAction === item.id && (
                           <div className="absolute right-0 top-full mt-1 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-20 py-1">
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600"><Pencil size={14} />Edit</button>
-                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500"><Trash2 size={14} />Delete</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-blue-600" onClick={() => { setEditModal({...item}); setOpenAction(null); }}><Pencil size={14} />Edit</button>
+                            <button className="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 text-red-500" onClick={() => { setDeleteModal(item); setOpenAction(null); }}><Trash2 size={14} />Delete</button>
                           </div>
                         )}
                       </div>
@@ -270,6 +275,50 @@ export default function CategoryList() {
             </Button>
           </div>
         </div>
+
+        {/* Edit Modal */}
+        {editModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setEditModal(null)}>
+            <Card className="w-full max-w-md" onClick={e => e.stopPropagation()}>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-lg">Edit Category</CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => setEditModal(null)}><X size={18}/></Button>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Category Name</label><Input value={editModal.category} onChange={e => setEditModal({...editModal, category: e.target.value, categorySlug: e.target.value.toLowerCase().replace(/\s+/g, '-')})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Slug</label><Input value={editModal.categorySlug} onChange={e => setEditModal({...editModal, categorySlug: e.target.value})} /></div>
+                <div><label className="text-xs font-medium text-slate-600 mb-1 block">Status</label>
+                  <select className="w-full border border-slate-200 rounded-md px-3 py-2 text-sm" value={editModal.status} onChange={e => setEditModal({...editModal, status: e.target.value})}>
+                    <option>Active</option><option>Inactive</option>
+                  </select>
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button onClick={handleSaveEdit} className="flex-1">Save Changes</Button>
+                  <Button variant="outline" onClick={() => setEditModal(null)} className="flex-1">Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Delete Modal */}
+        {deleteModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setDeleteModal(null)}>
+            <Card className="w-full max-w-sm" onClick={e => e.stopPropagation()}>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-lg text-red-600">Delete Category</CardTitle>
+                <Button variant="ghost" size="icon" onClick={() => setDeleteModal(null)}><X size={18}/></Button>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">Delete category <strong>{deleteModal.category}</strong>? This cannot be undone.</p>
+                <div className="flex gap-2">
+                  <Button variant="destructive" onClick={() => handleDeleteCat(deleteModal.id)} className="flex-1">Delete</Button>
+                  <Button variant="outline" onClick={() => setDeleteModal(null)} className="flex-1">Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Import Modal */}
         {showModal && (

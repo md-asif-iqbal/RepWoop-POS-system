@@ -88,7 +88,7 @@ export default function POSManage() {
 
   return (
     <div className='dark:text-white font-inter text-sm'>
-      <div className="p-4 lg:p-6 mt-14 lg:mt-0">
+      <div className="p-4 lg:p-6">
         <h1 className="text-xl font-bold text-slate-800 dark:text-white mb-5 flex items-center gap-2">
           <ShoppingCart size={22} className="text-indigo-500" />
           POS Terminal

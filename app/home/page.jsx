@@ -143,7 +143,7 @@ export default function Dashboard() {
 
   return (
     <div className="dark:text-white p-4 lg:p-8 font-inter text-sm">
-      <main className="mt-14 lg:mt-0 space-y-8 animate-fade-in">
+      <main className="space-y-8 animate-fade-in">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div>

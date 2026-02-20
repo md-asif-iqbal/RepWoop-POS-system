@@ -40,7 +40,7 @@ export default function CustomerAdded() {
   return (
     <div className='font-inter text-sm md:h-screen'>
 
-        <div className="p-0  mt-[25%] lg:mt-[5%]  w-full dark:text-white">
+        <div className="p-0   w-full dark:text-white">
         {/* Title Section */}
       <div className=" mb-4  shadow-sm ">
       <h1 className="page-title mx-5">Customers</h1>

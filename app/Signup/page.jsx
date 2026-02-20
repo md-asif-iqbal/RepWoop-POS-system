@@ -20,11 +20,11 @@ export default function SignUp() {
                 <div className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full bg-white/10" />
               </div>
               <div className="relative z-10">
-                <h2 className="text-white text-xl font-bold">Repwoop <span className="text-purple-200">POS</span></h2>
+                <h2 className="text-white text-xl font-bold">SoftLanding <span className="text-purple-200">POS</span></h2>
               </div>
               <div className="relative z-10 text-white space-y-6">
                 <h2 className="text-3xl font-bold leading-tight">Start your journey today.</h2>
-                <p className="text-purple-200 text-sm leading-relaxed">Join thousands of businesses using Repwoop POS to grow revenue.</p>
+                <p className="text-purple-200 text-sm leading-relaxed">Join thousands of businesses using SoftLanding POS to grow revenue.</p>
                 <div className="space-y-3">
                   {["Free 14-day trial included", "No credit card required", "Full access to all features"].map((text, i) => (
                     <div key={i} className="flex items-center gap-3 text-sm text-purple-100">
@@ -86,7 +86,7 @@ export default function SignUp() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500" />
+                  <input type="checkbox" className="h-5 w-5 rounded-full accent-indigo-600 cursor-pointer" />
                   <span className="text-xs text-slate-500 dark:text-slate-400">
                     I agree to the <a href="#" className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Terms & Conditions</a>
                   </span>

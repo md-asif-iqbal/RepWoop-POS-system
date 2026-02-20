@@ -63,6 +63,8 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -71,6 +73,8 @@ body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* ===== DARK MODE INPUT / CHECKBOX / SELECT FIX ===== */
@@ -93,11 +97,18 @@ body {
   accent-color: #818cf8;
   -webkit-appearance: checkbox;
   appearance: checkbox;
+  border-radius: 9999px;
 }
 
 .dark input[type="checkbox"]:checked {
   background-color: #818cf8 !important;
   border-color: #818cf8 !important;
+}
+
+/* Custom round checkbox styling */
+input[type="checkbox"] {
+  border-radius: 9999px;
+  accent-color: #6366f1;
 }
 
 .dark input[type="radio"] {
@@ -232,7 +243,7 @@ body {
   }
 
   .page-container {
-    @apply p-4 md:p-6 lg:p-8 md:mt-[5%] mt-[20%];
+    @apply p-4 md:p-6 lg:p-8 pt-20;
   }
 
   .page-title {
